@@ -50,39 +50,39 @@ namespace SaleFlex.UserInterface.Manager
 
                 xAboutBox.Show();
 
-                xAboutBox.vChangeLabelDownloading("POS verileri yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading POS data...");
                 PosManager.xGetInstance().bReadPos();
 
-                xAboutBox.vChangeLabelDownloading("KDV ler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading VATs...");
                 PosManager.xGetInstance().bReadAllVats();
 
-                xAboutBox.vChangeLabelDownloading("Kısım lar yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading departments...");
                 PosManager.xGetInstance().bReadAllDepartments();
 
-                xAboutBox.vChangeLabelDownloading("Dövizler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading currencies...");
                 PosManager.xGetInstance().bReadAllCurrency();
 
-                xAboutBox.vChangeLabelDownloading("Ödeme türleri yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading payment types...");
                 PosManager.xGetInstance().bReadListPaymentTypes();
 
-                xAboutBox.vChangeLabelDownloading("İşlem türleri yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading transaction types...");
                 PosManager.xGetInstance().bReadListTransactionTypes();
                 PosManager.xGetInstance().bReadListTransactionDocumentTypes();
 
-                xAboutBox.vChangeLabelDownloading("Ülke ler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading countries...");
                 PosManager.xGetInstance().bReadListCountries();
 
-                xAboutBox.vChangeLabelDownloading("İl ler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading citis...");
                 PosManager.xGetInstance().bReadListCities();
 
-                xAboutBox.vChangeLabelDownloading("İlçe ler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading districts...");
                 PosManager.xGetInstance().bReadListDistricts();
 
-                xAboutBox.vChangeLabelDownloading("Kasiyer ler yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Cashiers are loading...");
                 PosManager.xGetInstance().bReadListCashiers();
                 PosManager.xGetInstance().bReadDefaultCashier();
 
-                xAboutBox.vChangeLabelDownloading("Açık kalan satış işlemi yükleniyor...");
+                xAboutBox.vChangeLabelDownloading("Loading open sales transaction...");
                 PosManager.xGetInstance().bReadLastOpenTransaction();
 
                 PosManager.xGetInstance().prop_enumDocumentType = enumDocumentType.FiscalReceipt;
