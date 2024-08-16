@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BCF5CF1-6628-44D9-A09D-175CF3242FA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaleFlex.Data.Models</RootNamespace>
+    <AssemblyName>SaleFlex.Data.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CashReport.cs" />
+    <Compile Include="LabelValueDataModel.cs" />
+    <Compile Include="PluSearchDataModel.cs" />
+    <Compile Include="PluManufacturerDataModel.cs" />
+    <Compile Include="PluBarcodeDefinitionDataModel.cs" />
+    <Compile Include="CashierDataModel.cs" />
+    <Compile Include="DepartmentDataModel.cs" />
+    <Compile Include="DiscountSurchargeDataModel.cs" />
+    <Compile Include="DistrictDataModel.cs" />
+    <Compile Include="EndOfDayDataModel.cs" />
+    <Compile Include="FormFunctionDataModel.cs" />
+    <Compile Include="KeyboardTypeFirstDataModel.cs" />
+    <Compile Include="LimitDataModel.cs" />
+    <Compile Include="PaymentDataModel.cs" />
+    <Compile Include="PaymentTypeDataModel.cs" />
+    <Compile Include="PluBarcodeDataModel.cs" />
+    <Compile Include="PluDataModel.cs" />
+    <Compile Include="PluMainGroupDataModel.cs" />
+    <Compile Include="PluPurschaseModel.cs" />
+    <Compile Include="PluSubGroupDataModel.cs" />
+    <Compile Include="PopUpMessageDataModel.cs" />
+    <Compile Include="PosDataModel.cs" />
+    <Compile Include="CityDataModel.cs" />
+    <Compile Include="CountryDataModel.cs" />
+    <Compile Include="CurrencyDataModel.cs" />
+    <Compile Include="CustomerDataModel.cs" />
+    <Compile Include="FormControlDataModel.cs" />
+    <Compile Include="FormControlFunctionDataModel.cs" />
+    <Compile Include="FormDataModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptFooterDataModel.cs" />
+    <Compile Include="ReceiptHeaderDataModel.cs" />
+    <Compile Include="ReceiptLimitDataModel.cs" />
+    <Compile Include="ServiceDataModel.cs" />
+    <Compile Include="StockDataModel.cs" />
+    <Compile Include="StockUnitDataModel.cs" />
+    <Compile Include="StoreDataModel.cs" />
+    <Compile Include="SubTotalDataModel.cs" />
+    <Compile Include="SupervisorDataModel.cs" />
+    <Compile Include="TemplatesDataModel.cs" />
+    <Compile Include="TransactionDataModel.cs" />
+    <Compile Include="TransactionDetailDataModel.cs" />
+    <Compile Include="TransactionDocumentDesignDataModel.cs" />
+    <Compile Include="TransactionDocumentTypeDataModel.cs" />
+    <Compile Include="TransactionHeadDataModel.cs" />
+    <Compile Include="TransactionTypeDataModel.cs" />
+    <Compile Include="VatDataModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
+      <Project>{f7ede2a5-cfb9-42ca-b422-8f5a7b2115b9}</Project>
+      <Name>SaleFlex.CommonLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

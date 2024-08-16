@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4370D0F4-97A8-4772-9878-7A6A2C77BC38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaleFlex.UserInterface.Manager</RootNamespace>
+    <AssemblyName>SaleFlex.UserInterface.Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Events.cs" />
+    <Compile Include="Events.Documents.cs" />
+    <Compile Include="Events.Interface.cs" />
+    <Compile Include="Events.ReportMenu.cs" />
+    <Compile Include="Events.Get.cs" />
+    <Compile Include="Events.SaleMenu.cs" />
+    <Compile Include="Events.ServiceMenu.cs" />
+    <Compile Include="Events.SettingMenu.cs" />
+    <Compile Include="CustomEventHandler.cs" />
+    <Compile Include="Events.ShortcutMenu.cs" />
+    <Compile Include="Interface.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
+      <Project>{f7ede2a5-cfb9-42ca-b422-8f5a7b2115b9}</Project>
+      <Name>SaleFlex.CommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.AccessLayer\SaleFlex.Data.AccessLayer.csproj">
+      <Project>{b626d459-8dce-4ee8-9b4c-a50258024cb3}</Project>
+      <Name>SaleFlex.Data.AccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.Model\SaleFlex.Data.Models.csproj">
+      <Project>{5bcf5cf1-6628-44d9-a09d-175cf3242fa7}</Project>
+      <Name>SaleFlex.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data\SaleFlex.Data.csproj">
+      <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
+      <Name>SaleFlex.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.POS.Device.Manager\SaleFlex.POS.Device.Manager.csproj">
+      <Project>{f70888d6-fe67-4f1e-b887-088a78509914}</Project>
+      <Name>SaleFlex.POS.Device.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.POS.Document\SaleFlex.POS.Document.csproj">
+      <Project>{e855676a-dd6e-43ad-ba8d-3ae508224805}</Project>
+      <Name>SaleFlex.POS.Document</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.POS.Manager\SaleFlex.POS.Manager.csproj">
+      <Project>{237cfbc2-e519-4210-823e-7138b37811ff}</Project>
+      <Name>SaleFlex.POS.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.BoxForm\SaleFlex.UserInterface.BoxForm.csproj">
+      <Project>{94b9816b-6610-4eff-8d02-0ab175fbb97a}</Project>
+      <Name>SaleFlex.UserInterface.BoxForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.Constanst\SaleFlex.UserInterface.Constanst.csproj">
+      <Project>{ae095a11-4493-4f85-975d-2dac8c7bdb27}</Project>
+      <Name>SaleFlex.UserInterface.Constanst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.Control\SaleFlex.UserInterface.Controls.csproj">
+      <Project>{041e48a1-08c3-47ce-bc26-3aff2d11d6a2}</Project>
+      <Name>SaleFlex.UserInterface.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.Data\SaleFlex.UserInterface.Data.csproj">
+      <Project>{86715bdd-74cc-4437-b0bc-9f1d72aa54d0}</Project>
+      <Name>SaleFlex.UserInterface.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Windows\SaleFlex.Windows.csproj">
+      <Project>{dc1bd6eb-9cf3-4d23-8cc9-f7e8a7717785}</Project>
+      <Name>SaleFlex.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

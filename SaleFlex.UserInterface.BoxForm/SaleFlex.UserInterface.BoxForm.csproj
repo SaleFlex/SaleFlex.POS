@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{94B9816B-6610-4EFF-8D02-0AB175FBB97A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaleFlex.UserInterface.BoxForm</RootNamespace>
+    <AssemblyName>SaleFlex.UserInterface.BoxForm</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\CyberPOSForms.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\CyberPOSForms.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TOK</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxShortCutMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxShortCutMenu.Designer.cs">
+      <DependentUpon>InfoBoxShortCutMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxPriceLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxPriceLookUp.Designer.cs">
+      <DependentUpon>InfoBoxPriceLookUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxCashReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxCashReport.Designer.cs">
+      <DependentUpon>InputBoxCashReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxPayment.Designer.cs">
+      <DependentUpon>InputBoxPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxSetupParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxSetupParameter.Designer.cs">
+      <DependentUpon>InputBoxSetupParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxNewPluMainGroupDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxNewPluMainGroupDefinition.Designer.cs">
+      <DependentUpon>InputBoxNewPluMainGroupDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxPluMainGroupDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxPluMainGroupDefinition.Designer.cs">
+      <DependentUpon>InputBoxPluMainGroupDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxStockEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxStockEntry.Designer.cs">
+      <DependentUpon>InputBoxStockEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxCompanyInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxCompanyInformation.Designer.cs">
+      <DependentUpon>InputBoxCompanyInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxNewDepartmentDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxNewDepartmentDefinition.Designer.cs">
+      <DependentUpon>InputBoxNewDepartmentDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxNewPluDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxNewPluDefinition.Designer.cs">
+      <DependentUpon>InputBoxNewPluDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxReceiptLimit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxReceiptLimit.Designer.cs">
+      <DependentUpon>InputBoxReceiptLimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxInvoices.Designer.cs">
+      <DependentUpon>InfoBoxInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxPaymentDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxPaymentDetail.Designer.cs">
+      <DependentUpon>InfoBoxPaymentDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxReturns.Designer.cs">
+      <DependentUpon>InfoBoxReturns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoBoxWaybills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoxWaybills.Designer.cs">
+      <DependentUpon>InfoBoxWaybills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxBarcodeDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxBarcodeDefinition.Designer.cs">
+      <DependentUpon>InputBoxBarcodeDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxCashier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxCashier.Designer.cs">
+      <DependentUpon>InputBoxCashier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxCurrencyDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxCurrencyDefinition.Designer.cs">
+      <DependentUpon>InputBoxCurrencyDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxCustomer.Designer.cs">
+      <DependentUpon>InputBoxCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxDepartmentDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxDepartmentDefinition.Designer.cs">
+      <DependentUpon>InputBoxDepartmentDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxDiscountSurcharge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxDiscountSurcharge.Designer.cs">
+      <DependentUpon>InputBoxDiscountSurcharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxDisplayBrightness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxDisplayBrightness.Designer.cs">
+      <DependentUpon>InputBoxDisplayBrightness.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxIdleMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxIdleMessage.Designer.cs">
+      <DependentUpon>InputBoxIdleMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxPluDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxPluDefinition.Designer.cs">
+      <DependentUpon>InputBoxPluDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxPrinterIntensity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxPrinterIntensity.Designer.cs">
+      <DependentUpon>InputBoxPrinterIntensity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxReceiptFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxReceiptFooter.Designer.cs">
+      <DependentUpon>InputBoxReceiptFooter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxReceiptHeader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxReceiptHeader.Designer.cs">
+      <DependentUpon>InputBoxReceiptHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxSupervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxSupervisor.Designer.cs">
+      <DependentUpon>InputBoxSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxVatDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxVatDefinition.Designer.cs">
+      <DependentUpon>InputBoxVatDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
+      <Project>{f7ede2a5-cfb9-42ca-b422-8f5a7b2115b9}</Project>
+      <Name>SaleFlex.CommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.AccessLayer\SaleFlex.Data.AccessLayer.csproj">
+      <Project>{b626d459-8dce-4ee8-9b4c-a50258024cb3}</Project>
+      <Name>SaleFlex.Data.AccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.Model\SaleFlex.Data.Models.csproj">
+      <Project>{5bcf5cf1-6628-44d9-a09d-175cf3242fa7}</Project>
+      <Name>SaleFlex.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data\SaleFlex.Data.csproj">
+      <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
+      <Name>SaleFlex.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.POS.Device.Manager\SaleFlex.POS.Device.Manager.csproj">
+      <Project>{F70888D6-FE67-4F1E-B887-088A78509914}</Project>
+      <Name>SaleFlex.POS.Device.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.POS.Manager\SaleFlex.POS.Manager.csproj">
+      <Project>{237cfbc2-e519-4210-823e-7138b37811ff}</Project>
+      <Name>SaleFlex.POS.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.Control\SaleFlex.UserInterface.Controls.csproj">
+      <Project>{041e48a1-08c3-47ce-bc26-3aff2d11d6a2}</Project>
+      <Name>SaleFlex.UserInterface.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.UserInterface.Data\SaleFlex.UserInterface.Data.csproj">
+      <Project>{86715bdd-74cc-4437-b0bc-9f1d72aa54d0}</Project>
+      <Name>SaleFlex.UserInterface.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Windows\SaleFlex.Windows.csproj">
+      <Project>{dc1bd6eb-9cf3-4d23-8cc9-f7e8a7717785}</Project>
+      <Name>SaleFlex.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxPriceLookUp.resx">
+      <DependentUpon>InfoBoxPriceLookUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxCashReport.resx">
+      <DependentUpon>InputBoxCashReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxShortCutMenu.resx">
+      <DependentUpon>InfoBoxShortCutMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxPayment.resx">
+      <DependentUpon>InputBoxPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxSetupParameter.resx">
+      <DependentUpon>InputBoxSetupParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxNewPluMainGroupDefinition.resx">
+      <DependentUpon>InputBoxNewPluMainGroupDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxPluMainGroupDefinition.resx">
+      <DependentUpon>InputBoxPluMainGroupDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxCompanyInformation.resx">
+      <DependentUpon>InputBoxCompanyInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxNewDepartmentDefinition.resx">
+      <DependentUpon>InputBoxNewDepartmentDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxNewPluDefinition.resx">
+      <DependentUpon>InputBoxNewPluDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxReceiptLimit.resx">
+      <DependentUpon>InputBoxReceiptLimit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxInvoices.resx">
+      <DependentUpon>InfoBoxInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxPaymentDetail.resx">
+      <DependentUpon>InfoBoxPaymentDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxReturns.resx">
+      <DependentUpon>InfoBoxReturns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoxWaybills.resx">
+      <DependentUpon>InfoBoxWaybills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxBarcodeDefinition.resx">
+      <DependentUpon>InputBoxBarcodeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxCashier.resx">
+      <DependentUpon>InputBoxCashier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxCurrencyDefinition.resx">
+      <DependentUpon>InputBoxCurrencyDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxCustomer.resx">
+      <DependentUpon>InputBoxCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxDepartmentDefinition.resx">
+      <DependentUpon>InputBoxDepartmentDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxDiscountSurcharge.resx">
+      <DependentUpon>InputBoxDiscountSurcharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxDisplayBrightness.resx">
+      <DependentUpon>InputBoxDisplayBrightness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxIdleMessage.resx">
+      <DependentUpon>InputBoxIdleMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxPluDefinition.resx">
+      <DependentUpon>InputBoxPluDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxPrinterIntensity.resx">
+      <DependentUpon>InputBoxPrinterIntensity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxReceiptFooter.resx">
+      <DependentUpon>InputBoxReceiptFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxReceiptHeader.resx">
+      <DependentUpon>InputBoxReceiptHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxStockEntry.resx">
+      <DependentUpon>InputBoxStockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxSupervisor.resx">
+      <DependentUpon>InputBoxSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxVatDefinition.resx">
+      <DependentUpon>InputBoxVatDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\YES.Data.Models.VatDataModel.datasource" />
+    <None Include="Resources\UP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DOWN.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="YES.POS.ico" />
+    <Content Include="YES.StartupImage.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
