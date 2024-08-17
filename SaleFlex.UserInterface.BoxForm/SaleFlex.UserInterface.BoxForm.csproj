@@ -473,6 +473,10 @@
   <ItemGroup>
     <None Include="Resources\DOWN.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="saleflex.ico" />
+    <Content Include="SaleFlex.POS.StartupImage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

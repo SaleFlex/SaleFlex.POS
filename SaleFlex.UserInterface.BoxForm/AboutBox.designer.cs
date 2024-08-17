@@ -43,7 +43,7 @@
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(78, 17);
+            this.labelProductName.Size = new System.Drawing.Size(116, 17);
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "SaleFlex.POS";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -73,7 +73,7 @@
             this.labelProductDescription.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductDescription.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelProductDescription.Name = "labelProductDescription";
-            this.labelProductDescription.Size = new System.Drawing.Size(72, 17);
+            this.labelProductDescription.Size = new System.Drawing.Size(101, 17);
             this.labelProductDescription.TabIndex = 24;
             this.labelProductDescription.Text = "SaleFlex.POS";
             this.labelProductDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
