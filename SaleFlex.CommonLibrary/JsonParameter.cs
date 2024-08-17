@@ -42,9 +42,10 @@ namespace SaleFlex.CommonLibrary
         public string prop_strSupervisorName { get; set; }
         public bool prop_bIsDebugModeActive { get; set; }
         public int prop_iWaitAfterReceiptClosed { get; set; }
+        public string prop_strDbsFolder { get; set; }
         public string prop_strDatabasePosFileName { get; set; }
-        public string prop_strDatabaseSaleFileName { get; set; }
-        public string prop_strDatabaseStockFileName { get; set; }
+        public string prop_strDatabaseSalesFileName { get; set; }
+        public string prop_strDatabaseProductsFileName { get; set; }
         public string prop_strDepartmentBackColor { get; set; }
         public string prop_strFunctionBackColor { get; set; }
         public string prop_strMessageBoxBackColor { get; set; }
@@ -90,9 +91,10 @@ namespace SaleFlex.CommonLibrary
                 prop_strSupervisorName = "MANAGER";
                 prop_bIsDebugModeActive = false;
                 prop_iWaitAfterReceiptClosed = 5;
+                prop_strDbsFolder = @"C:\SaleFlex\DBs";
                 prop_strDatabasePosFileName = "SaleFlex.POS.DB3";
-                prop_strDatabaseSaleFileName = "SaleFlex.POS.SALE.DB3";
-                prop_strDatabaseStockFileName = "SaleFlex.POS.STOCK.DB3";
+                prop_strDatabaseSalesFileName = "SaleFlex.POS.SALES.DB3";
+                prop_strDatabaseProductsFileName = "SaleFlex.POS.PRODUCTS.DB3";
                 prop_strDepartmentBackColor = string.Empty;
                 prop_strFunctionBackColor = string.Empty;
                 prop_strMessageBoxBackColor = "DARKSEAGREEN";

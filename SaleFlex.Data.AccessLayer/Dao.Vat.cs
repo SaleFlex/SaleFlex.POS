@@ -205,7 +205,7 @@ namespace SaleFlex.Data.AccessLayer
                 //    prm_xVatModel.Rate,
                 //    prm_xVatModel.Description,
                 //    prm_xVatModel.Name);
-                //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
                 //if (xDataTable.Rows[0]["Changes()"].ToString() == "0")
                 //{

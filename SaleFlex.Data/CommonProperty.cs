@@ -170,11 +170,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return JsonParameter.xGetInstance().prop_strDatabaseSaleFileName;
+                return JsonParameter.xGetInstance().prop_strDatabaseSalesFileName;
             }
             set
             {
-                JsonParameter.xGetInstance().prop_strDatabaseSaleFileName = value;
+                JsonParameter.xGetInstance().prop_strDatabaseSalesFileName = value;
                 JsonParameter.xGetInstance().bUpdateJsonParameter();
             }
         }
@@ -183,11 +183,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return JsonParameter.xGetInstance().prop_strDatabaseStockFileName;
+                return JsonParameter.xGetInstance().prop_strDatabaseProductsFileName;
             }
             set
             {
-                JsonParameter.xGetInstance().prop_strDatabaseStockFileName = value;
+                JsonParameter.xGetInstance().prop_strDatabaseProductsFileName = value;
                 JsonParameter.xGetInstance().bUpdateJsonParameter();
             }
         }

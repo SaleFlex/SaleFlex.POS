@@ -772,7 +772,7 @@ namespace SaleFlex.Data.AccessLayer
                 //    prm_xPluMainGroupDataModel.Description,
                 //    prm_xPluMainGroupDataModel.MaxPrice,
                 //    prm_xPluMainGroupDataModel.No);
-                //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
                 //if (xDataTable.Rows[0]["Changes()"].ToString() == "0")
                 //{
@@ -842,7 +842,7 @@ namespace SaleFlex.Data.AccessLayer
         //        //    prm_xPluSubGroupDataModel.Name,
         //        //    prm_xPluSubGroupDataModel.Description,
         //        //    prm_xPluSubGroupDataModel.No);
-        //        //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+        //        //DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
         //        //if (xDataTable.Rows[0]["Changes()"].ToString() == "0")
         //        //{
@@ -853,7 +853,7 @@ namespace SaleFlex.Data.AccessLayer
         //            prm_xPluSubGroupDataModel.DiscountPercent,
         //            prm_xPluSubGroupDataModel.Name,
         //            prm_xPluSubGroupDataModel.Description);
-        //        Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteVoidDataTable(query);
+        //        Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteVoidDataTable(query);
         //        //}
         //    }
         //    catch (Exception xException)
@@ -1111,7 +1111,7 @@ namespace SaleFlex.Data.AccessLayer
         //            prm_xPluStockModel.StockUnit,
         //            prm_xPluStockModel.Code);
 
-        //        DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+        //        DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
         //        if (xDataTable.Rows[0]["Changes()"].ToString() != "0")
         //        {
@@ -1127,7 +1127,7 @@ namespace SaleFlex.Data.AccessLayer
         //            prm_xPluStockModel.PurchasePrice,
         //            prm_xPluBarcodeDataModel.SalePrice,
         //            prm_xPluDataModel.Code);
-        //            Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteVoidDataTable(query);
+        //            Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteVoidDataTable(query);
         //        }
         //        else
         //        {
@@ -1159,7 +1159,7 @@ namespace SaleFlex.Data.AccessLayer
         //            prm_xPluDataModel.MaxStock,
         //            prm_xPluDataModel.StockUnit,
         //            prm_xPluDataModel.FkPluManufacturerId);
-        //            xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+        //            xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
         //            query = string.Format("INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, FkPluBarcodeDefinitionId, " +
         //                "PurchasePrice, SalePrice) VALUES({0},'{1}','{2}',{3},{4},{5}); ",
@@ -1169,7 +1169,7 @@ namespace SaleFlex.Data.AccessLayer
         //            prm_xPluBarcodeDataModel.FkPluBarcodeDefinitionId,
         //            prm_xPluBarcodeDataModel.PurchasePrice,
         //            prm_xPluBarcodeDataModel.SalePrice);
-        //            Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteVoidDataTable(query);
+        //            Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteVoidDataTable(query);
         //        }
         //    }
         //    catch (Exception xException)
