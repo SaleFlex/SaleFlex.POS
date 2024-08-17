@@ -24,7 +24,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 PluPurschaseModel xPluPurschaseModel = new PluPurschaseModel();
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal,(ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10)"));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal,(ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10)"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -32,14 +32,14 @@ namespace SaleFlex.Data.AccessLayer
                     xCashReportDataModel.CashWithoutVat = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashWithoutVat"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON  dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now') AND dt.[No]=10"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON  dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now') AND dt.[No]=10"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.ReturnProductCash = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["ReturnProductCash"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now')"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND strftime('%d-%m-%Y',h.TransactionDateTime) = strftime('%d-%m-%Y','now')"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -48,21 +48,21 @@ namespace SaleFlex.Data.AccessLayer
 
                 xCashReportDataModel.Profit = string.Format("{0:#,0.00}", (decimal.Parse(xCashReportDataModel.CashWithoutVat) - decimal.Parse(xCashReportDataModel.PurchasePrice)));
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=1"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=1"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.CashPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashPayment"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=2"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=2"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.CardPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CardPayment"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId NOT IN (1,2)"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%d-%m-%Y',h.TransactionDateTime)= strftime('%d-%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId NOT IN (1,2)"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -90,7 +90,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 PluPurschaseModel xPluPurschaseModel = new PluPurschaseModel();
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal, (ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10)"));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal, (ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10)"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -98,14 +98,14 @@ namespace SaleFlex.Data.AccessLayer
                     xCashReportDataModel.CashWithoutVat = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashWithoutVat"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.[No]=h.TransactionDocumentTypeNo WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now') AND dt.[No]=10"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.[No]=h.TransactionDocumentTypeNo WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now') AND dt.[No]=10"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.ReturnProductCash = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["ReturnProductCash"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now')"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND strftime('%m-%Y',h.TransactionDateTime) = strftime('%m-%Y','now')"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -114,21 +114,21 @@ namespace SaleFlex.Data.AccessLayer
 
                 xCashReportDataModel.Profit = string.Format("{0:#,0.00}", (decimal.Parse(xCashReportDataModel.CashWithoutVat) - decimal.Parse(xCashReportDataModel.PurchasePrice)));
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=1"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=1"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.CashPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashPayment"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=2"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId=2"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     xCashReportDataModel.CardPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CardPayment"]) / 100));
                 }
 
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId NOT IN (1,2)"));
+                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND strftime('%m-%Y',h.TransactionDateTime)= strftime('%m-%Y','now') AND dt.[No] NOT IN (8,9,10) AND p.FkPaymentTypeId NOT IN (1,2)"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -157,7 +157,7 @@ namespace SaleFlex.Data.AccessLayer
                     string strDateNow = strDateDay + "-" + strDateMonth + "-" + DateTime.Now.Year;
                     CashReportDataModel xCashReportDataModel = new CashReportDataModel();
 
-                    DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal, (ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) ANd (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
+                    DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReceiptTotal, (ifnull(sum(h.ReceiptTotalPrice),0) - ifnull(sum(h.ReceiptTotalVat),0)) as CashWithoutVat FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.Id=h.FkTransactionDocumentTypeId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) ANd (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {
@@ -165,14 +165,14 @@ namespace SaleFlex.Data.AccessLayer
                         xCashReportDataModel.CashWithoutVat = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashWithoutVat"]) / 100));
                     }
 
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.[No]=h.TransactionDocumentTypeNo WHERE h.IsVoided=0 AND dt.[No]=10 AND (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT ifnull(sum(h.ReceiptTotalPrice),0) as ReturnProductCash FROM TableTransactionHead h INNER JOIN TableTransactionDocumentType dt ON dt.[No]=h.TransactionDocumentTypeNo WHERE h.IsVoided=0 AND dt.[No]=10 AND (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {
                         xCashReportDataModel.ReturnProductCash = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["ReturnProductCash"]) / 100));
                     }
 
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("ATTACH DATABASE 'SaleFlex.POS.STOCK.db3' as STOCK;SELECT IFNULL(SUM(CASE WHEN plu.StockUnitNo = 1 THEN (tpb.PurchasePrice*td.Quantity)/1000 ELSE (tpb.PurchasePrice*td.Quantity) END),0) as PurchasePrice FROM TableTransactionHead h JOIN TableTransactionDocumentType dt ON h.TransactionDocumentTypeNo=dt.No JOIN TableTransactionDetail td ON td.FkTransactionHeadId=h.Id INNER JOIN STOCK.TablePluBarcode as tpb ON tpb.FkPluId=td.FkPluId INNER JOIN STOCK.TablePlu as plu ON plu.Id=tpb.FkPluId WHERE h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime) = '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {
@@ -181,21 +181,21 @@ namespace SaleFlex.Data.AccessLayer
 
                     xCashReportDataModel.Profit = string.Format("{0:#,0.00}", (decimal.Parse(xCashReportDataModel.CashWithoutVat) - decimal.Parse(xCashReportDataModel.PurchasePrice)));
 
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId=1 AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CashPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId=1 AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {
                         xCashReportDataModel.CashPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CashPayment"]) / 100));
                     }
 
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId=2 AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as CardPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId=2 AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {
                         xCashReportDataModel.CardPayment = string.Format("{0:#,0.00}", (Convert.ToDecimal(xDataTable.Rows[0]["CardPayment"]) / 100));
                     }
 
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSaleFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId NOT IN (1,2) AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT IFNULL(SUM(p.PaymentAmount),0) as OtherPayment FROM TableTransactionPayment p INNER JOIN TableTransactionHead h ON h.Id=p.FkTransactionHeadId INNER JOIN TableTransactionDocumentType dt ON dt.No=h.TransactionDocumentTypeNo WHERE p.FkPaymentTypeId NOT IN (1,2) AND h.IsVoided=0 AND dt.[No] NOT IN (8,9,10) AND (strftime('%d-%m-%Y',h.TransactionDateTime)= '{0}')", strDateNow));
 
                     if (xDataTable != null && xDataTable.Rows.Count > 0)
                     {

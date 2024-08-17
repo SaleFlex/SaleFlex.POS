@@ -43,7 +43,7 @@ namespace SaleFlex.Data.AccessLayer
             bool returnvalue = false;
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(string.Format("INSERT INTO TablePluBarcode VALUES({0},{1},{2},{3},{4},{5}); SELECT last_insert_rowid()",
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(string.Format("INSERT INTO TablePluBarcode VALUES({0},{1},{2},{3},{4},{5}); SELECT last_insert_rowid()",
                     prm_xPluBarcodeDataModel.iFkPluId,
                     prm_xPluBarcodeDataModel.strBarcode,
                     prm_xPluBarcodeDataModel.strOldBarcode,
@@ -74,7 +74,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xPluBarcodeDataModel.FkPluBarcodeDefinitionId,
                     prm_xPluBarcodeDataModel.PurchasePrice,
                     prm_xPluBarcodeDataModel.SalePrice);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
                 if (xDataTable.Rows[0]["Changes()"].ToString() == "0")
                 {
@@ -85,7 +85,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xPluBarcodeDataModel.FkPluBarcodeDefinitionId,
                     prm_xPluBarcodeDataModel.PurchasePrice,
                     prm_xPluBarcodeDataModel.SalePrice);
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
                 }
             }
             catch (Exception xException)

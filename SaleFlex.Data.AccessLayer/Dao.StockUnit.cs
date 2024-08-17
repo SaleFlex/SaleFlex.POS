@@ -21,7 +21,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableStockUnit WHERE StockUnitId={0} ORDER BY No", prm_iStockUnitId);
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
 
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
@@ -57,7 +57,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableStockUnit WHERE [No]={0} ORDER BY No", prm_iStockUnitNo);
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
 
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
@@ -94,7 +94,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableStockUnit ORDER BY No");
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
 
                 if (xDataTable != null)
                 {
@@ -130,7 +130,7 @@ namespace SaleFlex.Data.AccessLayer
                        prm_xStockUnitModel.Name,
                        prm_xStockUnitModel.Description,
                        prm_xStockUnitModel.Coefficient);
-                Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteVoidDataTable(query);
                 //}
             }
             catch (Exception xException)
@@ -166,7 +166,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 var query = string.Format("SELECT No, Name FROM TableStockUnit ORDER BY No");
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
                 if (xDataTable != null)
                 {

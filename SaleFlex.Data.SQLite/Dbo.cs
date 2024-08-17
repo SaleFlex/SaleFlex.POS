@@ -35,10 +35,10 @@ namespace SaleFlex.Data.SQLite
                     bCreateConnectionString(CommonProperty.prop_strDatabasePosFileName);
                     break;
                 case 2:
-                    bCreateConnectionString(CommonProperty.prop_strDatabaseSaleFileName);
+                    bCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName);
                     break;
                 case 3:
-                    bCreateConnectionString(CommonProperty.prop_strDatabaseStockFileName);
+                    bCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileName);
                     break;
                 default:
                     throw new ApplicationException("DB FILE TYPE IS NOT RECOGNIZED.");

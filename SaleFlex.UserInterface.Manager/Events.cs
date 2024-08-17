@@ -332,7 +332,7 @@ namespace SaleFlex.UserInterface.Manager
                         if (strDatabasePosFileName.Length > 0)
                             CommonProperty.prop_strDatabasePosFileName = strDatabasePosFileName;
                         if (strDatabaseSaleFileName.Length > 0)
-                            CommonProperty.prop_strDatabaseSaleFileName = strDatabaseSaleFileName;
+                            CommonProperty.prop_strDatabaseSalesFileName = strDatabaseSaleFileName;
                         if (strBackColorDepartment.Length > 0)
                             CommonProperty.prop_strDepartmentBackColor = strBackColorDepartment;
                         if (strBackColorFunction.Length > 0)

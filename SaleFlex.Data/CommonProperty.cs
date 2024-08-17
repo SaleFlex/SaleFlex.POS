@@ -166,7 +166,7 @@ namespace SaleFlex.Data
             }
         }
 
-        public static string prop_strDatabaseSaleFileName
+        public static string prop_strDatabaseSalesFileName
         {
             get
             {
@@ -179,7 +179,7 @@ namespace SaleFlex.Data
             }
         }
 
-        public static string prop_strDatabaseStockFileName
+        public static string prop_strDatabaseProductsFileName
         {
             get
             {

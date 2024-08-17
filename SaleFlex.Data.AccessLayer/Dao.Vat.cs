@@ -21,7 +21,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableVat WHERE Id={0} ORDER BY No", prm_strVatId);
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
                 
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
@@ -57,7 +57,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableVat WHERE No = {0} ORDER BY No", prm_strVatNo);
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
 
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
@@ -94,7 +94,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 string strCommandText = string.Format("SELECT * FROM TableVat ORDER BY No");
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(strCommandText);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(strCommandText);
 
                 if (xDataTable != null)
                 {
@@ -129,7 +129,7 @@ namespace SaleFlex.Data.AccessLayer
 
                 var query = string.Format("SELECT No, Rate FROM TableVat ORDER BY No");
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(query);
 
                 if (xDataTable != null)
                 {
@@ -175,7 +175,7 @@ namespace SaleFlex.Data.AccessLayer
             bool returnvalue = false;
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteDataTable(string.Format("INSERT INTO TableVat VALUES({0},{1},{2},{3},{4}); SELECT last_insert_rowid()",
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable(string.Format("INSERT INTO TableVat VALUES({0},{1},{2},{3},{4}); SELECT last_insert_rowid()",
                     prm_xVatDataModel.iNo,
                     prm_xVatDataModel.strName,
                     prm_xVatDataModel.iRate,
@@ -214,7 +214,7 @@ namespace SaleFlex.Data.AccessLayer
                        prm_xVatModel.Name,
                        prm_xVatModel.Rate,
                        prm_xVatModel.Description);
-                Dbo.xGetInstance(CommonProperty.prop_strDatabaseStockFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteVoidDataTable(query);
                 //}
             }
             catch (Exception xException)

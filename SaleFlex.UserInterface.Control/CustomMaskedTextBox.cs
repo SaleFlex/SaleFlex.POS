@@ -114,7 +114,7 @@ namespace SaleFlex.UserInterface.Controls
                 }
                 else if (strName == CustomControlName.strDatabaseSaleFileName)
                 {
-                    Text = CommonProperty.prop_strDatabaseSaleFileName;
+                    Text = CommonProperty.prop_strDatabaseSalesFileName;
                 }
                 else if (strName == CustomControlName.strBackColorDepartment)
                 {
