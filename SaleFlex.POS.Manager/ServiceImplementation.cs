@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using SaleFlex.Data;
 
+
 namespace SaleFlex.POS.Manager
 {
     public class ExternalService

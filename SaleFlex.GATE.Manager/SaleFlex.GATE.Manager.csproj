@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +48,27 @@
   <ItemGroup>
     <Compile Include="GateManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
+      <Project>{f7ede2a5-cfb9-42ca-b422-8f5a7b2115b9}</Project>
+      <Name>SaleFlex.CommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.AccessLayer\SaleFlex.Data.AccessLayer.csproj">
+      <Project>{b626d459-8dce-4ee8-9b4c-a50258024cb3}</Project>
+      <Name>SaleFlex.Data.AccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.Model\SaleFlex.Data.Models.csproj">
+      <Project>{5bcf5cf1-6628-44d9-a09d-175cf3242fa7}</Project>
+      <Name>SaleFlex.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data\SaleFlex.Data.csproj">
+      <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
+      <Name>SaleFlex.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
