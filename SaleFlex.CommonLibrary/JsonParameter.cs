@@ -69,6 +69,7 @@ namespace SaleFlex.CommonLibrary
         public int prop_iStoreNo { get; set; }
         public string prop_strIpPort { get; set; }
         public string prop_strAppToken { get; set; }
+        public bool prop_bIsOfflinePos { get; set; }
 
         public JsonParameter()
         {
@@ -118,6 +119,7 @@ namespace SaleFlex.CommonLibrary
                 prop_iStoreNo = 0;
                 prop_strIpPort = string.Empty;
                 prop_strAppToken = string.Empty;
+                prop_bIsOfflinePos = false;
                 JsonReadWrite<JsonParameter>.xGetInstance().bWrite(this);
             }
         }

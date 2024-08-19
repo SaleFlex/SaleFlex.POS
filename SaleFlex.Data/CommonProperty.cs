@@ -478,5 +478,19 @@ namespace SaleFlex.Data
             }
         }
 
+        public static bool prop_bIsOfflinePos 
+        {
+            get
+            {
+                return JsonParameter.xGetInstance().prop_bIsOfflinePos;
+            }
+            set
+            {
+                JsonParameter.xGetInstance().prop_bIsOfflinePos = value;
+                JsonParameter.xGetInstance().bUpdateJsonParameter();
+            }
+        }
+
+
     }
 }
