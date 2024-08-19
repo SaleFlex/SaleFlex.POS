@@ -40,7 +40,8 @@ namespace SaleFlex.UserInterface.Manager
             {
                 AboutBox xAboutBox = new AboutBox();
 
-                if (!(Dao.xGetInstance().bCheckPosValue() == true && CommonProperty.prop_lPosId > 0 && CommonProperty.prop_lMerchantId > 0 && CommonProperty.prop_iStoreNo > 0 && CommonProperty.prop_strIpPort != string.Empty))
+                if (!CommonProperty.prop_bIsOfflinePos &&
+                    !(Dao.xGetInstance().bCheckPosValue() == true && CommonProperty.prop_lPosId > 0 && CommonProperty.prop_lMerchantId > 0 && CommonProperty.prop_iStoreNo > 0 && CommonProperty.prop_strIpPort != string.Empty))
                 {
                     while (!bOpenSetupScreen())
                     {

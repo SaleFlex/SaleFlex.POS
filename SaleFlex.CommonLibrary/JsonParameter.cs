@@ -119,7 +119,7 @@ namespace SaleFlex.CommonLibrary
                 prop_iStoreNo = 0;
                 prop_strIpPort = string.Empty;
                 prop_strAppToken = string.Empty;
-                prop_bIsOfflinePos = false;
+                prop_bIsOfflinePos = true;
                 JsonReadWrite<JsonParameter>.xGetInstance().bWrite(this);
             }
         }
