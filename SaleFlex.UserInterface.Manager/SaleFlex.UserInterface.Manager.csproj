@@ -115,6 +115,10 @@
       <Project>{b626d459-8dce-4ee8-9b4c-a50258024cb3}</Project>
       <Name>SaleFlex.Data.AccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data.Initialize\SaleFlex.Data.Initialize.csproj">
+      <Project>{860608bc-7d0f-4979-9fcd-e1871dd04e53}</Project>
+      <Name>SaleFlex.Data.Initialize</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaleFlex.Data.Model\SaleFlex.Data.Models.csproj">
       <Project>{5bcf5cf1-6628-44d9-a09d-175cf3242fa7}</Project>
       <Name>SaleFlex.Data.Models</Name>

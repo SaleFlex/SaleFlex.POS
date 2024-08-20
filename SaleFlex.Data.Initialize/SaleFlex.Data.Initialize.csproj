@@ -87,6 +87,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\SaleFlex.Data.SQLite\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -104,6 +107,10 @@
     <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
       <Project>{f7ede2a5-cfb9-42ca-b422-8f5a7b2115b9}</Project>
       <Name>SaleFlex.CommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Data\SaleFlex.Data.csproj">
+      <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
+      <Name>SaleFlex.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

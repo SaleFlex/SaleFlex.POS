@@ -14,7 +14,7 @@ using SaleFlex.POS.Document;
 using SaleFlex.POS.Manager;
 using SaleFlex.POS.Device.Manager;
 using SaleFlex.UserInterface.Data;
-using SaleFlex.UserInterface;
+using SaleFlex.Data.Initialize;
 
 namespace SaleFlex.UserInterface.Manager
 {
@@ -50,6 +50,11 @@ namespace SaleFlex.UserInterface.Manager
                 }
 
                 xAboutBox.Show();
+
+                if (Dao.xGetInstance().bCheckPosValue() == false)
+                {
+                    DbCreate.bDo();
+                }
 
                 xAboutBox.vChangeLabelDownloading("Loading POS data...");
                 PosManager.xGetInstance().bReadPos();
