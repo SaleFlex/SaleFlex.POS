@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SaleFlex.Data;
 using SaleFlex.CommonLibrary;
+using SaleFlex.Windows;
 
 namespace SaleFlex.Data.Initialize
 {
@@ -19,6 +20,15 @@ namespace SaleFlex.Data.Initialize
         }
 
         public static bool bDo()
+        {
+            bool bReturnValue = false;
+
+            bReturnValue = bCreatePosTable();
+
+            return bReturnValue;
+        }
+
+        private static bool bCreatePosTable() 
         {
             bool bReturnValue = false;
             try
@@ -68,22 +78,16 @@ namespace SaleFlex.Data.Initialize
                         xSQLiteConnection.Open();                           // Open the connection to the database
 
                         xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
-                        int iResult = xSQLiteCommand.ExecuteNonQuery();                   // Execute the query
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the query
+                        bReturnValue = true;
 
-                //        xSQLiteCommand.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";     // Add the first entry into our database 
-                //        xSQLiteCommand.ExecuteNonQuery();      // Execute the query
-                //        xSQLiteCommand.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";   // Add another entry into our database 
-                //        xSQLiteCommand.ExecuteNonQuery();      // Execute the query
+                        if(CommonProperty.prop_bIsOfflinePos)
+                        {
+                            xSQLiteCommand.CommandText = "INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline) " +
+                                                        $"VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0)";
+                            iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the query
+                        }
 
-                //        xSQLiteCommand.CommandText = "Select * FROM MyTable";      // Select all rows from our database table
-
-                //        using (SQLiteDataReader reader = com.ExecuteReader())
-                //        {
-                //            while (reader.Read())
-                //            {
-                //                Console.WriteLine(reader["Key"] + " : " + reader["Value"]);     // Display the value of the key and value column for every row
-                //            }
-                //        }
                         xSQLiteConnection.Close();        // Close the connection to the database
                     }
                 }

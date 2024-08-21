@@ -112,6 +112,10 @@
       <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
       <Name>SaleFlex.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.Windows\SaleFlex.Windows.csproj">
+      <Project>{dc1bd6eb-9cf3-4d23-8cc9-f7e8a7717785}</Project>
+      <Name>SaleFlex.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

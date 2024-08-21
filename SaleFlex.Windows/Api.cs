@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Management;
+using System.Net.NetworkInformation;
 
 namespace SaleFlex.Windows
 {
@@ -604,6 +607,36 @@ namespace SaleFlex.Windows
                 bResult = false;
             }
             return bResult;
+        }
+
+        public static string GetDriveSerialNumber()
+        {
+            string strSerialNumber = "N.A.";
+            try
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_PhysicalMedia");
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    strSerialNumber = obj["SerialNumber"]?.ToString() ?? "Seri numarası bulunamadı";
+                    break; // İlk fiziksel diskin seri numarasını almak yeterli
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return strSerialNumber;
+        }
+
+        public static string GetMacAddress()
+        {
+            string strMacAddr =
+                (
+                    from nic in NetworkInterface.GetAllNetworkInterfaces()
+                    where nic.OperationalStatus == OperationalStatus.Up
+                    select nic.GetPhysicalAddress().ToString()
+                ).FirstOrDefault();
+            return strMacAddr ?? "N.A.";
         }
     }
 }
