@@ -53,6 +53,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (Dao.xGetInstance().bCheckPosValue() == false)
                 {
+                    xAboutBox.vChangeLabelDownloading("Checking database...");
                     DbCreate.bDo();
                 }
 
