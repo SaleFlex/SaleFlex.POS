@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -23,12 +24,16 @@ namespace SaleFlex.Data.Initialize
         {
             bool bReturnValue = false;
 
-            bReturnValue = bCreatePosTable();
+            if (!File.Exists(CommonProperty.prop_strDatabasePosFileName))
+                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileName);        // Create the file which will be hosting our database
+
+            bReturnValue = bCreateTablePos();
+            bReturnValue = bCreateTableCashier();
 
             return bReturnValue;
         }
 
-        private static bool bCreatePosTable() 
+        private static bool bCreateTablePos() 
         {
             bool bReturnValue = false;
             try
@@ -70,7 +75,6 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileName);        // Create the file which will be hosting our database
                 using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
@@ -85,6 +89,55 @@ namespace SaleFlex.Data.Initialize
                         {
                             xSQLiteCommand.CommandText = "INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline) " +
                                                         $"VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0)";
+                            iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the query
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableCashier()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableCashier (
+                        Id                      INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                                        UNIQUE
+                                                        NOT NULL,
+                        No                      INTEGER NOT NULL,
+                        Name                    TEXT    NOT NULL,
+                        LastName                TEXT    NOT NULL,
+                        Password                TEXT    NOT NULL,
+                        IdentityNumber          TEXT,
+                        Description             TEXT,
+                        IsAdministrator         INTEGER NOT NULL
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the query
+                        bReturnValue = true;
+
+                        if (CommonProperty.prop_bIsOfflinePos)
+                        {
+                            xSQLiteCommand.CommandText = "INSERT INTO TableCashier (No, Name, LastName, Password, IsAdministrator) " +
+                                                        $"VALUES (1, 'CASHIER 1','','1234', 0)";
                             iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the query
                         }
 
