@@ -19,11 +19,16 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT * FROM TablePos");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
 
                 if (xDataTable.Rows.Count > 0)
                 {
-                    returnvalue = true;
+                    int iTableCount = Convert.ToInt32(xDataTable.Rows[0][0]) - 1;
+
+                    if (iTableCount == 6)
+                    {
+                        returnvalue = true;
+                    }
                 }
             }
             catch (Exception xException)
