@@ -31,6 +31,7 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTablePos,
                 bCreateTableCashier,
+                bCreateTableBarcode
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -155,6 +156,58 @@ namespace SaleFlex.Data.Initialize
                             {
                                 xSQLiteCommand.CommandText = "INSERT INTO TableCashier (No, Name, LastName, Password, IsAdministrator) " +
                                                             $"VALUES (1, 'CASHIER 1','','1234', 0)";
+                                iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableBarcode()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableBarcode (
+                        Id                  INTEGER NOT NULL
+                                                    UNIQUE
+                                                    PRIMARY KEY ASC AUTOINCREMENT,
+                        Name                TEXT    NOT NULL,
+                        LengthOfBarcode     INTEGER NOT NULL,
+                        StartingDigits      TEXT    NOT NULL,
+                        LengthOfProductCode INTEGER NOT NULL,
+                        LengthOfQuantity    INTEGER,
+                        LengthOfPrice       INTEGER,
+                        Description         TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                xSQLiteCommand.CommandText = "INSERT INTO TableBarcode (Name, LengthOfBarcode, StartingDigits, LengthOfProductCode, LengthOfQuantity) " +
+                                                            $"VALUES ('WEIGHED GOODS', 13, '1', 6, 6)";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                             }
                         }
