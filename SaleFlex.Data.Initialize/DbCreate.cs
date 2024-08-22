@@ -32,7 +32,8 @@ namespace SaleFlex.Data.Initialize
                 bCreateTablePos,
                 bCreateTableCashier,
                 bCreateTableBarcode,
-                bCreateTableCountry
+                bCreateTableCountry,
+                bCreateTableForm
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -458,6 +459,76 @@ namespace SaleFlex.Data.Initialize
                                     xSQLiteCommand.CommandText = strCountry;
                                     iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                                 }                                
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableForm()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableForm (
+                        Id                 INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                                   UNIQUE
+                                                   NOT NULL,
+                        FormNo             INTEGER NOT NULL,
+                        Name               TEXT    NOT NULL,
+                        Function           TEXT    NOT NULL,
+                        NeedLogin          BOOLEAN DEFAULT (0),
+                        NeedAuth           BOOLEAN DEFAULT (0),
+                        Width              INTEGER DEFAULT (1024),
+                        Height             INTEGER DEFAULT (768),
+                        FormBorderStyle    TEXT    DEFAULT ('SINGLE'),
+                        StartPosition      TEXT    DEFAULT ('CENTERSCREEN'),
+                        Caption            TEXT,
+                        Icon               TEXT,
+                        Image              TEXT,
+                        BackColor          TEXT    DEFAULT ('AliceBlue'),
+                        ShowStatusBar      BOOLEAN DEFAULT (1),
+                        ShowInTaskbar      BOOLEAN DEFAULT (1),
+                        UseVirtualKeyboard BOOLEAN DEFAULT (1) 
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'LOGIN', 'LOGIN', 0, 0, 'LOGIN', 'MidnightBlue', 0, 0);",
+                                    "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'SALE', 'SALE', 1, 1, 'SALE', 'MidnightBlue', 0, 0);",
+                                   
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
                             }
                         }
 
