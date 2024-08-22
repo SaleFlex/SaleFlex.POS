@@ -31,14 +31,15 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTablePos,
                 bCreateTableCashier,
-                bCreateTableBarcode
+                bCreateTableBarcode,
+                bCreateTableCountry
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
             {
                 if (!DbTableCreateMethod())
                 {
-                    bReturnValue = false; 
+                    bReturnValue = false;
                     break;
                 }
             }
@@ -46,7 +47,7 @@ namespace SaleFlex.Data.Initialize
             return bReturnValue;
         }
 
-        private static bool bCreateTablePos() 
+        private static bool bCreateTablePos()
         {
             bool bReturnValue = false;
             try
@@ -209,6 +210,254 @@ namespace SaleFlex.Data.Initialize
                                 xSQLiteCommand.CommandText = "INSERT INTO TableBarcode (Name, LengthOfBarcode, StartingDigits, LengthOfProductCode, LengthOfQuantity) " +
                                                             $"VALUES ('WEIGHED GOODS', 13, '1', 6, 6)";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableCountry()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableCountry (
+                        Id          INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                              UNIQUE
+                                            NOT NULL,
+                        Name        TEXT    NOT NULL,
+                        Code        TEXT,
+                        ShortName   TEXT,
+                        NumericCode INTEGER
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Afghanistan', 'AF', 'AFG', 4);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Albania', 'AL', 'ALB', 8);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Algeria', 'DZ', 'DZA', 12);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Andorra', 'AD', 'AND', 20);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Angola', 'AO', 'AGO', 24);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Argentina', 'AR', 'ARG', 32);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Armenia', 'AM', 'ARM', 51);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Australia', 'AU', 'AUS', 36);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Austria', 'AT', 'AUT', 40);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Azerbaijan', 'AZ', 'AZE', 31);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bahamas', 'BS', 'BHS', 44);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bahrain', 'BH', 'BHR', 48);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bangladesh', 'BD', 'BGD', 50);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Barbados', 'BB', 'BRB', 52);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Belarus', 'BY', 'BLR', 112);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Belgium', 'BE', 'BEL', 56);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Belize', 'BZ', 'BLZ', 84);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Benin', 'BJ', 'BEN', 204);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bhutan', 'BT', 'BTN', 64);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bolivia', 'BO', 'BOL', 68);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bosnia and Herzegovina', 'BA', 'BIH', 70);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Botswana', 'BW', 'BWA', 72);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Brazil', 'BR', 'BRA', 76);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Brunei', 'BN', 'BRN', 96);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Bulgaria', 'BG', 'BGR', 100);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Burkina Faso', 'BF', 'BFA', 854);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Burundi', 'BI', 'BDI', 108);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Cabo Verde', 'CV', 'CPV', 132);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Cambodia', 'KH', 'KHM', 116);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Cameroon', 'CM', 'CMR', 120);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Canada', 'CA', 'CAN', 124);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Central African Republic', 'CF', 'CAF', 140);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Chad', 'TD', 'TCD', 148);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Chile', 'CL', 'CHL', 152);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('China', 'CN', 'CHN', 156);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Colombia', 'CO', 'COL', 170);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Comoros', 'KM', 'COM', 174);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Congo, Democratic Republic of the', 'CD', 'COD', 180);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Congo, Republic of the', 'CG', 'COG', 178);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Costa Rica', 'CR', 'CRI', 188);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Croatia', 'HR', 'HRV', 191);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Cuba', 'CU', 'CUB', 192);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Cyprus', 'CY', 'CYP', 196);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Czech Republic', 'CZ', 'CZE', 203);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Denmark', 'DK', 'DNK', 208);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Djibouti', 'DJ', 'DJI', 262);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Dominica', 'DM', 'DMA', 212);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Dominican Republic', 'DO', 'DOM', 214);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Ecuador', 'EC', 'ECU', 218);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Egypt', 'EG', 'EGY', 818);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('El Salvador', 'SV', 'SLV', 222);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Equatorial Guinea', 'GQ', 'GNQ', 226);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Eritrea', 'ER', 'ERI', 232);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Estonia', 'EE', 'EST', 233);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Eswatini', 'SZ', 'SWZ', 748);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Ethiopia', 'ET', 'ETH', 231);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Fiji', 'FJ', 'FJI', 242);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Finland', 'FI', 'FIN', 246);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('France', 'FR', 'FRA', 250);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Gabon', 'GA', 'GAB', 266);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Gambia', 'GM', 'GMB', 270);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Georgia', 'GE', 'GEO', 268);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Germany', 'DE', 'DEU', 276);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Ghana', 'GH', 'GHA', 288);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Greece', 'GR', 'GRC', 300);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Grenada', 'GD', 'GRD', 308);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Guatemala', 'GT', 'GTM', 320);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Guinea', 'GN', 'GIN', 324);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Guinea-Bissau', 'GW', 'GNB', 624);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Guyana', 'GY', 'GUY', 328);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Haiti', 'HT', 'HTI', 332);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Honduras', 'HN', 'HND', 340);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Hungary', 'HU', 'HUN', 348);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Iceland', 'IS', 'ISL', 352);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('India', 'IN', 'IND', 356);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Indonesia', 'ID', 'IDN', 360);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Iran', 'IR', 'IRN', 364);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Iraq', 'IQ', 'IRQ', 368);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Ireland', 'IE', 'IRL', 372);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Israel', 'IL', 'ISR', 376);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Italy', 'IT', 'ITA', 380);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Jamaica', 'JM', 'JAM', 388);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Japan', 'JP', 'JPN', 392);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Jordan', 'JO', 'JOR', 400);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Kazakhstan', 'KZ', 'KAZ', 398);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Kenya', 'KE', 'KEN', 404);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Kiribati', 'KI', 'KIR', 296);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Korea, North', 'KP', 'PRK', 408);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Korea, South', 'KR', 'KOR', 410);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Kuwait', 'KW', 'KWT', 414);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Kyrgyzstan', 'KG', 'KGZ', 417);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Laos', 'LA', 'LAO', 418);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Latvia', 'LV', 'LVA', 428);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Lebanon', 'LB', 'LBN', 422);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Lesotho', 'LS', 'LSO', 426);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Liberia', 'LR', 'LBR', 430);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Libya', 'LY', 'LBY', 434);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Liechtenstein', 'LI', 'LIE', 438);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Lithuania', 'LT', 'LTU', 440);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Luxembourg', 'LU', 'LUX', 442);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Madagascar', 'MG', 'MDG', 450);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Malawi', 'MW', 'MWI', 454);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Malaysia', 'MY', 'MYS', 458);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Maldives', 'MV', 'MDV', 462);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mali', 'ML', 'MLI', 466);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Malta', 'MT', 'MLT', 470);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Marshall Islands', 'MH', 'MHL', 584);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mauritania', 'MR', 'MRT', 478);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mauritius', 'MU', 'MUS', 480);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mexico', 'MX', 'MEX', 484);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Micronesia', 'FM', 'FSM', 583);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Moldova', 'MD', 'MDA', 498);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Monaco', 'MC', 'MCO', 492);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mongolia', 'MN', 'MNG', 496);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Montenegro', 'ME', 'MNE', 499);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Morocco', 'MA', 'MAR', 504);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Mozambique', 'MZ', 'MOZ', 508);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Myanmar', 'MM', 'MMR', 104);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Namibia', 'NA', 'NAM', 516);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Nauru', 'NR', 'NRU', 520);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Nepal', 'NP', 'NPL', 524);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Netherlands', 'NL', 'NLD', 528);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('New Zealand', 'NZ', 'NZL', 554);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Nicaragua', 'NI', 'NIC', 558);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Niger', 'NE', 'NER', 562);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Nigeria', 'NG', 'NGA', 566);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('North Macedonia', 'MK', 'MKD', 807);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Norway', 'NO', 'NOR', 578);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Oman', 'OM', 'OMN', 512);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Pakistan', 'PK', 'PAK', 586);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Palau', 'PW', 'PLW', 585);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Panama', 'PA', 'PAN', 591);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Papua New Guinea', 'PG', 'PNG', 598);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Paraguay', 'PY', 'PRY', 600);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Peru', 'PE', 'PER', 604);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Philippines', 'PH', 'PHL', 608);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Poland', 'PL', 'POL', 616);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Portugal', 'PT', 'PRT', 620);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Qatar', 'QA', 'QAT', 634);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Romania', 'RO', 'ROU', 642);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Russia', 'RU', 'RUS', 643);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Rwanda', 'RW', 'RWA', 646);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Saint Kitts and Nevis', 'KN', 'KNA', 659);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Saint Lucia', 'LC', 'LCA', 662);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Saint Vincent and the Grenadines', 'VC', 'VCT', 670);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Samoa', 'WS', 'WSM', 882);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('San Marino', 'SM', 'SMR', 674);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Sao Tome and Principe', 'ST', 'STP', 678);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Saudi Arabia', 'SA', 'SAU', 682);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Senegal', 'SN', 'SEN', 686);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Serbia', 'RS', 'SRB', 688);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Seychelles', 'SC', 'SYC', 690);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Sierra Leone', 'SL', 'SLE', 694);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Singapore', 'SG', 'SGP', 702);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Slovakia', 'SK', 'SVK', 703);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Slovenia', 'SI', 'SVN', 705);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Solomon Islands', 'SB', 'SLB', 90);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Somalia', 'SO', 'SOM', 706);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('South Africa', 'ZA', 'ZAF', 710);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('South Sudan', 'SS', 'SSD', 728);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Spain', 'ES', 'ESP', 724);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Sri Lanka', 'LK', 'LKA', 144);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Sudan', 'SD', 'SDN', 729);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Suriname', 'SR', 'SUR', 740);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Sweden', 'SE', 'SWE', 752);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Switzerland', 'CH', 'CHE', 756);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Syria', 'SY', 'SYR', 760);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Taiwan', 'TW', 'TWN', 158);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Tajikistan', 'TJ', 'TJK', 762);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Tanzania', 'TZ', 'TZA', 834);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Thailand', 'TH', 'THA', 764);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Timor-Leste', 'TL', 'TLS', 626);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Togo', 'TG', 'TGO', 768);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Tonga', 'TO', 'TON', 776);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Trinidad and Tobago', 'TT', 'TTO', 780);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Tunisia', 'TN', 'TUN', 788);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Turkey', 'TR', 'TUR', 792);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Turkmenistan', 'TM', 'TKM', 795);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Tuvalu', 'TV', 'TUV', 798);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Uganda', 'UG', 'UGA', 800);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Ukraine', 'UA', 'UKR', 804);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('United Arab Emirates', 'AE', 'ARE', 784);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('United Kingdom', 'GB', 'GBR', 826);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('United States', 'US', 'USA', 840);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Uruguay', 'UY', 'URY', 858);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Uzbekistan', 'UZ', 'UZB', 860);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Vanuatu', 'VU', 'VUT', 548);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Vatican City', 'VA', 'VAT', 336);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Venezuela', 'VE', 'VEN', 862);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Vietnam', 'VN', 'VNM', 704);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Yemen', 'YE', 'YEM', 887);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Zambia', 'ZM', 'ZMB', 894);",
+                                    "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Zimbabwe', 'ZW', 'ZWE', 716);"
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }                                
                             }
                         }
 
