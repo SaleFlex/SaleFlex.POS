@@ -22,13 +22,25 @@ namespace SaleFlex.Data.Initialize
 
         public static bool bDo()
         {
-            bool bReturnValue = false;
+            bool bReturnValue = true;
 
             if (!File.Exists(CommonProperty.prop_strDatabasePosFileName))
                 SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileName);        // Create the file which will be hosting our database
 
-            bReturnValue = bCreateTablePos();
-            bReturnValue = bCreateTableCashier();
+            var methods = new List<Func<bool>>
+            {
+                bCreateTablePos,
+                bCreateTableCashier,
+            };
+
+            foreach (var method in methods)
+            {
+                if (!method())
+                {
+                    bReturnValue = false; 
+                    break;
+                }
+            }
 
             return bReturnValue;
         }
@@ -82,14 +94,17 @@ namespace SaleFlex.Data.Initialize
                         xSQLiteConnection.Open();                           // Open the connection to the database
 
                         xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
-                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the query
-                        bReturnValue = true;
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
 
-                        if(CommonProperty.prop_bIsOfflinePos)
+                        if (iResult >= 0)
                         {
-                            xSQLiteCommand.CommandText = "INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline) " +
-                                                        $"VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0)";
-                            iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the query
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                xSQLiteCommand.CommandText = "INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline) " +
+                                                            $"VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0)";
+                                iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
                         }
 
                         xSQLiteConnection.Close();        // Close the connection to the database
@@ -131,14 +146,17 @@ namespace SaleFlex.Data.Initialize
                         xSQLiteConnection.Open();                           // Open the connection to the database
 
                         xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
-                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the query
-                        bReturnValue = true;
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
 
-                        if (CommonProperty.prop_bIsOfflinePos)
+                        if (iResult >= 0)
                         {
-                            xSQLiteCommand.CommandText = "INSERT INTO TableCashier (No, Name, LastName, Password, IsAdministrator) " +
-                                                        $"VALUES (1, 'CASHIER 1','','1234', 0)";
-                            iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the query
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                xSQLiteCommand.CommandText = "INSERT INTO TableCashier (No, Name, LastName, Password, IsAdministrator) " +
+                                                            $"VALUES (1, 'CASHIER 1','','1234', 0)";
+                                iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
                         }
 
                         xSQLiteConnection.Close();        // Close the connection to the database
