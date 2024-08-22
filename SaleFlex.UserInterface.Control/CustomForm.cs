@@ -99,6 +99,7 @@ namespace SaleFlex.UserInterface.Controls
         {
             try
             {
+                m_strFormName = prm_strFormName;
                 m_xFormDataModel = Dao.xGetInstance().xGetFormByName(m_strFormName);
             }
             catch (Exception xException)

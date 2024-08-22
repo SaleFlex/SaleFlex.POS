@@ -33,7 +33,7 @@ namespace SaleFlex.Data.AccessLayer
         public FormDataModel xGetFormByName(string prm_strFormName)
         {
             FormDataModel xFormDataModel = null;
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT * FROM TableForm WHERE Name='SALE' ORDER BY Id");
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE Name='{prm_strFormName}' ORDER BY Id");
 
             if (xDataTable != null)
             {
@@ -66,7 +66,8 @@ namespace SaleFlex.Data.AccessLayer
             }
             return xFormDataModel;
         }
-   
+
+
         public List<FormControlDataModel> xGetShortCutButtons()
         {
             var query = string.Format("SELECT * FROM TableFormControl wHERE FormControlFunction1='SALE_PLU_BARCODE'  and TYPE='BUTTON'");
@@ -181,8 +182,7 @@ namespace SaleFlex.Data.AccessLayer
 
         public List<FormControlDataModel> xListGetFormControls(int prm_iFormId)
         {
-            var query = string.Format("SELECT * FROM TableFormControl wHERE FkFormId= {0}  AND IsVisible=1 ORDER BY Id", prm_iFormId);
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(query);
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableFormControl WHERE FkFormId= {prm_iFormId} ORDER BY Id");
 
             List<FormControlDataModel> xListFormControlDataModel = null;
 

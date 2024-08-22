@@ -33,7 +33,8 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableCashier,
                 bCreateTableBarcode,
                 bCreateTableCountry,
-                bCreateTableForm
+                bCreateTableForm,
+                bCreateTableFormControl
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -522,6 +523,93 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'LOGIN', 'LOGIN', 0, 0, 'LOGIN', 'MidnightBlue', 0, 0);",
                                     "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'SALE', 'SALE', 1, 1, 'SALE', 'MidnightBlue', 0, 0);",
                                    
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableFormControl()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableFormControl (
+                        Id                   INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                                     UNIQUE
+                                                     NOT NULL,
+                        FkFormId             INTEGER NOT NULL,
+                        FkParentId           INTEGER,
+                        Name                 TEXT    NOT NULL,
+                        ParentName           TEXT,
+                        FormControlFunction1 TEXT    NOT NULL,
+                        FormControlFunction2 TEXT,
+                        TypeNo               INTEGER,
+                        Type                 TEXT    DEFAULT ('NOTYPE'),
+                        Width                INTEGER NOT NULL,
+                        Height               INTEGER NOT NULL,
+                        LocationX            INTEGER NOT NULL,
+                        LocationY            INTEGER NOT NULL,
+                        StartPosition        TEXT,
+                        Caption1             TEXT,
+                        Caption2             TEXT,
+                        List                 TEXT,
+                        Dock                 TEXT,
+                        Alignment            TEXT,
+                        TextAlignment        TEXT    DEFAULT ('LEFT'),
+                        CharacterCasing      TEXT    DEFAULT ('NORMAL'),
+                        Font                 TEXT    DEFAULT ('Tahoma'),
+                        Icon                 TEXT,
+                        ToolTip              TEXT,
+                        Image                TEXT,
+                        ImageSelected        TEXT,
+                        FontAutoHeight       BOOLEAN DEFAULT (1),
+                        FontSize             REAL    DEFAULT (0),
+                        InputType            TEXT    DEFAULT ('NUMERIC'),
+                        TextImageRelation    TEXT    DEFAULT ('Overlay'),
+                        BackColor            TEXT    DEFAULT ('Gray'),
+                        ForeColor            TEXT    DEFAULT ('Black'),
+                        KeyboardValue        TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableFormControl (FkFormId, FkParentId, Name, FormControlFunction1, FormControlFunction2, TypeNo, Type, Width, Height, LocationX, LocationY, StartPosition, Caption1, Caption2, List, Dock, Alignment, TextAlignment, CharacterCasing, Font, Icon, ToolTip, Image, ImageSelected, FontAutoHeight, FontSize, InputType, TextImageRelation, BackColor, ForeColor, KeyboardValue) VALUES (1, 0, 'CASHIER_NAME_LIST', 'NONE', NULL, 3, 'COMBOBOX', 100, 300, 100, 100, NULL, NULL, NULL, NULL, NULL, NULL, 'LEFT', 'UPPER', 'Tahoma', NULL, NULL, NULL, NULL, 1, 0, 'ALPHANUMERIC', NULL, NULL, NULL, NULL);",
+                                    "INSERT INTO TableFormControl (FkFormId, FkParentId, Name, FormControlFunction1, FormControlFunction2, TypeNo, Type, Width, Height, LocationX, LocationY, StartPosition, Caption1, Caption2, List, Dock, Alignment, TextAlignment, CharacterCasing, Font, Icon, ToolTip, Image, ImageSelected, FontAutoHeight, FontSize, InputType, TextImageRelation, BackColor, ForeColor, KeyboardValue) VALUES (1, 0, 'PASSWORD', 'NONE', NULL, 2, 'TEXTBOX', 100, 300, 100, 250, NULL, NULL, NULL, NULL, NULL, NULL, 'LEFT', 'UPPER', 'Tahoma', NULL, NULL, NULL, NULL, 1, 0, 'ALPHANUMERIC', NULL, NULL, NULL, NULL);",
+                                    "INSERT INTO TableFormControl (FkFormId, FkParentId, Name, FormControlFunction1, FormControlFunction2, TypeNo, Type, Width, Height, LocationX, LocationY, StartPosition, Caption1, Caption2, List, Dock, Alignment, TextAlignment, CharacterCasing, Font, Icon, ToolTip, Image, ImageSelected, FontAutoHeight, FontSize, InputType, TextImageRelation, BackColor, ForeColor, KeyboardValue) VALUES (1, 0, 'LOGIN', 'LOGIN', NULL, 1, 'BUTTON', 100, 300, 100, 400, NULL, NULL, NULL, NULL, NULL, NULL, 'CENTER', 'UPPER', 'Tahoma', NULL, NULL, NULL, NULL, 1, 0, 'ALPHANUMERIC', NULL, NULL, NULL, NULL);",
+
                                 };
 
                                 foreach (string strCountry in straCountries)

@@ -60,16 +60,16 @@ namespace SaleFlex.UserInterface.Manager
 
                 m_xCustomForm.bSetStatusBarDocumentTypeLabel(PosManager.xGetInstance().prop_enumDocumentType);
 
-                if (prop_xPosManagerData.xPosDataModel.strCustomerDisplayType.ToUpper() == "N-KOLAY")
-                {
-                    m_xCustomCustomerForm = new CustomCustomerForm();
+                //if (prop_xPosManagerData.xPosDataModel.strCustomerDisplayType.ToUpper() == "N-KOLAY")
+                //{
+                //    m_xCustomCustomerForm = new CustomCustomerForm();
 
-                    if (m_xCustomCustomerForm != null)
-                    {
-                        m_xCustomForm.xCustomCustomerForm = m_xCustomCustomerForm;
-                        m_xCustomCustomerForm.Show();
-                    }
-                }
+                //    if (m_xCustomCustomerForm != null)
+                //    {
+                //        m_xCustomForm.xCustomCustomerForm = m_xCustomCustomerForm;
+                //        m_xCustomCustomerForm.Show();
+                //    }
+                //}
                 if (prop_xPosManagerData.xTransactionDataModel == null)
                 {
                     prop_xPosManagerData.xTransactionDataModel = new TransactionDataModel();

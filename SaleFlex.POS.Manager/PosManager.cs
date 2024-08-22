@@ -61,7 +61,8 @@ namespace SaleFlex.POS.Manager
                             if (enumFormType == enumFormType.SALE)
                                 return enumFormType.LOGIN.ToString();
                             else
-                                return enumFormType.LOGIN_EXT.ToString();
+                                // return enumFormType.LOGIN_EXT.ToString();
+                                return enumFormType.LOGIN.ToString();
                         }
                         else
                         {
