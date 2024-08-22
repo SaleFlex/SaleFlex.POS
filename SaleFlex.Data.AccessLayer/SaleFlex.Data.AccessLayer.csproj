@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao.Barcode.cs" />
+    <Compile Include="Dao.Country.cs" />
     <Compile Include="Dao.Pos.cs" />
     <Compile Include="Dao.Cashier.cs" />
     <Compile Include="Dao.cs" />
