@@ -27,15 +27,15 @@ namespace SaleFlex.Data.Initialize
             if (!File.Exists(CommonProperty.prop_strDatabasePosFileName))
                 SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileName);        // Create the file which will be hosting our database
 
-            var methods = new List<Func<bool>>
+            var DbTableCreateMethods = new List<Func<bool>>
             {
                 bCreateTablePos,
                 bCreateTableCashier,
             };
 
-            foreach (var method in methods)
+            foreach (var DbTableCreateMethod in DbTableCreateMethods)
             {
-                if (!method())
+                if (!DbTableCreateMethod())
                 {
                     bReturnValue = false; 
                     break;
