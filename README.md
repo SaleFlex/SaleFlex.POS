@@ -10,6 +10,33 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - Windows-Only: Designed to run exclusively on Windows operating systems.
 - Built on .NET 4.8: Leveraging the robust and mature .NET 4.8 framework for optimal performance and reliability.
 
+### Project Roadmap
+
+- [X] Database Structure
+- [ ] POS Manager Module
+- [X] User Interface Modules:
+  - [X] Dynamic Interface Interpreter Module
+  - [X] Interface Functions
+  - [X] Custom Form Module
+- [ ] SPU/PLU Management Module
+- [ ] Customer Module
+- [ ] Printer Module
+- [ ] Payment Module
+- [ ] Loyalty Module
+- [ ] Backend Integration Module
+- [ ] Campaign Module
+- [ ] Reports Module
+- [ ] Form Designer App
+
+### Sample Configuration Design
+#### Login Form
+
+login criteria for now 
+- username: `CASHIER 1` 
+- password: `1234`
+
+![Login Form](https://github.com/SaleFlex/.github/blob/main/profile/saleflex.pos.login.form.sample.jpg?raw=true)
+
 ## Contributors
 
 <table>
