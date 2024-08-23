@@ -108,7 +108,7 @@ namespace SaleFlex.CommonLibrary
                 prop_strPrinterName = string.Empty;
                 prop_strInputBoxBackColor = "DARKSEAGREEN";
                 prop_strInputBoxForeColor = "BLACK";
-                prop_iStartFormType = 0;
+                prop_iStartFormType = 2;
                 prop_iLastLoginUserNo = 0;
                 prop_strLastLoginPassword = string.Empty;
                 prop_strLastLoginAdminPassword = string.Empty;
