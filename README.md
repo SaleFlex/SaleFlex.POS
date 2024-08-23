@@ -4,11 +4,13 @@
 SaleFlex is a flexible and modular retail automation system designed to empower businesses with seamless management and scalability from anywhere.
 
 # Features
-- Flexible and Modular: Easily adaptable to the needs of various retail environments, whether it's a single store or a chain of outlets.
-- Scalability: Manage operations from a central location, making it ideal for businesses with multiple branches.
-- Database-Free: No need for a database—SaleFlex generates all necessary data files internally.
-- Windows-Only: Designed to run exclusively on Windows operating systems.
-- Built on .NET 4.8: Leveraging the robust and mature .NET 4.8 framework for optimal performance and reliability.
+- **Elastic and Modular Design:** Fully customizable to meet the specific needs of any retail environment, whether it's a single store or a chain of outlets.
+- **Cloud-Based Control:** Allows you to manage and monitor your business from anywhere, at any time, providing flexibility and convenience.
+- **Scalability:** Seamlessly scales as your business grows or changes, ensuring the system can adapt to future needs and challenges.
+- **User-Friendly Interface:** Designed for intuitive use, requiring minimal training, making it easy for staff to get up to speed quickly.
+- **Database-Free Operation:** SaleFlex operates without the need for a traditional database, generating all necessary data files internally, simplifying setup and maintenance.
+- **Windows-Only Compatibility:** Optimized for performance on Windows operating systems, ensuring stability and reliability.
+- **Built on .NET 4.8:** Utilizes the robust and mature .NET 4.8 framework, offering high performance, security, and long-term support.
 
 ### Project Roadmap
 
