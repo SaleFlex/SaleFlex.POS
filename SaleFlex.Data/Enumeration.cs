@@ -21,7 +21,12 @@ namespace SaleFlex.Data
         VOID,
         REFUND,
         STOCK,
-        END_OF_DAY
+        END_OF_DAY,
+        TABLE,
+        ORDER,
+        CHECK,
+        EMPLOYEE,
+        RESERVATION
         
     }
 
