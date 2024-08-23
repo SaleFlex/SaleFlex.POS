@@ -12,7 +12,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - **Windows-Only Compatibility:** Optimized for performance on Windows operating systems, ensuring stability and reliability.
 - **Built on .NET 4.8:** Utilizes the robust and mature .NET 4.8 framework, offering high performance, security, and long-term support.
 
-### Project Roadmap
+# Project Roadmap
 
 - [X] Database Structure
 - [ ] Data Access Layer
@@ -30,10 +30,6 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - [ ] Campaign Module
 - [ ] Reports Module
 - [ ] Form Designer App
-
-Here's the English content for the screen types and their functions in your SaleFlex program:
-
----
 
 ### Screen Types
 
