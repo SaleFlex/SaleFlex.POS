@@ -32,7 +32,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 ### Sample Configuration Design
 #### Login Form
 
-login criteria for now 
+Default login criteria
 - username: `CASHIER 1` 
 - password: `1234`
 
