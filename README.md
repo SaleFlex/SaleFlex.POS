@@ -29,6 +29,71 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - [ ] Reports Module
 - [ ] Form Designer App
 
+Here's the English content for the screen types and their functions in your SaleFlex program:
+
+---
+
+### Screen Types
+
+This list represents the customizable screens available in the SaleFlex program. If a screen type is not defined in the database, it will not be visible to the user when the SaleFlex program runs. Additionally, users can modify the content of these screens according to their needs.
+
+1. **SALE:**  
+   - [X] **Function:** Sales screen. Allows real-time product selection and sales, converting an order or check into a sale and closing the account.
+  
+2. **LOGIN:**  
+   - [X] **Function:** Simple login screen. Contains only the username and password fields for user login.
+  
+3. **LOGIN_EXT:**  
+   - [ ] **Function:** Extended login screen. May include features for accessing the admin menu. Users can also log out from this screen.
+  
+4. **LOGIN_SERVICE:**  
+   - [ ] **Function:** Extended login screen with additional service menu access features.
+  
+5. **SERVICE:**  
+   - [ ] **Function:** Service menu. Typically used by technical support staff for system maintenance and troubleshooting.
+  
+6. **SETTING:**  
+   - [ ] **Function:** Settings screen. Allows users to modify the program's settings stored in the `settings.json` file and the database.
+  
+7. **PARAMETER:**  
+   - [ ] **Function:** Parameter screen. Enables manual retrieval of parameters from the server for online applications.
+  
+8. **REPORT:**  
+   - [ ] **Function:** Reporting screen. Displays various basic reports related to the program’s operation.
+  
+9. **FUNCTION:**  
+   - [ ] **Function:** Function menu. Shows a menu of different program functions available for selection.
+  
+10. **CUSTOMER:**  
+    - [ ] **Function:** Customer screen. Used for defining new customers or viewing details of existing customers.
+  
+11. **VOID:**  
+    - [ ] **Function:** Void screen. Allows the cancellation of transactions.
+  
+12. **REFUND:**  
+    - [ ] **Function:** Refund screen. Manages the processing of transaction refunds.
+  
+13. **STOCK:**  
+    - [ ] **Function:** Stock screen. Lists products and allows the definition and management of product details.
+  
+14. **END_OF_DAY:**  
+    - [ ] **Function:** End-of-day screen. Used to close the business day in the system.
+  
+15. **TABLE:**  
+    - [ ] **Function:** Table screen. Displays a list of tables and their status in restaurant-enabled programs.
+  
+16. **ORDER:**  
+    - [ ] **Function:** Order screen. Allows the input and display of orders in the system.
+  
+17. **CHECK:**  
+    - [ ] **Function:** Check screen. Enables the entry and display of checks (bills) in the system.
+  
+18. **EMPLOYEE:**  
+    - [ ] **Function:** Employee screen. Displays employee details and information related to their rights and records.
+  
+19. **RESERVATION:**  
+    - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
+
 ### Sample Configuration Design
 #### Login Form
 
