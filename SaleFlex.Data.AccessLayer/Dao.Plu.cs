@@ -15,6 +15,31 @@ namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
+        public bool bCheckPluDb()
+        {
+            bool returnvalue = false;
+
+            try
+            {
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileName).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
+
+                if (xDataTable.Rows.Count > 0)
+                {
+                    int iTableCount = Convert.ToInt32(xDataTable.Rows[0][0]) - 1;
+
+                    if (iTableCount == 7)
+                    {
+                        returnvalue = true;
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+            return returnvalue;
+        }
+
         public PluDataModel xGetPluByCode(string prm_strPluCode)
         {
             PluDataModel xPluDataModel = null;

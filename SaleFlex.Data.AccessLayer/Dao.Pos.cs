@@ -13,7 +13,7 @@ namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
-        public bool bCheckPosValue()
+        public bool bCheckPosDb()
         {
             bool returnvalue = false;
 

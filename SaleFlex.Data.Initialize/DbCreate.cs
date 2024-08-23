@@ -20,7 +20,7 @@ namespace SaleFlex.Data.Initialize
             return strConnectionString;
         }
 
-        public static bool bDo()
+        public static bool bCreatePosDb()
         {
             bool bReturnValue = true;
 
@@ -33,8 +33,30 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableCountry,
                 bCreateTableForm,
                 bCreateTableFormControl,
-                bCreateTablePos,
+                bCreateTablePos
+            };
 
+            foreach (var DbTableCreateMethod in DbTableCreateMethods)
+            {
+                if (!DbTableCreateMethod())
+                {
+                    bReturnValue = false;
+                    break;
+                }
+            }
+
+            return bReturnValue;
+        }
+
+        public static bool bCreatePluDb()
+        {
+            bool bReturnValue = true;
+
+            if (!File.Exists(CommonProperty.prop_strDatabaseProductsFileName))
+                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabaseProductsFileName);        // Create the file which will be hosting our database
+
+            var DbTableCreateMethods = new List<Func<bool>>
+            {
                 bCreateTablePluBarcodeDefinition
             };
 

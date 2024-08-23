@@ -41,7 +41,7 @@ namespace SaleFlex.UserInterface.Manager
                 AboutBox xAboutBox = new AboutBox();
 
                 if (!CommonProperty.prop_bIsOfflinePos &&
-                    !(Dao.xGetInstance().bCheckPosValue() == true && CommonProperty.prop_lPosId > 0 && CommonProperty.prop_lMerchantId > 0 && CommonProperty.prop_iStoreNo > 0 && CommonProperty.prop_strIpPort != string.Empty))
+                    !(Dao.xGetInstance().bCheckPosDb() == true && CommonProperty.prop_lPosId > 0 && CommonProperty.prop_lMerchantId > 0 && CommonProperty.prop_iStoreNo > 0 && CommonProperty.prop_strIpPort != string.Empty))
                 {
                     while (!bOpenSetupScreen())
                     {
@@ -51,10 +51,16 @@ namespace SaleFlex.UserInterface.Manager
 
                 xAboutBox.Show();
 
-                if (Dao.xGetInstance().bCheckPosValue() == false)
+                if (Dao.xGetInstance().bCheckPosDb() == false)
                 {
-                    xAboutBox.vChangeLabelDownloading("Checking database...");
-                    DbCreate.bDo();
+                    xAboutBox.vChangeLabelDownloading("Checking POS database...");
+                    DbCreate.bCreatePosDb();
+                }
+
+                if (Dao.xGetInstance().bCheckPluDb() == false)
+                {
+                    xAboutBox.vChangeLabelDownloading("Checking PLU database...");
+                    DbCreate.bCreatePluDb();
                 }
 
                 xAboutBox.vChangeLabelDownloading("Loading POS data...");
