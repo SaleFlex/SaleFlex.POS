@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using SaleFlex.CommonLibrary;
 using SaleFlex.Data.Models;
 using SaleFlex.Data;
+using SaleFlex.Data.SQLite;
+using System.Data;
 
 namespace SaleFlex.Data.AccessLayer
 {
@@ -47,13 +49,29 @@ namespace SaleFlex.Data.AccessLayer
 
         public FormFunctionDataModel xGetFormFunction(EnumFormType prm_enumFormType)
         {
-            FormFunctionDataModel xFormFunctionDataModel = new FormFunctionDataModel();
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE Function='{prm_enumFormType.ToString()}' ORDER BY Id");
 
-            xFormFunctionDataModel.bNeedAuth = false;
-            xFormFunctionDataModel.bNeedLogin = true;
-            xFormFunctionDataModel.iNo = 1;
+            List<FormFunctionDataModel> xListFormFunctionDataModel = null;
 
-            return xFormFunctionDataModel;
+            if (xDataTable != null && xDataTable.Rows.Count > 0)
+            {
+                foreach (DataRow xDataRow in xDataTable.Rows)
+                {
+                    if (xListFormFunctionDataModel == null)
+                        xListFormFunctionDataModel = new List<FormFunctionDataModel>();
+
+                    FormFunctionDataModel xFormFunctionDataModel = new FormFunctionDataModel();
+
+                    xFormFunctionDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
+                    xFormFunctionDataModel.strName = Convert.ToString(xDataRow["Name"]);
+                    xFormFunctionDataModel.bNeedAuth = Convert.ToBoolean(xDataRow["NeedAuth"]);
+                    xFormFunctionDataModel.bNeedLogin = Convert.ToBoolean(xDataRow["NeedLogin"]);
+                    xFormFunctionDataModel.iNo = Convert.ToInt32(xDataRow["FormNo"]);
+                    xListFormFunctionDataModel.Add(xFormFunctionDataModel);
+                }
+            }
+            
+            return xListFormFunctionDataModel.FirstOrDefault();
         }
     }
 }

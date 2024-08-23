@@ -228,6 +228,8 @@ namespace SaleFlex.Data.AccessLayer
                     xFormControlDataModel.strForeColor = Convert.ToString(xDataRow["ForeColor"]) ?? string.Empty;
                     xFormControlDataModel.strKeyboardValue = Convert.ToString(xDataRow["KeyboardValue"]) ?? string.Empty;
                     xListFormControlDataModel.Add(xFormControlDataModel);
+
+
                 }
             }
 
