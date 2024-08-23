@@ -176,14 +176,14 @@ namespace SaleFlex.POS.Manager
             return m_enumDocumentType;
         }
 
-        public bool bLogin(string prm_strCashierName, string prm_strCashierLastName, string prm_strCashierPassword)
+        public bool bLogin(string prm_strCashierName, string prm_strCashierPassword, string prm_strAdminPassword)
         {
             bool bLoginSuccessfull = false;
 
             enumFormType enumFormType = m_xListFormType.LastOrDefault();
             if (enumFormType == 0) enumFormType = enumFormType.SALE;
 
-            CashierDataModel xCashierDataModel = Dao.xGetInstance().xGetCashierByNameLastName(prm_strCashierName, prm_strCashierLastName);
+            CashierDataModel xCashierDataModel = Dao.xGetInstance().xGetCashierByFullname(prm_strCashierName);
             if (xCashierDataModel != null)
             {
                 if (enumFormType == enumFormType.SALE && xCashierDataModel.strPassword == prm_strCashierPassword)

@@ -141,6 +141,49 @@ namespace SaleFlex.Data.AccessLayer
             }
         }
 
+        public CashierDataModel xGetCashierByFullname(string prm_strCashierFullname)
+        {
+            try
+            {
+                List<CashierDataModel> xListCashierDataModel = null;
+
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableCashier WHERE (Name || ' ' || LastName) = '{prm_strCashierFullname}' ORDER BY Id");
+
+                if (xDataTable != null && xDataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow xDataRow in xDataTable.Rows)
+                    {
+                        if (xListCashierDataModel == null)
+                            xListCashierDataModel = new List<CashierDataModel>();
+
+                        if (xDataRow != null)
+                        {
+                            CashierDataModel xCashierDataModel = new CashierDataModel();
+
+                            xCashierDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
+                            xCashierDataModel.iNo = Convert.ToInt32(xDataRow["No"]);
+                            xCashierDataModel.strName = Convert.ToString(xDataRow["Name"]) ?? string.Empty;
+                            xCashierDataModel.strLastName = Convert.ToString(xDataRow["LastName"]) ?? string.Empty;
+                            xCashierDataModel.strPassword = Convert.ToString(xDataRow["Password"]) ?? string.Empty;
+                            xCashierDataModel.strIdentityNumber = Convert.ToString(xDataRow["IdentityNumber"]) ?? string.Empty;
+                            xCashierDataModel.strDescription = Convert.ToString(xDataRow["Description"]) ?? string.Empty;
+                            xCashierDataModel.bIsAdministrator = Convert.ToBoolean(xDataRow["IsAdministrator"]);
+
+                            xListCashierDataModel.Add(xCashierDataModel);
+                        }
+
+                    }
+                }
+
+                return xListCashierDataModel.First();
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+                return null;
+            }
+        }
+
         public List<CashierDataModel> xListGetCashierForAllCashRegister()
         {
             try
