@@ -60,7 +60,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (Dao.xGetInstance().bCheckPluDb() == false)
                 {
                     xAboutBox.vChangeLabelDownloading("Checking PLU database...");
-                    DbCreate.bCreatePluDb();
+                    DbCreate.bCreateProductDb();
                 }
 
                 xAboutBox.vChangeLabelDownloading("Loading POS data...");
