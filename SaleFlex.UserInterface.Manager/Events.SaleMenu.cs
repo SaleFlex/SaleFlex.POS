@@ -38,7 +38,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (xControl is CustomButton)
                 {
-                    PosManager.xGetInstance().vChangeForm(enumFormType.SALE);
+                    PosManager.xGetInstance().vChangeForm(EnumFormType.SALE);
                     bReDrawFormControls();
                 }
             }
@@ -885,7 +885,7 @@ namespace SaleFlex.UserInterface.Manager
                     return;
 
                 CustomSaleOption xCustomSaleOption = new CustomSaleOption();
-                if (PosManager.xGetInstance().prop_enumDocumentType == enumDocumentType.Return)
+                if (PosManager.xGetInstance().prop_enumDocumentType == EnumDocumentType.Return)
                 {
                     return;
                 }
@@ -922,17 +922,17 @@ namespace SaleFlex.UserInterface.Manager
         {
             bool bControlType = false;
             return bControlType;
-            enumDocumentType enumDocumentType = PosManager.xGetInstance().prop_enumDocumentType;
+            EnumDocumentType enumDocumentType = PosManager.xGetInstance().prop_enumDocumentType;
 
-            if (enumDocumentType != enumDocumentType.FiscalReceipt && prop_xPosManagerData.decReceiptTotalPayment == 0)
+            if (enumDocumentType != EnumDocumentType.FiscalReceipt && prop_xPosManagerData.decReceiptTotalPayment == 0)
             {
                 if (bGetCustomer(false) == false)
                 {
-                    if (enumDocumentType == enumDocumentType.Invoice)
+                    if (enumDocumentType == EnumDocumentType.Invoice)
                         CustomMessageBox.Show(LabelTranslations.strGet("CancelInvoicePrint"));
-                    else if (enumDocumentType == enumDocumentType.Waybill)
+                    else if (enumDocumentType == EnumDocumentType.Waybill)
                         CustomMessageBox.Show(LabelTranslations.strGet("CancelWaybillPrint"));
-                    else if (enumDocumentType == enumDocumentType.Return)
+                    else if (enumDocumentType == EnumDocumentType.Return)
                         CustomMessageBox.Show(LabelTranslations.strGet("ReturnNotPrinted"));
 
                     PosManager.xGetInstance().bCancelReceipt();
@@ -946,7 +946,7 @@ namespace SaleFlex.UserInterface.Manager
                 }
             }
 
-            if (enumDocumentType == enumDocumentType.Waybill) bCheckWaybill = true;
+            if (enumDocumentType == EnumDocumentType.Waybill) bCheckWaybill = true;
             else bCheckWaybill = false;
 
             return bControlType;
@@ -1026,7 +1026,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decCashAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(enumPaymentType.CASH, decCashAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.CASH, decCashAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
@@ -1090,7 +1090,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decCreditAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(enumPaymentType.CREDIT_CARD, decCreditAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.CREDIT_CARD, decCreditAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
@@ -1151,7 +1151,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decCheckAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    PosManager.xGetInstance().bPayment(enumPaymentType.CHECK, decCheckAmount);
+                    PosManager.xGetInstance().bPayment(EnumPaymentType.CHECK, decCheckAmount);
                 }
             }
             catch (Exception xException)
@@ -1203,7 +1203,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decPrepaidAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(enumPaymentType.PREPAID_CARD, decPrepaidAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.PREPAID_CARD, decPrepaidAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
@@ -1262,7 +1262,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decChargeSaleAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(enumPaymentType.CHARGE_SALE, decChargeSaleAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.CHARGE_SALE, decChargeSaleAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
@@ -1325,7 +1325,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decOtherAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(enumPaymentType.OTHER, decOtherAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.OTHER, decOtherAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
@@ -1383,7 +1383,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (bCheckWaybill == true)
                     decExchangeAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                PosManager.xGetInstance().bPayment(enumPaymentType.EXCHANGE, decExchangeAmount);
+                PosManager.xGetInstance().bPayment(EnumPaymentType.EXCHANGE, decExchangeAmount);
 
             }
         }
@@ -1417,7 +1417,7 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else
                     {
-                        if (PosManager.xGetInstance().prop_enumErrorCode == enumErrorCode.SUSPEND_QUEUE_FULL)
+                        if (PosManager.xGetInstance().prop_enumErrorCode == EnumErrorCode.SUSPEND_QUEUE_FULL)
                         {
                             CustomMessageBox.Show(LabelTranslations.strGet("SuspendQueueFull"));
                         }
@@ -1455,11 +1455,11 @@ namespace SaleFlex.UserInterface.Manager
                 }
                 else
                 {
-                    if (PosManager.xGetInstance().prop_enumErrorCode == enumErrorCode.NEED_SUSPEND)
+                    if (PosManager.xGetInstance().prop_enumErrorCode == EnumErrorCode.NEED_SUSPEND)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGet("SuspendNeeded"));
                     }
-                    else if (PosManager.xGetInstance().prop_enumErrorCode == enumErrorCode.SUSPEND_NOT_FOUND)
+                    else if (PosManager.xGetInstance().prop_enumErrorCode == EnumErrorCode.SUSPEND_NOT_FOUND)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGet("SuspendDocumentIsNotFound"));
                     }

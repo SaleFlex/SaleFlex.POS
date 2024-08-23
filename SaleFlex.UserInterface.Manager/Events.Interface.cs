@@ -125,7 +125,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (m_xLastCustomForm != null)
                 {
-                    bool bSetResult = m_xLastCustomForm.bSetStatusBarDocumentTypeLabel(PosManager.xGetInstance().prop_enumDocumentType = enumDocumentType.FiscalReceipt);
+                    bool bSetResult = m_xLastCustomForm.bSetStatusBarDocumentTypeLabel(PosManager.xGetInstance().prop_enumDocumentType = EnumDocumentType.FiscalReceipt);
                 }
 
             }

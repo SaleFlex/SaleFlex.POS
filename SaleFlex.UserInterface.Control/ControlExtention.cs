@@ -805,8 +805,8 @@ namespace SaleFlex.UserInterface.Controls
             return false;
         }
 
-        delegate bool bSetStatusBarDocumentTypeLabelDelegate(CustomForm prm_xCustomForm, enumDocumentType prm_enumDocumentType);
-        public static bool bSetStatusBarDocumentTypeLabel(this CustomForm prm_xCustomForm, enumDocumentType prm_enumDocumentType)
+        delegate bool bSetStatusBarDocumentTypeLabelDelegate(CustomForm prm_xCustomForm, EnumDocumentType prm_enumDocumentType);
+        public static bool bSetStatusBarDocumentTypeLabel(this CustomForm prm_xCustomForm, EnumDocumentType prm_enumDocumentType)
         {
             if (prm_xCustomForm.InvokeRequired == true)
             {

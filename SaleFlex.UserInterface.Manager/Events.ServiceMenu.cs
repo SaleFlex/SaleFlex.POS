@@ -34,7 +34,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (xControl is CustomButton)
                 {
-                    PosManager.xGetInstance().vChangeForm(enumFormType.SERVICE);
+                    PosManager.xGetInstance().vChangeForm(EnumFormType.SERVICE);
                     bReDrawFormControls();
                 }
             }
@@ -451,10 +451,10 @@ namespace SaleFlex.UserInterface.Manager
 
         public bool vCheckServiceMode()
         {
-            enumFormType enumFormType;
+            EnumFormType enumFormType;
             if (PosManager.xGetInstance().bGetForm(out enumFormType) == true)
             {
-                if (enumFormType != enumFormType.SERVICE)
+                if (enumFormType != EnumFormType.SERVICE)
                 {
                     object xSender = null;
                     foreach (Control xControl in m_xLastCustomForm.Controls)

@@ -22,46 +22,46 @@ namespace SaleFlex.UserInterface.Data
                 return strLabelName;
         }
 
-        public static string strGetError(enumErrorCode prm_enumErrorCode)
+        public static string strGetError(EnumErrorCode prm_enumErrorCode)
         {
             string strErrorLabelName = string.Empty;
 
             switch (prm_enumErrorCode)
             {
-                case enumErrorCode.DEPARTMENT_NOT_FOUND:
+                case EnumErrorCode.DEPARTMENT_NOT_FOUND:
                     strErrorLabelName = strGet("DepartmentNotFound");
                     break;
-                case enumErrorCode.CAN_NOT_INSERT_TRANSACTION:
+                case EnumErrorCode.CAN_NOT_INSERT_TRANSACTION:
                     strErrorLabelName = strGet("CanNotInsertTransactıon");
                     break;
-                case enumErrorCode.CAN_NOT_START_RECEIPT:
+                case EnumErrorCode.CAN_NOT_START_RECEIPT:
                     strErrorLabelName = strGet("CanNotStartReceipt");
                     break;
-                case enumErrorCode.NEED_CASHIER_LOGIN:
+                case EnumErrorCode.NEED_CASHIER_LOGIN:
                     strErrorLabelName = strGet("NeedCashierLogin");
                     break;
-                case enumErrorCode.PLU_NOT_FOUND:
+                case EnumErrorCode.PLU_NOT_FOUND:
                     strErrorLabelName = strGet("PluNotFound");
                     break;
-                case enumErrorCode.INSUFFICIENT_STOCK:
+                case EnumErrorCode.INSUFFICIENT_STOCK:
                     strErrorLabelName = strGet("InsufficientStock");
                     break;
-                case enumErrorCode.CAN_NOT_CLOSE_RECEIPT:
+                case EnumErrorCode.CAN_NOT_CLOSE_RECEIPT:
                     strErrorLabelName = strGet("CanNotCloseReceipt");
                     break;
-                case enumErrorCode.PAYMENT_TYPE_ERROR:
+                case EnumErrorCode.PAYMENT_TYPE_ERROR:
                     strErrorLabelName = strGet("PaymentTypeError");
                     break;
-                case enumErrorCode.PAYMENT_NOT_POSSIBLE:
+                case EnumErrorCode.PAYMENT_NOT_POSSIBLE:
                     strErrorLabelName = strGet("PaymentNotPossible");
                     break;
-                case enumErrorCode.CAN_NOT_CANCEL_TRANSACTION:
+                case EnumErrorCode.CAN_NOT_CANCEL_TRANSACTION:
                     strErrorLabelName = strGet("CanNotCancelTransaction");
                     break;
-                case enumErrorCode.CAN_NOT_CANCEL_DOCUMENT:
+                case EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT:
                     strErrorLabelName = strGet("CanNotCancelDocument");
                     break;
-                case enumErrorCode.SUBTOTAL_NOT_POSSIBLE:
+                case EnumErrorCode.SUBTOTAL_NOT_POSSIBLE:
                     strErrorLabelName = strGet("SubtotalNotPossible");
                     break;
             }
@@ -69,7 +69,7 @@ namespace SaleFlex.UserInterface.Data
             return strErrorLabelName;
         }
 
-        public static string strGetDocumentType(enumDocumentType prm_enumDocumentType)
+        public static string strGetDocumentType(EnumDocumentType prm_enumDocumentType)
         {
             string strDocumentType = string.Empty;
 

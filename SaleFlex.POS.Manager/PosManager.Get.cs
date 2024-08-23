@@ -837,9 +837,9 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        public bool bGetForm(out enumFormType prm_out_enumFormType)
+        public bool bGetForm(out EnumFormType prm_out_enumFormType)
         {
-            prm_out_enumFormType = enumFormType.SALE;
+            prm_out_enumFormType = EnumFormType.SALE;
             return true;
         }
 

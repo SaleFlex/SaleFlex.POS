@@ -45,7 +45,7 @@ namespace SaleFlex.Data.AccessLayer
             return xTransactionDocumentDesignDataModel;
         }
 
-        public FormFunctionDataModel xGetFormFunction(enumFormType prm_enumFormType)
+        public FormFunctionDataModel xGetFormFunction(EnumFormType prm_enumFormType)
         {
             FormFunctionDataModel xFormFunctionDataModel = new FormFunctionDataModel();
 

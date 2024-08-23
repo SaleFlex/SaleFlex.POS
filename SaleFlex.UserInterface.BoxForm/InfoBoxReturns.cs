@@ -21,7 +21,7 @@ namespace SaleFlex.UserInterface.BoxForm
         int m_iSelectedIndex = 0;
         private bool m_bCancelFormClosing = false;
         private TransactionDataModel m_xTransactionDataModel = null;
-        List<TransactionHeadDataModel> xListTransactionHeadDataModel = Dao.xGetInstance().xGetListClosedTransactionHeaders((int)enumDocumentType.Return);
+        List<TransactionHeadDataModel> xListTransactionHeadDataModel = Dao.xGetInstance().xGetListClosedTransactionHeaders((int)EnumDocumentType.Return);
         decimal iPageCount;
         int iPageNumber = 0;
         int iReturnListCount;

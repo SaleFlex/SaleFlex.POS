@@ -348,11 +348,11 @@ namespace SaleFlex.Data
             }
         }
 
-        public static enumFormType prop_enumStartFormType
+        public static EnumFormType prop_enumStartFormType
         {
             get
             {
-                return (enumFormType)JsonParameter.xGetInstance().prop_iStartFormType;
+                return (EnumFormType)JsonParameter.xGetInstance().prop_iStartFormType;
             }
             set
             {

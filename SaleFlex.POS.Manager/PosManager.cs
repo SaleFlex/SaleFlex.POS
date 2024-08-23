@@ -14,7 +14,7 @@ namespace SaleFlex.POS.Manager
         protected bool m_bServieModeActive = false;
         protected bool m_bLoginSuccess = false;
         protected bool m_bAuthSuccess = false;
-        protected List<enumFormType> m_xListFormType = new List<enumFormType>();
+        protected List<EnumFormType> m_xListFormType = new List<EnumFormType>();
         private static PosManager m_xGlobalsInstance = new PosManager();
 
         public static PosManager xGetInstance()
@@ -42,27 +42,26 @@ namespace SaleFlex.POS.Manager
             {
                 if (m_bServieModeActive == true)
                 {
-                    return enumFormType.SERVICE.ToString();
+                    return EnumFormType.SERVICE.ToString();
                 }
 
                 if (m_xListFormType.Count > 0)
                 {
-                    enumFormType enumFormType = m_xListFormType.LastOrDefault();
+                    EnumFormType enumFormType = m_xListFormType.LastOrDefault();
                     FormFunctionDataModel xFormFunctionDataModel = Dao.xGetInstance().xGetFormFunction(enumFormType);
 
                     if (xFormFunctionDataModel != null)
                     {
                         if (xFormFunctionDataModel.bNeedAuth == true && m_bAuthSuccess == false)
                         {
-                            return enumFormType.LOGIN_SERVICE.ToString();
+                            return EnumFormType.LOGIN_SERVICE.ToString();
                         }
                         else if (xFormFunctionDataModel.bNeedLogin == true && m_bLoginSuccess == false)
                         {
-                            if (enumFormType == enumFormType.SALE)
-                                return enumFormType.LOGIN.ToString();
+                            if (enumFormType == EnumFormType.SALE)
+                                return EnumFormType.LOGIN.ToString();
                             else
-                                // return enumFormType.LOGIN_EXT.ToString();
-                                return enumFormType.LOGIN.ToString();
+                                return EnumFormType.LOGIN_EXT.ToString();
                         }
                         else
                         {
@@ -71,12 +70,12 @@ namespace SaleFlex.POS.Manager
                     }
                     else
                     {
-                        return enumFormType.LOGIN.ToString();
+                        return EnumFormType.LOGIN.ToString();
                     }
                 }
                 else
                 {
-                    return enumFormType.LOGIN.ToString();
+                    return EnumFormType.LOGIN.ToString();
                 }
             }
         }
@@ -138,7 +137,7 @@ namespace SaleFlex.POS.Manager
             return null;
         }
 
-        public TransactionDocumentTypeDataModel xFindTransactionDocumentType(enumDocumentType prm_enumTransactionDocumentTypeNo)
+        public TransactionDocumentTypeDataModel xFindTransactionDocumentType(EnumDocumentType prm_enumTransactionDocumentTypeNo)
         {
             foreach (var xTransactionDocumentType in m_xPosManagerData.xListTransactionDocumentTypeDataModel)
             {
@@ -151,11 +150,11 @@ namespace SaleFlex.POS.Manager
             return null;
         }
 
-        public enumDocumentType enumChangeDocumentType(enumDocumentType prm_enumToDocumentType = enumDocumentType.FiscalReceipt)
+        public EnumDocumentType enumChangeDocumentType(EnumDocumentType prm_enumToDocumentType = EnumDocumentType.FiscalReceipt)
         {
-            enumDocumentType enumDocumentTypeTemp = m_enumDocumentType;
+            EnumDocumentType enumDocumentTypeTemp = m_enumDocumentType;
 
-            if (m_enumDocumentType == enumDocumentType.FiscalReceipt && prm_enumToDocumentType != enumDocumentType.FiscalReceipt && m_enumDocumentState == enumDocumentState.OPENED)
+            if (m_enumDocumentType == EnumDocumentType.FiscalReceipt && prm_enumToDocumentType != EnumDocumentType.FiscalReceipt && m_enumDocumentState == EnumDocumentState.OPENED)
             {
                 bCancelReceipt();
             }
@@ -180,22 +179,22 @@ namespace SaleFlex.POS.Manager
         {
             bool bLoginSuccessfull = false;
 
-            enumFormType enumFormType = m_xListFormType.LastOrDefault();
-            if (enumFormType == 0) enumFormType = enumFormType.SALE;
+            EnumFormType enumFormType = m_xListFormType.LastOrDefault();
+            if (enumFormType == 0) enumFormType = EnumFormType.SALE;
 
             CashierDataModel xCashierDataModel = Dao.xGetInstance().xGetCashierByFullname(prm_strCashierName);
             if (xCashierDataModel != null)
             {
-                if (enumFormType == enumFormType.SALE && xCashierDataModel.strPassword == prm_strCashierPassword)
+                if (enumFormType == EnumFormType.SALE && xCashierDataModel.strPassword == prm_strCashierPassword)
                 {
                     bLoginSuccessfull = true;
                 }
-                else if (enumFormType == enumFormType.SERVICE)
+                else if (enumFormType == EnumFormType.SERVICE)
                 {
                     m_bAuthSuccess = true;
                     bLoginSuccessfull = true;
                 }
-                else if (enumFormType == enumFormType.REPORT && xCashierDataModel.bIsAdministrator == true && xCashierDataModel.strPassword == prm_strCashierPassword)
+                else if (enumFormType == EnumFormType.REPORT && xCashierDataModel.bIsAdministrator == true && xCashierDataModel.strPassword == prm_strCashierPassword)
                 {
                     bLoginSuccessfull = true;
                     CommonProperty.prop_strLastLoginAdminPassword = prm_strCashierPassword;
@@ -205,7 +204,7 @@ namespace SaleFlex.POS.Manager
                 {
                     m_bServieModeActive = false;
 
-                    if (enumFormType != enumFormType.SERVICE)
+                    if (enumFormType != EnumFormType.SERVICE)
                     {
                         m_xPosManagerData.xCashierDataModel = xCashierDataModel;
 
@@ -226,7 +225,7 @@ namespace SaleFlex.POS.Manager
         public void vLogout()
         {
             m_xListFormType.Clear();
-            m_xListFormType.Add(enumFormType.FUNCTION);
+            m_xListFormType.Add(EnumFormType.FUNCTION);
 
             m_xPosManagerData.xCashierDataModel = null;
 
@@ -242,7 +241,7 @@ namespace SaleFlex.POS.Manager
 
             if (m_xListFormType.Count == 0)
             {
-                m_xListFormType.Add(enumFormType.SALE);
+                m_xListFormType.Add(EnumFormType.SALE);
                 m_bAuthSuccess = false;
                 m_bLoginSuccess = false;
 
@@ -252,7 +251,7 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        public void vChangeForm(enumFormType prm_enumFormType)
+        public void vChangeForm(EnumFormType prm_enumFormType)
         {
             FormFunctionDataModel xFormFunctionDataModel = Dao.xGetInstance().xGetFormFunction((int)prm_enumFormType);
 

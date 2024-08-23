@@ -33,7 +33,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (xControl is CustomButton)
                 {
-                    PosManager.xGetInstance().vChangeForm(enumFormType.SETTING);
+                    PosManager.xGetInstance().vChangeForm(EnumFormType.SETTING);
                     bReDrawFormControls();
                 }
             }

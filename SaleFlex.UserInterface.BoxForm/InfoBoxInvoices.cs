@@ -26,7 +26,7 @@ namespace SaleFlex.UserInterface.BoxForm
         int iInvoiceListCount;
         int iStartingRow;
         int iRowCount;
-        List<TransactionHeadDataModel> xListTransactionHeadDataModel = Dao.xGetInstance().xGetListClosedTransactionHeaders((int)enumDocumentType.Invoice);
+        List<TransactionHeadDataModel> xListTransactionHeadDataModel = Dao.xGetInstance().xGetListClosedTransactionHeaders((int)EnumDocumentType.Invoice);
 
         public TransactionDataModel xNewTransactionDataModel
         {

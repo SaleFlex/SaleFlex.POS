@@ -128,19 +128,19 @@ namespace SaleFlex.POS.Document
                 bool bDateWillPrint = xTransactionDocumentDesignDataModel.iDateColumn >= 0 && xTransactionDocumentDesignDataModel.iDateRow >= 0;
                 bool bTimeWillPrint = xTransactionDocumentDesignDataModel.iTimeColumn >= 0 && xTransactionDocumentDesignDataModel.iTimeRow >= 0;
 
-                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Waybill) // BELGE BAŞLIĞI (İRSALİYE)
+                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Waybill) // BELGE BAŞLIĞI (İRSALİYE)
                 {
                     string strDocumentHeader = LabelTranslations.strGet("WayBill");
                     strDocumentHeaderLines += strDocumentHeader.strCenterAlignment(iRowLength);
                 }
 
-                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Invoice) //BELGE BAŞLIĞI(FATURA)
+                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Invoice) //BELGE BAŞLIĞI(FATURA)
                 {
                     string strDocumentHeader = LabelTranslations.strGet("Invoice");
                     strDocumentHeaderLines += strDocumentHeader.strCenterAlignment(iRowLength);
                 }
 
-                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Return) // BELGE BAŞLIĞI (GİDER PUSULASI)
+                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Return) // BELGE BAŞLIĞI (GİDER PUSULASI)
                 {
                     string strDocumentHeader = LabelTranslations.strGet("Return");
                     strDocumentHeaderLines += strDocumentHeader.strCenterAlignment(iRowLength);

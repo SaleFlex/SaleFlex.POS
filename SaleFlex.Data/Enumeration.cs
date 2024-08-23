@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SaleFlex.Data
 {
-    public enum enumFormType
+    public enum EnumFormType
     {
         NONE = 0,
         SALE = 1,
@@ -25,7 +25,7 @@ namespace SaleFlex.Data
         
     }
 
-    public enum enumPaymentType
+    public enum EnumPaymentType
     {
         NONE = 0,
         CASH = 1,
@@ -40,14 +40,14 @@ namespace SaleFlex.Data
         OTHER = 10
     }
 
-    public enum enumDocumentState
+    public enum EnumDocumentState
     {
         CLOSED,         // Kapalı Belge
         SUSPENDED,      // Askıda Belge
         OPENED          // Açık Belge
     }
 
-    public enum enumDocumentResult
+    public enum EnumDocumentResult
     {
         NONE = 0,
         SUCCESSED,
@@ -58,7 +58,7 @@ namespace SaleFlex.Data
         SUSPENDED                                       // Askıda
     }
 
-    public enum enumDocumentType
+    public enum EnumDocumentType
     {
         None = 0,
         FiscalReceipt,                  // Mali Fiş
@@ -74,7 +74,7 @@ namespace SaleFlex.Data
         Expense                         // Gider Pusulası
     };
 
-    public enum enumErrorCode
+    public enum EnumErrorCode
     {
         NONE = 0,
         DEPARTMENT_NOT_FOUND = 1,

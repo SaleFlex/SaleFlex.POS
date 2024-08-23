@@ -96,15 +96,15 @@ namespace SaleFlex.POS.Document
 
                                 RawPrinterApi.SendStringToPrinter(prop_strPrinterName, string.Join("", strDocumentLines));
 
-                                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Waybill)
+                                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Waybill)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("WaybillPrinted"));
                                 }
-                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.FiscalReceipt)
+                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.FiscalReceipt)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("InvoicePrinted"));
                                 }
-                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Return)
+                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Return)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("ReturnPrinted"));
                                 }
@@ -134,15 +134,15 @@ namespace SaleFlex.POS.Document
                                 RawPrinterApi.SendStringToPrinter(prop_strPrinterName, string.Join("", strDocumentLines));
 
 
-                                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Waybill)
+                                if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Waybill)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("WaybillPrinted"));
                                 }
-                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Invoice)
+                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Invoice)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("InvoicePrinted"));
                                 }
-                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)enumDocumentType.Return)
+                                else if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Return)
                                 {
                                     CustomMessageBox.Show(LabelTranslations.strGet("ReturnPrinted"));
                                 }

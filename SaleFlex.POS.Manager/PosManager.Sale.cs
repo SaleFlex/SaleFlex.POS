@@ -28,12 +28,12 @@ namespace SaleFlex.POS.Manager
                 {
                     if (m_xPosManagerData.xTransactionDataModel.bTransactionStarted == true)
                     {
-                        m_enumDocumentState = enumDocumentState.OPENED;
+                        m_enumDocumentState = EnumDocumentState.OPENED;
                         bReturnValue = true;
                     }
                     else
                     {
-                        m_enumDocumentResult = enumDocumentResult.NONE;
+                        m_enumDocumentResult = EnumDocumentResult.NONE;
                     }
                 }
             }
@@ -222,7 +222,7 @@ namespace SaleFlex.POS.Manager
         {
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.NEED_CASHIER_LOGIN;
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
                 return false;
             }
 
@@ -244,25 +244,25 @@ namespace SaleFlex.POS.Manager
 
             if (xSaledDepartmentDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
                 return false;
             }
 
             if (bStartReceipt() == false)
             {
-                m_enumErrorCode = enumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
                 return false;
             }
 
             if (bInsertTransactionDetail(xSaledDepartmentDataModel, decPrice, decQuantity) == false)
             {
-                m_enumErrorCode = enumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
                 return false;
             }
 
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
                 return false;
             }
 
@@ -275,7 +275,7 @@ namespace SaleFlex.POS.Manager
 
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.NEED_CASHIER_LOGIN;
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
                 return false;
             }
 
@@ -286,17 +286,17 @@ namespace SaleFlex.POS.Manager
 
             if (xSalesPluDataModel == null || xSalesPluDataModel.xListPluBarcodeDataModel.Count == 0)
             {
-                m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
             //prm_decQuantity = xSalesPluDataModel.StockUnitNo == 2 ? (prm_decQuantity / 1000) : prm_decQuantity;
             //int iStock = Convert.ToInt32(Dao.xGetInstance().xGetStockUnitByNo(xSalesPluDataModel.StockUnitNo).Coefficient * (Convert.ToDecimal(prm_decQuantity)/1000));
             int iStock = Convert.ToInt32(xSalesPluDataModel.StockUnitNo == 1 ? prm_decQuantity : (prm_decQuantity / 1000));
-            if (prop_enumDocumentType != enumDocumentType.Return)
+            if (prop_enumDocumentType != EnumDocumentType.Return)
             {
                 if (xSalesPluDataModel.bAllowNegativeStock == true && xSalesPluDataModel.iStock < iStock)
                 {
-                    m_enumErrorCode = enumErrorCode.INSUFFICIENT_STOCK;
+                    m_enumErrorCode = EnumErrorCode.INSUFFICIENT_STOCK;
                     return false;
                 }
             }
@@ -306,23 +306,23 @@ namespace SaleFlex.POS.Manager
 
             if (bStartReceipt() == false)
             {
-                m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
 
             if (bInsertTransactionDetail(xSalesPluDataModel, decPrice, decQuantity) == false)
             {
-                m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
 
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
 
-            if (prop_enumDocumentType != enumDocumentType.Return)
+            if (prop_enumDocumentType != EnumDocumentType.Return)
             {
                 Dao.xGetInstance().bSetPluStockByCode(prm_strPluCode, (int)(xSalesPluDataModel.iStock - iStock));
             }
@@ -341,7 +341,7 @@ namespace SaleFlex.POS.Manager
 
             if (strPluCode == string.Empty)
             {
-                m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
 
@@ -357,19 +357,19 @@ namespace SaleFlex.POS.Manager
 
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
                 return false;
             }
 
             if (m_xPosManagerData.xTransactionDataModel.bTransactionStarted == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
                 return false;
             }
 
             if (Dao.xGetInstance().bCancelTransaction(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId) == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
                 return false;
             }
 
@@ -382,7 +382,7 @@ namespace SaleFlex.POS.Manager
             foreach(var xTransactionDetail in m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel)
             {
                 PluDataModel plu = Dao.xGetInstance().xGetPluById(xTransactionDetail.iFkPluId);
-                if (prop_enumDocumentType != enumDocumentType.Return)
+                if (prop_enumDocumentType != EnumDocumentType.Return)
                 {
                     Dao.xGetInstance().bSetPluStockByCode(plu.strCode, (int)(plu.iStock + xTransactionDetail.decQuantity));
                 }
@@ -397,8 +397,8 @@ namespace SaleFlex.POS.Manager
             m_xPosManagerData.decReceiptTotalPrice = 0;
             m_xPosManagerData.decReceiptTotalVat = 0;
 
-            m_enumDocumentResult = enumDocumentResult.CANCELED_BY_CASHIER;
-            m_enumDocumentState = enumDocumentState.CLOSED;
+            m_enumDocumentResult = EnumDocumentResult.CANCELED_BY_CASHIER;
+            m_enumDocumentState = EnumDocumentState.CLOSED;
 
             return true;
         }
@@ -412,19 +412,19 @@ namespace SaleFlex.POS.Manager
 
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
                 return false;
             }
 
             if (m_xPosManagerData.xTransactionDataModel.bTransactionStarted == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_DOCUMENT;
                 return false;
             }
 
             if (!Dao.xGetInstance().bAddSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId))
             {
-                m_enumErrorCode = enumErrorCode.SUSPEND_QUEUE_FULL;
+                m_enumErrorCode = EnumErrorCode.SUSPEND_QUEUE_FULL;
                 return false;
             }
 
@@ -433,8 +433,8 @@ namespace SaleFlex.POS.Manager
             m_xPosManagerData.decReceiptTotalPrice = 0;
             m_xPosManagerData.decReceiptTotalVat = 0;
 
-            m_enumDocumentResult = enumDocumentResult.SUSPENDED;
-            m_enumDocumentState = enumDocumentState.SUSPENDED;
+            m_enumDocumentResult = EnumDocumentResult.SUSPENDED;
+            m_enumDocumentState = EnumDocumentState.SUSPENDED;
 
             return true;
         }
@@ -442,7 +442,7 @@ namespace SaleFlex.POS.Manager
         public bool bBacktoReceipt()
         {
             bool bReturnValue = false;
-            m_enumErrorCode = enumErrorCode.NONE;
+            m_enumErrorCode = EnumErrorCode.NONE;
             int iTransactionHeadId = 0;
             if (m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId == 0)
             {
@@ -452,7 +452,7 @@ namespace SaleFlex.POS.Manager
                 }
                 else if (Dao.xGetInstance().xSuspendedListValues.Count == 0)
                 {
-                    m_enumErrorCode = enumErrorCode.SUSPEND_NOT_FOUND;
+                    m_enumErrorCode = EnumErrorCode.SUSPEND_NOT_FOUND;
                     return false;
                 }
                 else
@@ -488,21 +488,21 @@ namespace SaleFlex.POS.Manager
                         }
                         else
                         {
-                            m_enumErrorCode = enumErrorCode.SUSPEND_NOT_FOUND;
+                            m_enumErrorCode = EnumErrorCode.SUSPEND_NOT_FOUND;
                             return false;
                         }
                     }
                 }
                 else
                 {
-                    m_enumErrorCode = enumErrorCode.NEED_SUSPEND;
+                    m_enumErrorCode = EnumErrorCode.NEED_SUSPEND;
                     return false;
                 }
             }
             return bReturnValue;
         }
 
-        public bool bPayment(enumPaymentType prm_enumType, long prm_decPaymentAmount)
+        public bool bPayment(EnumPaymentType prm_enumType, long prm_decPaymentAmount)
         {
             //int iReceiptNumber;
             //int iZNumber;
@@ -514,13 +514,13 @@ namespace SaleFlex.POS.Manager
 
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.NEED_CASHIER_LOGIN;
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
                 return false;
             }
 
             if (m_xPosManagerData.decReceiptTotalPrice <= 0)
             {
-                m_enumErrorCode = enumErrorCode.PAYMENT_NOT_POSSIBLE;
+                m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
             }
 
@@ -538,7 +538,7 @@ namespace SaleFlex.POS.Manager
 
             if (xPaymentDataModel.xPaymentTypeDataModel == null)
             {
-                m_enumErrorCode = enumErrorCode.NEED_CASHIER_LOGIN;
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
                 return false;
             }
 
@@ -547,7 +547,7 @@ namespace SaleFlex.POS.Manager
 
             if (Dao.xGetInstance().bPaymentTemp(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.PAYMENT_NOT_POSSIBLE;
+                m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
             }
 
@@ -555,7 +555,7 @@ namespace SaleFlex.POS.Manager
 
             if (Dao.xGetInstance().bPayment(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.PAYMENT_NOT_POSSIBLE;
+                m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
             }
 
@@ -565,7 +565,7 @@ namespace SaleFlex.POS.Manager
             {
                 if (Dao.xGetInstance().bCloseTransaction(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId) == false)
                 {
-                    m_enumErrorCode = enumErrorCode.PLU_NOT_FOUND;
+                    m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                     return false;
                 }
 
@@ -574,7 +574,7 @@ namespace SaleFlex.POS.Manager
                     Dao.xGetInstance().vRemoveFromSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
                 }
 
-                m_enumDocumentState = enumDocumentState.CLOSED;
+                m_enumDocumentState = EnumDocumentState.CLOSED;
 
                 return true;
             }
@@ -720,13 +720,13 @@ namespace SaleFlex.POS.Manager
             }
             else
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
                 return false;
             }
 
             if (bCancelTransactionDetail(ref prm_xTransactionDetailDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
                 return false;
             }
 
@@ -746,7 +746,7 @@ namespace SaleFlex.POS.Manager
 
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
                 return false;
             }
 
@@ -909,7 +909,7 @@ namespace SaleFlex.POS.Manager
         {
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
-                m_enumErrorCode = enumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_CANCEL_TRANSACTION;
                 return false;
             }
             return true;

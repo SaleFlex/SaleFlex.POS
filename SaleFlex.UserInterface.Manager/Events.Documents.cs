@@ -19,7 +19,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                if (PosManager.xGetInstance().prop_enumDocumentState == enumDocumentState.OPENED)
+                if (PosManager.xGetInstance().prop_enumDocumentState == EnumDocumentState.OPENED)
                 {
                     CustomMessageBox.Show(LabelTranslations.strGet("ReceiptIsOpen"));
                     return true;
@@ -36,7 +36,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                if (PosManager.xGetInstance().prop_enumDocumentState == enumDocumentState.CLOSED && prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId == 0)
+                if (PosManager.xGetInstance().prop_enumDocumentState == EnumDocumentState.CLOSED && prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId == 0)
                 {
                     CustomMessageBox.Show(LabelTranslations.strGet("ReceiptIsNotOpen"));
                     return true;

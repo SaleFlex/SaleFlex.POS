@@ -106,7 +106,7 @@ namespace SaleFlex.UserInterface.Controls
                 xCustomSalesData.ROW_NUMBER = (int)dataGridViewSales.Rows[dataGridViewSales.Rows.Count - 1].Cells["ROW_NUMBER"].Value + 1;
 
             xCustomSalesData.REFERENCE_ID = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().iId;
-            xCustomSalesData.TRANSACTION = prm_xTransactionDataModel.xTransactionHeadDataModel.iTransactionDocumentTypeNo != (int)enumDocumentType.Return ? "Satış" : "İade";
+            xCustomSalesData.TRANSACTION = prm_xTransactionDataModel.xTransactionHeadDataModel.iTransactionDocumentTypeNo != (int)EnumDocumentType.Return ? "Satış" : "İade";
             xCustomSalesData.UNIT = 1;
             if (prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDepartmentDataModel != null)
             {

@@ -21,7 +21,7 @@ namespace SaleFlex.UserInterface.Manager
     public partial class Events
     {
         private CustomForm m_xLastCustomForm = null;
-        //private enumDocumentType m_enumDocumentType = enumDocumentType.NONE;
+        //private EnumDocumentType m_enumDocumentType = EnumDocumentType.NONE;
 
         private DocumentPrint m_xDocumentPrint = new DocumentPrint();
         private long m_decQuantityOfProduct = 1;
@@ -92,7 +92,7 @@ namespace SaleFlex.UserInterface.Manager
                 xAboutBox.vChangeLabelDownloading("Loading open sales transaction...");
                 PosManager.xGetInstance().bReadLastOpenTransaction();
 
-                PosManager.xGetInstance().prop_enumDocumentType = enumDocumentType.FiscalReceipt;
+                PosManager.xGetInstance().prop_enumDocumentType = EnumDocumentType.FiscalReceipt;
 
                 xAboutBox.Close();
 
@@ -406,7 +406,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (xControl is CustomButton)
                 {
-                    PosManager.xGetInstance().vChangeForm(enumFormType.FUNCTION);
+                    PosManager.xGetInstance().vChangeForm(EnumFormType.FUNCTION);
                     bReDrawFormControls();
                 }
             }
@@ -445,15 +445,15 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     int iDocumentTypeNo = (int)PosManager.xGetInstance().prop_enumDocumentType;
 
-                    if ((int)enumDocumentType.Expense < iDocumentTypeNo)
+                    if ((int)EnumDocumentType.Expense < iDocumentTypeNo)
                         iDocumentTypeNo = 1;
 
-                    if (PosManager.xGetInstance().prop_enumDocumentType == enumDocumentType.FiscalReceipt)
-                        iDocumentTypeNo = (int)enumDocumentType.Return;
+                    if (PosManager.xGetInstance().prop_enumDocumentType == EnumDocumentType.FiscalReceipt)
+                        iDocumentTypeNo = (int)EnumDocumentType.Return;
                     else
-                        iDocumentTypeNo = (int)enumDocumentType.FiscalReceipt;
+                        iDocumentTypeNo = (int)EnumDocumentType.FiscalReceipt;
 
-                    PosManager.xGetInstance().enumChangeDocumentType((enumDocumentType)iDocumentTypeNo);
+                    PosManager.xGetInstance().enumChangeDocumentType((EnumDocumentType)iDocumentTypeNo);
 
                     m_xLastCustomForm.bSetStatusBarDocumentTypeLabel(PosManager.xGetInstance().prop_enumDocumentType);
                 }
@@ -583,7 +583,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (xControl is CustomButton)
                 {
-                    PosManager.xGetInstance().vChangeForm(enumFormType.REFUND);
+                    PosManager.xGetInstance().vChangeForm(EnumFormType.REFUND);
                     bReDrawFormControls();
                 }
             }

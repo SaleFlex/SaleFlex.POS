@@ -18,8 +18,8 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        private enumDocumentState m_enumDocumentState = enumDocumentState.CLOSED;
-        public enumDocumentState prop_enumDocumentState
+        private EnumDocumentState m_enumDocumentState = EnumDocumentState.CLOSED;
+        public EnumDocumentState prop_enumDocumentState
         {
             get
             {
@@ -27,8 +27,8 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        private enumDocumentType m_enumDocumentType = enumDocumentType.FiscalReceipt;
-        public enumDocumentType prop_enumDocumentType
+        private EnumDocumentType m_enumDocumentType = EnumDocumentType.FiscalReceipt;
+        public EnumDocumentType prop_enumDocumentType
         {
             get
             {
@@ -40,8 +40,8 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        private enumDocumentResult m_enumDocumentResult;
-        public enumDocumentResult prop_enumDocumentResult
+        private EnumDocumentResult m_enumDocumentResult;
+        public EnumDocumentResult prop_enumDocumentResult
         {
             get
             {
@@ -49,8 +49,8 @@ namespace SaleFlex.POS.Manager
             }
         }
 
-        private enumErrorCode m_enumErrorCode = enumErrorCode.NONE;
-        public enumErrorCode prop_enumErrorCode
+        private EnumErrorCode m_enumErrorCode = EnumErrorCode.NONE;
+        public EnumErrorCode prop_enumErrorCode
         {
             get
             {
