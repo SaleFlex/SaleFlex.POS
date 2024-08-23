@@ -92,8 +92,8 @@ This list represents the customizable screens available in the SaleFlex program.
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
 
-### Sample Configuration Design
-#### Login Form
+# Sample Configuration Design
+### Login Form
 
 Default login criteria
 - username: `CASHIER 1` 
