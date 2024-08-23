@@ -13,6 +13,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 ### Project Roadmap
 
 - [X] Database Structure
+- [ ] Data Access Layer
 - [ ] POS Manager Module
 - [X] User Interface Modules:
   - [X] Dynamic Interface Interpreter Module
