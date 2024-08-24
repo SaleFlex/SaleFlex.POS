@@ -23,7 +23,7 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(string.Format("SELECT * FROM TableLabelValue WHERE KeyValue='{0}' and CultureInfo='{1}'", prm_strLabelName, strCultureInfo));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(string.Format("SELECT * FROM TableLabelValue WHERE Key='{0}' and CultureInfo='{1}'", prm_strLabelName, strCultureInfo));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -32,9 +32,9 @@ namespace SaleFlex.Data.AccessLayer
                         if (xDataRow != null)
                         {
                             xLabelValuesDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
-                            xLabelValuesDataModel.strName = Convert.ToString(xDataRow["Name"]);
+                            xLabelValuesDataModel.strKey = Convert.ToString(xDataRow["Key"]);
+                            xLabelValuesDataModel.strValue = Convert.ToString(xDataRow["Value"]);
                             xLabelValuesDataModel.strCultureInfo = Convert.ToString(xDataRow["CultureInfo"]);
-                            xLabelValuesDataModel.strKeyValue = Convert.ToString(xDataRow["KeyValue"]);
                         }
 
                     }
@@ -45,7 +45,7 @@ namespace SaleFlex.Data.AccessLayer
                 xException.strTraceError();
             }
 
-            return xLabelValuesDataModel.strName;
+            return xLabelValuesDataModel.strValue;
         }
 
         public void vSaveLabelValue(ServiceDataModel.LabelValueModel prm_xLabelValueDataModel)
@@ -53,10 +53,10 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(
-                    string.Format("INSERT INTO TableLabelValue (Name, CultureInfo, KeyValue) VALUES('{0}','{1}','{2}');",
-                    prm_xLabelValueDataModel.Name,
+                    string.Format("INSERT INTO TableLabelValue (Name, CultureInfo, Key) VALUES('{0}','{1}','{2}');",
+                    prm_xLabelValueDataModel.Value,
                     prm_xLabelValueDataModel.CultureInfo,
-                    prm_xLabelValueDataModel.KeyValue));
+                    prm_xLabelValueDataModel.Key));
             }
             catch (Exception xException)
             {

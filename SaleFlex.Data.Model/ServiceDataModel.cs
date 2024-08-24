@@ -125,9 +125,9 @@ namespace SaleFlex.Data.Models
 
         public struct LabelValueModel
         {
-            public string Name { get; set; }
+            public string Key { get; set; }
+            public string Value { get; set; }
             public string CultureInfo { get; set; }
-            public string KeyValue { get; set; }
         }
 
         public struct PaymentTypeModel
