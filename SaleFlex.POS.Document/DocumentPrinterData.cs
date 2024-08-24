@@ -130,7 +130,7 @@ namespace SaleFlex.POS.Document
 
                 if (prm_xTransactionDataModel.xTransactionHeadDataModel.xTransactionDocumentTypeDataModel.iNo == (int)EnumDocumentType.Waybill) // BELGE BAŞLIĞI (İRSALİYE)
                 {
-                    string strDocumentHeader = LabelTranslations.strGet("WayBill");
+                    string strDocumentHeader = LabelTranslations.strGet("Waybill");
                     strDocumentHeaderLines += strDocumentHeader.strCenterAlignment(iRowLength);
                 }
 

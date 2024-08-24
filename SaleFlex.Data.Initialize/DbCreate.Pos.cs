@@ -25,6 +25,7 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableCountry,
                 bCreateTableForm,
                 bCreateTableFormControl,
+                bCreateTableLabelValue,
                 bCreateTablePos
             };
 
@@ -383,16 +384,16 @@ namespace SaleFlex.Data.Initialize
                             bReturnValue = true;
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
-                                string[] straCountries = new string[]
+                                string[] straQueries = new string[]
                                 {
                                     "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'LOGIN', 'LOGIN', 0, 0, 'LOGIN', 'MidnightBlue', 0, 0);",
                                     "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (2, 'SALE', 'SALE', 1, 1, 'SALE', 'MidnightBlue', 0, 0);",
 
                                 };
 
-                                foreach (string strCountry in straCountries)
+                                foreach (string strQuery in straQueries)
                                 {
-                                    xSQLiteCommand.CommandText = strCountry;
+                                    xSQLiteCommand.CommandText = strQuery;
                                     iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                                 }
                             }
@@ -469,7 +470,7 @@ namespace SaleFlex.Data.Initialize
                             bReturnValue = true;
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
-                                string[] straCountries = new string[]
+                                string[] straQueries = new string[]
                                 {
                                     "INSERT INTO TableFormControl (FkFormId, FkParentId, Name, FormControlFunction1, FormControlFunction2, TypeNo, Type, Width, Height, LocationX, LocationY, StartPosition, Caption1, Caption2, List, Dock, Alignment, TextAlignment, CharacterCasing, Font, Icon, ToolTip, Image, ImageSelected, FontAutoHeight, FontSize, InputType, TextImageRelation, BackColor, ForeColor, KeyboardValue) VALUES (1, 0, 'CASHIER_NAME_LIST', 'NONE', NULL, 3, 'COMBOBOX', 400, 50, 312, 100, NULL, NULL, NULL, NULL, NULL, NULL, 'LEFT', 'UPPER', 'Tahoma', NULL, NULL, NULL, NULL, 1, 0, 'ALPHANUMERIC', NULL, NULL, NULL, NULL);",
                                     "INSERT INTO TableFormControl (FkFormId, FkParentId, Name, FormControlFunction1, FormControlFunction2, TypeNo, Type, Width, Height, LocationX, LocationY, StartPosition, Caption1, Caption2, List, Dock, Alignment, TextAlignment, CharacterCasing, Font, Icon, ToolTip, Image, ImageSelected, FontAutoHeight, FontSize, InputType, TextImageRelation, BackColor, ForeColor, KeyboardValue) VALUES (1, 0, 'PASSWORD', 'NONE', NULL, 2, 'TEXTBOX', 400, 50, 312, 150, NULL, NULL, NULL, NULL, NULL, NULL, 'LEFT', 'UPPER', 'Tahoma', NULL, NULL, NULL, NULL, 1, 0, 'ALPHANUMERIC', NULL, NULL, NULL, NULL);",
@@ -479,9 +480,128 @@ namespace SaleFlex.Data.Initialize
 
                                 };
 
-                                foreach (string strCountry in straCountries)
+                                foreach (string strQuery in straQueries)
                                 {
-                                    xSQLiteCommand.CommandText = strCountry;
+                                    xSQLiteCommand.CommandText = strQuery;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableLabelValue()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableLabelValue (
+                        Id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                        Key         TEXT,
+                        Value       TEXT,
+                        CultureInfo TEXT
+                    );
+                    ";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('ReceiptNo', 'Receipt No', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CurrencySymbol', '£', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Quantity', 'Quantity', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('FunctionNotDefined', 'Function not defined!', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('LicenseOwner', 'Licensee', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('AreYouSure', 'Are you sure?', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Cashier', 'Cashier', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DepartmentNotFound', 'Department not found.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CanNotInsertTransactıon', 'Can not insert transactıon.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CanNotStartReceipt', 'Can not start receipt.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('NeedCashierLogin', 'You need cashier login.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluNotFound', 'Product not found.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Price', 'Price', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('GroupNo', 'Group No', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Waybill', 'Waybill', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DeliveryNote', 'Delivery Note', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Invoice', 'Invoice', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Return', 'Return', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('FiscalReceipt', 'Receipt', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('NoneFiscalReceipt', 'Receipt', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('EInvoice', 'Electronic Invoice', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('EArchiveInvoice', 'Electronic Receipt', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DiplomaticInvoice', 'Diplomatic Invoice', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CashOutflow', 'Cash Outflow', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CashInflow', 'Cash Inflow', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('SelfBillingInvoice', 'Self-Billing Invoice', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PasswordCode', 'Password Code', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DefinitionIsNotProper', 'The definition is not appropriate.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('LoginFailed', 'Login Failed', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('ProcessFinished', 'Process Finished', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('WrongPrice', 'Wrong Price', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('NotPossible', 'Is not possible.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CreditCardPaymentError', 'An error occurred with the credit card payment.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CancelInvoicePrint', 'Document printing was canceled.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CancelWaybillPrint', 'Waybill printing was canceled.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CancelDeliveryNotePrint', 'Delivery note printing was canceled.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CancelReturnPrint', 'Return invoice printing was canceled.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DefineDiscountSurchargeValue', 'Define Discount and Surcharge Value.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('WrongQuantity', 'Wrong Quantity', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Vat', 'Vat', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PeriodicZReportWarning', 'Periodic Z Report Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DateAndTime', 'Date and Time', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CashRegisterActivated', 'Cash Register Activated', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('OutOfService', 'Out of Service', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('ReceiptIsOpen', 'The receipt is open', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('ReceiptIsNotOpen', 'The receipt is not open', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PaymentIsStarted', 'Payment is started', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PaymentIsNotPossible', 'Payment is not possible', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('InsertPaper', 'Insert Paper', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('WaybillPrinted', 'Waybill Printed', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DeliveryNotePrinted', 'Delivery Note Printed', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('InvoicePrinted', 'Invoice Printed', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('ReturnPrinted', 'Return Invoice Printed', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PrintControl', 'Print Control', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DiscountRate', 'Discount Rate', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('SurchargeRate', 'Surcharge Rate', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DepartmentMaxWarning', 'Department Max Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DepartmentExistWarning', 'Department Exist Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluMaxWarning', 'Plu Max Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluExistWarning', 'Plu Exist Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluGroupMaxWarning', 'Plu Group Max Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluGroupExistWarning', 'Plu Group Exist Warning', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('VatSetError1', 'VAT must be between 1-99', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('VatSetError2', 'VAT Error', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DocumentCancelled', 'Document Cancelled.', 'en-GB');",
+                                    
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
                                     iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                                 }
                             }

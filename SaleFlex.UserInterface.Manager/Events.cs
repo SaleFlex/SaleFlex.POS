@@ -176,7 +176,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                CustomMessageBox.Show(LabelTranslations.strGet("FunctionIsNotDefined"));
+                CustomMessageBox.Show(LabelTranslations.strGet("FunctionNotDefined"));
             }
             catch (Exception xException)
             {
@@ -451,7 +451,7 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     int iDocumentTypeNo = (int)PosManager.xGetInstance().prop_enumDocumentType;
 
-                    if ((int)EnumDocumentType.Expense < iDocumentTypeNo)
+                    if ((int)EnumDocumentType.SelfBillingInvoice < iDocumentTypeNo)
                         iDocumentTypeNo = 1;
 
                     if (PosManager.xGetInstance().prop_enumDocumentType == EnumDocumentType.FiscalReceipt)

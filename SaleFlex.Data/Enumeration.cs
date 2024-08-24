@@ -72,11 +72,12 @@ namespace SaleFlex.Data
         EInvoice,                       // E-Fatura
         EArchiveInvoice,                // E-Arşıv Faturası
         DiplomaticInvoice,              // Diplomatik Satış
-        Waybill,                        // İrsaliye
-        PaidOut,                        // Kasa Çıkış
-        ReceivedOnAccount,              // Kasa Giriş
+        Waybill,                        // Taşıma Belgesi
+        DeliveryNote,                   // İrsaliye
+        CashOutflow,                    // Kasa Çıkış
+        CashInflow,                     // Kasa Giriş
         Return,                         // İade
-        Expense                         // Gider Pusulası
+        SelfBillingInvoice              // Gider Pusulası
     };
 
     public enum EnumErrorCode
