@@ -88,7 +88,7 @@ The value in parentheses shows the equivalent in the database.
 - [ ] **ON_CREDIT (9)**: Payment made on credit, where the amount is recorded as a debt to be paid later (similar to a store credit or purchase on account).
 - [ ] **OTHER (10)**: Any other payment type not covered by the above categories.
 
-## EnumDocumentType Definitions
+## Supported Document Types
 
 - [ ] **FiscalReceipt**: A fiscal receipt, typically used for official sales transactions that are recorded for tax purposes.
 - [ ] **NoneFiscalReceipt**: A non-fiscal receipt, which is not used for tax purposes but may be issued for internal records or other non-tax-related transactions.
