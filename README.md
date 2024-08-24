@@ -31,7 +31,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - [ ] Reports Module
 - [ ] Form Designer App
 
-### Screen Types
+## Screen Types
 
 This list represents the customizable screens available in the SaleFlex program. If a screen type is not defined in the database, it will not be visible to the user when the SaleFlex program runs. Additionally, users can modify the content of these screens according to their needs.
 
@@ -92,8 +92,32 @@ This list represents the customizable screens available in the SaleFlex program.
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
 
+## Supported Payment Types
+The value in parentheses shows the equivalent in the database.
+
+- [ ] **CASH (1)**: Payment made using physical cash.
+
+- [ ] **CREDIT_CARD (2)**: Payment made using a credit card.
+
+- [ ] **CHECK (3)**: Payment made via check.
+
+- [ ] **CREDIT_NOCARD (4)**: Payment made using the customer's internal credit within the institution, or through an integration with a bank where the payment is processed using a credit line.
+
+- [ ] **PREPAID_CARD (5)**: Payment made using a prepaid card.
+
+- [ ] **MOBILE (6)**: Payment made via mobile payment methods, such as mobile wallets or payment apps.
+
+- [ ] **BONUS (7)**: Payment made using points or bonuses earned through loyalty programs or rewards.
+
+- [ ] **EXCHANGE (8)**: Payment made in a foreign currency or through currency exchange.
+
+- [ ] **ON_CREDIT (9)**: Payment made on credit, where the amount is recorded as a debt to be paid later (similar to a store credit or purchase on account).
+
+- [ ] **OTHER (10)**: Any other payment type not covered by the above categories.
+
+
 # Sample Configuration Design
-### Login Form
+## Login Form
 
 Default login criteria
 - username: `CASHIER 1` 
