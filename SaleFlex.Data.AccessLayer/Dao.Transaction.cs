@@ -10,6 +10,31 @@ namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
+        public bool bCheckSalesDb()
+        {
+            bool returnvalue = false;
+
+            try
+            {
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
+
+                if (xDataTable.Rows.Count > 0)
+                {
+                    int iTableCount = Convert.ToInt32(xDataTable.Rows[0][0]) - 1;
+
+                    if (iTableCount == 3)
+                    {
+                        returnvalue = true;
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+            return returnvalue;
+        }
+
         public int iGetPosId()
         {
             return 0;
