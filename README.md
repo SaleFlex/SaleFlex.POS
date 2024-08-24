@@ -31,7 +31,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - [ ] Reports Module
 - [ ] Form Designer App
 
-### Screen Types
+## Screen Types
 
 This list represents the customizable screens available in the SaleFlex program. If a screen type is not defined in the database, it will not be visible to the user when the SaleFlex program runs. Additionally, users can modify the content of these screens according to their needs.
 
@@ -92,7 +92,7 @@ This list represents the customizable screens available in the SaleFlex program.
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
 
-### EnumPaymentType Definitions
+## EnumPaymentType Definitions
 The value in parentheses shows the equivalent in the database.
 
 - [ ] **CASH (1)**: Payment made using physical cash.
@@ -117,7 +117,7 @@ The value in parentheses shows the equivalent in the database.
 
 
 # Sample Configuration Design
-### Login Form
+## Login Form
 
 Default login criteria
 - username: `CASHIER 1` 
