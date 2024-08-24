@@ -92,7 +92,7 @@ This list represents the customizable screens available in the SaleFlex program.
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
 
-## EnumPaymentType Definitions
+## Supported Payment Types
 The value in parentheses shows the equivalent in the database.
 
 - [ ] **CASH (1)**: Payment made using physical cash.
