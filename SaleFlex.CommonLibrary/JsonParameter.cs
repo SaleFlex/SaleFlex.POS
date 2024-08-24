@@ -85,7 +85,7 @@ namespace SaleFlex.CommonLibrary
                 prop_strApplicationDescription = string.Empty;
                 prop_strImagesFolder = @"C:\SaleFlex\Images";
                 prop_strLicenseOwner = string.Empty;
-                prop_strIsoCultureName = "tr - TR";
+                prop_strIsoCultureName = "en-GB";
                 prop_iBarcodeLength = 13;
                 prop_strLastLoginName = string.Empty;
                 prop_strLastLoginLastName = string.Empty;
