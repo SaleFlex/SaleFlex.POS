@@ -41,7 +41,7 @@ namespace SaleFlex.Data
         MOBILE = 6,
         BONUS = 7,
         EXCHANGE = 8,
-        CHARGE_SALE = 9,    // VERESİYE
+        ON_CREDIT = 9,    // VERESİYE
         OTHER = 10
     }
 

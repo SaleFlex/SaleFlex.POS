@@ -26,6 +26,7 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableForm,
                 bCreateTableFormControl,
                 bCreateTableLabelValue,
+                bCreateTablePaymentType,
                 bCreateTablePos
             };
 
@@ -597,6 +598,72 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('VatSetError2', 'VAT Error', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DocumentCancelled', 'Document Cancelled.', 'en-GB');",
                                     
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTablePaymentType()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TablePaymentType (
+                        Id              INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                                NOT NULL
+                                                UNIQUE,
+                        TypeNo          INTEGER NOT NULL,
+                        TypeName        TEXT    NOT NULL,
+                        CultureInfo     TEXT    NOT NULL,
+                        TypeDescription TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (1, 'Cash', 'en-GB');",                    // EnumPaymentType.CASH
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (2, 'Credit Card', 'en-GB');",             // EnumPaymentType.CREDIT_CARD
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (3, 'Check', 'en-GB');",                   // EnumPaymentType.CHECK
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (4, 'Credit', 'en-GB');",                  // EnumPaymentType.CREDIT_NOCARD
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (5, 'Prepaid Card', 'en-GB');",            // EnumPaymentType.PREPAID_CARD
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (6, 'Mobile', 'en-GB');",                  // EnumPaymentType.MOBILE
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (7, 'Bonus', 'en-GB');",                   // EnumPaymentType.BONUS
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (8, 'Foreign currency', 'en-GB');",        // EnumPaymentType.EXCHANGE
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (9, 'Payment on credit', 'en-GB');",       // EnumPaymentType.ON_CREDIT
+                                    "INSERT INTO TablePaymentType (TypeNo, TypeName, CultureInfo) VALUES (10, 'Other', 'en-GB');",                  // EnumPaymentType.OTHER
+
                                 };
 
                                 foreach (string strQuery in straQueries)

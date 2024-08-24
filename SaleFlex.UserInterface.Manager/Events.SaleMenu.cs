@@ -1262,7 +1262,7 @@ namespace SaleFlex.UserInterface.Manager
                     if (bCheckWaybill == true)
                         decChargeSaleAmount = prop_xPosManagerData.decReceiptTotalPrice;
 
-                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.CHARGE_SALE, decChargeSaleAmount) == false)
+                    if (PosManager.xGetInstance().bPayment(EnumPaymentType.ON_CREDIT, decChargeSaleAmount) == false)
                     {
                         CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
                         return;
