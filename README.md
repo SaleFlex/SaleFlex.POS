@@ -24,7 +24,7 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 
 # Features
 - **Elastic and Modular Design:** Fully customizable to meet the specific needs of any retail environment, whether it's a single store or a chain of outlets.
-- **Cloud-Based Control:** Allows you to manage and monitor your business from anywhere, at any time, providing flexibility and convenience.
+- **Cloud-Based Control:** SaleFlex.GATE, an API-based project, enables remote management and monitoring of your business from anywhere, at any time, offering unparalleled flexibility and convenience. SaleFlex.GATE can also connect with mobile applications, providing on-the-go access and control. Additionally, it supports ERP integrations, allowing for seamless connectivity with enterprise systems as needed.
 - **Scalability:** Seamlessly scales as your business grows or changes, ensuring the system can adapt to future needs and challenges.
 - **User-Friendly Interface:** Designed for intuitive use, requiring minimal training, making it easy for staff to get up to speed quickly.
 - **Database-Free Operation:** SaleFlex operates without the need for a traditional database, generating all necessary data files internally, simplifying setup and maintenance.
