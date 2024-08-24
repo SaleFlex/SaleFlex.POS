@@ -37,58 +37,40 @@ This list represents the customizable screens available in the SaleFlex program.
 
 1. **SALE:**  
    - [X] **Function:** Sales screen. Allows real-time product selection and sales, converting an order or check into a sale and closing the account.
-  
 2. **LOGIN:**  
    - [X] **Function:** Simple login screen. Contains only the username and password fields for user login.
-  
 3. **LOGIN_EXT:**  
    - [ ] **Function:** Extended login screen. May include features for accessing the admin menu. Users can also log out from this screen.
-  
 4. **LOGIN_SERVICE:**  
    - [ ] **Function:** Extended login screen with additional service menu access features.
-  
 5. **SERVICE:**  
    - [ ] **Function:** Service menu. Typically used by technical support staff for system maintenance and troubleshooting.
-  
 6. **SETTING:**  
    - [ ] **Function:** Settings screen. Allows users to modify the program's settings stored in the `settings.json` file and the database.
-  
 7. **PARAMETER:**  
    - [ ] **Function:** Parameter screen. Enables manual retrieval of parameters from the server for online applications.
-  
 8. **REPORT:**  
    - [ ] **Function:** Reporting screen. Displays various basic reports related to the program’s operation.
-  
 9. **FUNCTION:**  
    - [ ] **Function:** Function menu. Shows a menu of different program functions available for selection.
-  
 10. **CUSTOMER:**  
     - [ ] **Function:** Customer screen. Used for defining new customers or viewing details of existing customers.
-  
 11. **VOID:**  
     - [ ] **Function:** Void screen. Allows the cancellation of transactions.
-  
 12. **REFUND:**  
     - [ ] **Function:** Refund screen. Manages the processing of transaction refunds.
-  
 13. **STOCK:**  
     - [ ] **Function:** Stock screen. Lists products and allows the definition and management of product details.
-  
 14. **END_OF_DAY:**  
     - [ ] **Function:** End-of-day screen. Used to close the business day in the system.
-  
 15. **TABLE:**  
     - [ ] **Function:** Table screen. Displays a list of tables and their status in restaurant-enabled programs.
-  
 16. **ORDER:**  
     - [ ] **Function:** Order screen. Allows the input and display of orders in the system.
-  
 17. **CHECK:**  
     - [ ] **Function:** Check screen. Enables the entry and display of checks (bills) in the system.
-  
 18. **EMPLOYEE:**  
     - [ ] **Function:** Employee screen. Displays employee details and information related to their rights and records.
-  
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
 
@@ -96,25 +78,30 @@ This list represents the customizable screens available in the SaleFlex program.
 The value in parentheses shows the equivalent in the database.
 
 - [ ] **CASH (1)**: Payment made using physical cash.
-
 - [ ] **CREDIT_CARD (2)**: Payment made using a credit card.
-
 - [ ] **CHECK (3)**: Payment made via check.
-
 - [ ] **CREDIT_NOCARD (4)**: Payment made using the customer's internal credit within the institution, or through an integration with a bank where the payment is processed using a credit line.
-
 - [ ] **PREPAID_CARD (5)**: Payment made using a prepaid card.
-
 - [ ] **MOBILE (6)**: Payment made via mobile payment methods, such as mobile wallets or payment apps.
-
 - [ ] **BONUS (7)**: Payment made using points or bonuses earned through loyalty programs or rewards.
-
 - [ ] **EXCHANGE (8)**: Payment made in a foreign currency or through currency exchange.
-
 - [ ] **ON_CREDIT (9)**: Payment made on credit, where the amount is recorded as a debt to be paid later (similar to a store credit or purchase on account).
-
 - [ ] **OTHER (10)**: Any other payment type not covered by the above categories.
 
+## EnumDocumentType Definitions
+
+- [ ] **FiscalReceipt**: A fiscal receipt, typically used for official sales transactions that are recorded for tax purposes.
+- [ ] **NoneFiscalReceipt**: A non-fiscal receipt, which is not used for tax purposes but may be issued for internal records or other non-tax-related transactions.
+- [ ] **Invoice**: A printed or standard invoice, used to request payment for goods or services provided.
+- [ ] **EInvoice**: An electronic invoice, typically sent and processed digitally as part of e-commerce or digital business transactions.
+- [ ] **EArchiveInvoice**: An electronic archive invoice, used to store and manage invoices digitally for compliance and record-keeping.
+- [ ] **DiplomaticInvoice**: A diplomatic invoice, used for transactions involving diplomatic entities, often exempt from certain taxes.
+- [ ] **Waybill**: A transportation document that details the goods being shipped and the terms of their transport.
+- [ ] **DeliveryNote**: A delivery note, used to document the items delivered to a customer or another party, often accompanying the goods.
+- [ ] **CashOutflow**: A cash outflow document, used to record cash payments or withdrawals from the cash register or account.
+- [ ] **CashInflow**: A cash inflow document, used to record cash receipts or deposits into the cash register or account.
+- [ ] **Return**: A return document, used to record the return of goods, typically resulting in a credit or refund.
+- [ ] **SelfBillingInvoice**: A self-billing invoice, where the buyer issues an invoice on behalf of the supplier, often used in specific business arrangements.
 
 # Sample Configuration Design
 ## Login Form
