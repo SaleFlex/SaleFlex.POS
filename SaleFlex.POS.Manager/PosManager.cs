@@ -180,7 +180,7 @@ namespace SaleFlex.POS.Manager
             bool bLoginSuccessfull = false;
 
             EnumFormType enumFormType = m_xListFormType.LastOrDefault();
-            if (enumFormType == 0) enumFormType = EnumFormType.SALE;
+            if (enumFormType == EnumFormType.LOGIN || enumFormType == EnumFormType.LOGIN_EXT) enumFormType = EnumFormType.SALE;
 
             CashierDataModel xCashierDataModel = Dao.xGetInstance().xGetCashierByFullname(prm_strCashierName);
             if (xCashierDataModel != null)
@@ -188,6 +188,7 @@ namespace SaleFlex.POS.Manager
                 if (enumFormType == EnumFormType.SALE && xCashierDataModel.strPassword == prm_strCashierPassword)
                 {
                     bLoginSuccessfull = true;
+                    vChangeForm(EnumFormType.SALE);
                 }
                 else if (enumFormType == EnumFormType.SERVICE)
                 {
