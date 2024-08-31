@@ -441,9 +441,9 @@ namespace SaleFlex.Data.AccessLayer
             }
         }
 
-        public FormFunctionDataModel xGetFormFunction(int prm_iFunctionNo)
+        public FormFunctionDataModel xGetFormFunction(int prm_iFormNo)
         {
-            List<FormFunctionDataModel> xListFormFunctionDataModel = xListGetFormFunctions(prm_iFunctionNo);
+            List<FormFunctionDataModel> xListFormFunctionDataModel = xListGetFormFunctions(prm_iFormNo);
 
             if (xListFormFunctionDataModel == null)
                 return null;
@@ -456,15 +456,35 @@ namespace SaleFlex.Data.AccessLayer
             return xListGetFormFunctions(0);
         }
 
-        public List<FormFunctionDataModel> xListGetFormFunctions(int prm_iFunctionNo)
+        public List<FormFunctionDataModel> xListGetFormFunctions(int prm_iFormNo)
         {
             try
             {
                 List<FormFunctionDataModel> xListFormFunctionDataModel = null;
 
-                if (xListFormFunctionDataModel == null)
-                    xListFormFunctionDataModel = new List<FormFunctionDataModel>();
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE FormNo={prm_iFormNo};");
 
+                if (xDataTable != null && xDataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow xDataRow in xDataTable.Rows)
+                    {
+                        if (xListFormFunctionDataModel == null)
+                            xListFormFunctionDataModel = new List<FormFunctionDataModel>();
+
+                        if (xDataRow != null)
+                        {
+                            FormFunctionDataModel xFormFunctionDataModel = new FormFunctionDataModel();
+
+                            xFormFunctionDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
+                            xFormFunctionDataModel.strName = Convert.ToString(xDataRow["Function"]) ?? string.Empty;
+                            xFormFunctionDataModel.iNo = Convert.ToInt32(xDataRow["FormNo"]);
+                            xFormFunctionDataModel.bNeedLogin = Convert.ToBoolean(xDataRow["NeedLogin"]);
+                            xFormFunctionDataModel.bNeedAuth = Convert.ToBoolean(xDataRow["NeedAuth"]);
+
+                            xListFormFunctionDataModel.Add(xFormFunctionDataModel);
+                        }
+                    }
+                }
                 return xListFormFunctionDataModel;
             }
             catch (Exception xException)
