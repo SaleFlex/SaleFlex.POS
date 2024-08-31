@@ -48,7 +48,7 @@ namespace SaleFlex.POS.Manager
                 if (m_xListFormType.Count > 0)
                 {
                     EnumFormType enumFormType = m_xListFormType.LastOrDefault();
-                    FormFunctionDataModel xFormFunctionDataModel = Dao.xGetInstance().xGetFormFunction(enumFormType);
+                        FormFunctionDataModel xFormFunctionDataModel = Dao.xGetInstance().xGetFormFunction(enumFormType);
 
                     if (xFormFunctionDataModel != null)
                     {
@@ -258,14 +258,19 @@ namespace SaleFlex.POS.Manager
 
             if (xFormFunctionDataModel != null)
             {
-                if (xFormFunctionDataModel.bNeedAuth == true)
-                    m_bAuthSuccess = false;
+                //if (xFormFunctionDataModel.bNeedAuth == true)
+                //    m_bAuthSuccess = false;
 
-                if (xFormFunctionDataModel.bNeedLogin == true)
-                    m_bLoginSuccess = false;
+                //if (xFormFunctionDataModel.bNeedLogin == true)
+                //    m_bLoginSuccess = false;
 
                 m_xListFormType.Add(prm_enumFormType);
             }
+            else
+            { 
+                m_bLoginSuccess = false;
+                m_bAuthSuccess = false;
+            } 
         }
 
         public void vUpdatePluStock(List<StockDataModel> updatedStockList)
