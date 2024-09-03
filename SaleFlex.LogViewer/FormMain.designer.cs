@@ -162,9 +162,9 @@ namespace SaleFlexLogViewer
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(177, 105);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Sayfa: ";
+            this.label1.Text = "Page: ";
             // 
             // groupBox2
             // 
@@ -176,7 +176,7 @@ namespace SaleFlexLogViewer
             this.groupBox2.Size = new System.Drawing.Size(278, 45);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Uygulama Adı";
+            this.groupBox2.Text = "Application Name";
             // 
             // cmbAplpicationName
             // 
@@ -208,10 +208,10 @@ namespace SaleFlexLogViewer
             this.radioShowAllLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioShowAllLogs.Location = new System.Drawing.Point(32, 19);
             this.radioShowAllLogs.Name = "radioShowAllLogs";
-            this.radioShowAllLogs.Size = new System.Drawing.Size(85, 17);
+            this.radioShowAllLogs.Size = new System.Drawing.Size(62, 17);
             this.radioShowAllLogs.TabIndex = 0;
             this.radioShowAllLogs.TabStop = true;
-            this.radioShowAllLogs.Text = "Bütün Loglar";
+            this.radioShowAllLogs.Text = "All Logs";
             this.radioShowAllLogs.UseVisualStyleBackColor = true;
             this.radioShowAllLogs.CheckedChanged += new System.EventHandler(this.radioShowAllLogs_CheckedChanged);
             // 
@@ -221,9 +221,9 @@ namespace SaleFlexLogViewer
             this.radioShowErrorLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioShowErrorLogs.Location = new System.Drawing.Point(146, 19);
             this.radioShowErrorLogs.Name = "radioShowErrorLogs";
-            this.radioShowErrorLogs.Size = new System.Drawing.Size(81, 17);
+            this.radioShowErrorLogs.Size = new System.Drawing.Size(73, 17);
             this.radioShowErrorLogs.TabIndex = 1;
-            this.radioShowErrorLogs.Text = "Error Logları";
+            this.radioShowErrorLogs.Text = "Error Logs";
             this.radioShowErrorLogs.UseVisualStyleBackColor = true;
             this.radioShowErrorLogs.CheckedChanged += new System.EventHandler(this.radioShowErrorLogs_CheckedChanged);
             // 
