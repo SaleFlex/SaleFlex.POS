@@ -87,5 +87,48 @@ namespace SaleFlex.Data.Initialize
 
             return bReturnValue;
         }
+
+
+        private static bool bCreateTableTransactionDetail()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE TableTransactionDetail (
+                    Id                        INTEGER  PRIMARY KEY AUTOINCREMENT,
+                    FkTransactionHeadId       INTEGER,
+                    FkPluId                   INTEGER,
+                    FkDepartmentId            INTEGER,
+                    Price                     REAL,
+                    Quantity                  REAL,
+                    TotalPrice                REAL,
+                    TotalPriceWithoutVat      REAL,
+                    TotalVat                  REAL,
+                    Canceled                  BOOLEAN  DEFAULT (0),
+                    TransactionDetailDateTime DATETIME
+                );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
     }
 }
