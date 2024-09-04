@@ -1,7 +1,12 @@
 > **Under development. The solution is not working properly yet.**
 
 # SaleFlex.POS
-SaleFlex is a flexible and modular retail automation system designed to empower businesses with seamless management and scalability from anywhere.
+**SaleFlex.POS** is a sales Point of Sale (POS) application designed to work seamlessly with both touch-screen and keyboard-operated systems. It can be deployed as a standalone solution or integrated with **SaleFlex.GATE**, offering a robust, centralized management system for businesses with multiple POS terminals.
+
+# SaleFlex.GATE
+**SaleFlex.GATE** enhances the capabilities of SaleFlex.POS by providing a centralized control hub that supports inventory and sales tracking across multiple locations. Additionally, SaleFlex.GATE can exchange data with Enterprise Resource Planning (ERP) systems when required, ensuring smooth integration with broader business operations.
+
+> SaleFlex is designed to meet the challenges of modern retail businesses, providing flexibility, scalability, and centralized control in one powerful solution.
 
 # Project Roadmap
 
@@ -23,13 +28,14 @@ SaleFlex is a flexible and modular retail automation system designed to empower 
 - [ ] Form Designer App
 
 # Features
-- **Elastic and Modular Design:** Fully customizable to meet the specific needs of any retail environment, whether it's a single store or a chain of outlets.
+- **Elastic and Modular Design:** Fully customizable to meet the specific needs of any retail environment, whether it's a single store or a chain of outlets. SaleFlex is fully customizable, allowing businesses to adapt the system to their unique needs.
 - **Cloud-Based Control:** [SaleFlex.GATE](https://github.com/SaleFlex/SaleFlex.GATE), an API-based project, enables remote management and monitoring of your business from anywhere, at any time, offering unparalleled flexibility and convenience. SaleFlex.GATE can also connect with mobile applications, providing on-the-go access and control. Additionally, it supports ERP integrations, allowing for seamless connectivity with enterprise systems as needed.
-- **Scalability:** Seamlessly scales as your business grows or changes, ensuring the system can adapt to future needs and challenges.
+- **Scalability and Future-Proof:** Seamlessly scales as your business grows or changes, ensuring the system can adapt to future needs and challenges. The system grows with your business, ensuring long-term flexibility and cost efficiency.
 - **User-Friendly Interface:** Designed for intuitive use, requiring minimal training, making it easy for staff to get up to speed quickly.
 - **Database-Free Operation:** SaleFlex operates without the need for a traditional database, generating all necessary data files internally, simplifying setup and maintenance.
 - **Windows-Only Compatibility:** Optimized for performance on Windows operating systems, ensuring stability and reliability.
 - **Built on .NET 4.8:** Utilizes the robust and mature .NET 4.8 framework, offering high performance, security, and long-term support.
+- **Open-Source Advantage:** SaleFlex is an open-source project, offering full transparency and the ability to adapt the system as needed.
 
 ## Screen Types
 
