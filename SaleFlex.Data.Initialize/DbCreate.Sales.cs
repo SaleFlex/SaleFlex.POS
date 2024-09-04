@@ -20,7 +20,9 @@ namespace SaleFlex.Data.Initialize
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
-                bCreateTableTransactionHead
+                bCreateTableTransactionHead,
+                bCreateTableTransactionDetail,
+                bCreateTableTransactionDocumentType
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -41,7 +43,7 @@ namespace SaleFlex.Data.Initialize
             try
             {
                 string strCreateTableQuery =
-                    @"CREATE TABLE TableTransactionHead (
+                    @"CREATE TABLE If Not Exists TableTransactionHead (
                         Id                           INTEGER  PRIMARY KEY ASC AUTOINCREMENT
                                                               UNIQUE
                                                               NOT NULL,
@@ -76,6 +78,9 @@ namespace SaleFlex.Data.Initialize
                         xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
                         int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
 
+                        if (iResult >= 0)
+                            bReturnValue = true;
+
                         xSQLiteConnection.Close();        // Close the connection to the database
                     }
                 }
@@ -95,7 +100,7 @@ namespace SaleFlex.Data.Initialize
             try
             {
                 string strCreateTableQuery =
-                    @"CREATE TABLE TableTransactionDetail (
+                    @"CREATE TABLE If Not Exists TableTransactionDetail (
                     Id                        INTEGER  PRIMARY KEY AUTOINCREMENT,
                     FkTransactionHeadId       INTEGER,
                     FkPluId                   INTEGER,
@@ -118,6 +123,76 @@ namespace SaleFlex.Data.Initialize
 
                         xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
                         int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                            bReturnValue = true;
+                        
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableTransactionDocumentType()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableTransactionDocumentType (
+                        Id          INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                            UNIQUE
+                                            NOT NULL,
+                        No          INTEGER NOT NULL,
+                        Name        TEXT    NOT NULL,
+                        DisplayName TEXT,
+                        Description TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (1, 'FISCAL_RECEIPT', 'Reciept', 'Fiscal Reciept');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (2, 'NONE_FISCAL_RECEIPT', 'Reciept', 'Non Fiscal Reciept');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (3, 'NONE_FISCAL_INVOICE', 'Invoice', 'Printed Invoice');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (4, 'NONE_FISCAL_E_INVOICE', 'E Invoice', 'Electronic Invoice');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (5, 'NONE_FISCAL_E_ARCHIVE_INVOICE', 'E Archive Invoice', 'Electronic Archive Invoice');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (6, 'NONE_FISCAL_DIPLOMATIC_RECEIPT', 'Diplomatic Invoice', 'Diplomatic Invoice');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (7, 'NONE_FISCAL_WAYBILL', 'Waybill', 'Waybill');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (8, 'NONE_FISCAL_DELIVERY_NOTE', 'Delivery Note', 'Delivery Note');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (9, 'NONE_FISCAL_CASH_OUT_FLOW', 'Cash Out flow', 'Cash Out flow');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (10, 'NONE_FISCAL_CASH_IN_FLOW', 'Cash In flow', 'Cash In flow');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (11, 'NONE_FISCAL_RETURN', 'Return', 'Return');",
+                                    "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (12, 'NONE_FISCAL_SELF_BILLING_INVOICE', 'Self Billing Invoice', 'Self Billing Invoice');",
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
 
                         xSQLiteConnection.Close();        // Close the connection to the database
                     }
