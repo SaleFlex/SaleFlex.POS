@@ -15,8 +15,8 @@ namespace SaleFlex.Data.Initialize
         {
             bool bReturnValue = true;
 
-            if (!File.Exists(CommonProperty.prop_strDatabaseSalesFileName))
-                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabaseSalesFileName);        // Create the file which will be hosting our database
+            if (!File.Exists(CommonProperty.prop_strDatabaseSalesFileNameAndPath))
+                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabaseSalesFileNameAndPath);        // Create the file which will be hosting our database
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
@@ -69,7 +69,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -115,7 +115,7 @@ namespace SaleFlex.Data.Initialize
                 );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -156,7 +156,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {

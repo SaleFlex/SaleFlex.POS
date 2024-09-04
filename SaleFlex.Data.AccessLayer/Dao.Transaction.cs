@@ -16,7 +16,7 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
 
                 if (xDataTable.Rows.Count > 0)
                 {
@@ -129,7 +129,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 ServiceDataModel.TransactionHeadModel transactionHead = new ServiceDataModel.TransactionHeadModel();
                 var query = string.Format("SELECT * FROM TableTransactionHead WHERE Id = {0}", transactionHeadId);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
                 if (xDataTable.Rows.Count > 0)
                 {
                     transactionHead = xDataTable.Rows[0].ToModelItem<ServiceDataModel.TransactionHeadModel>();
@@ -154,7 +154,7 @@ namespace SaleFlex.Data.AccessLayer
                 List<ServiceDataModel.TransactionDetailModel> transactionDetailList = new List<ServiceDataModel.TransactionDetailModel>();
 
                 var query = string.Format("SELECT * FROM TableTransactionDetail WHERE FkTransactionHeadId = {0}", transactionHeadId);
-                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
                 foreach (DataRow dr in dataTable.Rows)
                 {
                     transactionDetailList.Add(dr.ToModelItem<ServiceDataModel.TransactionDetailModel>());
@@ -176,7 +176,7 @@ namespace SaleFlex.Data.AccessLayer
                 List<ServiceDataModel.TransactionPaymentModel> transactionPaymentList = new List<ServiceDataModel.TransactionPaymentModel>();
 
                 var query = string.Format("SELECT * FROM TableTransactionPayment WHERE FkTransactionHeadId = {0}", transactionHeadId);
-                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
                 foreach (DataRow dr in dataTable.Rows)
                 {
                     transactionPaymentList.Add(dr.ToModelItem<ServiceDataModel.TransactionPaymentModel>());
@@ -198,7 +198,7 @@ namespace SaleFlex.Data.AccessLayer
                 var transactionHeadList = new List<ServiceDataModel.TransactionHeadModel>();
                 var transactionHead = new ServiceDataModel.TransactionHeadModel();
                 var query = string.Format("SELECT * FROM TableTransactionHead WHERE FkServerId is null");
-                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable dataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
                     transactionHead = dataRow.ToModelItem<ServiceDataModel.TransactionHeadModel>();
@@ -221,7 +221,7 @@ namespace SaleFlex.Data.AccessLayer
             bool bReturnValue = false;
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("UPDATE TableTransactionHead SET IsSend = 1 WHERE Id = {0}; SELECT changes() as Result;", prm_lTransactionHeadId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("UPDATE TableTransactionHead SET IsSend = 1 WHERE Id = {0}; SELECT changes() as Result;", prm_lTransactionHeadId));
 
                 if (int.Parse(xDataTable.Rows[0]["Result"].ToString()) > 0)
                 {
@@ -241,7 +241,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 TransactionDetailDataModel xTransactionDetailDataModel = new TransactionDetailDataModel();
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionDetail WHERE Id={0}", prm_iTransactionDetailId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionDetail WHERE Id={0}", prm_iTransactionDetailId));
                 if (xDataTable.Rows.Count > 0)
                 {
                     xTransactionDetailDataModel.iId = int.Parse(xDataTable.Rows[0]["Id"].ToString());
@@ -274,7 +274,7 @@ namespace SaleFlex.Data.AccessLayer
                 List<TransactionDetailDataModel> xTransactionDetailDataModel = new List<TransactionDetailDataModel>();
 
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionDetail WHERE FkTransactionHeadId={0}", prm_iTransactionHeadId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionDetail WHERE FkTransactionHeadId={0}", prm_iTransactionHeadId));
                 if (xDataTable.Rows.Count > 0)
                 {
                     for (int i = 0; i < xDataTable.Rows.Count; i++)
@@ -335,7 +335,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 TransactionHeadDataModel xTransactionHeadDataModel = new TransactionHeadDataModel();
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionHead WHERE Id={0}", prm_iTransactionHeadId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TableTransactionHead WHERE Id={0}", prm_iTransactionHeadId));
                 if (xDataTable.Rows.Count > 0)
                 {
                     xTransactionHeadDataModel.iId = int.Parse(xDataTable.Rows[0]["Id"].ToString());
@@ -407,11 +407,11 @@ namespace SaleFlex.Data.AccessLayer
             bool bReturnValue = false;
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("UPDATE TableTransactionHead SET IsVoided=1 WHERE Id={0}; SELECT changes() as Result;", prm_lTransactionId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("UPDATE TableTransactionHead SET IsVoided=1 WHERE Id={0}; SELECT changes() as Result;", prm_lTransactionId));
 
                 if (int.Parse(xDataTable.Rows[0]["Result"].ToString()) > 0)
                 {
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("UPDATE TableTransactionDetail SET Canceled=1 WHERE FkTransactionHeadId={0}; SELECT changes() as Result;", prm_lTransactionId));
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("UPDATE TableTransactionDetail SET Canceled=1 WHERE FkTransactionHeadId={0}; SELECT changes() as Result;", prm_lTransactionId));
                     bReturnValue = true;
                 }
             }
@@ -427,7 +427,7 @@ namespace SaleFlex.Data.AccessLayer
             bool bReturnValue = false;
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(string.Format("UPDATE TableTransactionDetail SET Canceled=1 WHERE Id={0}; SELECT changes() as Result;", prm_lTransactionDetailId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(string.Format("UPDATE TableTransactionDetail SET Canceled=1 WHERE Id={0}; SELECT changes() as Result;", prm_lTransactionDetailId));
 
                 if (int.Parse(xDataTable.Rows[0]["Result"].ToString()) > 0)
                 {
@@ -468,7 +468,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionHeadDataModel.decReceiptTotalPrice,
                     prm_xTransactionHeadDataModel.decReceiptTotalVat,
                     prm_xTransactionHeadDataModel.iId);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (int.Parse(xDataTable.Rows[0]["Result"].ToString()) > 0)
                 {
@@ -506,7 +506,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionHeadDataModel.decChangeAmount,
                     prm_xTransactionHeadDataModel.decRoundAmount,
                     prm_xTransactionHeadDataModel.iTransactionDocumentTypeNo);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (int.Parse(xDataTable.Rows[0]["InsertedId"].ToString()) > 0)
                 {
@@ -536,7 +536,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionDetailDataModel.decTotalPriceWithoutVat,
                     prm_xTransactionDetailDataModel.decTotalVat.ToString(),
                     prm_xTransactionDetailDataModel.bCanceled == true ? 1 : 0);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (int.Parse(xDataTable.Rows[0]["InsertedId"].ToString()) > 0)
                 {
@@ -601,7 +601,7 @@ namespace SaleFlex.Data.AccessLayer
                    prm_lTransactionHead,
                    prm_xPaymentDataModel.xPaymentTypeDataModel.iTypeNo,
                    prm_xPaymentDataModel.decAmount);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
                 return true;
             }
             catch (Exception xException)
@@ -690,7 +690,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<TransactionDocumentTypeDataModel> xListTransactionDocumentTypeDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteDataTable("SELECT * FROM TableTransactionDocumentType ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable("SELECT * FROM TableTransactionDocumentType ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -728,7 +728,7 @@ namespace SaleFlex.Data.AccessLayer
         {
             try
             {
-                Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteVoidDataTable(
+                Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteVoidDataTable(
                     string.Format("INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) " +
                     "VALUES({0},'{1}','{2}', '{3}');",
                     prm_xTransactionDocumentTypeDataModel.No,
@@ -747,16 +747,16 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 var query = string.Format("UPDATE TableTransactionHead Set FkServerId = '{0}' where Id = {1}", transactionHeadResponse.TransactionHead.FkServerId, transactionHeadResponse.TransactionHead.TransactionId);
-                Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteVoidDataTable(query);
                 foreach (var detail in transactionHeadResponse.TransactionDetailList)
                 {
                     query = string.Format("UPDATE TableTransactionDetail Set FkServerId = '{0}' where Id = {1}", detail.FkServerId, detail.TransactionId);
-                    Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteVoidDataTable(query);
+                    Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteVoidDataTable(query);
                 }
                 foreach (var detail in transactionHeadResponse.TransactionPaymentList)
                 {
                     query = string.Format("UPDATE TableTransactionPayment Set FkServerId = '{0}' where Id = {1}", detail.FkServerId, detail.TransactionId);
-                    Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileName).xExecuteVoidDataTable(query);
+                    Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteVoidDataTable(query);
                 }
             }
             catch (Exception xException)

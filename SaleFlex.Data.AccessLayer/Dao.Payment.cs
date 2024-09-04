@@ -19,7 +19,7 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(string.Format("SELECT * FROM TablePaymentType ORDER BY TypeNo"));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TablePaymentType ORDER BY TypeNo"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -54,7 +54,7 @@ namespace SaleFlex.Data.AccessLayer
         {
             try
             {
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(
                     string.Format("INSERT INTO TablePaymentType (TypeNo, TypeName, TypeDescription) VALUES({0},'{1}','{2}');",
                     prm_xPaymentTypeDataModel.TypeNo,
                     prm_xPaymentTypeDataModel.TypeName,

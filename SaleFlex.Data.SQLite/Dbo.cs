@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.IO;
 
 namespace SaleFlex.Data.SQLite
 {
@@ -29,16 +30,21 @@ namespace SaleFlex.Data.SQLite
 
         public Dbo(int prm_iDatabaseFileType)
         {
+            DirectoryInfo xDirectoryInfo = new DirectoryInfo(CommonProperty.prop_strDbsFolder);
+
+            if (xDirectoryInfo.Exists == false)
+                Directory.CreateDirectory(CommonProperty.prop_strDbsFolder);
+
             switch (prm_iDatabaseFileType)
             {
                 case 1:
-                    bCreateConnectionString(CommonProperty.prop_strDatabasePosFileName);
+                    bCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath);
                     break;
                 case 2:
-                    bCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileName);
+                    bCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath);
                     break;
                 case 3:
-                    bCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileName);
+                    bCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath);
                     break;
                 default:
                     throw new ApplicationException("DB FILE TYPE IS NOT RECOGNIZED.");
@@ -47,6 +53,11 @@ namespace SaleFlex.Data.SQLite
 
         public Dbo(string prm_strDatabaseFileName)
         {
+            DirectoryInfo xDirectoryInfo = new DirectoryInfo(CommonProperty.prop_strDbsFolder);
+
+            if (xDirectoryInfo.Exists == false)
+                Directory.CreateDirectory(CommonProperty.prop_strDbsFolder);
+
             bCreateConnectionString(prm_strDatabaseFileName);
         }
 

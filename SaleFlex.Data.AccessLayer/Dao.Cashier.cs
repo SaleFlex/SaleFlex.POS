@@ -18,7 +18,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CashierDataModel> xListCashierDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT * FROM TableCashier ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCashier ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -100,7 +100,7 @@ namespace SaleFlex.Data.AccessLayer
                        prm_xCashierModel.IdentityNumber,
                        prm_xCashierModel.Description,
                        Convert.ToInt16(prm_xCashierModel.IsAdministrator));
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(query);
             }
             catch (Exception xException)
             {
@@ -147,7 +147,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CashierDataModel> xListCashierDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableCashier WHERE (Name || ' ' || LastName) = '{prm_strCashierFullname}' ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableCashier WHERE (Name || ' ' || LastName) = '{prm_strCashierFullname}' ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -190,7 +190,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CashierDataModel> xListCashierDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT * FROM TableCashier ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCashier ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {

@@ -19,7 +19,7 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
 
                 if (xDataTable.Rows.Count > 0)
                 {
@@ -75,7 +75,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xPosDataModel.ServerPort2,
                     Convert.ToInt16(prm_xPosDataModel.ForceToWorkOnline),
                     prm_xPosDataModel.FkDefaultCountryId,prm_xPosDataModel.PluUpdateNo);
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(query);
             }
             catch (Exception xException)
             {
@@ -87,7 +87,7 @@ namespace SaleFlex.Data.AccessLayer
         {
             try
             {
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(
                     string.Format("INSERT INTO TableCountry (Name, Code, ShortName) VALUES('{0}','{1}','{2}'); ",
                     prm_xCountryDataModel.Name,
                     prm_xCountryDataModel.Code,
@@ -124,7 +124,7 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 var query = string.Format("SELECT PluUpdateNo FROM TablePos limit 1");
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(query);
 
                 return Convert.ToInt32(xDataTable.Rows[0]["PluUpdateNo"]);
             }
@@ -140,7 +140,7 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 var query = string.Format("UPDATE TablePos SET PluUpdateNo = {0}", pluUpdateNo);
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(query);
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(query);
             }
             catch (Exception xException)
             {

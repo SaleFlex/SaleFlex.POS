@@ -18,7 +18,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CountryDataModel> xListCountryDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable("SELECT * FROM TableCountry ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCountry ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {

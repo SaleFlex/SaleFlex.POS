@@ -19,7 +19,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 PosDataModel xPosDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(string.Format("SELECT * FROM TablePos LIMIT 1"));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TablePos LIMIT 1"));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {

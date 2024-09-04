@@ -16,8 +16,8 @@ namespace SaleFlex.Data.Initialize
         {
             bool bReturnValue = true;
 
-            if (!File.Exists(CommonProperty.prop_strDatabasePosFileName))
-                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileName);        // Create the file which will be hosting our database
+            if (!File.Exists(CommonProperty.prop_strDatabasePosFileNameAndPath))
+                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabasePosFileNameAndPath);        // Create the file which will be hosting our database
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
@@ -62,7 +62,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -111,7 +111,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -371,7 +371,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -457,7 +457,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -526,7 +526,7 @@ namespace SaleFlex.Data.Initialize
                     ";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -647,7 +647,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
@@ -738,7 +738,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {

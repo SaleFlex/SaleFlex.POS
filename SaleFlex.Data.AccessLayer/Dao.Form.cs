@@ -33,7 +33,7 @@ namespace SaleFlex.Data.AccessLayer
         public FormDataModel xGetFormByName(string prm_strFormName)
         {
             FormDataModel xFormDataModel = null;
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE Name='{prm_strFormName}' ORDER BY Id");
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableForm WHERE Name='{prm_strFormName}' ORDER BY Id");
 
             if (xDataTable != null)
             {
@@ -71,7 +71,7 @@ namespace SaleFlex.Data.AccessLayer
         public List<FormControlDataModel> xGetShortCutButtons()
         {
             var query = string.Format("SELECT * FROM TableFormControl wHERE FormControlFunction1='SALE_PLU_BARCODE'  and TYPE='BUTTON'");
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(query);
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(query);
 
             List<FormControlDataModel> xListFormControlDataModel = null;
 
@@ -182,7 +182,7 @@ namespace SaleFlex.Data.AccessLayer
 
         public List<FormControlDataModel> xListGetFormControls(int prm_iFormId)
         {
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableFormControl WHERE FkFormId= {prm_iFormId} ORDER BY Id");
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableFormControl WHERE FkFormId= {prm_iFormId} ORDER BY Id");
 
             List<FormControlDataModel> xListFormControlDataModel = null;
 
@@ -462,7 +462,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<FormFunctionDataModel> xListFormFunctionDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE FormNo={prm_iFormNo};");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableForm WHERE FormNo={prm_iFormNo};");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -519,7 +519,7 @@ namespace SaleFlex.Data.AccessLayer
                     Convert.ToInt16(prm_xFormModel.ShowInTaskbar),
                     Convert.ToInt16(prm_xFormModel.UseVirtualKeyboard),
                     Convert.ToInt16(prm_xFormModel.IsVisible));
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(query);
 
                 var formId = Convert.ToInt16(xDataTable.Rows[0]["last_insert_rowid()"]);
 
@@ -564,7 +564,7 @@ namespace SaleFlex.Data.AccessLayer
                     formControl.ForeColor,
                     formControl.KeyboardValue,
                     Convert.ToInt16(formControl.IsVisible));
-                    Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(query);
+                    Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(query);
                 }
             }
             catch (Exception xException)
@@ -578,7 +578,7 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 var query = string.Format("UPDATE TableFormControl Set Name = '{0}' where Id = {1}", formControlName, formControlId);
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(query);
                 return true;
             }
             catch (Exception xException)

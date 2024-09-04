@@ -204,6 +204,34 @@ namespace SaleFlex.Data
                 JsonParameter.xGetInstance().bUpdateJsonParameter();
             }
         }
+        
+
+        public static string prop_strDatabasePosFileNameAndPath
+        {
+            get
+            {
+                string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabasePosFileName}";
+                return strFileNameAndPath;
+            }
+        }
+
+        public static string prop_strDatabaseSalesFileNameAndPath
+        {
+            get
+            {
+                string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabaseSalesFileName}";
+                return strFileNameAndPath;
+            }
+        }
+
+        public static string prop_strDatabaseProductsFileNameAndPath
+        {
+            get
+            {
+                string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabaseProductsFileName}";
+                return strFileNameAndPath;
+            }
+        }
 
         public static string prop_strDepartmentBackColor
         {

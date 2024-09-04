@@ -49,7 +49,7 @@ namespace SaleFlex.Data.AccessLayer
 
         public FormFunctionDataModel xGetFormFunction(EnumFormType prm_enumFormType)
         {
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable($"SELECT * FROM TableForm WHERE Function='{prm_enumFormType.ToString()}' ORDER BY Id");
+            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableForm WHERE Function='{prm_enumFormType.ToString()}' ORDER BY Id");
 
             List<FormFunctionDataModel> xListFormFunctionDataModel = null;
 

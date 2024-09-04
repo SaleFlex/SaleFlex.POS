@@ -23,7 +23,7 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteDataTable(string.Format("SELECT * FROM TableLabelValue WHERE Key='{0}' and CultureInfo='{1}'", prm_strLabelName, strCultureInfo));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TableLabelValue WHERE Key='{0}' and CultureInfo='{1}'", prm_strLabelName, strCultureInfo));
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
@@ -52,7 +52,7 @@ namespace SaleFlex.Data.AccessLayer
         {
             try
             {
-                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileName).xExecuteVoidDataTable(
+                Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(
                     string.Format("INSERT INTO TableLabelValue (Name, CultureInfo, Key) VALUES('{0}','{1}','{2}');",
                     prm_xLabelValueDataModel.Value,
                     prm_xLabelValueDataModel.CultureInfo,

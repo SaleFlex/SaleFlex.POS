@@ -15,8 +15,8 @@ namespace SaleFlex.Data.Initialize
         {
             bool bReturnValue = true;
 
-            if (!File.Exists(CommonProperty.prop_strDatabaseProductsFileName))
-                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabaseProductsFileName);        // Create the file which will be hosting our database
+            if (!File.Exists(CommonProperty.prop_strDatabaseProductsFileNameAndPath))
+                SQLiteConnection.CreateFile(CommonProperty.prop_strDatabaseProductsFileNameAndPath);        // Create the file which will be hosting our database
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
@@ -55,7 +55,7 @@ namespace SaleFlex.Data.Initialize
                     );";
 
 
-                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileName)))
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
                 {
                     using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
                     {
