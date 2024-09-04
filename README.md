@@ -1,12 +1,13 @@
 > **Under development. The solution is not working properly yet.**
 
+# SaleFlex
+**SaleFlex** is designed to meet the challenges of modern retail businesses, providing flexibility, scalability, and centralized control in one powerful solution.
+
 # SaleFlex.POS
 **SaleFlex.POS** is a sales Point of Sale (POS) application designed to work seamlessly with both touch-screen and keyboard-operated systems. It can be deployed as a standalone solution or integrated with **SaleFlex.GATE**, offering a robust, centralized management system for businesses with multiple POS terminals.
 
 # SaleFlex.GATE
 **SaleFlex.GATE** enhances the capabilities of SaleFlex.POS by providing a centralized control hub that supports inventory and sales tracking across multiple locations. Additionally, SaleFlex.GATE can exchange data with Enterprise Resource Planning (ERP) systems when required, ensuring smooth integration with broader business operations.
-
-> SaleFlex is designed to meet the challenges of modern retail businesses, providing flexibility, scalability, and centralized control in one powerful solution.
 
 # Project Roadmap
 
