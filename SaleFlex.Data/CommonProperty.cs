@@ -153,6 +153,19 @@ namespace SaleFlex.Data
             }
         }
 
+        public static string prop_strDbsFolder
+        {
+            get
+            {
+                return JsonParameter.xGetInstance().prop_strDbsFolder;
+            }
+            set
+            {
+                JsonParameter.xGetInstance().prop_strDbsFolder = value;
+                JsonParameter.xGetInstance().bUpdateJsonParameter();
+            }
+        }
+
         public static string prop_strDatabasePosFileName
         {
             get
