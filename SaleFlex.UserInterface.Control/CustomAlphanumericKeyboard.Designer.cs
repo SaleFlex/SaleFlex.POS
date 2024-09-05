@@ -942,7 +942,7 @@
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(152, 50);
             this.buttonOk.TabIndex = 0;
-            this.buttonOk.Text = "TAMAM";
+            this.buttonOk.Text = "CLOSE";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button_KeyPress);
@@ -956,7 +956,7 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(152, 50);
             this.buttonCancel.TabIndex = 61;
-            this.buttonCancel.Text = "VAZGEÇ";
+            this.buttonCancel.Text = "CANCEL";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             this.buttonCancel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button_KeyPress);
@@ -982,7 +982,7 @@
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(50, 50);
             this.buttonDelete.TabIndex = 62;
-            this.buttonDelete.Text = "SİL";
+            this.buttonDelete.Text = "DEL";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button_KeyPress);
