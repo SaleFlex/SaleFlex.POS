@@ -21,6 +21,8 @@ namespace SaleFlex.Data.Initialize
             var DbTableCreateMethods = new List<Func<bool>>
             {
                 bCreateTablePluBarcodeDefinition,
+                bCreateTablePluMainGroup,
+                bCreateTablePluSubGroup,
                 bCreateTableVat
             };
 
@@ -119,7 +121,56 @@ namespace SaleFlex.Data.Initialize
                             bReturnValue = true;
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
-                                xSQLiteCommand.CommandText = "INSERT INTO TablePluMainGroup (No, Name, DiscountPercent, MaxPrice, Description)  VALUES (1, 'General Product', 0, 'Default product entry for general sales transactions without specific product identification.')";
+                                xSQLiteCommand.CommandText = "INSERT INTO TablePluMainGroup (No, Name, DiscountPercent, Description)  VALUES (1, 'General Product', 0, 'Default product entry for general sales transactions without specific product identification.')";
+                                iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTablePluSubGroup()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TablePluSubGroup (
+                        Id               INTEGER NOT NULL
+                                                 UNIQUE
+                                                 PRIMARY KEY ASC AUTOINCREMENT,
+                        FkPluMainGroupId INTEGER NOT NULL,
+                        No               INTEGER NOT NULL,
+                        Name             TEXT    NOT NULL,
+                        DiscountPercent  INTEGER NOT NULL,
+                        Description      TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                xSQLiteCommand.CommandText = "INSERT INTO TablePluSubGroup (No, Name, DiscountPercent, Description)  VALUES (1, 'General Subproduct', 0, 'Default sub product entry for general sales transactions without specific product identification.')";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                             }
                         }
