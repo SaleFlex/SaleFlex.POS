@@ -32,12 +32,14 @@ namespace SaleFlex.UserInterface.Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomSalesList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomSalesList));
             this.dataGridViewSales = new System.Windows.Forms.DataGridView();
+            this.buttonUp = new System.Windows.Forms.Button();
+            this.buttonDown = new System.Windows.Forms.Button();
             this.ROW_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REFERENCE_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TRANSACTION_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +49,6 @@ namespace SaleFlex.UserInterface.Controls
             this.UNIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL_AMOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonUp = new System.Windows.Forms.Button();
-            this.buttonDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSales)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,108 +107,6 @@ namespace SaleFlex.UserInterface.Controls
             this.dataGridViewSales.TabIndex = 2;
             this.dataGridViewSales.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridViewSales_Paint);
             // 
-            // ROW_NUMBER
-            // 
-            this.ROW_NUMBER.DataPropertyName = "ROW_NUMBER";
-            this.ROW_NUMBER.HeaderText = "NO";
-            this.ROW_NUMBER.Name = "ROW_NUMBER";
-            this.ROW_NUMBER.ReadOnly = true;
-            this.ROW_NUMBER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ROW_NUMBER.Width = 35;
-            // 
-            // REFERENCE_ID
-            // 
-            this.REFERENCE_ID.DataPropertyName = "REFERENCE_ID";
-            this.REFERENCE_ID.HeaderText = "REFERANS_ID";
-            this.REFERENCE_ID.Name = "REFERENCE_ID";
-            this.REFERENCE_ID.ReadOnly = true;
-            this.REFERENCE_ID.Visible = false;
-            // 
-            // TRANSACTION_TYPE
-            // 
-            this.TRANSACTION_TYPE.DataPropertyName = "TRANSACTION_TYPE";
-            this.TRANSACTION_TYPE.HeaderText = "ISLEM_TUR";
-            this.TRANSACTION_TYPE.Name = "TRANSACTION_TYPE";
-            this.TRANSACTION_TYPE.ReadOnly = true;
-            this.TRANSACTION_TYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TRANSACTION_TYPE.Visible = false;
-            this.TRANSACTION_TYPE.Width = 85;
-            // 
-            // TRANSACTION
-            // 
-            this.TRANSACTION.DataPropertyName = "TRANSACTION";
-            this.TRANSACTION.HeaderText = "İŞLEM";
-            this.TRANSACTION.Name = "TRANSACTION";
-            this.TRANSACTION.ReadOnly = true;
-            this.TRANSACTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TRANSACTION.Width = 120;
-            // 
-            // NAME_OF_PRODUCT
-            // 
-            this.NAME_OF_PRODUCT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NAME_OF_PRODUCT.DataPropertyName = "NAME_OF_PRODUCT";
-            this.NAME_OF_PRODUCT.FillWeight = 370.1299F;
-            this.NAME_OF_PRODUCT.HeaderText = "ÜRÜN";
-            this.NAME_OF_PRODUCT.Name = "NAME_OF_PRODUCT";
-            this.NAME_OF_PRODUCT.ReadOnly = true;
-            this.NAME_OF_PRODUCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // QUANTITY
-            // 
-            this.QUANTITY.DataPropertyName = "QUANTITY";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
-            this.QUANTITY.FillWeight = 32.46753F;
-            this.QUANTITY.HeaderText = "ADET/KG";
-            this.QUANTITY.Name = "QUANTITY";
-            this.QUANTITY.ReadOnly = true;
-            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.QUANTITY.Width = 75;
-            // 
-            // UNIT
-            // 
-            this.UNIT.DataPropertyName = "UNIT";
-            dataGridViewCellStyle3.Format = "N3";
-            dataGridViewCellStyle3.NullValue = null;
-            this.UNIT.DefaultCellStyle = dataGridViewCellStyle3;
-            this.UNIT.FillWeight = 32.46753F;
-            this.UNIT.HeaderText = "BİRİM";
-            this.UNIT.Name = "UNIT";
-            this.UNIT.ReadOnly = true;
-            this.UNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UNIT.Visible = false;
-            this.UNIT.Width = 55;
-            // 
-            // PRICE
-            // 
-            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.PRICE.DataPropertyName = "PRICE";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.PRICE.DefaultCellStyle = dataGridViewCellStyle4;
-            this.PRICE.FillWeight = 32.46753F;
-            this.PRICE.HeaderText = "FİYAT";
-            this.PRICE.Name = "PRICE";
-            this.PRICE.ReadOnly = true;
-            this.PRICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PRICE.Width = 49;
-            // 
-            // TOTAL_AMOUNT
-            // 
-            this.TOTAL_AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle5;
-            this.TOTAL_AMOUNT.FillWeight = 32.46753F;
-            this.TOTAL_AMOUNT.HeaderText = "TUTAR";
-            this.TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
-            this.TOTAL_AMOUNT.ReadOnly = true;
-            this.TOTAL_AMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TOTAL_AMOUNT.Width = 57;
-            // 
             // buttonUp
             // 
             this.buttonUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -230,6 +128,108 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonDown.TabIndex = 1;
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
+            // 
+            // ROW_NUMBER
+            // 
+            this.ROW_NUMBER.DataPropertyName = "ROW_NUMBER";
+            this.ROW_NUMBER.HeaderText = "NO";
+            this.ROW_NUMBER.Name = "ROW_NUMBER";
+            this.ROW_NUMBER.ReadOnly = true;
+            this.ROW_NUMBER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ROW_NUMBER.Width = 35;
+            // 
+            // REFERENCE_ID
+            // 
+            this.REFERENCE_ID.DataPropertyName = "REFERENCE_ID";
+            this.REFERENCE_ID.HeaderText = "REFERENCE_ID";
+            this.REFERENCE_ID.Name = "REFERENCE_ID";
+            this.REFERENCE_ID.ReadOnly = true;
+            this.REFERENCE_ID.Visible = false;
+            // 
+            // TRANSACTION_TYPE
+            // 
+            this.TRANSACTION_TYPE.DataPropertyName = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.HeaderText = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.Name = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.ReadOnly = true;
+            this.TRANSACTION_TYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TRANSACTION_TYPE.Visible = false;
+            this.TRANSACTION_TYPE.Width = 85;
+            // 
+            // TRANSACTION
+            // 
+            this.TRANSACTION.DataPropertyName = "TRANSACTION";
+            this.TRANSACTION.HeaderText = "TRANSACTION";
+            this.TRANSACTION.Name = "TRANSACTION";
+            this.TRANSACTION.ReadOnly = true;
+            this.TRANSACTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TRANSACTION.Width = 120;
+            // 
+            // NAME_OF_PRODUCT
+            // 
+            this.NAME_OF_PRODUCT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NAME_OF_PRODUCT.DataPropertyName = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.FillWeight = 370.1299F;
+            this.NAME_OF_PRODUCT.HeaderText = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.Name = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.ReadOnly = true;
+            this.NAME_OF_PRODUCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // QUANTITY
+            // 
+            this.QUANTITY.DataPropertyName = "QUANTITY";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
+            this.QUANTITY.FillWeight = 32.46753F;
+            this.QUANTITY.HeaderText = "QUANTITY/KG";
+            this.QUANTITY.Name = "QUANTITY";
+            this.QUANTITY.ReadOnly = true;
+            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.QUANTITY.Width = 75;
+            // 
+            // UNIT
+            // 
+            this.UNIT.DataPropertyName = "UNIT";
+            dataGridViewCellStyle3.Format = "N3";
+            dataGridViewCellStyle3.NullValue = null;
+            this.UNIT.DefaultCellStyle = dataGridViewCellStyle3;
+            this.UNIT.FillWeight = 32.46753F;
+            this.UNIT.HeaderText = "UNIT";
+            this.UNIT.Name = "UNIT";
+            this.UNIT.ReadOnly = true;
+            this.UNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.UNIT.Visible = false;
+            this.UNIT.Width = 55;
+            // 
+            // PRICE
+            // 
+            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PRICE.DataPropertyName = "PRICE";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.PRICE.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PRICE.FillWeight = 32.46753F;
+            this.PRICE.HeaderText = "PRICE";
+            this.PRICE.Name = "PRICE";
+            this.PRICE.ReadOnly = true;
+            this.PRICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PRICE.Width = 54;
+            // 
+            // TOTAL_AMOUNT
+            // 
+            this.TOTAL_AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle5;
+            this.TOTAL_AMOUNT.FillWeight = 32.46753F;
+            this.TOTAL_AMOUNT.HeaderText = "TOTAL_AMOUNT";
+            this.TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
+            this.TOTAL_AMOUNT.ReadOnly = true;
+            this.TOTAL_AMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TOTAL_AMOUNT.Width = 121;
             // 
             // CustomSalesList
             // 
