@@ -193,7 +193,7 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(151, 50);
             this.buttonOk.TabIndex = 0;
-            this.buttonOk.Text = "TAMAM";
+            this.buttonOk.Text = "ENTER";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button_KeyPress);
@@ -206,7 +206,7 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 50);
             this.buttonDelete.TabIndex = 11;
-            this.buttonDelete.Text = "SİL";
+            this.buttonDelete.Text = "DEL";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button_KeyPress);
@@ -220,7 +220,7 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 50);
             this.buttonCancel.TabIndex = 12;
-            this.buttonCancel.Text = "VAZGEÇ";
+            this.buttonCancel.Text = "CANCEL";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             this.buttonCancel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button_KeyPress);
