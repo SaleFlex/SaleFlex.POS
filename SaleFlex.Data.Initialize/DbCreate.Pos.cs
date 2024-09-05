@@ -714,7 +714,7 @@ namespace SaleFlex.Data.Initialize
                         OwnerNationalIdNumber   TEXT,
                         OwnerTaxIdNumber        TEXT,
                         OwnerMersisIdNumber     TEXT,
-                        OwnerComercialRecordNo  TEXT,
+                        OwnerCommercialRecordNo TEXT,
                         OwnerWebAdress          TEXT,
                         OwnerRegistrationNumber TEXT,
                         MacAddress              TEXT,
@@ -722,8 +722,8 @@ namespace SaleFlex.Data.Initialize
                         CustomerScreenType      TEXT,
                         CustomerDisplayType     TEXT,
                         CustomerDisplayPort     TEXT,
-                        RecieptPrinterType      TEXT,
-                        RecieptPrinterPortName  TEXT,
+                        ReceiptPrinterType      TEXT,
+                        ReceiptPrinterPortName  TEXT,
                         InvoicePrinterType      TEXT,
                         InvoicePrinterPortName  TEXT,
                         ScaleType               TEXT,
@@ -752,7 +752,7 @@ namespace SaleFlex.Data.Initialize
                             bReturnValue = true;
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
-                                xSQLiteCommand.CommandText = $"INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline) VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0)";
+                                xSQLiteCommand.CommandText = $"INSERT INTO TablePos (Name, SerialNumber, MacAddress, ForceToWorkOnline, FkDefaultCountryId) VALUES ('SaleFlex POS','{Api.GetDriveSerialNumber()}','{Api.GetMacAddress()}', 0, 183)";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                             }
                         }
