@@ -21,6 +21,7 @@ namespace SaleFlex.Data.Initialize
             var DbTableCreateMethods = new List<Func<bool>>
             {
                 bCreateTablePlu,
+                bCreateTablePluBarcode,
                 bCreateTablePluBarcodeDefinition,
                 bCreateTablePluMainGroup,
                 bCreateTablePluManufacturer,
