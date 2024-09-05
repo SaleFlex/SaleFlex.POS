@@ -49,7 +49,7 @@
             this.labelSalesAmount.Name = "labelSalesAmount";
             this.labelSalesAmount.Size = new System.Drawing.Size(92, 23);
             this.labelSalesAmount.TabIndex = 0;
-            this.labelSalesAmount.Text = "SATIŞ:";
+            this.labelSalesAmount.Text = "SALES:";
             this.labelSalesAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelDiscountAmount
@@ -59,9 +59,9 @@
             this.labelDiscountAmount.ForeColor = System.Drawing.Color.White;
             this.labelDiscountAmount.Location = new System.Drawing.Point(5, 40);
             this.labelDiscountAmount.Name = "labelDiscountAmount";
-            this.labelDiscountAmount.Size = new System.Drawing.Size(92, 27);
+            this.labelDiscountAmount.Size = new System.Drawing.Size(118, 27);
             this.labelDiscountAmount.TabIndex = 2;
-            this.labelDiscountAmount.Text = "İNDİRİM:";
+            this.labelDiscountAmount.Text = "DISCOUNT:";
             this.labelDiscountAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelNetAmount
@@ -73,7 +73,7 @@
             this.labelNetAmount.Name = "labelNetAmount";
             this.labelNetAmount.Size = new System.Drawing.Size(92, 52);
             this.labelNetAmount.TabIndex = 6;
-            this.labelNetAmount.Text = "TOPLAM:";
+            this.labelNetAmount.Text = "TOTAL:";
             this.labelNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelPaymentAmount
@@ -83,9 +83,9 @@
             this.labelPaymentAmount.ForeColor = System.Drawing.Color.White;
             this.labelPaymentAmount.Location = new System.Drawing.Point(3, 133);
             this.labelPaymentAmount.Name = "labelPaymentAmount";
-            this.labelPaymentAmount.Size = new System.Drawing.Size(92, 23);
+            this.labelPaymentAmount.Size = new System.Drawing.Size(108, 23);
             this.labelPaymentAmount.TabIndex = 8;
-            this.labelPaymentAmount.Text = "ÖDEME:";
+            this.labelPaymentAmount.Text = "PAYMENT:";
             this.labelPaymentAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelBalanceAmount
@@ -95,9 +95,9 @@
             this.labelBalanceAmount.ForeColor = System.Drawing.Color.White;
             this.labelBalanceAmount.Location = new System.Drawing.Point(5, 163);
             this.labelBalanceAmount.Name = "labelBalanceAmount";
-            this.labelBalanceAmount.Size = new System.Drawing.Size(92, 24);
+            this.labelBalanceAmount.Size = new System.Drawing.Size(106, 24);
             this.labelBalanceAmount.TabIndex = 10;
-            this.labelBalanceAmount.Text = "KALAN:";
+            this.labelBalanceAmount.Text = "BALANCE:";
             this.labelBalanceAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelTextSalesAmount
@@ -117,9 +117,9 @@
             this.labelTextDiscountAmount.BackColor = System.Drawing.Color.Transparent;
             this.labelTextDiscountAmount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelTextDiscountAmount.ForeColor = System.Drawing.Color.White;
-            this.labelTextDiscountAmount.Location = new System.Drawing.Point(91, 40);
+            this.labelTextDiscountAmount.Location = new System.Drawing.Point(116, 40);
             this.labelTextDiscountAmount.Name = "labelTextDiscountAmount";
-            this.labelTextDiscountAmount.Size = new System.Drawing.Size(156, 27);
+            this.labelTextDiscountAmount.Size = new System.Drawing.Size(131, 27);
             this.labelTextDiscountAmount.TabIndex = 13;
             this.labelTextDiscountAmount.Text = "0,00";
             this.labelTextDiscountAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -141,9 +141,9 @@
             this.labelTextPaymentAmount.BackColor = System.Drawing.Color.Transparent;
             this.labelTextPaymentAmount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelTextPaymentAmount.ForeColor = System.Drawing.Color.White;
-            this.labelTextPaymentAmount.Location = new System.Drawing.Point(91, 133);
+            this.labelTextPaymentAmount.Location = new System.Drawing.Point(98, 133);
             this.labelTextPaymentAmount.Name = "labelTextPaymentAmount";
-            this.labelTextPaymentAmount.Size = new System.Drawing.Size(156, 23);
+            this.labelTextPaymentAmount.Size = new System.Drawing.Size(149, 23);
             this.labelTextPaymentAmount.TabIndex = 15;
             this.labelTextPaymentAmount.Text = "0,00";
             this.labelTextPaymentAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,9 +153,9 @@
             this.labelTextBalanceAmount.BackColor = System.Drawing.Color.Transparent;
             this.labelTextBalanceAmount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelTextBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.labelTextBalanceAmount.Location = new System.Drawing.Point(91, 164);
+            this.labelTextBalanceAmount.Location = new System.Drawing.Point(103, 164);
             this.labelTextBalanceAmount.Name = "labelTextBalanceAmount";
-            this.labelTextBalanceAmount.Size = new System.Drawing.Size(156, 23);
+            this.labelTextBalanceAmount.Size = new System.Drawing.Size(144, 23);
             this.labelTextBalanceAmount.TabIndex = 16;
             this.labelTextBalanceAmount.Text = "0,00";
             this.labelTextBalanceAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
