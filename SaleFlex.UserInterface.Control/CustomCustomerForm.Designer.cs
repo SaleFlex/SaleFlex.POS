@@ -31,17 +31,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomCustomerForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewSales = new System.Windows.Forms.DataGridView();
+            this.ROW_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REFERENCE_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TRANSACTION_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TRANSACTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NAME_OF_PRODUCT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UNIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL_AMOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTextBalanceAmount = new System.Windows.Forms.Label();
             this.labelTextPaymentAmount = new System.Windows.Forms.Label();
             this.labelTextTotalAmount = new System.Windows.Forms.Label();
@@ -57,15 +66,6 @@
             this.dataGridViewPayments = new System.Windows.Forms.DataGridView();
             this.TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AMOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ROW_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REFERENCE_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TRANSACTION_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TRANSACTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NAME_OF_PRODUCT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QUANTITY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UNIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL_AMOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPayments)).BeginInit();
@@ -123,6 +123,109 @@
             this.dataGridViewSales.ShowRowErrors = false;
             this.dataGridViewSales.Size = new System.Drawing.Size(748, 509);
             this.dataGridViewSales.TabIndex = 5;
+            // 
+            // ROW_NUMBER
+            // 
+            this.ROW_NUMBER.DataPropertyName = "ROW_NUMBER";
+            this.ROW_NUMBER.HeaderText = "NO";
+            this.ROW_NUMBER.Name = "ROW_NUMBER";
+            this.ROW_NUMBER.ReadOnly = true;
+            this.ROW_NUMBER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ROW_NUMBER.Width = 35;
+            // 
+            // REFERENCE_ID
+            // 
+            this.REFERENCE_ID.DataPropertyName = "REFERENCE_ID";
+            this.REFERENCE_ID.HeaderText = "REFERENCE_ID";
+            this.REFERENCE_ID.Name = "REFERENCE_ID";
+            this.REFERENCE_ID.ReadOnly = true;
+            this.REFERENCE_ID.Visible = false;
+            // 
+            // TRANSACTION_TYPE
+            // 
+            this.TRANSACTION_TYPE.DataPropertyName = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.FillWeight = 85F;
+            this.TRANSACTION_TYPE.HeaderText = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.Name = "TRANSACTION_TYPE";
+            this.TRANSACTION_TYPE.ReadOnly = true;
+            this.TRANSACTION_TYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TRANSACTION_TYPE.Visible = false;
+            this.TRANSACTION_TYPE.Width = 85;
+            // 
+            // TRANSACTION
+            // 
+            this.TRANSACTION.DataPropertyName = "TRANSACTION";
+            this.TRANSACTION.HeaderText = "TRANSACTION";
+            this.TRANSACTION.Name = "TRANSACTION";
+            this.TRANSACTION.ReadOnly = true;
+            this.TRANSACTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TRANSACTION.Width = 120;
+            // 
+            // NAME_OF_PRODUCT
+            // 
+            this.NAME_OF_PRODUCT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NAME_OF_PRODUCT.DataPropertyName = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.FillWeight = 370.1299F;
+            this.NAME_OF_PRODUCT.HeaderText = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.Name = "NAME_OF_PRODUCT";
+            this.NAME_OF_PRODUCT.ReadOnly = true;
+            this.NAME_OF_PRODUCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // QUANTITY
+            // 
+            this.QUANTITY.DataPropertyName = "QUANTITY";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
+            this.QUANTITY.FillWeight = 32.46753F;
+            this.QUANTITY.HeaderText = "QUANTITY/KG";
+            this.QUANTITY.Name = "QUANTITY";
+            this.QUANTITY.ReadOnly = true;
+            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.QUANTITY.Width = 75;
+            // 
+            // UNIT
+            // 
+            this.UNIT.DataPropertyName = "UNIT";
+            dataGridViewCellStyle3.Format = "N3";
+            dataGridViewCellStyle3.NullValue = null;
+            this.UNIT.DefaultCellStyle = dataGridViewCellStyle3;
+            this.UNIT.FillWeight = 32.46753F;
+            this.UNIT.HeaderText = "UNIT";
+            this.UNIT.Name = "UNIT";
+            this.UNIT.ReadOnly = true;
+            this.UNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.UNIT.Visible = false;
+            this.UNIT.Width = 55;
+            // 
+            // PRICE
+            // 
+            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PRICE.DataPropertyName = "PRICE";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.PRICE.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PRICE.FillWeight = 32.46753F;
+            this.PRICE.HeaderText = "PRICE";
+            this.PRICE.Name = "PRICE";
+            this.PRICE.ReadOnly = true;
+            this.PRICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PRICE.Width = 54;
+            // 
+            // TOTAL_AMOUNT
+            // 
+            this.TOTAL_AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle5;
+            this.TOTAL_AMOUNT.FillWeight = 32.46753F;
+            this.TOTAL_AMOUNT.HeaderText = "TOTAL";
+            this.TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
+            this.TOTAL_AMOUNT.ReadOnly = true;
+            this.TOTAL_AMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TOTAL_AMOUNT.Width = 55;
             // 
             // labelTextBalanceAmount
             // 
@@ -241,7 +344,7 @@
             this.labelSalesAmount.Name = "labelSalesAmount";
             this.labelSalesAmount.Size = new System.Drawing.Size(92, 23);
             this.labelSalesAmount.TabIndex = 17;
-            this.labelSalesAmount.Text = "SALE:";
+            this.labelSalesAmount.Text = "SALES:";
             this.labelSalesAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
@@ -339,109 +442,6 @@
             this.AMOUNT.Name = "AMOUNT";
             this.AMOUNT.ReadOnly = true;
             this.AMOUNT.Width = 50;
-            // 
-            // ROW_NUMBER
-            // 
-            this.ROW_NUMBER.DataPropertyName = "ROW_NUMBER";
-            this.ROW_NUMBER.HeaderText = "NO";
-            this.ROW_NUMBER.Name = "ROW_NUMBER";
-            this.ROW_NUMBER.ReadOnly = true;
-            this.ROW_NUMBER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ROW_NUMBER.Width = 35;
-            // 
-            // REFERENCE_ID
-            // 
-            this.REFERENCE_ID.DataPropertyName = "REFERENCE_ID";
-            this.REFERENCE_ID.HeaderText = "REFERENCE_ID";
-            this.REFERENCE_ID.Name = "REFERENCE_ID";
-            this.REFERENCE_ID.ReadOnly = true;
-            this.REFERENCE_ID.Visible = false;
-            // 
-            // TRANSACTION_TYPE
-            // 
-            this.TRANSACTION_TYPE.DataPropertyName = "TRANSACTION_TYPE";
-            this.TRANSACTION_TYPE.FillWeight = 85F;
-            this.TRANSACTION_TYPE.HeaderText = "TRANSACTION_TYPE";
-            this.TRANSACTION_TYPE.Name = "TRANSACTION_TYPE";
-            this.TRANSACTION_TYPE.ReadOnly = true;
-            this.TRANSACTION_TYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TRANSACTION_TYPE.Visible = false;
-            this.TRANSACTION_TYPE.Width = 85;
-            // 
-            // TRANSACTION
-            // 
-            this.TRANSACTION.DataPropertyName = "TRANSACTION";
-            this.TRANSACTION.HeaderText = "TRANSACTION";
-            this.TRANSACTION.Name = "TRANSACTION";
-            this.TRANSACTION.ReadOnly = true;
-            this.TRANSACTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TRANSACTION.Width = 120;
-            // 
-            // NAME_OF_PRODUCT
-            // 
-            this.NAME_OF_PRODUCT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NAME_OF_PRODUCT.DataPropertyName = "NAME_OF_PRODUCT";
-            this.NAME_OF_PRODUCT.FillWeight = 370.1299F;
-            this.NAME_OF_PRODUCT.HeaderText = "NAME_OF_PRODUCT";
-            this.NAME_OF_PRODUCT.Name = "NAME_OF_PRODUCT";
-            this.NAME_OF_PRODUCT.ReadOnly = true;
-            this.NAME_OF_PRODUCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // QUANTITY
-            // 
-            this.QUANTITY.DataPropertyName = "QUANTITY";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
-            this.QUANTITY.FillWeight = 32.46753F;
-            this.QUANTITY.HeaderText = "QUANTITY/KG";
-            this.QUANTITY.Name = "QUANTITY";
-            this.QUANTITY.ReadOnly = true;
-            this.QUANTITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.QUANTITY.Width = 75;
-            // 
-            // UNIT
-            // 
-            this.UNIT.DataPropertyName = "UNIT";
-            dataGridViewCellStyle3.Format = "N3";
-            dataGridViewCellStyle3.NullValue = null;
-            this.UNIT.DefaultCellStyle = dataGridViewCellStyle3;
-            this.UNIT.FillWeight = 32.46753F;
-            this.UNIT.HeaderText = "UNIT";
-            this.UNIT.Name = "UNIT";
-            this.UNIT.ReadOnly = true;
-            this.UNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UNIT.Visible = false;
-            this.UNIT.Width = 55;
-            // 
-            // PRICE
-            // 
-            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.PRICE.DataPropertyName = "PRICE";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.PRICE.DefaultCellStyle = dataGridViewCellStyle4;
-            this.PRICE.FillWeight = 32.46753F;
-            this.PRICE.HeaderText = "PRICE";
-            this.PRICE.Name = "PRICE";
-            this.PRICE.ReadOnly = true;
-            this.PRICE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PRICE.Width = 54;
-            // 
-            // TOTAL_AMOUNT
-            // 
-            this.TOTAL_AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle5;
-            this.TOTAL_AMOUNT.FillWeight = 32.46753F;
-            this.TOTAL_AMOUNT.HeaderText = "TOTAL";
-            this.TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
-            this.TOTAL_AMOUNT.ReadOnly = true;
-            this.TOTAL_AMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TOTAL_AMOUNT.Width = 55;
             // 
             // CustomCustomerForm
             // 
