@@ -43,7 +43,7 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(140, 80);
             this.buttonCancel.TabIndex = 0;
-            this.buttonCancel.Text = "ÇIKAR";
+            this.buttonCancel.Text = "REMOVE";
             this.buttonCancel.UseVisualStyleBackColor = false;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
@@ -56,7 +56,7 @@
             this.buttonRepeat.Name = "buttonRepeat";
             this.buttonRepeat.Size = new System.Drawing.Size(140, 80);
             this.buttonRepeat.TabIndex = 1;
-            this.buttonRepeat.Text = "TEKRARLA";
+            this.buttonRepeat.Text = "REPEAT";
             this.buttonRepeat.UseVisualStyleBackColor = false;
             this.buttonRepeat.Click += new System.EventHandler(this.buttonRepeat_Click);
             // 
@@ -69,7 +69,7 @@
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(120, 50);
             this.buttonClose.TabIndex = 2;
-            this.buttonClose.Text = "Geri Dön";
+            this.buttonClose.Text = "BACK";
             this.buttonClose.UseVisualStyleBackColor = false;
             // 
             // CustomSaleOption

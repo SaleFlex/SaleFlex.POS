@@ -56,7 +56,7 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(113, 50);
             this.buttonDelete.TabIndex = 2;
-            this.buttonDelete.Text = "SİL ←";
+            this.buttonDelete.Text = "DEL ←";
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -82,7 +82,7 @@ namespace SaleFlex.UserInterface.Controls
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 50);
             this.buttonOk.TabIndex = 14;
-            this.buttonOk.Text = "GİRİŞ";
+            this.buttonOk.Text = "ENTER";
             this.buttonOk.UseVisualStyleBackColor = false;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
