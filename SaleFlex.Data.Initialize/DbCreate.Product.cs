@@ -22,6 +22,7 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTablePluBarcodeDefinition,
                 bCreateTablePluMainGroup,
+                bCreateTablePluManufacturer,
                 bCreateTablePluSubGroup,
                 bCreateTableVat
             };
@@ -122,6 +123,51 @@ namespace SaleFlex.Data.Initialize
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
                                 xSQLiteCommand.CommandText = "INSERT INTO TablePluMainGroup (No, Name, DiscountPercent, Description)  VALUES (1, 'General Product', 0, 'Default product entry for general sales transactions without specific product identification.')";
+                                iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTablePluManufacturer()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TablePluManufacturer (
+                        Id   INTEGER UNIQUE
+                                     NOT NULL
+                                     PRIMARY KEY ASC AUTOINCREMENT,
+                        Name TEXT    NOT NULL
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                xSQLiteCommand.CommandText = "INSERT INTO TablePluManufacturer (Name)  VALUES ('General Manufacturer')";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                             }
                         }
