@@ -388,7 +388,7 @@ namespace SaleFlex.Data.Initialize
                                 string[] straQueries = new string[]
                                 {
                                     "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (1, 'LOGIN', 'LOGIN', 0, 0, 'LOGIN', 'MidnightBlue', 0, 0);",
-                                    "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (2, 'SALE', 'SALE', 1, 1, 'SALE', 'MidnightBlue', 0, 0);",
+                                    "INSERT INTO TableForm (FormNo, Name, Function, NeedLogin, NeedAuth, Caption, BackColor, ShowInTaskbar, UseVirtualKeyboard) VALUES (2, 'SALE', 'SALE', 1, 0, 'SALE', 'MidnightBlue', 0, 0);",
 
                                 };
 
