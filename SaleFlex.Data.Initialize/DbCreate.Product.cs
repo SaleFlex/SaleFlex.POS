@@ -101,6 +101,69 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (5, 5, '', 0, 0, 'Walkers Ready Salted Crisps', 'Walkers Crisps', 'Walkers Ready Salted Crisps (25g x 6 pack)', 'Walkers Ready Salted Crisps (25g x 6 pack)', 'Walkers Ready Salted Crisps (25g x 6 pack)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (6, 6, '', 0, 0, 'PG Tips Tea Bags', 'PG Tea Bags', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (7, 7, '', 0, 0, 'Coca-Cola Original Taste', 'Coca-Cola', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (8, 8, '', 0, 0, 'Beard Butter Original', 'Beard Butter', 'Beard Butter Original Formula', 'Beard Butter Original Formula', 'Beard Butter Original Formula', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTablePluBarcode()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TablePluBarcode (
+                        Id                       INTEGER NOT NULL
+                                                         UNIQUE
+                                                         PRIMARY KEY ASC AUTOINCREMENT,
+                        FkPluId                  INTEGER NOT NULL,
+                        Barcode                  TEXT    NOT NULL,
+                        OldBarcode               TEXT,
+                        PurchasePrice            INTEGER,
+                        SalePrice                INTEGER NOT NULL
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (3, '5000157070008', '5000157070008', 100, 110)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (4, '7622210449283', '7622210449283', 80, 88)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (5, '5000328721575', '5000328721575', 150, 165)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (6, '8711200334532', '8711200334532', 200, 220)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (7, '5449000000996', '5449000000996', 250, 275)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (8, '0746817004304', '0746817004304', 350, 385)",
                                 };
 
                                 foreach (string strQuery in straQueries)
