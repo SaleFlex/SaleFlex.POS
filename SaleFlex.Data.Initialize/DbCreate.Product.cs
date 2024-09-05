@@ -170,7 +170,7 @@ namespace SaleFlex.Data.Initialize
                             bReturnValue = true;
                             if (CommonProperty.prop_bIsOfflinePos)
                             {
-                                xSQLiteCommand.CommandText = "INSERT INTO TablePluSubGroup (No, Name, DiscountPercent, Description)  VALUES (1, 'General Subproduct', 0, 'Default sub product entry for general sales transactions without specific product identification.')";
+                                xSQLiteCommand.CommandText = "INSERT INTO TablePluSubGroup (FkPluMainGroupId, No, Name, DiscountPercent, Description)  VALUES (1, 1, 'General Subproduct', 0, 'Default sub product entry for general sales transactions without specific product identification.')";
                                 iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                             }
                         }
