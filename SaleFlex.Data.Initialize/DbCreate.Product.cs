@@ -20,6 +20,7 @@ namespace SaleFlex.Data.Initialize
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
+                bCreateTablePlu,
                 bCreateTablePluBarcodeDefinition,
                 bCreateTablePluMainGroup,
                 bCreateTablePluManufacturer,
@@ -34,6 +35,89 @@ namespace SaleFlex.Data.Initialize
                     bReturnValue = false;
                     break;
                 }
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTablePlu()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TablePlu (
+                        Id                  INTEGER NOT NULL
+                                                    UNIQUE
+                                                    PRIMARY KEY ASC AUTOINCREMENT,
+                        Code                TEXT    NOT NULL,
+                        OldCode             TEXT,
+                        ShelfCode           TEXT,
+                        PurchasePrice       INTEGER,
+                        SalePrice           INTEGER,
+                        Name                TEXT    NOT NULL,
+                        ShortName           TEXT,
+                        Description         TEXT,
+                        DescriptionOnScreen TEXT,
+                        DescriptionOnShelf  TEXT,
+                        DescriptionOnScale  TEXT,
+                        FkPluSubGroupId     INTEGER NOT NULL,
+                        FkVatId             INTEGER NOT NULL,
+                        KeyboardValue       TEXT,
+                        Scalable            BOOLEAN NOT NULL,
+                        AllowDiscount       BOOLEAN NOT NULL,
+                        DiscountPercent     INTEGER,
+                        AllowNegativeStock  BOOLEAN NOT NULL,
+                        AllowReturn         BOOLEAN NOT NULL,
+                        Stock               INTEGER NOT NULL,
+                        MinStock            INTEGER,
+                        MaxStock            INTEGER,
+                        StockUnit           TEXT    NOT NULL,
+                        FkPluManufacturerId INTEGER NOT NULL
+                                                    DEFAULT (1) 
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (1, 1, '', 100, 110, 'Baguette', 'Baguette', 'Baguette', 'Baguette', 'Baguette', '', 1, 1, '', 0, 0, 0, 1, 0, 100, 10, 100, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (2, 2, '', 50, 55, 'Granny Smith Apple', 'Apple', 'Granny Smith Apple', 'Granny Smith Apple', 'Granny Smith Apple', 'Granny Smith Apple', 1, 1, '', 1, 0, 0, 0, 1, 100, 10, 100, 'KG', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (3, 3, '', 0, 0, 'Heinz Tomato Ketchup', 'Heinz Ketchup', 'Heinz Tomato Ketchup (460g)', 'Heinz Tomato Ketchup (460g)', 'Heinz Tomato Ketchup (460g)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (4, 4, '', 0, 0, 'Cadbury Dairy Milk Chocolate Bar', 'Cadbury Chocolate Bar', 'Cadbury Dairy Milk Chocolate Bar (110g)', 'Cadbury Dairy Milk Chocolate Bar (110g)', 'Cadbury Dairy Milk Chocolate Bar (110g)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (5, 5, '', 0, 0, 'Walkers Ready Salted Crisps', 'Walkers Crisps', 'Walkers Ready Salted Crisps (25g x 6 pack)', 'Walkers Ready Salted Crisps (25g x 6 pack)', 'Walkers Ready Salted Crisps (25g x 6 pack)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (6, 6, '', 0, 0, 'PG Tips Tea Bags', 'PG Tea Bags', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (7, 7, '', 0, 0, 'Coca-Cola Original Taste', 'Coca-Cola', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
             }
 
             return bReturnValue;
