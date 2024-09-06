@@ -11,6 +11,7 @@ using SaleFlex.CommonLibrary;
 using SaleFlex.Data.Models;
 using SaleFlex.Data.AccessLayer;
 using SaleFlex.Data;
+using SaleFlex.UserInterface.Data;
 
 namespace SaleFlex.UserInterface.Controls
 {
@@ -106,7 +107,7 @@ namespace SaleFlex.UserInterface.Controls
                 xCustomSalesData.ROW_NUMBER = (int)dataGridViewSales.Rows[dataGridViewSales.Rows.Count - 1].Cells["ROW_NUMBER"].Value + 1;
 
             xCustomSalesData.REFERENCE_ID = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().iId;
-            xCustomSalesData.TRANSACTION = prm_xTransactionDataModel.xTransactionHeadDataModel.iTransactionDocumentTypeNo != (int)EnumDocumentType.Return ? "Satış" : "İade";
+            xCustomSalesData.TRANSACTION = prm_xTransactionDataModel.xTransactionHeadDataModel.iTransactionDocumentTypeNo != (int)EnumDocumentType.Return ? LabelTranslations.strGet("ProductSale") : LabelTranslations.strGet("ProductReturn");
             xCustomSalesData.UNIT = 1;
             if (prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDepartmentDataModel != null)
             {
@@ -120,9 +121,12 @@ namespace SaleFlex.UserInterface.Controls
                 xCustomSalesData.TRANSACTION_TYPE = "PLU";
                 xCustomSalesData.ID = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.iId;
                 xCustomSalesData.PLU_NO = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strCode;
-                xCustomSalesData.BARCODE = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.xListPluBarcodeDataModel[0].strBarcode;
-                if (prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.xListPluBarcodeDataModel[0].strBarcode != null && prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.xListPluBarcodeDataModel[0].strBarcode.Length > 0)
+                List<PluBarcodeDataModel> xListPluBarcodeDataModels = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.xListPluBarcodeDataModel;
+                xCustomSalesData.BARCODE = xListPluBarcodeDataModels != null ? xListPluBarcodeDataModels[0].strBarcode : "";
+                if (xListPluBarcodeDataModels != null && xListPluBarcodeDataModels[0].strBarcode != null && xListPluBarcodeDataModels[0].strBarcode.Length > 0)
                     xCustomSalesData.NAME_OF_PRODUCT = string.Format("{0} [{1}]", prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strDescriptionOnScreen, prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.xListPluBarcodeDataModel[0].strBarcode);
+                else if(xListPluBarcodeDataModels == null)
+                    xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strDescriptionOnScreen;
                 else
                     xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strName;
             }

@@ -76,7 +76,7 @@ namespace SaleFlex.UserInterface.Controls
             // buttonOk
             // 
             this.buttonOk.BackColor = System.Drawing.Color.SteelBlue;
-            this.buttonOk.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.buttonOk.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.buttonOk.ForeColor = System.Drawing.Color.White;
             this.buttonOk.Location = new System.Drawing.Point(153, 237);
             this.buttonOk.Name = "buttonOk";

@@ -37,8 +37,8 @@ namespace SaleFlex.Data.AccessLayer
                 DepartmentDataModel xDepartmentDataModel = new DepartmentDataModel();
                 xDepartmentDataModel.iId = 1;
                 xDepartmentDataModel.iNo = 1;
-                xDepartmentDataModel.strName = "MUHTELİF";
-                xDepartmentDataModel.xVat = new VatDataModel { iId = 1, iNo = 1, iRate = 1800, strName = "18" };
+                xDepartmentDataModel.strName = "MISCELLANEOUS";
+                xDepartmentDataModel.xVat = new VatDataModel { iId = 1, iNo = 1, iRate = 2000, strName = "20" };
                 xDepartmentDataModel.decDefaultQuantity = 1;
                 xDepartmentDataModel.decDefaultPrice = 10;
                 xListDepartmentDataModel.Add(xDepartmentDataModel);
