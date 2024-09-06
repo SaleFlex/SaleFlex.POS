@@ -60,6 +60,8 @@ namespace SaleFlex.Data.AccessLayer
                             xPluDataModel.strCode = Convert.ToString(xDataRow["Code"]);
                             xPluDataModel.strOldCode = Convert.ToString(xDataRow["OldCode"]);
                             xPluDataModel.strShelfCode = Convert.ToString(xDataRow["ShelfCode"]);
+                            xPluDataModel.iPurchasePrice = Convert.ToInt32(xDataRow["PurchasePrice"]);
+                            xPluDataModel.iSalePrice = Convert.ToInt32(xDataRow["SalePrice"]);
                             xPluDataModel.strName = Convert.ToString(xDataRow["Name"]) ?? string.Empty;
                             xPluDataModel.strShortName = Convert.ToString(xDataRow["ShortName"]) ?? string.Empty;
                             xPluDataModel.strDescription = Convert.ToString(xDataRow["Description"]) ?? string.Empty;
@@ -75,8 +77,12 @@ namespace SaleFlex.Data.AccessLayer
                             xPluDataModel.bScalable = Convert.ToBoolean(xDataRow["AllowNegativeStock"]);
                             xPluDataModel.bAllowDiscount = Convert.ToBoolean(xDataRow["AllowReturn"]);
                             xPluDataModel.iStock = Convert.ToInt32(xDataRow["Stock"]);
+                            xPluDataModel.iMinStock = Convert.ToInt32(xDataRow["MinStock"]);
+                            xPluDataModel.iMaxStock = Convert.ToInt32(xDataRow["MaxStock"]);
+                            xPluDataModel.strStockUnit = Convert.ToString(xDataRow["StockUnit"]);
                             xPluDataModel.iFkManufacturerId = Convert.ToInt32(xDataRow["FkPluManufacturerId"]);
                             xPluDataModel.xPluSubGroupDataModel = xGetPluSubGroupById(xPluDataModel.iFkPluSubGroupId);
+                            xPluDataModel.xListPluBarcodeDataModel = xListGetPluBarcode(xPluDataModel.iId);
 
                             break;
                         }
@@ -209,7 +215,7 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TablePluBarcode WHERE FkPluId={0} ORDER BY Barcode", prm_iFkPluId));
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable($"SELECT * FROM TablePluBarcode WHERE FkPluId={prm_iFkPluId} ORDER BY Barcode");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {

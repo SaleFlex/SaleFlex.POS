@@ -20,6 +20,8 @@ namespace SaleFlex.Data.Models
         public string strCode { get; set; }
         public string strOldCode { get; set; }
         public string strShelfCode { get; set; }
+        public int iPurchasePrice { get; set; }
+        public int iSalePrice { get; set; }
         public string strName { get; set; }
         public string strShortName { get; set; }
         public string strDescription { get; set; }

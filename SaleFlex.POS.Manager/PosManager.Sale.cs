@@ -153,7 +153,7 @@ namespace SaleFlex.POS.Manager
             xTransactionDetailDataModel.iFkTransactionHeadId = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId;
             xTransactionDetailDataModel.decQuantity = prm_decQuantity;
             xTransactionDetailDataModel.decPrice = prm_decPrice;
-            xTransactionDetailDataModel.decTotalPrice = prm_xSaledPluDataModel.StockUnitNo ==1 ? Convert.ToInt32(Convert.ToDecimal(prm_decPrice * prm_decQuantity)/1000) : (prm_decPrice * prm_decQuantity);
+            xTransactionDetailDataModel.decTotalPrice = prm_xSaledPluDataModel.StockUnitNo == 1 ? Convert.ToInt32(Convert.ToDecimal(prm_decPrice * prm_decQuantity) / 1000) : (prm_decPrice * prm_decQuantity);
             xTransactionDetailDataModel.decTotalVat = xTransactionDetailDataModel.decTotalPrice * prm_xSaledPluDataModel.xVat.iRate / 100;
             xTransactionDetailDataModel.decTotalPriceWithoutVat = xTransactionDetailDataModel.decTotalPrice - xTransactionDetailDataModel.decTotalVat;
 
@@ -292,9 +292,9 @@ namespace SaleFlex.POS.Manager
 
             Enum.TryParse(xSalesPluDataModel.strStockUnit, true, out EnumStockUnit enumStockUnit);
             int iStock = (int)(prm_lQuantity / (int)enumStockUnit);
-                //prm_lQuantity = xSalesPluDataModel.StockUnitNo == 2 ? (prm_lQuantity / 1000) : prm_lQuantity;
-                //int iStock = Convert.ToInt32(Dao.xGetInstance().xGetStockUnitByNo(xSalesPluDataModel.StockUnitNo).Coefficient * (Convert.ToDecimal(prm_lQuantity)/1000));
-                //int iStock = Convert.ToInt32(xSalesPluDataModel.StockUnitNo == 1 ? prm_lQuantity : (prm_lQuantity / 1000));
+            //prm_lQuantity = xSalesPluDataModel.StockUnitNo == 2 ? (prm_lQuantity / 1000) : prm_lQuantity;
+            //int iStock = Convert.ToInt32(Dao.xGetInstance().xGetStockUnitByNo(xSalesPluDataModel.StockUnitNo).Coefficient * (Convert.ToDecimal(prm_lQuantity)/1000));
+            //int iStock = Convert.ToInt32(xSalesPluDataModel.StockUnitNo == 1 ? prm_lQuantity : (prm_lQuantity / 1000));
             if (prop_enumDocumentType != EnumDocumentType.Return)
             {
                 if (xSalesPluDataModel.bAllowNegativeStock == true && xSalesPluDataModel.iStock < iStock)
@@ -304,7 +304,7 @@ namespace SaleFlex.POS.Manager
                 }
             }
 
-            decPrice = prm_decPrice.bOverflowAmountCheck() == true ? xSalesPluDataModel.xListPluBarcodeDataModel[0].decSalePrice : prm_decPrice;
+            decPrice = prm_decPrice.bOverflowAmountCheck() == true ? (xSalesPluDataModel.xListPluBarcodeDataModel == null ? xSalesPluDataModel.iSalePrice : xSalesPluDataModel.xListPluBarcodeDataModel[0].decSalePrice) : prm_decPrice;
             decQuantity = iStock;
 
             if (bStartReceipt() == false)
@@ -381,8 +381,8 @@ namespace SaleFlex.POS.Manager
                 Dao.xGetInstance().vRemoveFromSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
             }
 
-            
-            foreach(var xTransactionDetail in m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel)
+
+            foreach (var xTransactionDetail in m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel)
             {
                 PluDataModel plu = Dao.xGetInstance().xGetPluById(xTransactionDetail.iFkPluId);
                 if (prop_enumDocumentType != EnumDocumentType.Return)
