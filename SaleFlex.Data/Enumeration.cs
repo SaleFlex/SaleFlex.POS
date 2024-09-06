@@ -100,4 +100,10 @@ namespace SaleFlex.Data
         NEED_SUSPEND
 
     }
+
+    public enum EnumStockUnit
+    {
+        PC = 1,
+        KG = 1000
+    }
 }

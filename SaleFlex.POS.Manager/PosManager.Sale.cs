@@ -269,7 +269,7 @@ namespace SaleFlex.POS.Manager
             return true;
         }
 
-        public bool bSalePluByCode(string prm_strPluCode, long prm_decPrice, long prm_decQuantity)
+        public bool bSalePluByCode(string prm_strPluCode, long prm_decPrice, long prm_lQuantity)
         {
             Trace.vInsert(enumTraceLevel.Unnecessary, "bSalePlu Called.");
 
@@ -284,14 +284,17 @@ namespace SaleFlex.POS.Manager
 
             PluDataModel xSalesPluDataModel = Dao.xGetInstance().xGetPluByCode(prm_strPluCode);
 
-            if (xSalesPluDataModel == null || xSalesPluDataModel.xListPluBarcodeDataModel.Count == 0)
+            if (xSalesPluDataModel == null)
             {
                 m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;
             }
-            //prm_decQuantity = xSalesPluDataModel.StockUnitNo == 2 ? (prm_decQuantity / 1000) : prm_decQuantity;
-            //int iStock = Convert.ToInt32(Dao.xGetInstance().xGetStockUnitByNo(xSalesPluDataModel.StockUnitNo).Coefficient * (Convert.ToDecimal(prm_decQuantity)/1000));
-            int iStock = Convert.ToInt32(xSalesPluDataModel.StockUnitNo == 1 ? prm_decQuantity : (prm_decQuantity / 1000));
+
+            Enum.TryParse(xSalesPluDataModel.strStockUnit, true, out EnumStockUnit enumStockUnit);
+            int iStock = (int)(prm_lQuantity / (int)enumStockUnit);
+                //prm_lQuantity = xSalesPluDataModel.StockUnitNo == 2 ? (prm_lQuantity / 1000) : prm_lQuantity;
+                //int iStock = Convert.ToInt32(Dao.xGetInstance().xGetStockUnitByNo(xSalesPluDataModel.StockUnitNo).Coefficient * (Convert.ToDecimal(prm_lQuantity)/1000));
+                //int iStock = Convert.ToInt32(xSalesPluDataModel.StockUnitNo == 1 ? prm_lQuantity : (prm_lQuantity / 1000));
             if (prop_enumDocumentType != EnumDocumentType.Return)
             {
                 if (xSalesPluDataModel.bAllowNegativeStock == true && xSalesPluDataModel.iStock < iStock)
