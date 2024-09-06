@@ -77,8 +77,6 @@ namespace SaleFlex.Data.AccessLayer
                             xPluDataModel.iStock = Convert.ToInt32(xDataRow["Stock"]);
                             xPluDataModel.iFkManufacturerId = Convert.ToInt32(xDataRow["FkPluManufacturerId"]);
                             xPluDataModel.xPluSubGroupDataModel = xGetPluSubGroupById(xPluDataModel.iFkPluSubGroupId);
-                            xPluDataModel.xVat = xGetVatByNo(Convert.ToInt32(xDataRow["VatNo"]));
-                            xPluDataModel.xListPluBarcodeDataModel = xListGetPluBarcode(xPluDataModel.iId);
 
                             break;
                         }
