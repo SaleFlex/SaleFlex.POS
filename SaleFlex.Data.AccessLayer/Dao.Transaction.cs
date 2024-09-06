@@ -488,7 +488,7 @@ namespace SaleFlex.Data.AccessLayer
             bool bReturnValue = false;
             try
             {
-                var query = string.Format("INSERT INTO TableTransactionHead(FkCashierId, TransactionDateTime, FkTransactionDocumentTypeId, FkCustomerId, TransactionNo, ReceiptNumber, ZNumber, ReceiptTotalPrice, ReceiptTotalVat, TotalDiscountAmount, TransactionsDiscountAmount, CustomerTotalDiscountAmount, PromotionTotalDiscountAmount, SurchargeAmount, PaymentAmount, ChangeAmount, RoundAmount, TransactionDocumentTypeNo) VALUES({0},datetime('now', 'localtime'),{1},{2},'{3}',{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}); SELECT last_insert_rowid() AS InsertedId",
+                var query = string.Format("INSERT INTO TableTransactionHead(FkCashierId, TransactionDateTime, FkTransactionDocumentTypeId, FkCustomerId, TransactionNo, ReceiptNumber, ZNumber, ReceiptTotalPrice, ReceiptTotalVat, TotalDiscountAmount, TransactionsDiscountAmount, CustomerTotalDiscountAmount, PromotionTotalDiscountAmount, SurchargeAmount, PaymentAmount, ChangeAmount, RoundAmount) VALUES({0},datetime('now', 'localtime'),{1},{2},'{3}',{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15}); SELECT last_insert_rowid() AS InsertedId",
                     prm_xTransactionHeadDataModel.iFkCashierId,
                     prm_xTransactionHeadDataModel.iFkTransactionDocumentTypeId,
                     prm_xTransactionHeadDataModel.iFkCustomerId,
@@ -504,8 +504,7 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionHeadDataModel.decSurchargeAmount,
                     prm_xTransactionHeadDataModel.decPaymentAmount,
                     prm_xTransactionHeadDataModel.decChangeAmount,
-                    prm_xTransactionHeadDataModel.decRoundAmount,
-                    prm_xTransactionHeadDataModel.iTransactionDocumentTypeNo);
+                    prm_xTransactionHeadDataModel.decRoundAmount);
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (int.Parse(xDataTable.Rows[0]["InsertedId"].ToString()) > 0)
