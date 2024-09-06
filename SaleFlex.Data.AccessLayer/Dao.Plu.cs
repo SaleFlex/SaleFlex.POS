@@ -75,8 +75,6 @@ namespace SaleFlex.Data.AccessLayer
                             xPluDataModel.bScalable = Convert.ToBoolean(xDataRow["AllowNegativeStock"]);
                             xPluDataModel.bAllowDiscount = Convert.ToBoolean(xDataRow["AllowReturn"]);
                             xPluDataModel.iStock = Convert.ToInt32(xDataRow["Stock"]);
-                            xPluDataModel.strStockUnit = Convert.ToString(xDataRow["StockUnit"]) ?? string.Empty;
-                            xPluDataModel.StockUnitNo = Convert.ToInt32(xDataRow["StockUnitNo"]);
                             xPluDataModel.iFkManufacturerId = Convert.ToInt32(xDataRow["FkPluManufacturerId"]);
                             xPluDataModel.xPluSubGroupDataModel = xGetPluSubGroupById(xPluDataModel.iFkPluSubGroupId);
                             xPluDataModel.xVat = xGetVatByNo(Convert.ToInt32(xDataRow["VatNo"]));
@@ -160,7 +158,7 @@ namespace SaleFlex.Data.AccessLayer
 
             try
             {
-                var query = string.Format("SELECT Code FROM TablePluBarcode LEFT JOIN TablePlu ON TablePlu.Id=TablePluBarcode.FkPluId WHERE Barcode=\'{0}\' ORDER BY Barcode", prm_strPluBarcode);
+                var query = $"SELECT Code FROM TablePluBarcode LEFT JOIN TablePlu ON TablePlu.Id=TablePluBarcode.FkPluId WHERE Barcode=\'{prm_strPluBarcode}\' ORDER BY Barcode";
 
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable(query);
 

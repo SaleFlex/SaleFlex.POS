@@ -92,6 +92,14 @@ namespace SaleFlex.UserInterface.Controls
                 m_strCaption1 = prm_xFormControlDataModel.strCaption1;
                 m_strCaption2 = prm_xFormControlDataModel.strCaption2;
 
+                Single sFontSize = prm_xFormControlDataModel.fFontSize;
+                string strFontName = prm_xFormControlDataModel.strFont;
+
+                if(strFontName != string.Empty && sFontSize != 0 )
+                {
+                    Font = new System.Drawing.Font(strFontName, sFontSize, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+
                 if (prm_xFormControlDataModel.strImage != string.Empty)
                 {
                     Bitmap xBitmap = new Bitmap(string.Format("{0}\\{1}", CommonProperty.prop_strImagesFolder, prm_xFormControlDataModel.strImage));
@@ -104,29 +112,32 @@ namespace SaleFlex.UserInterface.Controls
                     {
                         if (strName.Length >= 3 && strName.ToUpper().StartsWith("PLU"))
                         {
-                            try
+                            string strPluCode = strName.Remove(0, 3);
+
+                            if (m_strFunction1Name == "SALE_PLU_CODE")
                             {
-                                string strPluCode = strName.Remove(0, 3);
-                                Text = Dao.xGetInstance().xGetPlu(strPluCode).strShortName;
+                                try
+                                {
+                                    Text = Dao.xGetInstance().xGetPluByCode(strPluCode).strShortName;
+                                }
+                                catch
+                                {
+                                    if (Text == string.Empty)
+                                        Text = LabelTranslations.strGet("DefinitionIsNotProper");
+                                }
                             }
-                            catch
+                            else if (m_strFunction1Name == "SALE_PLU_BARCODE")
                             {
-                                if (Text == string.Empty)
-                                    Text = LabelTranslations.strGet("DefinitionIsNotProper");
-                            }
-                        }
-                        else if (strName.Length >= 7 && strName.ToUpper().StartsWith("BARCODE"))
-                        {
-                            try
-                            {
-                                string strPluBarcode = strName.Remove(0, 7);
-                                string strPluCode = Dao.xGetInstance().strGetPluCode(strPluBarcode);
-                                Text = Dao.xGetInstance().xGetPluByCode(strPluCode).strShortName;
-                            }
-                            catch
-                            {
-                                if (Text == string.Empty)
-                                    Text = LabelTranslations.strGet("DefinitionIsNotProper");
+                                try
+                                {
+                                    strPluCode = Dao.xGetInstance().strGetPluCode(strPluCode);
+                                    Text = Dao.xGetInstance().xGetPluByCode(strPluCode).strShortName;
+                                }
+                                catch
+                                {
+                                    if (Text == string.Empty)
+                                        Text = LabelTranslations.strGet("DefinitionIsNotProper");
+                                }
                             }
                         }
                         else if (strName.Length >= 10 && strName.ToUpper().StartsWith("DEPARTMENT"))
