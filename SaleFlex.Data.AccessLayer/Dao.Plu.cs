@@ -234,8 +234,6 @@ namespace SaleFlex.Data.AccessLayer
                             xPluBarcodeDataModel.strOldBarcode = Convert.ToString(xDataRow["OldBarcode"]) ?? string.Empty;
                             xPluBarcodeDataModel.decPurchasePrice = Convert.ToInt64(xDataRow["PurchasePrice"]);
                             xPluBarcodeDataModel.decSalePrice = Convert.ToInt64(xDataRow["SalePrice"]);
-                            xPluBarcodeDataModel.iFkPluBarcodeDefinitionId = Convert.ToInt32(xDataRow["FkPluBarcodeDefinitionId"] == DBNull.Value ? "0" : xDataRow["FkPluBarcodeDefinitionId"]);
-                            xPluBarcodeDataModel.xPluBarcodeDefinitionDataModel = null;
 
                             xListPluBarcodeDataModel.Add(xPluBarcodeDataModel);
                         }

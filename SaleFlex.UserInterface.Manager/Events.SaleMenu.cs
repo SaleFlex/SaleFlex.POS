@@ -228,7 +228,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                Trace.vInsert(enumTraceLevel.Unnecessary, "vSalePluCode Called.");
+                Trace.vInsert(enumTraceLevel.Unnecessary, "vSalePluBarcode Called.");
                 bool isMultiply = false;
                 if (bIsPaymentStart() == true)
                 {
@@ -242,7 +242,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 string strNumPadOutput = m_xLastCustomForm.strGetNumPadOutput();
 
-                if (m_decPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 7).ToUpper() == "BARCODE")
+                if (m_decPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 3).ToUpper() == "PLU")
                 {
                     try
                     {
@@ -260,9 +260,9 @@ namespace SaleFlex.UserInterface.Manager
                 if (xControl is CustomButton)
                 {
                     CustomButton xCustomButton = (CustomButton)prm_objSender;
-                    if (xCustomButton.strName.Length > 7 && xCustomButton.strName.Substring(0, 7).ToUpper() == "BARCODE")
+                    if (xCustomButton.strName.Length > 7 && xCustomButton.strName.Substring(0, 3).ToUpper() == "PLU")
                     {
-                        strPluBarcode = xCustomButton.strName.Substring(7, xCustomButton.strName.Length - 7);
+                        strPluBarcode = xCustomButton.strName.Substring(3, xCustomButton.strName.Length - 3);
                     }
                 }
                 else if (xControl is CustomNumpad)
