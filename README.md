@@ -119,6 +119,10 @@ Default login criteria
 
 ![Login Form](https://github.com/SaleFlex/.github/blob/main/profile/saleflex.pos.login.form.sample.jpg?raw=true)
 
+## Sale Form
+
+![Sale Form](https://github.com/SaleFlex/.github/blob/main/profile/saleflex.pos.sale.form.sample.jpg?raw=true)
+
 # Contributors
 
 <table>
