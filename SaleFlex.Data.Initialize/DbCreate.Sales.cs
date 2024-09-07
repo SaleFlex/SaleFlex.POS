@@ -22,6 +22,7 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTableTransactionHead,
                 bCreateTableTransactionDetail,
+                bCreateTableTransactionPaymentDetail,
                 bCreateTableTransactionDocumentType
             };
 
@@ -127,6 +128,47 @@ namespace SaleFlex.Data.Initialize
                         if (iResult >= 0)
                             bReturnValue = true;
                         
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+
+        private static bool bCreateTableTransactionPaymentDetail()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableTransactionPaymentDetail (
+                        Id                  INTEGER PRIMARY KEY AUTOINCREMENT
+                                                    UNIQUE
+                                                    NOT NULL,
+                        FkTransactionHeadId INTEGER,
+                        FkPaymentType       INTEGER,
+                        Amount              INTEGER
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                            bReturnValue = true;
+
                         xSQLiteConnection.Close();        // Close the connection to the database
                     }
                 }
