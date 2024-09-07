@@ -527,8 +527,11 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            if (prm_enumType == 0 || prm_decPaymentAmount == 0)
+            if (prm_enumType == EnumPaymentType.NONE || prm_decPaymentAmount == 0)
+            {
+                m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
+            }
 
             foreach (PaymentTypeDataModel xDataModel in m_xPosManagerData.xListPaymentTypeDataModel)
             {

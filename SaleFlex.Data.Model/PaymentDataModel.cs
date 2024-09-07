@@ -13,7 +13,8 @@ namespace SaleFlex.Data.Models
         }
 
         public long lId { get; set; }
+        public TransactionHeadDataModel xTransactionHeadDataModel { get; set; }
         public PaymentTypeDataModel xPaymentTypeDataModel { get; set; }
-        public decimal decAmount;
+        public long lAmount;
     }
 }
