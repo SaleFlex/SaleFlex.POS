@@ -55,7 +55,7 @@
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(138, 50);
             this.buttonOk.TabIndex = 0;
-            this.buttonOk.Text = "TAMAM";
+            this.buttonOk.Text = "CLOSE";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
