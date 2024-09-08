@@ -609,6 +609,8 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('VatSetError1', 'VAT must be between 1-99', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('VatSetError2', 'VAT Error', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('DocumentCancelled', 'Document Cancelled.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('NetSale', 'NET SALE', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('Change', 'CHANGE', 'en-GB');",
                                     
                                 };
 

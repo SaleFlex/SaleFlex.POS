@@ -95,9 +95,9 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     if (prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment <= 0)
                     {
-                        var sendIsCompleted = SendTransactionToServer(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
+                        //var sendIsCompleted = SendTransactionToServer(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
                         //if (sendIsCompleted) UpdateTransactionIsSend(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
-                        var unsendIsCompleted = SendUnsendTransactionsToServer();
+                        //var unsendIsCompleted = SendUnsendTransactionsToServer();
                         //if (unsendIsCompleted) UpdateTransactionIsSend(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
 
                         InfoBoxPaymentDetail xMessageBoxPaymentDetail = new InfoBoxPaymentDetail(prop_xPosManagerData);

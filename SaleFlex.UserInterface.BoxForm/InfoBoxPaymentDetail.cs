@@ -24,9 +24,9 @@ namespace SaleFlex.UserInterface.BoxForm
 
             try
             {
-                labelTotalAmount.Text = string.Format(" NET SATIŞ: {0:#,0.00} {1}", Convert.ToDecimal(prm_xPosManagerData.decReceiptTotalPrice)/100, LabelTranslations.strGet("CurrencySymbol"));
+                labelTotalAmount.Text = string.Format(" {0}: {1:#,0.00} {2}", LabelTranslations.strGet("NetSale"), Convert.ToDecimal(prm_xPosManagerData.decReceiptTotalPrice)/100, LabelTranslations.strGet("CurrencySymbol"));
                 if (prm_xPosManagerData.decReceiptTotalPrice <prm_xPosManagerData.decReceiptTotalPayment)
-                    labelBalanceAmount.Text = string.Format("PARA ÜSTÜ: {0:#,0.00} {1}", (Convert.ToDecimal(prm_xPosManagerData.decReceiptTotalPayment - prm_xPosManagerData.decReceiptTotalPrice)/100), LabelTranslations.strGet("CurrencySymbol"));
+                    labelBalanceAmount.Text = string.Format("{0}: {1:#,0.00} {2}", LabelTranslations.strGet("Change"), (Convert.ToDecimal(prm_xPosManagerData.decReceiptTotalPayment - prm_xPosManagerData.decReceiptTotalPrice)/100), LabelTranslations.strGet("CurrencySymbol"));
                 else
                     labelBalanceAmount.Text = string.Empty;
 

@@ -89,7 +89,7 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(142, 50);
             this.buttonCancel.TabIndex = 0;
-            this.buttonCancel.Text = "VAZGEÇ";
+            this.buttonCancel.Text = "CANCEL";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonDelete
@@ -99,7 +99,7 @@
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 50);
             this.buttonDelete.TabIndex = 21;
-            this.buttonDelete.Text = "SİL";
+            this.buttonDelete.Text = "DEL";
             this.buttonDelete.UseVisualStyleBackColor = true;
             // 
             // buttonOk
@@ -110,7 +110,7 @@
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(142, 50);
             this.buttonOk.TabIndex = 1;
-            this.buttonOk.Text = "TAMAM";
+            this.buttonOk.Text = "CLOSE";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // buttonZero
@@ -324,7 +324,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 75);
             this.button1.TabIndex = 2;
-            this.button1.Text = "NAKİT";
+            this.button1.Text = "CASH";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -335,7 +335,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(200, 75);
             this.button2.TabIndex = 3;
-            this.button2.Text = "20 TL";
+            this.button2.Text = "20 £";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // button3
@@ -346,7 +346,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(200, 75);
             this.button3.TabIndex = 4;
-            this.button3.Text = "50 TL";
+            this.button3.Text = "50 £";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button4
@@ -357,7 +357,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(200, 75);
             this.button4.TabIndex = 5;
-            this.button4.Text = "100 TL";
+            this.button4.Text = "100 £";
             this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
@@ -368,7 +368,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(200, 75);
             this.button5.TabIndex = 6;
-            this.button5.Text = "200 TL";
+            this.button5.Text = "200 £";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // button6
@@ -379,7 +379,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(200, 75);
             this.button6.TabIndex = 7;
-            this.button6.Text = "KREDİ KARTI";
+            this.button6.Text = "CREDIT CARD";
             this.button6.UseVisualStyleBackColor = false;
             // 
             // button7
@@ -390,7 +390,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(200, 75);
             this.button7.TabIndex = 8;
-            this.button7.Text = "VERESİYE";
+            this.button7.Text = "ON CREDIT";
             this.button7.UseVisualStyleBackColor = false;
             // 
             // textBoxOuput
@@ -445,11 +445,11 @@
             this.labelBalanceAmount.BackColor = System.Drawing.Color.Transparent;
             this.labelBalanceAmount.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.labelBalanceAmount.Location = new System.Drawing.Point(421, 50);
+            this.labelBalanceAmount.Location = new System.Drawing.Point(372, 50);
             this.labelBalanceAmount.Name = "labelBalanceAmount";
-            this.labelBalanceAmount.Size = new System.Drawing.Size(92, 24);
+            this.labelBalanceAmount.Size = new System.Drawing.Size(141, 24);
             this.labelBalanceAmount.TabIndex = 41;
-            this.labelBalanceAmount.Text = "KALAN:";
+            this.labelBalanceAmount.Text = "REMAINING:";
             this.labelBalanceAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelPaymentAmount
@@ -461,7 +461,7 @@
             this.labelPaymentAmount.Name = "labelPaymentAmount";
             this.labelPaymentAmount.Size = new System.Drawing.Size(92, 23);
             this.labelPaymentAmount.TabIndex = 40;
-            this.labelPaymentAmount.Text = "ÖDEME:";
+            this.labelPaymentAmount.Text = "PAYMENT:";
             this.labelPaymentAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelNetAmount
@@ -473,7 +473,7 @@
             this.labelNetAmount.Name = "labelNetAmount";
             this.labelNetAmount.Size = new System.Drawing.Size(129, 52);
             this.labelNetAmount.TabIndex = 39;
-            this.labelNetAmount.Text = "TOPLAM:";
+            this.labelNetAmount.Text = "TOTAL:";
             this.labelNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // InputBoxPayment
