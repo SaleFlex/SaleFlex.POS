@@ -152,7 +152,7 @@ namespace SaleFlex.Data.Initialize
                                                     UNIQUE
                                                     NOT NULL,
                         FkTransactionHeadId INTEGER,
-                        FkPaymentType       INTEGER,
+                        FkPaymentTypeId     INTEGER,
                         Amount              INTEGER
                     );";
 

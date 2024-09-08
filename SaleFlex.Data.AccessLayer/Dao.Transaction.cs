@@ -595,8 +595,18 @@ namespace SaleFlex.Data.AccessLayer
         {
             try
             {
-                var query = $"INSERT INTO TableTransactionPayment (FkTransactionHeadId, FkPaymentTypeId, PaymentAmount) VALUES({prm_lTransactionHead},{prm_xPaymentDataModel.xPaymentTypeDataModel.iTypeNo},{prm_xPaymentDataModel.lAmount}); SELECT last_insert_rowid() as InsertedId ";
+                var query = $"INSERT INTO TableTransactionPaymentDetail (FkTransactionHeadId, FkPaymentTypeId, Amount) VALUES({prm_lTransactionHead},{prm_xPaymentDataModel.xPaymentTypeDataModel.iTypeNo},{prm_xPaymentDataModel.lAmount}); SELECT last_insert_rowid() as InsertedId ";
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
+
+                // Check if the DataTable has rows and retrieve the InsertedId.
+                if (xDataTable != null && xDataTable.Rows.Count > 0)
+                {
+                    // Get the InsertedId from the first row of the result.
+                    long insertedId = Convert.ToInt64(xDataTable.Rows[0]["InsertedId"]);
+
+                    prm_xPaymentDataModel.lId = insertedId;
+                }
+
                 return true;
             }
             catch (Exception xException)

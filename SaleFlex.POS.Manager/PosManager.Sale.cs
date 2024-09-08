@@ -505,7 +505,7 @@ namespace SaleFlex.POS.Manager
             return bReturnValue;
         }
 
-        public bool bPayment(EnumPaymentType prm_enumType, long prm_decPaymentAmount)
+        public bool bPayment(EnumPaymentType prm_enumType, long prm_lPaymentAmount)
         {
             //int iReceiptNumber;
             //int iZNumber;
@@ -527,7 +527,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            if (prm_enumType == EnumPaymentType.NONE || prm_decPaymentAmount == 0)
+            if (prm_enumType == EnumPaymentType.NONE || prm_lPaymentAmount == 0)
             {
                 m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
@@ -549,7 +549,7 @@ namespace SaleFlex.POS.Manager
             }
 
             xPaymentDataModel.lId = 0;
-            xPaymentDataModel.lAmount = prm_decPaymentAmount;
+            xPaymentDataModel.lAmount = prm_lPaymentAmount;
 
             if (Dao.xGetInstance().bPaymentTemp(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {
@@ -557,7 +557,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            m_xPosManagerData.decReceiptTotalPayment += prm_decPaymentAmount;
+            m_xPosManagerData.decReceiptTotalPayment += prm_lPaymentAmount;
 
             if (Dao.xGetInstance().bPayment(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {
