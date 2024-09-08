@@ -319,7 +319,7 @@ namespace SaleFlex.POS.Document
                     {
 
                         strTypeName = xTransactionPayment.xPaymentTypeDataModel.strTypeName;
-                        decAmount = xTransactionPayment.decAmount;
+                        decAmount = xTransactionPayment.lAmount;
 
                         if (iPaymentStartingRowIndex != -1)
                         {

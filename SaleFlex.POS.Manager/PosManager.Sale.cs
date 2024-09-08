@@ -549,7 +549,7 @@ namespace SaleFlex.POS.Manager
             }
 
             xPaymentDataModel.lId = 0;
-            xPaymentDataModel.decAmount = prm_decPaymentAmount;
+            xPaymentDataModel.lAmount = prm_decPaymentAmount;
 
             if (Dao.xGetInstance().bPaymentTemp(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {

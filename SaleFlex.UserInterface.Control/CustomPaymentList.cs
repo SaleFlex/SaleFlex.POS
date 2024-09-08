@@ -84,7 +84,7 @@ namespace SaleFlex.UserInterface.Controls
 
             xCustomPaymentListData.ROW_NUMBER = dataGridViewPayments.Rows.Count + 1;
             xCustomPaymentListData.TYPE = prm_xTransactionDataModel.xListPaymentDataModel.Last().xPaymentTypeDataModel.strTypeName;
-            xCustomPaymentListData.AMOUNT = prm_xTransactionDataModel.xListPaymentDataModel.Last().decAmount/100;
+            xCustomPaymentListData.AMOUNT = prm_xTransactionDataModel.xListPaymentDataModel.Last().lAmount / 100;
             xCustomPaymentListData.ID = prm_xTransactionDataModel.xListPaymentDataModel.Last().lId;
 
             m_xListCustomPaymentListData.Add(xCustomPaymentListData);

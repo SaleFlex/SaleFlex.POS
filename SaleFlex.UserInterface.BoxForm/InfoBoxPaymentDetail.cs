@@ -67,7 +67,7 @@ namespace SaleFlex.UserInterface.BoxForm
             if (prm_xPaymentDataModel == null)
                 return false;
 
-            int iRowIndex = dataGridViewPayments.Rows.Add(prm_xPaymentDataModel.xPaymentTypeDataModel.strTypeName, decimal.Parse(prm_xPaymentDataModel.decAmount.ToString())/100);
+            int iRowIndex = dataGridViewPayments.Rows.Add(prm_xPaymentDataModel.xPaymentTypeDataModel.strTypeName, decimal.Parse(prm_xPaymentDataModel.lAmount.ToString())/100);
             dataGridViewPayments.Rows[iRowIndex].Selected = true;
             dataGridViewPayments.FirstDisplayedScrollingRowIndex = iRowIndex;
 
