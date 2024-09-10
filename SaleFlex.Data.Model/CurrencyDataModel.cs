@@ -7,8 +7,8 @@ namespace SaleFlex.Data.Models
 {
     /// <summary>
     /// iNo: 1
-    /// strName: AMERİKAN DOLARI
-    /// decRateOfCurrency: 2,20
+    /// strName: United States Dollars
+    /// lRateOfCurrency: 2,20
     /// iCurrencyCode: 840
     /// strSign: $
     /// strSignDirection: R
@@ -20,9 +20,10 @@ namespace SaleFlex.Data.Models
         {
         }
 
+        public int iId { get; set; }
         public int iNo { get; set; }
         public string strName { get; set; }
-        public decimal decRateOfCurrency { get; set; }
+        public long lRateOfCurrency { get; set; }
         public int iCurrencyCode { get; set; }
         public string strSign { get; set; }
         public string strSignDirection { get; set; }

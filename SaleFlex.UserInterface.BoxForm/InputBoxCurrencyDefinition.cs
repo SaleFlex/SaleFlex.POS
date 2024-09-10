@@ -155,7 +155,7 @@ namespace SaleFlex.UserInterface.BoxForm
             if (xCurrencyDataModel != null)
             {
                 textBoxCurrencyName.Text = xCurrencyDataModel.strName;
-                textBoxRateOfCurrency.Text = xCurrencyDataModel.decRateOfCurrency.ToString();
+                textBoxRateOfCurrency.Text = xCurrencyDataModel.lRateOfCurrency.ToString();
                 textBoxCurrencyCode.Text = xCurrencyDataModel.iCurrencyCode.ToString();
                 textBoxCurrencySymbol.Text = xCurrencyDataModel.strCurrencySymbol;
                 textBoxCurrencySign.Text = xCurrencyDataModel.strSign;

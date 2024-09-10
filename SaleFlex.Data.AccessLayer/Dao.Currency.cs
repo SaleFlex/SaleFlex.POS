@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
 using SaleFlex.CommonLibrary;
 using SaleFlex.Data.Models;
+using SaleFlex.Data.SQLite;
 
 namespace SaleFlex.Data.AccessLayer
 {
@@ -22,8 +24,32 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CurrencyDataModel> xListCurrencyDataModel = null;
 
-                if (xListCurrencyDataModel == null)
-                    xListCurrencyDataModel = new List<CurrencyDataModel>();
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCountry ORDER BY Id");
+
+                if (xDataTable != null && xDataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow xDataRow in xDataTable.Rows)
+                    {
+                        if (xListCurrencyDataModel == null)
+                            xListCurrencyDataModel = new List<CurrencyDataModel>();
+
+                        if (xDataRow != null)
+                        {
+                            CurrencyDataModel xCurrencyDataModel = new CurrencyDataModel();
+
+                            xCurrencyDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
+                            xCurrencyDataModel.iNo = Convert.ToInt32(xDataRow["No"]);
+                            xCurrencyDataModel.strName = Convert.ToString(xDataRow["Name"]) ?? string.Empty;
+                            xCurrencyDataModel.lRateOfCurrency = Convert.ToInt32(xDataRow["RateOfCurrency"]);
+                            xCurrencyDataModel.iCurrencyCode = Convert.ToInt32(xDataRow["CurrencyCode"]);
+                            xCurrencyDataModel.strSign = Convert.ToString(xDataRow["Sign"]) ?? string.Empty;
+                            xCurrencyDataModel.strSignDirection = Convert.ToString(xDataRow["SignDirection"]) ?? string.Empty;
+                            xCurrencyDataModel.strCurrencySymbol = Convert.ToString(xDataRow["CurrencySymbol"]) ?? string.Empty;
+
+                            xListCurrencyDataModel.Add(xCurrencyDataModel);
+                        }
+                    }
+                }
 
                 return xListCurrencyDataModel;
             }

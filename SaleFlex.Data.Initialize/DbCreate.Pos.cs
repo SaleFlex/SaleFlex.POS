@@ -23,6 +23,7 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTableCashier,
                 bCreateTableCountry,
+                bCreateTableCurrency,
                 bCreateTableForm,
                 bCreateTableFormControl,
                 bCreateTableLabelValue,
@@ -325,6 +326,64 @@ namespace SaleFlex.Data.Initialize
                                 foreach (string strCountry in straCountries)
                                 {
                                     xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableCurrency()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableCurrency (
+                        Id             INTEGER PRIMARY KEY
+                                               UNIQUE
+                                               NOT NULL,
+                        No             INTEGER,
+                        Name           TEXT,
+                        RateOfCurrency INTEGER,
+                        CurrencyCode   INTEGER,
+                        Sign           TEXT,
+                        SignDirection  TEXT,
+                        CurrencySymbol TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
                                     iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
                                 }
                             }
