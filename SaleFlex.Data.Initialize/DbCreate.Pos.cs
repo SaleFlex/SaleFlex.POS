@@ -24,6 +24,7 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableCashier,
                 bCreateTableCountry,
                 bCreateTableCity,
+                bCreateTableDistrict,
                 bCreateTableCurrency,
                 bCreateTableForm,
                 bCreateTableFormControl,
@@ -388,6 +389,72 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Newcastle upon Tyne', 'GB-NET', 'NCL', 8, 183);",
                                     "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Nottingham', 'GB-NGM', 'NTG', 9, 183);",
                                     "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Southampton', 'GB-STH', 'SOU', 10, 183);"
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableDistrict()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableDistrict (
+                        Id          INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                              UNIQUE
+                                            NOT NULL,
+                        Name        TEXT    NOT NULL,
+                        Code        TEXT,
+                        ShortName   TEXT,
+                        NumericCode INTEGER,
+                        FkCityId    INTEGER
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-CMD', 'Camden', 'CMD', 1, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-WSTM', 'Westminster', 'WSTM', 2, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-KNS', 'Kensington and Chelsea', 'KNS', 3, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-HCK', 'Hackney', 'HCK', 4, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-ISL', 'Islington', 'ISL', 5, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-SWT', 'Southwark', 'SWT', 6, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-LMB', 'Lambeth', 'LMB', 7, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-WND', 'Wandsworth', 'WND', 8, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-TWH', 'Tower Hamlets', 'TWH', 9, 1);",
+                                    "INSERT INTO TableDistrict (Name, Code, ShortName, NumericCode, FkCityId) VALUES ('LDN-HGY', 'Haringey', 'HGY', 10, 1);"
                                 };
 
                                 foreach (string strCountry in straCountries)

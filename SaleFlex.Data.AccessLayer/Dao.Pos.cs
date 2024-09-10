@@ -25,7 +25,7 @@ namespace SaleFlex.Data.AccessLayer
                 {
                     int iTableCount = Convert.ToInt32(xDataTable.Rows[0][0]) - 1;
 
-                    if (iTableCount == 6)
+                    if (iTableCount == 10)
                     {
                         returnvalue = true;
                     }

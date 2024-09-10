@@ -16,7 +16,6 @@ namespace SaleFlex.Data.Models
         public string strName { get; set; }
         public string strShortName { get; set; }
         public int iNumericCode { get; set; }
-
         public bool bDefault { get; set; }
     }
 }
