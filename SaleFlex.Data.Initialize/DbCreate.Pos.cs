@@ -23,6 +23,7 @@ namespace SaleFlex.Data.Initialize
             {
                 bCreateTableCashier,
                 bCreateTableCountry,
+                bCreateTableCity,
                 bCreateTableCurrency,
                 bCreateTableForm,
                 bCreateTableFormControl,
@@ -321,6 +322,72 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Yemen', 'YE', 'YEM', 887);",
                                     "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Zambia', 'ZM', 'ZMB', 894);",
                                     "INSERT INTO TableCountry (Name, Code, ShortName, NumericCode) VALUES ('Zimbabwe', 'ZW', 'ZWE', 716);"
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableCity()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableCity (
+                        Id          INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                              UNIQUE
+                                            NOT NULL,
+                        Name        TEXT    NOT NULL,
+                        Code        TEXT,
+                        ShortName   TEXT,
+                        NumericCode INTEGER,
+                        FkCountryId INTEGER
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabasePosFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('London', 'GB-LND', 'LDN', 1, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Manchester', 'GB-MAN', 'MAN', 2, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Birmingham', 'GB-BIR', 'BHM', 3, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Liverpool', 'GB-LIV', 'LIV', 4, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Leeds', 'GB-LDS', 'LDS', 5, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Sheffield', 'GB-SHF', 'SHF', 6, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Bristol', 'GB-BST', 'BRS', 7, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Newcastle upon Tyne', 'GB-NET', 'NCL', 8, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Nottingham', 'GB-NGM', 'NTG', 9, 183);",
+                                    "INSERT INTO TableCity (Name, Code, ShortName, NumericCode, FkCountryId) VALUES ('Southampton', 'GB-STH', 'SOU', 10, 183);"
                                 };
 
                                 foreach (string strCountry in straCountries)
