@@ -69,6 +69,12 @@ namespace SaleFlex.UserInterface.Manager
                     DbCreate.bCreateSalesDb();
                 }
 
+                if (Dao.xGetInstance().bCheckCustomersDb() == false)
+                {
+                    xAboutBox.vChangeLabelDownloading("Checking CUSTOMER database...");
+                    DbCreate.bCreateCustomerDb();
+                }
+
                 xAboutBox.vChangeLabelDownloading("Loading POS data...");
                 PosManager.xGetInstance().bReadPos();
 

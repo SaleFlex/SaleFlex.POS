@@ -69,7 +69,7 @@ namespace SaleFlex.UserInterface.BoxForm
           strAddressLine2 = prm_xCustomerDataModel.strAddressLine2;
           strAddressLine3 = prm_xCustomerDataModel.strAddressLine3;
           strZipCode = prm_xCustomerDataModel.strZipCode;
-          decBonus = prm_xCustomerDataModel.decBonus;
+          lBonus = prm_xCustomerDataModel.lBonus;
           strNationalIdentityNumber = prm_xCustomerDataModel.strNationalIdentityNumber;
           strTaxOffice = prm_xCustomerDataModel.strTaxOffice;
           strTaxNumber = prm_xCustomerDataModel.strTaxNumber;
@@ -292,15 +292,15 @@ namespace SaleFlex.UserInterface.BoxForm
       }
     }
 
-    public decimal decBonus
+    public long lBonus
     {
       get
       {
-        return 0m;
+        return 0;
       }
       set
       {
-        decimal decTempBonus = value;
+        long lTempBonus = value;
       }
     }
 
@@ -444,7 +444,7 @@ namespace SaleFlex.UserInterface.BoxForm
       strAddressLine2 = this.strAddressLine2;
       strAddressLine3 = this.strAddressLine3;
       strZipCode = this.strZipCode;
-      decBonus = 0m;
+      lBonus = 0;
       strNationalIdentityNumber = this.strNationalIdentityNumber;
       strTaxOffice = this.strTaxOffice;
       strTaxNumber = this.strTaxNumber;
@@ -568,7 +568,7 @@ namespace SaleFlex.UserInterface.BoxForm
         strAddressLine2 = xListCustomerDataModel[0].strAddressLine2;
         strAddressLine3 = xListCustomerDataModel[0].strAddressLine3;
         strZipCode = xListCustomerDataModel[0].strZipCode;
-        decBonus = xListCustomerDataModel[0].decBonus;
+        lBonus = xListCustomerDataModel[0].lBonus;
         strNationalIdentityNumber = xListCustomerDataModel[0].strNationalIdentityNumber;
         strTaxOffice = xListCustomerDataModel[0].strTaxOffice;
         strTaxNumber = xListCustomerDataModel[0].strTaxNumber;
@@ -592,7 +592,7 @@ namespace SaleFlex.UserInterface.BoxForm
         strAddressLine2 = string.Empty;
         strAddressLine3 = string.Empty;
         strZipCode = string.Empty;
-        decBonus = 0m;
+        lBonus = 0;
         strNationalIdentityNumber = string.Empty;
         strTaxOffice = string.Empty;
         strTaxNumber = string.Empty;
@@ -623,7 +623,7 @@ namespace SaleFlex.UserInterface.BoxForm
         strAddressLine2 = string.Empty;
         strAddressLine3 = string.Empty;
         strZipCode = string.Empty;
-        decBonus = 0m;
+        lBonus = 0;
         strNationalIdentityNumber = string.Empty;
         strTaxOffice = string.Empty;
         strTaxNumber = string.Empty;

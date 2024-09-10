@@ -34,7 +34,7 @@ namespace SaleFlex.CommonLibrary
 
             try
             {
-                string strJsonData = JsonConvert.SerializeObject(prm_objTemplate);
+                string strJsonData = JsonConvert.SerializeObject(prm_objTemplate, Formatting.Indented);
                 if (!string.IsNullOrEmpty(strJsonData))
                 {
                     try

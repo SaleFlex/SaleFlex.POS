@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbCreate.cs" />
+    <Compile Include="DbCreate.Customer.cs" />
     <Compile Include="DbCreate.Pos.cs" />
     <Compile Include="DbCreate.Product.cs" />
     <Compile Include="DbCreate.Sales.cs" />

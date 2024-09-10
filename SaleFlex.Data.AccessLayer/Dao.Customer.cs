@@ -6,11 +6,38 @@ using System.Text;
 using SaleFlex.CommonLibrary;
 using SaleFlex.Data.Models;
 using SaleFlex.Data;
+using SaleFlex.Data.SQLite;
+using System.Data;
 
 namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
+        public bool bCheckCustomersDb()
+        {
+            bool returnvalue = false;
+
+            try
+            {
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseCustomersFileNameAndPath).xExecuteDataTable("SELECT count(*) FROM sqlite_master WHERE type='table'");
+
+                if (xDataTable.Rows.Count > 0)
+                {
+                    int iTableCount = Convert.ToInt32(xDataTable.Rows[0][0]) - 1;
+
+                    if (iTableCount == 1)
+                    {
+                        returnvalue = true;
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+            return returnvalue;
+        }
+
         public List<CountryDataModel> xListGetCountry()
         {
             return xListGetCountry(string.Empty);

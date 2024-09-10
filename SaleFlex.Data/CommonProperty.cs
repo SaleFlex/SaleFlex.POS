@@ -204,6 +204,19 @@ namespace SaleFlex.Data
                 JsonParameter.xGetInstance().bUpdateJsonParameter();
             }
         }
+
+        public static string prop_strDatabaseCustomersFileName
+        {
+            get
+            {
+                return JsonParameter.xGetInstance().prop_strDatabaseCustomersFileName;
+            }
+            set
+            {
+                JsonParameter.xGetInstance().prop_strDatabaseCustomersFileName = value;
+                JsonParameter.xGetInstance().bUpdateJsonParameter();
+            }
+        }
         
 
         public static string prop_strDatabasePosFileNameAndPath
@@ -229,6 +242,15 @@ namespace SaleFlex.Data
             get
             {
                 string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabaseProductsFileName}";
+                return strFileNameAndPath;
+            }
+        }
+
+        public static string prop_strDatabaseCustomersFileNameAndPath
+        {
+            get
+            {
+                string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabaseCustomersFileName}";
                 return strFileNameAndPath;
             }
         }

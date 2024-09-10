@@ -23,7 +23,7 @@ namespace SaleFlex.Data.Models
         public DistrictDataModel xDistrictDataModel { get; set; }
         public CityDataModel xCityDataModel { get; set; }
         public CountryDataModel xCountryDataModel { get; set; }
-        public decimal decBonus { get; set; }
+        public long lBonus { get; set; }
         public string strNationalIdentityNumber { get; set; }
         public string strTaxOffice { get; set; }
         public string strTaxNumber { get; set; }
