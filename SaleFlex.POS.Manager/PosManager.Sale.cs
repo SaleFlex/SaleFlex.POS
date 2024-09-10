@@ -22,6 +22,8 @@ namespace SaleFlex.POS.Manager
                 m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
             }
 
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNo() + 1;
+
             if (m_xPosManagerData.xTransactionDataModel.bTransactionStarted == false)
             {
                 if (bInsertTransactionHead() == true)
@@ -61,8 +63,8 @@ namespace SaleFlex.POS.Manager
             xTransactionHeadDataModel.iFkCustomerId = 0;
             xTransactionHeadDataModel.xCustomerDataModel = null;
             xTransactionHeadDataModel.strTransactionNo = string.Format("{0}", lSequenceNumber);
-            xTransactionHeadDataModel.iReceiptNumber = 0;
-            xTransactionHeadDataModel.iZNumber = 0;
+            xTransactionHeadDataModel.iReceiptNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber;
+            xTransactionHeadDataModel.iZNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber;
             xTransactionHeadDataModel.decReceiptTotalPrice = 0;
             xTransactionHeadDataModel.decReceiptTotalVat = 0;
             xTransactionHeadDataModel.decTotalDiscountAmount = 0;
