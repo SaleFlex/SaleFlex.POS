@@ -172,8 +172,8 @@ namespace SaleFlex.UserInterface.BoxForm
             if(xDepartmentDataModel != null)
             {
                 textBoxDepartmentName.Text = xDepartmentDataModel.strName;
-                textBoxDepartmentPrice.Text = xDepartmentDataModel.decDefaultPrice.ToString();
-                textBoxDepartmentPriceLimitation.Text = xDepartmentDataModel.decMaxPrice.ToString();
+                textBoxDepartmentPrice.Text = xDepartmentDataModel.lDefaultPrice.ToString();
+                textBoxDepartmentPriceLimitation.Text = xDepartmentDataModel.lMaxPrice.ToString();
                 comboBoxVATId.SelectedItem = xDepartmentDataModel.xVat.iId.ToString();
             }
         }
@@ -203,8 +203,8 @@ namespace SaleFlex.UserInterface.BoxForm
                 xDepartmentDataModel.iNo = xInputBoxNewDepartmentDefinition.iDepartmentId;
                 xDepartmentDataModel.xVat.iNo = xInputBoxNewDepartmentDefinition.iVATId;
                 xDepartmentDataModel.strName = xInputBoxNewDepartmentDefinition.strDepartmentName;
-                xDepartmentDataModel.decDefaultPrice = xInputBoxNewDepartmentDefinition.decDepartmentPrice;
-                xDepartmentDataModel.decMaxPrice = xInputBoxNewDepartmentDefinition.decDepartmentPriceLimitation;
+                xDepartmentDataModel.lDefaultPrice = xInputBoxNewDepartmentDefinition.decDepartmentPrice;
+                xDepartmentDataModel.lMaxPrice = xInputBoxNewDepartmentDefinition.decDepartmentPriceLimitation;
                 xNewDepartmentDataModel = xDepartmentDataModel;
                 this.DialogResult = DialogResult.Cancel;
             }

@@ -26,7 +26,8 @@ namespace SaleFlex.Data.Initialize
                 bCreateTablePluMainGroup,
                 bCreateTablePluManufacturer,
                 bCreateTablePluSubGroup,
-                bCreateTableVat
+                bCreateTableVat,
+                bCreateTableDepartment
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -417,6 +418,67 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableVat (No, Name, Rate, Description)  VALUES (1, '%0', 0, 'Zero VAT Rate (0%)')",
                                     "INSERT INTO TableVat (No, Name, Rate, Description)  VALUES (2, '%5', 5, 'Reduced VAT Rate (5%)')",
                                     "INSERT INTO TableVat (No, Name, Rate, Description)  VALUES (3, '%20', 20, 'Standard VAT Rate (20%)')"
+                                };
+
+                                foreach (string strQuery in straQueries)
+                                {
+                                    xSQLiteCommand.CommandText = strQuery;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableDepartment()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableDepartment (
+                        Id              INTEGER NOT NULL
+                                                UNIQUE
+                                                PRIMARY KEY ASC AUTOINCREMENT,
+                        No              INTEGER NOT NULL,
+                        Name            TEXT    NOT NULL,
+                        DefaultPrice    INTEGER NOT NULL,
+                        DefaultQuantity INTEGER NOT NULL,
+                        MaxPrice        INTEGER,
+                        FkVatId         INTEGER NOT NULL,
+                        KeyboardValue   TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseProductsFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straQueries = new string[]
+                                {
+                                    "INSERT INTO TableDepartment (No, Name, DefaultPrice, DefaultQuantity, MaxPrice, FkVatId)  VALUES (1, 'FOOD', 100, 1, 100, 1)",
+                                    "INSERT INTO TableDepartment (No, Name, DefaultPrice, DefaultQuantity, MaxPrice, FkVatId)  VALUES (2, 'TOBACCO', 200, 1, 200, 3)",
+                                    "INSERT INTO TableDepartment (No, Name, DefaultPrice, DefaultQuantity, MaxPrice, FkVatId)  VALUES (3, 'INDIVIDUAL', 300, 1, 300, 3)"
                                 };
 
                                 foreach (string strQuery in straQueries)

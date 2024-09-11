@@ -134,7 +134,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     if (xDepartmentDataModel != null)
                     {
-                        long decPrice = m_decPriceOfProduct.bOverflowAmountCheck() == true ? xDepartmentDataModel.decDefaultPrice : m_decPriceOfProduct;
+                        long decPrice = m_decPriceOfProduct.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : m_decPriceOfProduct;
                         if (PosManager.xGetInstance().bSaleDepartment(iDepartmentNo, decPrice, m_decQuantityOfProduct) == false)
                         {
                         }

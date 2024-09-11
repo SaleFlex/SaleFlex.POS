@@ -248,7 +248,7 @@ namespace SaleFlex.UserInterface.BoxForm
 
         private void comboBoxDepartmentId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxPLUPriceLimitation.Text = ((DepartmentDataModel)comboBoxSubGroupNo.SelectedItem).decMaxPrice.ToString();
+            textBoxPLUPriceLimitation.Text = ((DepartmentDataModel)comboBoxSubGroupNo.SelectedItem).lMaxPrice.ToString();
         }
 
         private void textBoxBarcode_KeyPress(object sender, KeyPressEventArgs e)

@@ -236,7 +236,7 @@ namespace SaleFlex.POS.Manager
             {
                 if (xDepartmentDataModel.iNo == prm_iDepartmentNo)
                 {
-                    decPrice = prm_decPrice.bOverflowAmountCheck() == true ? xDepartmentDataModel.decDefaultPrice : prm_decPrice;
+                    decPrice = prm_decPrice.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : prm_decPrice;
                     decQuantity = prm_decQuantity;
                     xSaledDepartmentDataModel = xDepartmentDataModel;
 
