@@ -6,6 +6,8 @@ using System.Text;
 using SaleFlex.CommonLibrary;
 using SaleFlex.Data.Models;
 using SaleFlex.Data;
+using SaleFlex.Data.SQLite;
+using System.Data;
 
 namespace SaleFlex.Data.AccessLayer
 {
@@ -32,16 +34,31 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<DepartmentDataModel> xListDepartmentDataModel = null;
 
-                if (xListDepartmentDataModel == null) xListDepartmentDataModel = new List<DepartmentDataModel>();
+                DataTable xDataTable = null;
 
-                DepartmentDataModel xDepartmentDataModel = new DepartmentDataModel();
-                xDepartmentDataModel.iId = 1;
-                xDepartmentDataModel.iNo = 1;
-                xDepartmentDataModel.strName = "MISCELLANEOUS";
-                xDepartmentDataModel.xVat = new VatDataModel { iId = 1, iNo = 1, iRate = 2000, strName = "20" };
-                xDepartmentDataModel.lDefaultQuantity = 1;
-                xDepartmentDataModel.lDefaultPrice = 10;
-                xListDepartmentDataModel.Add(xDepartmentDataModel);
+                if (prm_iDepartmentNo > 0)
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableDepartment ORDER BY Id");
+                else
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableDepartment WHERE No = {prm_iDepartmentNo} ORDER BY Id");
+
+                if (xDataTable != null && xDataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow xDataRow in xDataTable.Rows)
+                    {
+                        if (xListDepartmentDataModel == null)
+                            xListDepartmentDataModel = new List<DepartmentDataModel>();
+
+                        DepartmentDataModel xDepartmentDataModel = new DepartmentDataModel();
+                        xDepartmentDataModel.iId = Convert.ToInt32(xDataRow["Id"]);
+                        xDepartmentDataModel.iNo = Convert.ToInt32(xDataRow["No"]);
+                        xDepartmentDataModel.strName = Convert.ToString(xDataRow["Name"]) ?? string.Empty;
+                        xDepartmentDataModel.lDefaultQuantity = Convert.ToInt32(xDataRow["DefaultQuantity"]);
+                        xDepartmentDataModel.lDefaultPrice = Convert.ToInt32(xDataRow["DefaultPrice"]);
+                        xDepartmentDataModel.lMaxPrice = Convert.ToInt32(xDataRow["MaxPrice"]);
+                        xDepartmentDataModel.xVat = Dao.xGetInstance().xGetVatByNo(Convert.ToInt32(xDataRow["FkVatId"]));
+                        xListDepartmentDataModel.Add(xDepartmentDataModel);
+                    }
+                }
 
                 return xListDepartmentDataModel;
             }
