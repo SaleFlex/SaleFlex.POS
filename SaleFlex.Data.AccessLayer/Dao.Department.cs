@@ -37,9 +37,9 @@ namespace SaleFlex.Data.AccessLayer
                 DataTable xDataTable = null;
 
                 if (prm_iDepartmentNo > 0)
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableDepartment ORDER BY Id");
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableDepartment WHERE No = {prm_iDepartmentNo} ORDER BY Id");
                 else
-                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable($"SELECT * FROM TableDepartment WHERE No = {prm_iDepartmentNo} ORDER BY Id");
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable("SELECT * FROM TableDepartment ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
