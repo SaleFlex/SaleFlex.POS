@@ -107,8 +107,9 @@ namespace SaleFlex.UserInterface.Manager
                 PosManager.xGetInstance().bReadListCashiers();
                 PosManager.xGetInstance().bReadDefaultCashier();
 
-                xAboutBox.vChangeLabelDownloading("Loading open sales transaction...");
+                xAboutBox.vChangeLabelDownloading("Transactions are loading...");
                 PosManager.xGetInstance().bReadLastOpenTransaction();
+                PosManager.xGetInstance().bReadTransactionSequences();
 
                 PosManager.xGetInstance().prop_enumDocumentType = EnumDocumentType.FiscalReceipt;
 

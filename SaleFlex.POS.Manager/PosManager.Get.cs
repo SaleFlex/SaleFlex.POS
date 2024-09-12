@@ -837,6 +837,28 @@ namespace SaleFlex.POS.Manager
             }
         }
 
+        public bool bReadTransactionSequences()
+        {
+            try
+            {
+                // If there is no previous transaction, create an empty transaction.
+                if (m_xPosManagerData.xTransactionDataModel==null)
+                    m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
+                if (m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel == null)
+                    m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel = new TransactionHeadDataModel();
+
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNumber();
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
+
+                return true;
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+                return false;
+            }
+        }
+
         public bool bGetForm(out EnumFormType prm_out_enumFormType)
         {
             prm_out_enumFormType = EnumFormType.SALE;
