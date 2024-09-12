@@ -50,11 +50,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalPrice;
+                return xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
             }
             set
             {
-                xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalPrice = value;
+                xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice = value;
             }
         }
 
@@ -62,11 +62,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalVat;
+                return xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
             }
             set
             {
-                xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalVat = value;
+                xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat = value;
             }
         }
 
@@ -74,11 +74,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return xTransactionDataModel.xTransactionHeadDataModel.decTotalDiscountAmount;
+                return xTransactionDataModel.xTransactionHeadDataModel.lTotalDiscountAmount;
             }
             set
             {
-                xTransactionDataModel.xTransactionHeadDataModel.decTotalDiscountAmount = value;
+                xTransactionDataModel.xTransactionHeadDataModel.lTotalDiscountAmount = value;
             }
         }
 
@@ -86,11 +86,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return xTransactionDataModel.xTransactionHeadDataModel.decSurchargeAmount;
+                return xTransactionDataModel.xTransactionHeadDataModel.lSurchargeAmount;
             }
             set
             {
-                xTransactionDataModel.xTransactionHeadDataModel.decSurchargeAmount = value;
+                xTransactionDataModel.xTransactionHeadDataModel.lSurchargeAmount = value;
             }
         }
 

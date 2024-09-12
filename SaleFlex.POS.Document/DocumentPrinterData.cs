@@ -295,8 +295,8 @@ namespace SaleFlex.POS.Document
 
                 if (prm_xTransactionDataModel.xTransactionHeadDataModel != null)
                 {
-                    decReceiptTotalPrice = prm_xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalPrice;
-                    decReceiptVatRate = prm_xTransactionDataModel.xTransactionHeadDataModel.decReceiptTotalVat;
+                    decReceiptTotalPrice = prm_xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
+                    decReceiptVatRate = prm_xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
 
                     if (xTransactionDocumentDesignDataModel.iTotalPriceInDigitsRow != -1)
                         vCheckAndGetString(string.Format("TOPLAM TUTAR: {0:#,0.00} TL", decReceiptTotalPrice), iTotalPriceInDigitsLength, xTransactionDocumentDesignDataModel.iTotalPriceInDigitsColumn, iRowLength, (iPageNumber * xTransactionDocumentDesignDataModel.iMaxDynamicLinesNumber) + xTransactionDocumentDesignDataModel.iTotalPriceInDigitsRow, null, false);

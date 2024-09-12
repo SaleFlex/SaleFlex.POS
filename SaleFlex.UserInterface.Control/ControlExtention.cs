@@ -378,7 +378,7 @@ namespace SaleFlex.UserInterface.Controls
                     }
                     //if (xControl is CustomAmountsTable)
                     //{
-                    //    ((CustomAmountsTable)xControl).decReceiptTotalPrice -= /*((CustomSalesList)prm_xCustomForm.Controls[16])*/1;
+                    //    ((CustomAmountsTable)xControl).lReceiptTotalPrice -= /*((CustomSalesList)prm_xCustomForm.Controls[16])*/1;
                     //    ((CustomAmountsTable)xControl).vUpdateAndRefreshFormControls();
                     //}
                 }

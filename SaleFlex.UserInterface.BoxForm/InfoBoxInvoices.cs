@@ -86,7 +86,7 @@ namespace SaleFlex.UserInterface.BoxForm
             //    strCustomerName = string.Format("{0} {1}", xCustomerDataModel.strName, xCustomerDataModel.strLasName); ;
             //}
 
-            int iRowIndex = dataGridViewTransactionHeads.Rows.Add(prm_xTransactionHeadDataModel.iId.ToString(), prm_xTransactionHeadDataModel.xTransactionDateTime, prm_xTransactionHeadDataModel.decReceiptTotalPrice, strCustomerName);
+            int iRowIndex = dataGridViewTransactionHeads.Rows.Add(prm_xTransactionHeadDataModel.iId.ToString(), prm_xTransactionHeadDataModel.xTransactionDateTime, prm_xTransactionHeadDataModel.lReceiptTotalPrice, strCustomerName);
             dataGridViewTransactionHeads.Rows[iRowIndex].Selected = true;
             dataGridViewTransactionHeads.FirstDisplayedScrollingRowIndex = iRowIndex;
 

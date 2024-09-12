@@ -103,16 +103,16 @@ namespace SaleFlex.UserInterface.BoxForm
             //xTransactionHeadDataModel.strTransactionNo = "1";
             //xTransactionHeadDataModel.iReceiptNumber = 0;
             //xTransactionHeadDataModel.iZNumber = 0;
-            //xTransactionHeadDataModel.decReceiptTotalPrice = 0;
-            //xTransactionHeadDataModel.decReceiptTotalVat = 0;
-            //xTransactionHeadDataModel.decTotalDiscountAmount = 0;
-            //xTransactionHeadDataModel.decTransactionsDiscountAmount = 0;
-            //xTransactionHeadDataModel.decCustomerTotalDiscountAmount = 0;
-            //xTransactionHeadDataModel.decPromotionTotalDiscountAmount = 0;
-            //xTransactionHeadDataModel.decSurchargeAmount = 0;
-            //xTransactionHeadDataModel.decPaymentAmount = 0;
-            //xTransactionHeadDataModel.decChangeAmount = 0;
-            //xTransactionHeadDataModel.decRoundAmount = 0;
+            //xTransactionHeadDataModel.lReceiptTotalPrice = 0;
+            //xTransactionHeadDataModel.lReceiptTotalVat = 0;
+            //xTransactionHeadDataModel.lTotalDiscountAmount = 0;
+            //xTransactionHeadDataModel.lTransactionsDiscountAmount = 0;
+            //xTransactionHeadDataModel.lCustomerTotalDiscountAmount = 0;
+            //xTransactionHeadDataModel.lPromotionTotalDiscountAmount = 0;
+            //xTransactionHeadDataModel.lSurchargeAmount = 0;
+            //xTransactionHeadDataModel.lPaymentAmount = 0;
+            //xTransactionHeadDataModel.lChangeAmount = 0;
+            //xTransactionHeadDataModel.lRoundAmount = 0;
             //xTransactionHeadDataModel.bIsVoided = true;
             SaleFlex.Data.AccessLayer.Dao.xGetInstance().bUpdateTransactionHead(xTransactionHeadDataModel);
         }

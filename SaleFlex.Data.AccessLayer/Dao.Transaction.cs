@@ -368,16 +368,16 @@ namespace SaleFlex.Data.AccessLayer
                     xTransactionHeadDataModel.strTransactionNo = xDataTable.Rows[0]["TransactionNo"].ToString();
                     xTransactionHeadDataModel.iReceiptNumber = int.Parse(xDataTable.Rows[0]["ReceiptNumber"].ToString());
                     xTransactionHeadDataModel.iZNumber = int.Parse(xDataTable.Rows[0]["ZNumber"].ToString());
-                    xTransactionHeadDataModel.decReceiptTotalPrice = long.Parse(xDataTable.Rows[0]["ReceiptTotalPrice"].ToString());
-                    xTransactionHeadDataModel.decReceiptTotalVat = long.Parse(xDataTable.Rows[0]["ReceiptTotalVat"].ToString());
-                    xTransactionHeadDataModel.decTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["TotalDiscountAmount"].ToString());
-                    xTransactionHeadDataModel.decTransactionsDiscountAmount = long.Parse(xDataTable.Rows[0]["TransactionsDiscountAmount"].ToString());
-                    xTransactionHeadDataModel.decCustomerTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["CustomerTotalDiscountAmount"].ToString());
-                    xTransactionHeadDataModel.decPromotionTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["PromotionTotalDiscountAmount"].ToString());
-                    xTransactionHeadDataModel.decSurchargeAmount = long.Parse(xDataTable.Rows[0]["SurchargeAmount"].ToString());
-                    xTransactionHeadDataModel.decPaymentAmount = long.Parse(xDataTable.Rows[0]["PaymentAmount"].ToString());
-                    xTransactionHeadDataModel.decChangeAmount = long.Parse(xDataTable.Rows[0]["ChangeAmount"].ToString());
-                    xTransactionHeadDataModel.decRoundAmount = long.Parse(xDataTable.Rows[0]["RoundAmount"].ToString());
+                    xTransactionHeadDataModel.lReceiptTotalPrice = long.Parse(xDataTable.Rows[0]["ReceiptTotalPrice"].ToString());
+                    xTransactionHeadDataModel.lReceiptTotalVat = long.Parse(xDataTable.Rows[0]["ReceiptTotalVat"].ToString());
+                    xTransactionHeadDataModel.lTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["TotalDiscountAmount"].ToString());
+                    xTransactionHeadDataModel.lTransactionsDiscountAmount = long.Parse(xDataTable.Rows[0]["TransactionsDiscountAmount"].ToString());
+                    xTransactionHeadDataModel.lCustomerTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["CustomerTotalDiscountAmount"].ToString());
+                    xTransactionHeadDataModel.lPromotionTotalDiscountAmount = long.Parse(xDataTable.Rows[0]["PromotionTotalDiscountAmount"].ToString());
+                    xTransactionHeadDataModel.lSurchargeAmount = long.Parse(xDataTable.Rows[0]["SurchargeAmount"].ToString());
+                    xTransactionHeadDataModel.lPaymentAmount = long.Parse(xDataTable.Rows[0]["PaymentAmount"].ToString());
+                    xTransactionHeadDataModel.lChangeAmount = long.Parse(xDataTable.Rows[0]["ChangeAmount"].ToString());
+                    xTransactionHeadDataModel.lRoundAmount = long.Parse(xDataTable.Rows[0]["RoundAmount"].ToString());
                     xTransactionHeadDataModel.bIsVoided = bool.Parse(xDataTable.Rows[0]["IsVoided"].ToString());
                 }
 
@@ -486,8 +486,8 @@ namespace SaleFlex.Data.AccessLayer
             try
             {
                 var query = string.Format("UPDATE TableTransactionHead SET ReceiptTotalPrice={0}, ReceiptTotalVat={1} WHERE Id={2}; SELECT changes() as Result",
-                    prm_xTransactionHeadDataModel.decReceiptTotalPrice,
-                    prm_xTransactionHeadDataModel.decReceiptTotalVat,
+                    prm_xTransactionHeadDataModel.lReceiptTotalPrice,
+                    prm_xTransactionHeadDataModel.lReceiptTotalVat,
                     prm_xTransactionHeadDataModel.iId);
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
@@ -516,16 +516,16 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionHeadDataModel.strTransactionNo,
                     prm_xTransactionHeadDataModel.iReceiptNumber,
                     prm_xTransactionHeadDataModel.iZNumber,
-                    prm_xTransactionHeadDataModel.decReceiptTotalPrice,
-                    prm_xTransactionHeadDataModel.decReceiptTotalVat,
-                    prm_xTransactionHeadDataModel.decTotalDiscountAmount,
-                    prm_xTransactionHeadDataModel.decTransactionsDiscountAmount,
-                    prm_xTransactionHeadDataModel.decCustomerTotalDiscountAmount,
-                    prm_xTransactionHeadDataModel.decPromotionTotalDiscountAmount,
-                    prm_xTransactionHeadDataModel.decSurchargeAmount,
-                    prm_xTransactionHeadDataModel.decPaymentAmount,
-                    prm_xTransactionHeadDataModel.decChangeAmount,
-                    prm_xTransactionHeadDataModel.decRoundAmount);
+                    prm_xTransactionHeadDataModel.lReceiptTotalPrice,
+                    prm_xTransactionHeadDataModel.lReceiptTotalVat,
+                    prm_xTransactionHeadDataModel.lTotalDiscountAmount,
+                    prm_xTransactionHeadDataModel.lTransactionsDiscountAmount,
+                    prm_xTransactionHeadDataModel.lCustomerTotalDiscountAmount,
+                    prm_xTransactionHeadDataModel.lPromotionTotalDiscountAmount,
+                    prm_xTransactionHeadDataModel.lSurchargeAmount,
+                    prm_xTransactionHeadDataModel.lPaymentAmount,
+                    prm_xTransactionHeadDataModel.lChangeAmount,
+                    prm_xTransactionHeadDataModel.lRoundAmount);
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (int.Parse(xDataTable.Rows[0]["InsertedId"].ToString()) > 0)
