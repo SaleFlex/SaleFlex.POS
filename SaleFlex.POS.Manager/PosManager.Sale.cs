@@ -210,6 +210,9 @@ namespace SaleFlex.POS.Manager
         public bool bClearTransaction()
         {
             m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel = new TransactionHeadDataModel();
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNumber();
             m_xPosManagerData.xTransactionDataModel.bTransactionStarted = false;
             m_xPosManagerData.lReceiptTotalPrice = 0;
             m_xPosManagerData.lReceiptTotalVat = 0;
