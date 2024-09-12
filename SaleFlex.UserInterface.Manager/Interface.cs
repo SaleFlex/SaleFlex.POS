@@ -18,14 +18,16 @@ using SaleFlex.UserInterface.Data;
 
 namespace SaleFlex.UserInterface.Manager
 {
+    // This class is responsible for managing the user interface and custom event handling
     public class Interface : CustomEventHandler
     {
-        private static Interface m_xGlobalsInstance = null;
-        private int m_iTabIndex = 0;
-        private CustomForm m_xCustomForm = null;
-        private CustomCustomerForm m_xCustomCustomerForm = null;
-        private string m_strFormName = string.Empty;
+        private static Interface m_xGlobalsInstance = null;         // Singleton instance of the Interface class
+        private int m_iTabIndex = 0;                                // Index for tab navigation
+        private CustomForm m_xCustomForm = null;                    // Custom form instance
+        private CustomCustomerForm m_xCustomCustomerForm = null;    // Custom customer form instance
+        private string m_strFormName = string.Empty;                // Name of the current form
 
+        // Singleton pattern to get the single instance of Interface
         public static Interface xGetInstance()
         {
             if (m_xGlobalsInstance == null)
@@ -37,27 +39,33 @@ namespace SaleFlex.UserInterface.Manager
         {
             m_xCustomForm = new CustomForm();
 
+            // Check if the form was created successfully
             if (m_xCustomForm != null)
             {
                 DeviceManager.xGetInstance().bInitialize();
 
-                // Prevent to monitor power down
+                // Prevent the monitor from powering down
                 Api.PreventMonitorPowerdown();
 
+                // Enable NumLock if it's not active
                 if (Api.GetNumLock() != true)
                 {
                     Api.SetNumLock(true);
                 }
 
+                // Hide the cursor if debug mode is not active
                 if (CommonProperty.prop_bIsDebugModeActive == false)
                 {
                     Cursor.Hide();
                 }
 
+                // Draw the form controls and check for any issues
                 if (bDrawFormControls() == false)
                 {
+                    // Handle any form drawing issues
                 }
 
+                // Set the status bar label for document type
                 m_xCustomForm.bSetStatusBarDocumentTypeLabel(PosManager.xGetInstance().prop_enumDocumentType);
 
                 //if (prop_xPosManagerData.xPosDataModel.strCustomerDisplayType.ToUpper() == "N-KOLAY")
@@ -70,19 +78,24 @@ namespace SaleFlex.UserInterface.Manager
                 //        m_xCustomCustomerForm.Show();
                 //    }
                 //}
+
+                // Initialize transaction data model if null
                 if (prop_xPosManagerData.xTransactionDataModel == null)
                 {
                     prop_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
                 }
 
+                // Set focus on the number pad if exist on form
                 m_xCustomForm.bFocusNumPad();
             }
             else
             {
+                // If the form couldn't be created, exit the application
                 Application.Exit();
             }
         }
 
+        // Property to access the custom form
         public CustomForm prop_xCustomForm
         {
             get
@@ -91,6 +104,7 @@ namespace SaleFlex.UserInterface.Manager
             }
         }
 
+        // Property to access the form
         public Form prop_xForm
         {
             get
@@ -99,6 +113,7 @@ namespace SaleFlex.UserInterface.Manager
             }
         }
 
+        // Method to draw form controls and handle various form elements like buttons, labels, etc.
         private bool bDrawFormControls()
         {
             try
