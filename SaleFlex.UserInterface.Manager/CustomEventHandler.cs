@@ -16,17 +16,25 @@ namespace SaleFlex.UserInterface.Manager
         {
         }
 
+        // This method is responsible for distributing event handlers based on the function name provided.
+        // It is used to dynamically assign event handlers to form controls during runtime, as the forms
+        // and controls are created dynamically.
         public EventHandler xEventDistributor(string prm_strFunctionName)
         {
             try
             {
                 EventHandler xEventHandler;
 
+                // Event handler assignment is based on the function name passed as a parameter.
+                // The function name is matched to predefined function names, and the appropriate event
+                // handler is assigned.
+
                 //if( prm_strFunctionName==PredefinedFunctionNames.strFunctionNames[FunctionNames.Login])
                 //{
                 //     xEventHandler = new System.EventHandler(vLoginSystem);
                 //}
 
+                // Switch statement to handle different function names and assign appropriate event handlers.
                 switch (prm_strFunctionName)
                 {
                     case CustomEventFunctionName.strNone:
@@ -289,14 +297,17 @@ namespace SaleFlex.UserInterface.Manager
                     //    xEventHandler = new System.EventHandler(vReDrawButtons);
                     //    break;
                     default:
+                        // If no matching function name is found, use a default handler for undefined functions
                         xEventHandler = new System.EventHandler(vNotDefinedFunction);
                         break;
                 }
 
+                // Return the assigned event handler
                 return xEventHandler;
             }
             catch
             {
+                // Return null in case of any error during event handler assignment
                 return null;
             }
         }
