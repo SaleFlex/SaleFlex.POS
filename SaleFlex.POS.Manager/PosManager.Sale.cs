@@ -22,7 +22,7 @@ namespace SaleFlex.POS.Manager
                 m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
             }
 
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNo() + 1;
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNumber();
 
             if (m_xPosManagerData.xTransactionDataModel.bTransactionStarted == false)
             {
@@ -211,10 +211,10 @@ namespace SaleFlex.POS.Manager
         {
             m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
             m_xPosManagerData.xTransactionDataModel.bTransactionStarted = false;
-            m_xPosManagerData.decReceiptTotalPrice = 0;
-            m_xPosManagerData.decReceiptTotalVat = 0;
-            m_xPosManagerData.decReceiptTotalPayment = 0;
-            m_xPosManagerData.decTotalPrice = 0;
+            m_xPosManagerData.lReceiptTotalPrice = 0;
+            m_xPosManagerData.lReceiptTotalVat = 0;
+            m_xPosManagerData.lReceiptTotalPayment = 0;
+            m_xPosManagerData.lTotalPrice = 0;
 
 
             return true;
@@ -397,10 +397,10 @@ namespace SaleFlex.POS.Manager
                 }
             }
 
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = iReceiptNumber++;
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = iZNumber;
-            m_xPosManagerData.decReceiptTotalPrice = 0;
-            m_xPosManagerData.decReceiptTotalVat = 0;
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iIncreaseReceiptNumberByOne();
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
+            m_xPosManagerData.lReceiptTotalPrice = 0;
+            m_xPosManagerData.lReceiptTotalVat = 0;
 
             m_enumDocumentResult = EnumDocumentResult.CANCELED_BY_CASHIER;
             m_enumDocumentState = EnumDocumentState.CLOSED;
@@ -433,10 +433,10 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = iReceiptNumber++;
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = iZNumber;
-            m_xPosManagerData.decReceiptTotalPrice = 0;
-            m_xPosManagerData.decReceiptTotalVat = 0;
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iIncreaseReceiptNumberByOne();
+            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
+            m_xPosManagerData.lReceiptTotalPrice = 0;
+            m_xPosManagerData.lReceiptTotalVat = 0;
 
             m_enumDocumentResult = EnumDocumentResult.SUSPENDED;
             m_enumDocumentState = EnumDocumentState.SUSPENDED;
@@ -468,8 +468,8 @@ namespace SaleFlex.POS.Manager
                 //m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel = Dao.xGetInstance().xGetTransactionHeader(iTransactionHeadId);
                 m_xPosManagerData.xTransactionDataModel = Dao.xGetInstance().xGetTransactionDataModelByHeadId(iTransactionHeadId);
                 m_xPosManagerData.xTransactionDataModel.bTransactionStarted = true;
-                m_xPosManagerData.decReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
-                m_xPosManagerData.decReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
+                m_xPosManagerData.lReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
+                m_xPosManagerData.lReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
                 bReturnValue = true;
 
             }
@@ -487,8 +487,8 @@ namespace SaleFlex.POS.Manager
                             //2) iTransactionHeadId'ye göre veri getirilip doldurulacak.
                             m_xPosManagerData.xTransactionDataModel = Dao.xGetInstance().xGetTransactionDataModelByHeadId(iTransactionHeadId);
                             m_xPosManagerData.xTransactionDataModel.bTransactionStarted = true;
-                            m_xPosManagerData.decReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
-                            m_xPosManagerData.decReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
+                            m_xPosManagerData.lReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
+                            m_xPosManagerData.lReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
                             bReturnValue = true;
                         }
                         else
@@ -523,7 +523,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            if (m_xPosManagerData.decReceiptTotalPrice <= 0)
+            if (m_xPosManagerData.lReceiptTotalPrice <= 0)
             {
                 m_enumErrorCode = EnumErrorCode.PAYMENT_NOT_POSSIBLE;
                 return false;
@@ -559,7 +559,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            m_xPosManagerData.decReceiptTotalPayment += prm_lPaymentAmount;
+            m_xPosManagerData.lReceiptTotalPayment += prm_lPaymentAmount;
 
             if (Dao.xGetInstance().bPayment(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId, ref xPaymentDataModel) == false)
             {
@@ -569,7 +569,7 @@ namespace SaleFlex.POS.Manager
 
             m_xPosManagerData.xTransactionDataModel.xListPaymentDataModel.Add(xPaymentDataModel);
 
-            if (m_xPosManagerData.decReceiptTotalPrice - m_xPosManagerData.decReceiptTotalPayment <= 0)
+            if (m_xPosManagerData.lReceiptTotalPrice - m_xPosManagerData.lReceiptTotalPayment <= 0)
             {
                 if (Dao.xGetInstance().bCloseTransaction(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId) == false)
                 {
@@ -582,6 +582,12 @@ namespace SaleFlex.POS.Manager
                     Dao.xGetInstance().vRemoveFromSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
                 }
 
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iIncreaseReceiptNumberByOne();
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
+                m_xPosManagerData.lReceiptTotalPrice = 0;
+                m_xPosManagerData.lReceiptTotalVat = 0;
+
+                m_enumDocumentResult = EnumDocumentResult.SUCCESSED;
                 m_enumDocumentState = EnumDocumentState.CLOSED;
 
                 return true;
@@ -609,14 +615,14 @@ namespace SaleFlex.POS.Manager
         {
             //int iReceiptNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber;
             //int iZNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber;
-            //decimal decTotalPrice = 0;
+            //decimal lTotalPrice = 0;
             //decimal lReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
             //decimal lReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
             //decimal decDiscoundSurchargeAmount = 0;
             //decimal decDiscountAmount = 0;
             //decimal lSurchargeAmount = 0;
 
-            //if (m_xFloppy.bCancelLastTransaction(out iReceiptNumber, out iZNumber, out decTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
+            //if (m_xFloppy.bCancelLastTransaction(out iReceiptNumber, out iZNumber, out lTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
             //{
             //    CustomMessageBox.Show(m_xFloppy.strGetLastResponseDescription());
             //    return false;
@@ -663,15 +669,15 @@ namespace SaleFlex.POS.Manager
             //m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = iZNumber;
             //m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice = lReceiptTotalPrice.lConvertToLong();
             //m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat = lReceiptTotalVat.lConvertToLong();
-            //m_xPosManagerData.decReceiptTotalDiscount -= decDiscountAmount;
-            //m_xPosManagerData.decReceiptTotalSurcharge -= lSurchargeAmount;
+            //m_xPosManagerData.lReceiptTotalDiscount -= decDiscountAmount;
+            //m_xPosManagerData.lReceiptTotalSurcharge -= lSurchargeAmount;
 
             //if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             //{
             //    //return false;
             //}
 
-            //m_xPosManagerData.decTotalPrice = decTotalPrice;
+            //m_xPosManagerData.lTotalPrice = lTotalPrice;
             //m_xPosManagerData.lReceiptTotalPrice = lReceiptTotalPrice;
             //m_xPosManagerData.lReceiptTotalVat = lReceiptTotalVat;
 
@@ -749,8 +755,8 @@ namespace SaleFlex.POS.Manager
             m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = iZNumber;
             m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice = decReceiptTotalPrice;
             m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat = decReceiptTotalVat;
-            m_xPosManagerData.decReceiptTotalDiscount -= decDiscountAmount;
-            m_xPosManagerData.decReceiptTotalSurcharge -= decSurchargeAmount;
+            m_xPosManagerData.lReceiptTotalDiscount -= decDiscountAmount;
+            m_xPosManagerData.lReceiptTotalSurcharge -= decSurchargeAmount;
 
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
@@ -758,9 +764,9 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            m_xPosManagerData.decTotalPrice = decTotalPrice;
-            m_xPosManagerData.decReceiptTotalPrice = decReceiptTotalPrice;
-            m_xPosManagerData.decReceiptTotalVat = decReceiptTotalVat;
+            m_xPosManagerData.lTotalPrice = decTotalPrice;
+            m_xPosManagerData.lReceiptTotalPrice = decReceiptTotalPrice;
+            m_xPosManagerData.lReceiptTotalVat = decReceiptTotalVat;
 
             return true;
         }
@@ -802,8 +808,8 @@ namespace SaleFlex.POS.Manager
 
             //OnNewDiscountAdded(new FiscalModuleEventArgs(m_xPosManagerData, m_enumDocumentType, m_enumDocumentResult));
 
-            //m_xPosManagerData.decReceiptTotalDiscount += prm_decDiscountAmount;
-            //m_xPosManagerData.decTotalPrice = prm_decDiscountAmount;
+            //m_xPosManagerData.lReceiptTotalDiscount += prm_decDiscountAmount;
+            //m_xPosManagerData.lTotalPrice = prm_decDiscountAmount;
             //m_xPosManagerData.lReceiptTotalPrice = lReceiptTotalPrice;
             //m_xPosManagerData.lReceiptTotalVat = lReceiptTotalVat;
 
@@ -822,11 +828,11 @@ namespace SaleFlex.POS.Manager
             prm_xDiscountSurchargeDataModel = null;
             //int iReceiptNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber;
             //int iZNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber;
-            //decimal decTotalPrice = 0;
+            //decimal lTotalPrice = 0;
             //decimal lReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
             //decimal lReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
 
-            //if (m_xFloppy.bPercentDiscountOrSurcharge(prm_iDiscountPercentage * -1, out iReceiptNumber, out iZNumber, out decTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
+            //if (m_xFloppy.bPercentDiscountOrSurcharge(prm_iDiscountPercentage * -1, out iReceiptNumber, out iZNumber, out lTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
             //{
             //    CustomMessageBox.Show(m_xFloppy.strGetLastResponseDescription());
             //    return false;
@@ -848,15 +854,15 @@ namespace SaleFlex.POS.Manager
             //xDiscountSurchargeDataModel.lSurchargeAmount = 0m;
             //xDiscountSurchargeDataModel.iDiscountPercentage = prm_iDiscountPercentage;
             //xDiscountSurchargeDataModel.iSurchargePercentage = -1;
-            //xDiscountSurchargeDataModel.decDiscountSurchargeResult = decTotalPrice;
+            //xDiscountSurchargeDataModel.decDiscountSurchargeResult = lTotalPrice;
 
             //m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel[m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel.Count - 1].xDiscountSurchargeDataModel.Add(xDiscountSurchargeDataModel);
             //prm_xDiscountSurchargeDataModel = xDiscountSurchargeDataModel;
 
             //OnNewDiscountAdded(new FiscalModuleEventArgs(m_xPosManagerData, m_enumDocumentType, m_enumDocumentResult));
 
-            //m_xPosManagerData.decReceiptTotalDiscount += decTotalPrice;
-            //m_xPosManagerData.decTotalPrice = decTotalPrice;
+            //m_xPosManagerData.lReceiptTotalDiscount += lTotalPrice;
+            //m_xPosManagerData.lTotalPrice = lTotalPrice;
             //m_xPosManagerData.lReceiptTotalPrice = lReceiptTotalPrice;
             //m_xPosManagerData.lReceiptTotalVat = lReceiptTotalVat;
 
@@ -870,11 +876,11 @@ namespace SaleFlex.POS.Manager
             prm_xDiscountSurchargeDataModel = null;
             //int iReceiptNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber;
             //int iZNumber = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber;
-            //decimal decTotalPrice = 0;
+            //decimal lTotalPrice = 0;
             //decimal lReceiptTotalPrice = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice;
             //decimal lReceiptTotalVat = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat;
 
-            //if (m_xFloppy.bPercentDiscountOrSurcharge(prm_iSurchargePercentage, out iReceiptNumber, out iZNumber, out decTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
+            //if (m_xFloppy.bPercentDiscountOrSurcharge(prm_iSurchargePercentage, out iReceiptNumber, out iZNumber, out lTotalPrice, out lReceiptTotalPrice, out lReceiptTotalVat) == false)
             //{
             //    CustomMessageBox.Show(m_xFloppy.strGetLastResponseDescription());
             //    return false;
@@ -896,15 +902,15 @@ namespace SaleFlex.POS.Manager
             //xDiscountSurchargeDataModel.lSurchargeAmount = 0m;
             //xDiscountSurchargeDataModel.iDiscountPercentage = -1;
             //xDiscountSurchargeDataModel.iSurchargePercentage = prm_iSurchargePercentage;
-            //xDiscountSurchargeDataModel.decDiscountSurchargeResult = decTotalPrice;
+            //xDiscountSurchargeDataModel.decDiscountSurchargeResult = lTotalPrice;
 
             //m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel[m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel.Count - 1].xDiscountSurchargeDataModel.Add(xDiscountSurchargeDataModel);
             //prm_xDiscountSurchargeDataModel = xDiscountSurchargeDataModel;
 
             //OnNewDiscountAdded(new FiscalModuleEventArgs(m_xPosManagerData, m_enumDocumentType, m_enumDocumentResult));
 
-            //m_xPosManagerData.decReceiptTotalSurcharge += decTotalPrice;
-            //m_xPosManagerData.decTotalPrice = decTotalPrice;
+            //m_xPosManagerData.lReceiptTotalSurcharge += lTotalPrice;
+            //m_xPosManagerData.lTotalPrice = lTotalPrice;
             //m_xPosManagerData.lReceiptTotalPrice = lReceiptTotalPrice;
             //m_xPosManagerData.lReceiptTotalVat = lReceiptTotalVat;
 

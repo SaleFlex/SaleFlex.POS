@@ -53,7 +53,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                if (prop_xPosManagerData.xTransactionDataModel != null && prop_xPosManagerData.decReceiptTotalPayment > 0)
+                if (prop_xPosManagerData.xTransactionDataModel != null && prop_xPosManagerData.lReceiptTotalPayment > 0)
                 {
                     CustomMessageBox.Show(LabelTranslations.strGet("PaymentIsStarted"));
                     return true;
@@ -70,7 +70,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                if (prop_xPosManagerData.xTransactionDataModel == null || prop_xPosManagerData.decReceiptTotalPrice <= 0)
+                if (prop_xPosManagerData.xTransactionDataModel == null || prop_xPosManagerData.lReceiptTotalPrice <= 0)
                 {
                     CustomMessageBox.Show(LabelTranslations.strGet("PaymentIsNotPossible"));
                     return true;

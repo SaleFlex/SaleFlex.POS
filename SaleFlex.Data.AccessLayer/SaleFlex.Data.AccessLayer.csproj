@@ -120,6 +120,7 @@
     <Compile Include="Dao.Supervisor.cs" />
     <Compile Include="Dao.Templates.cs" />
     <Compile Include="Dao.Transaction.cs" />
+    <Compile Include="Dao.TransactionSequence.cs" />
     <Compile Include="Dao.Vat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

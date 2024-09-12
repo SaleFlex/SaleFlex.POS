@@ -652,7 +652,7 @@ namespace SaleFlex.UserInterface.Manager
 
                         long decDiscountAmount = m_xLastCustomForm.strGetNumPadOutput().decConvertToDecimal();
 
-                        if (prop_xPosManagerData.decReceiptTotalPrice > decDiscountAmount && decDiscountAmount.bOverflowAmountCheck() == false)
+                        if (prop_xPosManagerData.lReceiptTotalPrice > decDiscountAmount && decDiscountAmount.bOverflowAmountCheck() == false)
                         {
                             //bool result = m_xLastCustomForm.bCheckLastSaleCanceledOrNot();
 
@@ -701,7 +701,7 @@ namespace SaleFlex.UserInterface.Manager
 
                         decimal decSurchargeAmount = m_xLastCustomForm.strGetNumPadOutput().decConvertToDecimal();
 
-                        if (prop_xPosManagerData.decReceiptTotalPrice > decSurchargeAmount)
+                        if (prop_xPosManagerData.lReceiptTotalPrice > decSurchargeAmount)
                         {
                             PosManager.xGetInstance().bSurchargeByAmount(decSurchargeAmount);
                         }
@@ -844,9 +844,9 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     TransactionDetailDataModel xTransactionDetailDataModel = new TransactionDetailDataModel();
                     xTransactionDetailDataModel.xSubTotalDataModel = new SubTotalDataModel();
-                    xTransactionDetailDataModel.xSubTotalDataModel.decSubTotalAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                    xTransactionDetailDataModel.xSubTotalDataModel.decSubTotalAmount = prop_xPosManagerData.lReceiptTotalPrice;
                     prop_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel.Add(xTransactionDetailDataModel);
-                    m_xLastCustomForm.bAddSubTotal(prop_xPosManagerData.decReceiptTotalPrice, prop_xPosManagerData.xTransactionDataModel);
+                    m_xLastCustomForm.bAddSubTotal(prop_xPosManagerData.lReceiptTotalPrice, prop_xPosManagerData.xTransactionDataModel);
                 }
             }
             catch (Exception xException)
@@ -867,7 +867,7 @@ namespace SaleFlex.UserInterface.Manager
                 m_xLastCustomForm = ((Control)prm_objSender).xFindCustomForm();
                 m_xLastCustomForm.bFocusNumPad();
 
-                m_xLastCustomForm.bAddTotal(prop_xPosManagerData.decReceiptTotalPrice);
+                m_xLastCustomForm.bAddTotal(prop_xPosManagerData.lReceiptTotalPrice);
             }
             catch (Exception xException)
             {
@@ -924,7 +924,7 @@ namespace SaleFlex.UserInterface.Manager
             return bControlType;
             EnumDocumentType enumDocumentType = PosManager.xGetInstance().prop_enumDocumentType;
 
-            if (enumDocumentType != EnumDocumentType.FiscalReceipt && prop_xPosManagerData.decReceiptTotalPayment == 0)
+            if (enumDocumentType != EnumDocumentType.FiscalReceipt && prop_xPosManagerData.lReceiptTotalPayment == 0)
             {
                 if (bGetCustomer(false) == false)
                 {
@@ -981,7 +981,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (bCheckDocumentTypeandGetCustomer() == true)
                     return;
 
-                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.decReceiptTotalPrice));
+                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.lReceiptTotalPrice));
                 if (bIsNotReceiptOpen() == true)
                     return;
                 if (bIsPaymentAllow() == true)
@@ -1020,11 +1020,11 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else if (decCashAmount == 0m)
                     {
-                        decCashAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decCashAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decCashAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decCashAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     if (PosManager.xGetInstance().bPayment(EnumPaymentType.CASH, decCashAmount) == false)
                     {
@@ -1051,7 +1051,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (bCheckDocumentTypeandGetCustomer() == true)
                     return;
 
-                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.decReceiptTotalPrice));
+                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.lReceiptTotalPrice));
                 if (bIsNotReceiptOpen() == true)
                     return;
                 if (bIsPaymentAllow() == true)
@@ -1084,11 +1084,11 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else if (decCreditAmount == 0m)
                     {
-                        decCreditAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decCreditAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decCreditAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decCreditAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     if (PosManager.xGetInstance().bPayment(EnumPaymentType.CREDIT_CARD, decCreditAmount) == false)
                     {
@@ -1114,7 +1114,7 @@ namespace SaleFlex.UserInterface.Manager
             {
                 if (bCheckDocumentTypeandGetCustomer() == true)
                     return;
-                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.decReceiptTotalPrice));
+                DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.lReceiptTotalPrice));
                 if (bIsNotReceiptOpen() == true)
                     return;
                 if (bIsPaymentAllow() == true)
@@ -1145,11 +1145,11 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else if (decCheckAmount == 0m && ((CustomButton)xControl).strFunction1.ToUpper() == "CHECK")
                     {
-                        decCheckAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decCheckAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decCheckAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decCheckAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     PosManager.xGetInstance().bPayment(EnumPaymentType.CHECK, decCheckAmount);
                 }
@@ -1197,11 +1197,11 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else if (decPrepaidAmount == 0m && ((CustomButton)xControl).strFunction1.ToUpper() == "PREPAID")
                     {
-                        decPrepaidAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decPrepaidAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decPrepaidAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decPrepaidAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     if (PosManager.xGetInstance().bPayment(EnumPaymentType.PREPAID_CARD, decPrepaidAmount) == false)
                     {
@@ -1256,11 +1256,11 @@ namespace SaleFlex.UserInterface.Manager
 
                     if (decChargeSaleAmount == 0)
                     {
-                        decChargeSaleAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decChargeSaleAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decChargeSaleAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decChargeSaleAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     if (PosManager.xGetInstance().bPayment(EnumPaymentType.ON_CREDIT, decChargeSaleAmount) == false)
                     {
@@ -1319,11 +1319,11 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else if (decOtherAmount == 0m)
                     {
-                        decOtherAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                        decOtherAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                     }
 
                     if (bCheckWaybill == true)
-                        decOtherAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                        decOtherAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                     if (PosManager.xGetInstance().bPayment(EnumPaymentType.OTHER, decOtherAmount) == false)
                     {
@@ -1347,7 +1347,7 @@ namespace SaleFlex.UserInterface.Manager
         {
             if (bCheckDocumentTypeandGetCustomer() == true)
                 return;
-            DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.decReceiptTotalPrice));
+            DeviceManager.xGetInstance().bCustomerDisplayMessage("", "", "TOPLAM: ", string.Format("{0:#,0.00}", prop_xPosManagerData.lReceiptTotalPrice));
             //if (bIsNotReceiptOpen() == true)
             //  return;
             //if (bIsPaymentAllow() == true)
@@ -1378,10 +1378,10 @@ namespace SaleFlex.UserInterface.Manager
                 }
                 else if (decExchangeAmount == 0m && ((CustomButton)xControl).strFunction1.ToUpper() == "EXCHANGE")
                 {
-                    decExchangeAmount = prop_xPosManagerData.decReceiptTotalPrice - prop_xPosManagerData.decReceiptTotalPayment;
+                    decExchangeAmount = prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment;
                 }
                 if (bCheckWaybill == true)
-                    decExchangeAmount = prop_xPosManagerData.decReceiptTotalPrice;
+                    decExchangeAmount = prop_xPosManagerData.lReceiptTotalPrice;
 
                 PosManager.xGetInstance().bPayment(EnumPaymentType.EXCHANGE, decExchangeAmount);
 

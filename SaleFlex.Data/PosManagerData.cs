@@ -23,8 +23,8 @@ namespace SaleFlex.Data
             xListCityDataModel = new List<CityDataModel>();
             xListDistrictDataModel = new List<DistrictDataModel>();
             xCashierDataModel = null;
-            decReceiptTotalSurcharge = 0;
-            decReceiptTotalDiscount = 0;
+            lReceiptTotalSurcharge = 0;
+            lReceiptTotalDiscount = 0;
 
             xTransactionDataModel.bTransactionStarted = false;
         }
@@ -43,10 +43,10 @@ namespace SaleFlex.Data
         public List<CurrencyDataModel> xListCurrencyDataModel { get; set; }
         public List<CashierDataModel> xListCashierDataModel { get; set; }
 
-        public long decReceiptTotalPayment { get; set; }
-        public long decTotalPrice { get; set; }
+        public long lReceiptTotalPayment { get; set; }
+        public long lTotalPrice { get; set; }
 
-        public long decReceiptTotalPrice
+        public long lReceiptTotalPrice
         {
             get
             {
@@ -58,7 +58,7 @@ namespace SaleFlex.Data
             }
         }
 
-        public long decReceiptTotalVat
+        public long lReceiptTotalVat
         {
             get
             {
@@ -70,7 +70,7 @@ namespace SaleFlex.Data
             }
         }
 
-        public long decReceiptTotalDiscount
+        public long lReceiptTotalDiscount
         {
             get
             {
@@ -82,7 +82,7 @@ namespace SaleFlex.Data
             }
         }
 
-        public long decReceiptTotalSurcharge
+        public long lReceiptTotalSurcharge
         {
             get
             {
@@ -94,19 +94,19 @@ namespace SaleFlex.Data
             }
         }
 
-        public long decReceiptTotalQuantity
+        public long lReceiptTotalQuantity
         {
             get
             {
-                long decTotalQuantity = 0;
+                long lTotalQuantity = 0;
 
                 foreach (TransactionDetailDataModel xTransactionDetailDataModel in xTransactionDataModel.xListTransactionDetailDataModel)
                 {
                     if (xTransactionDetailDataModel.bCanceled == false)
-                        decTotalQuantity += xTransactionDetailDataModel.decQuantity;
+                        lTotalQuantity += xTransactionDetailDataModel.decQuantity;
                 }
 
-                return decTotalQuantity;
+                return lTotalQuantity;
             }
            
         }

@@ -40,27 +40,6 @@ namespace SaleFlex.Data.AccessLayer
             return 0;
         }
 
-        public int iGetLastRecieptNo()
-        {
-            int iReturnValue = 0;
-            try
-            {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable("SELECT MAX(ReceiptNumber) AS MaxReceiptNumber FROM TableTransactionHead;");
-
-                if (xDataTable.Rows.Count > 0)
-                {
-                    int iMaxReceiptNumber = xDataTable.Rows[0]["MaxReceiptNumber"] != DBNull.Value ? Convert.ToInt32(xDataTable.Rows[0]["MaxReceiptNumber"]) : 0;
-                    iReturnValue = iMaxReceiptNumber;
-                }
-            }
-            catch (Exception xException)
-            {
-                xException.strTraceError();
-            }
-            return iReturnValue; 
-        }
-
-
         public List<TransactionHeadDataModel> xGetListClosedTransactionHeaders(int prm_iTransactionDocumentTypeNo = 0)
         {
             try
