@@ -20,6 +20,7 @@ namespace SaleFlex.Data.Initialize
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
+                bCreateTableTransactionSequence,
                 bCreateTableTransactionHead,
                 bCreateTableTransactionDetail,
                 bCreateTableTransactionPaymentDetail,
@@ -226,6 +227,62 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (10, 'NONE_FISCAL_CASH_IN_FLOW', 'Cash In flow', 'Cash In flow');",
                                     "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (11, 'NONE_FISCAL_RETURN', 'Return', 'Return');",
                                     "INSERT INTO TableTransactionDocumentType (No, Name, DisplayName, Description) VALUES (12, 'NONE_FISCAL_SELF_BILLING_INVOICE', 'Self Billing Invoice', 'Self Billing Invoice');",
+                                };
+
+                                foreach (string strCountry in straCountries)
+                                {
+                                    xSQLiteCommand.CommandText = strCountry;
+                                    iResult = xSQLiteCommand.ExecuteNonQuery();      // Execute the insert query
+                                }
+                            }
+                        }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableTransactionSequence()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableTransactionSequence (
+                        Id          INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                                            UNIQUE
+                                            NOT NULL,
+                        Name        TEXT    NOT NULL,
+                        Value       INTEGER NOT NULL,
+                        Description TEXT
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                        {
+                            bReturnValue = true;
+                            if (CommonProperty.prop_bIsOfflinePos)
+                            {
+                                string[] straCountries = new string[]
+                                {
+                                    "INSERT INTO TableTransactionSequence (Name, Value) VALUES ('ReceiptNumber', 1);",
+                                    "INSERT INTO TableTransactionSequence (Name, Value) VALUES ('ZNumber', 1);",
                                 };
 
                                 foreach (string strCountry in straCountries)
