@@ -265,8 +265,8 @@ namespace SaleFlex.UserInterface.Controls
                     SelectNextControl(ActiveControl, true, true, true, true);
                     this.bFocusNumPad();
 
-                    this.bSetStatusBarZNoLabel(string.Empty);
-                    this.bSetStatusBarReceiptNoLabel(string.Empty);
+                    this.bSetStatusBarZNoLabel(Dao.xGetInstance().iGetLastZNumber().ToString());
+                    this.bSetStatusBarReceiptNoLabel(Dao.xGetInstance().iGetLastRecieptNumber().ToString());
                 }
             }
             catch (Exception xException)

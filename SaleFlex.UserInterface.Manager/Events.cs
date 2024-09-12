@@ -116,6 +116,7 @@ namespace SaleFlex.UserInterface.Manager
                 xAboutBox.Close();
 
                 PosManager.xGetInstance().vPosManagerInitialize();
+
                 bReturnValue = true;
             }
             catch (Exception xException)

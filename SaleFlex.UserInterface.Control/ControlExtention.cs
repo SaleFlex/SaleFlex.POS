@@ -844,7 +844,7 @@ namespace SaleFlex.UserInterface.Controls
                     {
                         if (prm_strZNo == string.Empty)
                             prm_strZNo = "0";
-                        ((CustomStatusBar)xControl).strZNo = string.Format("{0} : {1}", LabelTranslations.strGet("GroupNo"), (Convert.ToInt32(prm_strZNo) + 1).ToString());
+                        ((CustomStatusBar)xControl).strZNo = string.Format("{0} : {1}", LabelTranslations.strGet("GroupNo"), (Convert.ToInt32(prm_strZNo)).ToString());
 
                         return true;
                     }
@@ -867,7 +867,7 @@ namespace SaleFlex.UserInterface.Controls
                 {
                     if (xControl is CustomStatusBar)
                     {
-                        ((CustomStatusBar)xControl).strReceiptNo = string.Format("{0} : {1}", LabelTranslations.strGet("ReceiptNo"), prm_strReceiptNo);
+                        ((CustomStatusBar)xControl).strReceiptNo = string.Format("{0} : {1}", LabelTranslations.strGet("ReceiptNo"), (Convert.ToInt32(prm_strReceiptNo)).ToString());
 
                         return true;
                     }
