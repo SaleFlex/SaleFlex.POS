@@ -1,4 +1,5 @@
 ﻿using SaleFlex.CommonLibrary;
+using SaleFlex.POS.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
+                if (PosManager.xGetInstance().bClosure() == true)
+                    return;
+
+                vTotalValuesChanges();
             }
             catch (Exception xException)
             {

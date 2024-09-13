@@ -11,7 +11,7 @@ namespace SaleFlex.POS.Manager
 {
     public partial class PosManager
     {
-        public bool bClosure(EnumPaymentType prm_enumType, long prm_lPaymentAmount)
+        public bool bClosure()
         {
             return true;
         }
