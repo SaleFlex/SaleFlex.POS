@@ -86,11 +86,13 @@ namespace SaleFlex.Data.Models
         {
         }
 
+        public long lId { get; set; }
+
         // Foreign key referencing the closure this summary belongs to.
         public long lFkClosureId { get; set; }
 
         // Payment type identifier (e.g., cash, card).
-        public long FkPaymentType { get; set; }
+        public long lFkPaymentType { get; set; }
 
         // Total number of transactions processed with this payment type.
         public long iTotalCount { get; set; }
