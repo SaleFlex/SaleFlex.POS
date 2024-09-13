@@ -100,7 +100,7 @@
     <Compile Include="DepartmentDataModel.cs" />
     <Compile Include="DiscountSurchargeDataModel.cs" />
     <Compile Include="DistrictDataModel.cs" />
-    <Compile Include="EndOfDayDataModel.cs" />
+    <Compile Include="ClosureDataModel.cs" />
     <Compile Include="FormFunctionDataModel.cs" />
     <Compile Include="KeyboardTypeFirstDataModel.cs" />
     <Compile Include="LimitDataModel.cs" />

@@ -104,7 +104,7 @@
     <Compile Include="Dao.Customer.cs" />
     <Compile Include="Dao.Department.cs" />
     <Compile Include="Dao.DiscountSurchargeRate.cs" />
-    <Compile Include="Dao.EndOfDay.cs" />
+    <Compile Include="Dao.Closure.cs" />
     <Compile Include="Dao.Document.cs" />
     <Compile Include="Dao.Form.cs" />
     <Compile Include="Dao.IdleMessage.cs" />

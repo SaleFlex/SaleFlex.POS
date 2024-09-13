@@ -10,7 +10,7 @@ namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
-        public bool bSaveEndOfDayParameters(EndOfDayDataModel prm_xEndOfDayDataModel)
+        public bool bSaveClosureParameters(ClosureDataModel prm_xEndOfDayDataModel)
         {
             try
             {

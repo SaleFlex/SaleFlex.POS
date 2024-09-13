@@ -312,7 +312,7 @@ namespace SaleFlex.Data.Initialize
             try
             {
                 string strCreateTableQuery =
-                    @"CREATE TABLE If Not ExistsTableClosure (
+                    @"CREATE TABLE If Not Exists TableClosure (
                         Id                     INTEGER  PRIMARY KEY
                                                         UNIQUE
                                                         NOT NULL,
@@ -331,6 +331,8 @@ namespace SaleFlex.Data.Initialize
                         TotalChangeCount       INTEGER,
                         TotalChangeAmount      INTEGER,
                         TotalRoundAmount       INTEGER,
+                        CumulativeTotalAmount  INTEGER  NOT NULL,
+                        CumulativeVatAmount    INTEGER  NOT NULL,
                         Canceled               BOOLEAN,
                         Deleted                BOOLEAN
                     );";
