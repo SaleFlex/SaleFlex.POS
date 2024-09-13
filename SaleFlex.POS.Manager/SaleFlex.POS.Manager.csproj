@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PosManager.Closure.cs" />
     <Compile Include="WebApi.AskForUpdate.cs" />
     <Compile Include="License.cs" />
     <Compile Include="PosManager.cs" />
