@@ -24,7 +24,9 @@ namespace SaleFlex.Data.Initialize
                 bCreateTableTransactionHead,
                 bCreateTableTransactionDetail,
                 bCreateTableTransactionPaymentDetail,
-                bCreateTableTransactionDocumentType
+                bCreateTableTransactionDocumentType,
+                bCreateTableClosure,
+                bCreateTableClosurePaymentTypeSummary
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
@@ -94,7 +96,6 @@ namespace SaleFlex.Data.Initialize
 
             return bReturnValue;
         }
-
 
         private static bool bCreateTableTransactionDetail()
         {
@@ -292,6 +293,101 @@ namespace SaleFlex.Data.Initialize
                                 }
                             }
                         }
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableClosure()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not ExistsTableClosure (
+                        Id                     INTEGER  PRIMARY KEY
+                                                        UNIQUE
+                                                        NOT NULL,
+                        ZNumber                INTEGER  NOT NULL,
+                        ReceiptNumber          INTEGER  NOT NULL,
+                        ClosureDateTime        DATETIME NOT NULL,
+                        FkPosId                INTEGER  NOT NULL,
+                        FkCashierId            INTEGER  NOT NULL,
+                        TotalTransactionCount  INTEGER  NOT NULL,
+                        TotalTransactionAmount INTEGER  NOT NULL,
+                        TotalVatAmount         INTEGER  NOT NULL,
+                        TotalDiscountCount     INTEGER,
+                        TotalDiscountAmount    INTEGER,
+                        TotalSurchargeCount    INTEGER,
+                        TotalSurchargeAmount   INTEGER,
+                        TotalChangeCount       INTEGER,
+                        TotalChangeAmount      INTEGER,
+                        TotalRoundAmount       INTEGER,
+                        Canceled               BOOLEAN,
+                        Deleted                BOOLEAN
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                            bReturnValue = true;
+
+                        xSQLiteConnection.Close();        // Close the connection to the database
+                    }
+                }
+            }
+            catch (Exception xException)
+            {
+                xException.strTraceError();
+            }
+
+            return bReturnValue;
+        }
+
+        private static bool bCreateTableClosurePaymentTypeSummary()
+        {
+            bool bReturnValue = false;
+            try
+            {
+                string strCreateTableQuery =
+                    @"CREATE TABLE If Not Exists TableClosurePaymentTypeSummary (
+                        Id            INTEGER PRIMARY KEY
+                                              UNIQUE
+                                              NOT NULL,
+                        FkClosureId   INTEGER NOT NULL,
+                        FkPaymentType INTEGER NOT NULL,
+                        TotalCount    INTEGER NOT NULL,
+                        TotalAmount   INTEGER NOT NULL
+                    );";
+
+
+                using (SQLiteConnection xSQLiteConnection = new SQLiteConnection(strCreateConnectionString(CommonProperty.prop_strDatabaseSalesFileNameAndPath)))
+                {
+                    using (SQLiteCommand xSQLiteCommand = new System.Data.SQLite.SQLiteCommand(xSQLiteConnection))
+                    {
+                        xSQLiteConnection.Open();                           // Open the connection to the database
+
+                        xSQLiteCommand.CommandText = strCreateTableQuery;   // Set CommandText to our query that will create the table
+                        int iResult = xSQLiteCommand.ExecuteNonQuery();     // Execute the create table query
+
+                        if (iResult >= 0)
+                            bReturnValue = true;
 
                         xSQLiteConnection.Close();        // Close the connection to the database
                     }
