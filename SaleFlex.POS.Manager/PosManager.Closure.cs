@@ -13,6 +13,22 @@ namespace SaleFlex.POS.Manager
     {
         public bool bClosure()
         {
+            ClosureDataModel xClosureDataModel = new ClosureDataModel();
+
+            if (m_xPosManagerData.xCashierDataModel == null)
+            {
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
+                return false;
+            }
+
+            if (m_xPosManagerData.xTransactionDataModel == null ||
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel == null ||
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber <= 1)
+            {
+                m_enumErrorCode = EnumErrorCode.CLOSURE_NOT_POSSIBLE;
+                return false;
+            }
+
             return true;
         }
     }

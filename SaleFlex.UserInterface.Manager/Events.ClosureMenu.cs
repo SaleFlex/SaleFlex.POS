@@ -1,5 +1,8 @@
 ﻿using SaleFlex.CommonLibrary;
+using SaleFlex.Data;
 using SaleFlex.POS.Manager;
+using SaleFlex.UserInterface.Controls;
+using SaleFlex.UserInterface.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +18,13 @@ namespace SaleFlex.UserInterface.Manager
             try
             {
                 if (PosManager.xGetInstance().bClosure() == true)
-                    return;
-
-                vTotalValuesChanges();
+                {
+                    vTotalValuesChanges();
+                }
+                else
+                {
+                    CustomMessageBox.Show(LabelTranslations.strGetError(PosManager.xGetInstance().prop_enumErrorCode));
+                }
             }
             catch (Exception xException)
             {

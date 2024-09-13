@@ -97,8 +97,8 @@ namespace SaleFlex.Data
         SUBTOTAL_NOT_POSSIBLE,
         SUSPEND_QUEUE_FULL,
         SUSPEND_NOT_FOUND,
-        NEED_SUSPEND
-
+        NEED_SUSPEND,
+        CLOSURE_NOT_POSSIBLE
     }
 
     public enum EnumStockUnit

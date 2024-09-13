@@ -64,6 +64,18 @@ namespace SaleFlex.UserInterface.Data
                 case EnumErrorCode.SUBTOTAL_NOT_POSSIBLE:
                     strErrorLabelName = strGet("SubtotalNotPossible");
                     break;
+                case EnumErrorCode.SUSPEND_QUEUE_FULL:
+                    strErrorLabelName = strGet("SuspendQueueFull");
+                    break;
+                case EnumErrorCode.SUSPEND_NOT_FOUND:
+                    strErrorLabelName = strGet("SuspendNotFull");
+                    break;
+                case EnumErrorCode.NEED_SUSPEND:
+                    strErrorLabelName = strGet("NeedSuspend");
+                    break;
+                case EnumErrorCode.CLOSURE_NOT_POSSIBLE:
+                    strErrorLabelName = strGet("ClosureNotPossible");
+                    break;
             }
 
             return strErrorLabelName;
