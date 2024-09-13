@@ -17,7 +17,7 @@ namespace SaleFlex.Data.Models
         // Unique identifier for the closure record.
         public long lId { get; set; }
 
-        // Z-number associated with the closure (likely related to cash register operations).
+        // Z-number (group number) associated with the closure (likely related to cash register operations).
         public int iZNumber { get; set; }
 
         // The last receipt number processed during this closure.
