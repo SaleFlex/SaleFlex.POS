@@ -43,6 +43,7 @@ namespace SaleFlex.Data.AccessLayer
             catch (Exception xException)
             {
                 xException.strTraceError();
+                xLabelValuesDataModel.strValue = prm_strLabelName;
             }
 
             return xLabelValuesDataModel.strValue;
