@@ -185,6 +185,9 @@ namespace SaleFlex.UserInterface.Manager
                     case CustomEventFunctionName.strPaymentDetail:
                         xEventHandler = new System.EventHandler(vPaymentDetail);
                         break;
+                    case CustomEventFunctionName.strClosure:
+                        xEventHandler = new System.EventHandler(vClosure);
+                        break;
                     case CustomEventFunctionName.strCancelDocument:
                         xEventHandler = new System.EventHandler(vCancelDocument);
                         break;

@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events.ClosureMenu.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Events.Documents.cs" />
     <Compile Include="Events.Interface.cs" />

@@ -55,6 +55,7 @@ namespace SaleFlex.UserInterface.Constanst
         public const string strChargeSalePayment = "OTHER_PAYMENT";         // Payment Function
         public const string strPaymentDetail = "PAYMENT_DETAIL";
         public const string strCancelDocument = "CANCEL_DOCUMENT";
+        public const string strClosure = "CLOSURE";
         public const string strStockEntryForm = "STOCK_ENTRY_FORM";
         public const string strSaleDetailReport = "SALE_DETAIL_REPORT";
         public const string strPluSaleReport = "PLU_SALE_REPORT";
