@@ -40,6 +40,9 @@ namespace SaleFlex.UserInterface.Data
                 case EnumErrorCode.NEED_CASHIER_LOGIN:
                     strErrorLabelName = strGet("NeedCashierLogin");
                     break;
+                case EnumErrorCode.CASHIER_LOGIN_FAILED:
+                    strErrorLabelName = strGet("CashierLoginFailed");
+                    break;
                 case EnumErrorCode.PLU_NOT_FOUND:
                     strErrorLabelName = strGet("PluNotFound");
                     break;

@@ -747,6 +747,7 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CanNotInsertTransactıon', 'Can not insert transactıon.', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CanNotStartReceipt', 'Can not start receipt.', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('NeedCashierLogin', 'You need cashier login.', 'en-GB');",
+                                    "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CashierLoginFailed', 'The login criteria may be incorrect, the operation failed.', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('PluNotFound', 'Product not found.', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('InsufficientStock', 'Insufficient Stock.', 'en-GB');",
                                     "INSERT INTO TableLabelValue (Key, Value, CultureInfo) VALUES ('CanNotCloseReceipt', 'Can not Close Receipt.', 'en-GB');",

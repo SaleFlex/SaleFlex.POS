@@ -218,6 +218,10 @@ namespace SaleFlex.POS.Manager
 
                     return true;
                 }
+                else
+                {
+                    m_enumErrorCode = EnumErrorCode.CASHIER_LOGIN_FAILED;
+                }
             }
 
             return false;
