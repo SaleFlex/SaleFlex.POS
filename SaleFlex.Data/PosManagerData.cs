@@ -103,7 +103,7 @@ namespace SaleFlex.Data
                 foreach (TransactionDetailDataModel xTransactionDetailDataModel in xTransactionDataModel.xListTransactionDetailDataModel)
                 {
                     if (xTransactionDetailDataModel.bCanceled == false)
-                        lTotalQuantity += xTransactionDetailDataModel.decQuantity;
+                        lTotalQuantity += xTransactionDetailDataModel.lQuantity;
                 }
 
                 return lTotalQuantity;

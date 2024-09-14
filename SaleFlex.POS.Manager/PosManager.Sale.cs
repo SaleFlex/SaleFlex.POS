@@ -110,7 +110,7 @@ namespace SaleFlex.POS.Manager
             return true;
         }
 
-        private bool bInsertTransactionDetail(DepartmentDataModel prm_xSaledDepartmentDataModel, long prm_decPrice, long prm_decQuantity)
+        private bool bInsertTransactionDetail(DepartmentDataModel prm_xSaledDepartmentDataModel, long prm_lPrice, long prm_lQuantity)
         {
             TransactionDetailDataModel xTransactionDetailDataModel = new TransactionDetailDataModel();
 
@@ -122,18 +122,18 @@ namespace SaleFlex.POS.Manager
             xTransactionDetailDataModel.iFkDepartmentId = prm_xSaledDepartmentDataModel.iId;
             xTransactionDetailDataModel.xDepartmentDataModel = prm_xSaledDepartmentDataModel;
             xTransactionDetailDataModel.iFkTransactionHeadId = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId;
-            xTransactionDetailDataModel.decQuantity = prm_decQuantity;
-            xTransactionDetailDataModel.decPrice = prm_decPrice;
-            xTransactionDetailDataModel.decTotalPrice = prm_decPrice * prm_decQuantity;
-            xTransactionDetailDataModel.decTotalVat = xTransactionDetailDataModel.decTotalPrice * prm_xSaledDepartmentDataModel.xVat.iRate / 100;
-            xTransactionDetailDataModel.decTotalPriceWithoutVat = xTransactionDetailDataModel.decTotalPrice - xTransactionDetailDataModel.decTotalVat;
+            xTransactionDetailDataModel.lQuantity = prm_lQuantity;
+            xTransactionDetailDataModel.lPrice = prm_lPrice;
+            xTransactionDetailDataModel.lTotalPrice = prm_lPrice * prm_lQuantity;
+            xTransactionDetailDataModel.lTotalVat = xTransactionDetailDataModel.lTotalPrice * prm_xSaledDepartmentDataModel.xVat.iRate / 100;
+            xTransactionDetailDataModel.lTotalPriceWithoutVat = xTransactionDetailDataModel.lTotalPrice - xTransactionDetailDataModel.lTotalVat;
 
             if (Dao.xGetInstance().bInsertTransactionDetail(ref xTransactionDetailDataModel) == true)
             {
                 m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel.Add(xTransactionDetailDataModel);
 
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice += xTransactionDetailDataModel.decTotalPrice;
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat += xTransactionDetailDataModel.decTotalVat;
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice += xTransactionDetailDataModel.lTotalPrice;
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat += xTransactionDetailDataModel.lTotalVat;
 
                 return true;
             }
@@ -153,18 +153,18 @@ namespace SaleFlex.POS.Manager
             xTransactionDetailDataModel.iFkPluId = prm_xSaledPluDataModel.iId;
             xTransactionDetailDataModel.xPluDataModel = prm_xSaledPluDataModel;
             xTransactionDetailDataModel.iFkTransactionHeadId = m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId;
-            xTransactionDetailDataModel.decQuantity = prm_decQuantity;
-            xTransactionDetailDataModel.decPrice = prm_decPrice;
-            xTransactionDetailDataModel.decTotalPrice = prm_xSaledPluDataModel.StockUnitNo == 1 ? Convert.ToInt32(Convert.ToDecimal(prm_decPrice * prm_decQuantity) / 1000) : (prm_decPrice * prm_decQuantity);
-            xTransactionDetailDataModel.decTotalVat = xTransactionDetailDataModel.decTotalPrice * prm_xSaledPluDataModel.xVat.iRate / 100;
-            xTransactionDetailDataModel.decTotalPriceWithoutVat = xTransactionDetailDataModel.decTotalPrice - xTransactionDetailDataModel.decTotalVat;
+            xTransactionDetailDataModel.lQuantity = prm_decQuantity;
+            xTransactionDetailDataModel.lPrice = prm_decPrice;
+            xTransactionDetailDataModel.lTotalPrice = prm_xSaledPluDataModel.StockUnitNo == 1 ? Convert.ToInt32(Convert.ToDecimal(prm_decPrice * prm_decQuantity) / 1000) : (prm_decPrice * prm_decQuantity);
+            xTransactionDetailDataModel.lTotalVat = xTransactionDetailDataModel.lTotalPrice * prm_xSaledPluDataModel.xVat.iRate / 100;
+            xTransactionDetailDataModel.lTotalPriceWithoutVat = xTransactionDetailDataModel.lTotalPrice - xTransactionDetailDataModel.lTotalVat;
 
             if (Dao.xGetInstance().bInsertTransactionDetail(ref xTransactionDetailDataModel) == true)
             {
                 m_xPosManagerData.xTransactionDataModel.xListTransactionDetailDataModel.Add(xTransactionDetailDataModel);
 
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice += xTransactionDetailDataModel.decTotalPrice;
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat += xTransactionDetailDataModel.decTotalVat;
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalPrice += xTransactionDetailDataModel.lTotalPrice;
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.lReceiptTotalVat += xTransactionDetailDataModel.lTotalVat;
 
                 return true;
             }
@@ -392,11 +392,11 @@ namespace SaleFlex.POS.Manager
                 PluDataModel plu = Dao.xGetInstance().xGetPluById(xTransactionDetail.iFkPluId);
                 if (prop_enumDocumentType != EnumDocumentType.Return)
                 {
-                    Dao.xGetInstance().bSetPluStockByCode(plu.strCode, (int)(plu.iStock + xTransactionDetail.decQuantity));
+                    Dao.xGetInstance().bSetPluStockByCode(plu.strCode, (int)(plu.iStock + xTransactionDetail.lQuantity));
                 }
                 else
                 {
-                    Dao.xGetInstance().bSetPluStockByCode(plu.strCode, (int)(plu.iStock - xTransactionDetail.decQuantity));
+                    Dao.xGetInstance().bSetPluStockByCode(plu.strCode, (int)(plu.iStock - xTransactionDetail.lQuantity));
                 }
             }
 
@@ -731,7 +731,7 @@ namespace SaleFlex.POS.Manager
             {
                 foreach (var xListPluBarcodeDataModel in prm_xTransactionDetailDataModel.xPluDataModel.xListPluBarcodeDataModel)
                 {
-                    decReceiptTotalPrice -= prm_xTransactionDetailDataModel.decTotalPrice;//xListPluBarcodeDataModel.decSalePrice
+                    decReceiptTotalPrice -= prm_xTransactionDetailDataModel.lTotalPrice;//xListPluBarcodeDataModel.decSalePrice
                     decReceiptTotalVat -= xListPluBarcodeDataModel.decPurchasePrice * prm_xTransactionDetailDataModel.xPluDataModel.xVat.iRate;
                 }
             }

@@ -71,9 +71,9 @@ namespace SaleFlex.UserInterface.Controls
                 else
                     xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strName;
             }
-            xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo == 1 ? Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decQuantity)/1000 : prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decQuantity;
-            xCustomSalesData.PRICE = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decPrice)/100;
-            xCustomSalesData.TOTAL_AMOUNT = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decTotalPrice)/ 100;
+            xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo == 1 ? Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lQuantity)/1000 : prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lQuantity;
+            xCustomSalesData.PRICE = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lPrice)/100;
+            xCustomSalesData.TOTAL_AMOUNT = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lTotalPrice)/ 100;
             xCustomSalesData.DISCOUNT_SURCHARGE_DATAMODEL_LIST = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDiscountSurchargeDataModel;
             xCustomSalesData.UNIT_QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo != 1 ? xCustomSalesData.QUANTITY.ToString() : string.Format("{0:#,0.000}", xCustomSalesData.QUANTITY);
 

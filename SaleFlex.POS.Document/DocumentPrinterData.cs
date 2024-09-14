@@ -240,9 +240,9 @@ namespace SaleFlex.POS.Document
                         return null;
                     }
 
-                    decQuantityOfProduct = xTransactionDetail.decQuantity;
-                    decPriceOfOneProduct = xTransactionDetail.decPrice;
-                    decTotalPrice = xTransactionDetail.decTotalPrice;
+                    decQuantityOfProduct = xTransactionDetail.lQuantity;
+                    decPriceOfOneProduct = xTransactionDetail.lPrice;
+                    decTotalPrice = xTransactionDetail.lTotalPrice;
 
                     vCheckAndGetString(strProductName, iProductNameLength, xTransactionDocumentDesignDataModel.iProductNameColumn, iRowLength, iIndex, null, true);
 
@@ -256,7 +256,7 @@ namespace SaleFlex.POS.Document
 
                     iIndex++;
 
-                    decTransmittedTotal += xTransactionDetail.decTotalPrice;
+                    decTransmittedTotal += xTransactionDetail.lTotalPrice;
 
                     iProductDataLineCount++;
 

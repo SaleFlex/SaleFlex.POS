@@ -115,7 +115,7 @@ namespace SaleFlex.UserInterface.Controls
                 xCustomSalesData.ID = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDepartmentDataModel.iId;
                 xCustomSalesData.DEPARTMENT_NO = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDepartmentDataModel.iNo;
                 xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDepartmentDataModel.strName;
-                xCustomSalesData.QUANTITY = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decQuantity);
+                xCustomSalesData.QUANTITY = Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lQuantity);
                 xCustomSalesData.UNIT_QUANTITY = xCustomSalesData.QUANTITY.ToString();
             }
             else if (prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel != null)
@@ -131,11 +131,11 @@ namespace SaleFlex.UserInterface.Controls
                     xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strDescriptionOnScreen;
                 else
                     xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.strName;
-                xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo == 1 ? Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decQuantity) / 1000 : prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decQuantity;
+                xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo == 1 ? Convert.ToDecimal(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lQuantity) / 1000 : prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lQuantity;
                 xCustomSalesData.UNIT_QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo != 1 ? xCustomSalesData.QUANTITY.ToString() : string.Format("{0:#,0.000}", xCustomSalesData.QUANTITY);
             }
-            xCustomSalesData.PRICE = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decPrice.ToString()) / 100;
-            xCustomSalesData.TOTAL_AMOUNT = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().decTotalPrice.ToString()) / 100;
+            xCustomSalesData.PRICE = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lPrice.ToString()) / 100;
+            xCustomSalesData.TOTAL_AMOUNT = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().lTotalPrice.ToString()) / 100;
             xCustomSalesData.DISCOUNT_SURCHARGE_DATAMODEL_LIST = prm_xTransactionDataModel.xListTransactionDetailDataModel.Last().xDiscountSurchargeDataModel;
 
             m_xListCustomSalesData.Add(xCustomSalesData);
@@ -198,9 +198,9 @@ namespace SaleFlex.UserInterface.Controls
                     else
                         xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDataModel.xListTransactionDetailDataModel[i].xPluDataModel.strName;
                 }
-                xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel[i].decQuantity;
-                xCustomSalesData.PRICE = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel[i].decPrice.ToString()) / 100;
-                xCustomSalesData.TOTAL_AMOUNT = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel[i].decTotalPrice.ToString()) / 100;
+                xCustomSalesData.QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel[i].lQuantity;
+                xCustomSalesData.PRICE = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel[i].lPrice.ToString()) / 100;
+                xCustomSalesData.TOTAL_AMOUNT = decimal.Parse(prm_xTransactionDataModel.xListTransactionDetailDataModel[i].lTotalPrice.ToString()) / 100;
                 xCustomSalesData.DISCOUNT_SURCHARGE_DATAMODEL_LIST = prm_xTransactionDataModel.xListTransactionDetailDataModel[i].xDiscountSurchargeDataModel;
                 xCustomSalesData.UNIT_QUANTITY = prm_xTransactionDataModel.xListTransactionDetailDataModel[i].xPluDataModel.StockUnitNo != 1 ? xCustomSalesData.QUANTITY.ToString() : string.Format("{0:#,0.000}", xCustomSalesData.QUANTITY/1000);
 
@@ -266,9 +266,9 @@ namespace SaleFlex.UserInterface.Controls
                 else
                     xCustomSalesData.NAME_OF_PRODUCT = prm_xTransactionDetailDataModel.Last().xPluDataModel.strName;
             }
-            xCustomSalesData.QUANTITY = prm_xTransactionDetailDataModel.Last().decQuantity;
-            xCustomSalesData.PRICE = prm_xTransactionDetailDataModel.Last().decPrice;
-            xCustomSalesData.TOTAL_AMOUNT = prm_xTransactionDetailDataModel.Last().decTotalPrice;
+            xCustomSalesData.QUANTITY = prm_xTransactionDetailDataModel.Last().lQuantity;
+            xCustomSalesData.PRICE = prm_xTransactionDetailDataModel.Last().lPrice;
+            xCustomSalesData.TOTAL_AMOUNT = prm_xTransactionDetailDataModel.Last().lTotalPrice;
             xCustomSalesData.DISCOUNT_SURCHARGE_DATAMODEL_LIST = prm_xTransactionDetailDataModel.Last().xDiscountSurchargeDataModel;
             xCustomSalesData.UNIT_QUANTITY = prm_xTransactionDetailDataModel.Last().xPluDataModel.StockUnitNo == 3 ? xCustomSalesData.QUANTITY.ToString() : string.Format("{0:#,0.000}", xCustomSalesData.QUANTITY);
 

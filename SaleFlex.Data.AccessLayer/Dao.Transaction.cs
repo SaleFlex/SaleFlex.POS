@@ -248,11 +248,11 @@ namespace SaleFlex.Data.AccessLayer
                     xTransactionDetailDataModel.iFkTransactionHeadId = int.Parse(xDataTable.Rows[0]["FkTransactionHeadId"].ToString());
                     xTransactionDetailDataModel.iFkPluId = int.Parse(xDataTable.Rows[0]["FkPluId"].ToString());
                     xTransactionDetailDataModel.iFkDepartmentId = int.Parse(xDataTable.Rows[0]["FkDepartmentId"].ToString());
-                    xTransactionDetailDataModel.decPrice = long.Parse(xDataTable.Rows[0]["Price"].ToString());
-                    xTransactionDetailDataModel.decQuantity = long.Parse(xDataTable.Rows[0]["Quantity"].ToString());
-                    xTransactionDetailDataModel.decTotalPrice = long.Parse(xDataTable.Rows[0]["TotalPrice"].ToString());
-                    xTransactionDetailDataModel.decTotalPriceWithoutVat = long.Parse(xDataTable.Rows[0]["TotalPriceWithoutVat"].ToString());
-                    xTransactionDetailDataModel.decTotalVat = long.Parse(xDataTable.Rows[0]["TotalVat"].ToString());
+                    xTransactionDetailDataModel.lPrice = long.Parse(xDataTable.Rows[0]["Price"].ToString());
+                    xTransactionDetailDataModel.lQuantity = long.Parse(xDataTable.Rows[0]["Quantity"].ToString());
+                    xTransactionDetailDataModel.lTotalPrice = long.Parse(xDataTable.Rows[0]["TotalPrice"].ToString());
+                    xTransactionDetailDataModel.lTotalPriceWithoutVat = long.Parse(xDataTable.Rows[0]["TotalPriceWithoutVat"].ToString());
+                    xTransactionDetailDataModel.lTotalVat = long.Parse(xDataTable.Rows[0]["TotalVat"].ToString());
                     xTransactionDetailDataModel.bCanceled = bool.Parse(xDataTable.Rows[0]["Canceled"].ToString());
                     xTransactionDetailDataModel.xTransactionDetailDateTime = DateTime.Parse(xDataTable.Rows[0]["TransactionDetailDateTime"].ToString());
                     xTransactionDetailDataModel.xPluDataModel = Dao.xGetInstance().xGetPluById(xTransactionDetailDataModel.iFkPluId);
@@ -285,11 +285,11 @@ namespace SaleFlex.Data.AccessLayer
                         xDataModel.iFkTransactionHeadId = int.Parse(xDataTable.Rows[i]["FkTransactionHeadId"].ToString());
                         xDataModel.iFkPluId = int.Parse(xDataTable.Rows[i]["FkPluId"].ToString());
                         xDataModel.iFkDepartmentId = int.Parse(xDataTable.Rows[i]["FkDepartmentId"].ToString());
-                        xDataModel.decPrice = long.Parse(xDataTable.Rows[i]["Price"].ToString());
-                        xDataModel.decQuantity = long.Parse(xDataTable.Rows[i]["Quantity"].ToString());
-                        xDataModel.decTotalPrice = long.Parse(xDataTable.Rows[i]["TotalPrice"].ToString());
-                        xDataModel.decTotalPriceWithoutVat = long.Parse(xDataTable.Rows[i]["TotalPriceWithoutVat"].ToString());
-                        xDataModel.decTotalVat = long.Parse(xDataTable.Rows[i]["TotalVat"].ToString());
+                        xDataModel.lPrice = long.Parse(xDataTable.Rows[i]["Price"].ToString());
+                        xDataModel.lQuantity = long.Parse(xDataTable.Rows[i]["Quantity"].ToString());
+                        xDataModel.lTotalPrice = long.Parse(xDataTable.Rows[i]["TotalPrice"].ToString());
+                        xDataModel.lTotalPriceWithoutVat = long.Parse(xDataTable.Rows[i]["TotalPriceWithoutVat"].ToString());
+                        xDataModel.lTotalVat = long.Parse(xDataTable.Rows[i]["TotalVat"].ToString());
                         xDataModel.bCanceled = bool.Parse(xDataTable.Rows[i]["Canceled"].ToString());
                         xDataModel.xTransactionDetailDateTime = DateTime.Parse(xDataTable.Rows[i]["TransactionDetailDateTime"].ToString());
                         xDataModel.xPluDataModel = Dao.xGetInstance().xGetPluById(xDataModel.iFkPluId);
@@ -529,11 +529,11 @@ namespace SaleFlex.Data.AccessLayer
                     prm_xTransactionDetailDataModel.iFkTransactionHeadId,
                     prm_xTransactionDetailDataModel.iFkPluId,
                     prm_xTransactionDetailDataModel.iFkDepartmentId,
-                    prm_xTransactionDetailDataModel.decPrice,
-                    prm_xTransactionDetailDataModel.decQuantity,
-                    prm_xTransactionDetailDataModel.decTotalPrice,
-                    prm_xTransactionDetailDataModel.decTotalPriceWithoutVat,
-                    prm_xTransactionDetailDataModel.decTotalVat.ToString(),
+                    prm_xTransactionDetailDataModel.lPrice,
+                    prm_xTransactionDetailDataModel.lQuantity,
+                    prm_xTransactionDetailDataModel.lTotalPrice,
+                    prm_xTransactionDetailDataModel.lTotalPriceWithoutVat,
+                    prm_xTransactionDetailDataModel.lTotalVat.ToString(),
                     prm_xTransactionDetailDataModel.bCanceled == true ? 1 : 0);
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 

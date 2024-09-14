@@ -334,13 +334,13 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     if (xTransactionDetailDataModel.xDepartmentDataModel != null)
                     {
-                        PosManager.xGetInstance().bSaleDepartment(xTransactionDetailDataModel.xDepartmentDataModel.iNo, xTransactionDetailDataModel.decPrice, xTransactionDetailDataModel.decQuantity);
+                        PosManager.xGetInstance().bSaleDepartment(xTransactionDetailDataModel.xDepartmentDataModel.iNo, xTransactionDetailDataModel.lPrice, xTransactionDetailDataModel.lQuantity);
                     }
                     else if (xTransactionDetailDataModel.xPluDataModel != null)
                     {
-                        long QuantityControl = xTransactionDetailDataModel.xPluDataModel.StockUnitNo == 1 ? xTransactionDetailDataModel.decQuantity : xTransactionDetailDataModel.decQuantity*1000;
+                        long QuantityControl = xTransactionDetailDataModel.xPluDataModel.StockUnitNo == 1 ? xTransactionDetailDataModel.lQuantity : xTransactionDetailDataModel.lQuantity*1000;
 
-                        PosManager.xGetInstance().bSalePluByCode(xTransactionDetailDataModel.xPluDataModel.strCode, xTransactionDetailDataModel.decPrice, QuantityControl);
+                        PosManager.xGetInstance().bSalePluByCode(xTransactionDetailDataModel.xPluDataModel.strCode, xTransactionDetailDataModel.lPrice, QuantityControl);
                     }
 
                 }
@@ -386,11 +386,11 @@ namespace SaleFlex.UserInterface.Manager
                     {
                         if (xTransactionDetailDataModel.xDepartmentDataModel != null)
                         {
-                            PosManager.xGetInstance().bSaleDepartment(xTransactionDetailDataModel.xDepartmentDataModel.iNo, xTransactionDetailDataModel.decPrice, xTransactionDetailDataModel.decQuantity);
+                            PosManager.xGetInstance().bSaleDepartment(xTransactionDetailDataModel.xDepartmentDataModel.iNo, xTransactionDetailDataModel.lPrice, xTransactionDetailDataModel.lQuantity);
                         }
                         else if (xTransactionDetailDataModel.xPluDataModel != null)
                         {
-                            PosManager.xGetInstance().bSalePluByCode(xTransactionDetailDataModel.xPluDataModel.strCode, xTransactionDetailDataModel.xPluDataModel.xListPluBarcodeDataModel[0].decSalePrice, xTransactionDetailDataModel.decQuantity);
+                            PosManager.xGetInstance().bSalePluByCode(xTransactionDetailDataModel.xPluDataModel.strCode, xTransactionDetailDataModel.xPluDataModel.xListPluBarcodeDataModel[0].decSalePrice, xTransactionDetailDataModel.lQuantity);
                         }
 
                     }
@@ -559,8 +559,8 @@ namespace SaleFlex.UserInterface.Manager
                         {
                             if (xController is CustomAmountsTable)
                             {
-                                ((CustomAmountsTable)xController).decReceiptTotalPrice -= xTransactionDetailDataModel.decTotalPrice;
-                                ((CustomAmountsTable)xController).decReceiptTotalPayment -= xTransactionDetailDataModel.decTotalPriceWithoutVat;
+                                ((CustomAmountsTable)xController).decReceiptTotalPrice -= xTransactionDetailDataModel.lTotalPrice;
+                                ((CustomAmountsTable)xController).decReceiptTotalPayment -= xTransactionDetailDataModel.lTotalPriceWithoutVat;
 
                                 break;
                             }
