@@ -110,42 +110,50 @@ namespace SaleFlex.Data.AccessLayer
         public ClosureDataModel xCalculateClosureData(int prm_iZNumber)
         {
             ClosureDataModel xClosureDataModel = null;
-            var query = $"SELECT MAX(th.ReceiptNumber) AS iMaxReceiptNumber, COUNT(th.Id) AS iTotalTransactionCount,  SUM(th.ReceiptTotalPrice) AS lTotalTransactionAmount, SUM(th.ReceiptTotalVat) AS lTotalVatAmount, COUNT(CASE WHEN th.TotalDiscountAmount IS NOT NULL AND th.TotalDiscountAmount > 0 THEN 1 END) AS iTotalDiscountCount, SUM(th.TotalDiscountAmount) AS lTotalDiscountAmount, COUNT(CASE WHEN th.SurchargeAmount IS NOT NULL AND th.SurchargeAmount > 0 THEN 1 END) AS iTotalSurchargeCount, SUM(th.SurchargeAmount) AS lTotalSurchargeAmount, COUNT(CASE WHEN th.ChangeAmount IS NOT NULL AND th.ChangeAmount > 0 THEN 1 END) AS iTotalChangeCount, SUM(th.ChangeAmount) AS lTotalChangeAmount, SUM(th.RoundAmount) AS lTotalRoundAmount FROM TableTransactionHead th WHERE th.ZNumber = {prm_iZNumber};";
-
-            DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
-
-            if (xDataTable != null && xDataTable.Rows.Count > 0)
+            try
             {
-                DataRow xDataRow = xDataTable.Rows[0];
+                var query = $"SELECT MAX(th.ReceiptNumber) AS iMaxReceiptNumber, COUNT(th.Id) AS iTotalTransactionCount,  SUM(th.ReceiptTotalPrice) AS lTotalTransactionAmount, SUM(th.ReceiptTotalVat) AS lTotalVatAmount, COUNT(CASE WHEN th.TotalDiscountAmount IS NOT NULL AND th.TotalDiscountAmount > 0 THEN 1 END) AS iTotalDiscountCount, SUM(th.TotalDiscountAmount) AS lTotalDiscountAmount, COUNT(CASE WHEN th.SurchargeAmount IS NOT NULL AND th.SurchargeAmount > 0 THEN 1 END) AS iTotalSurchargeCount, SUM(th.SurchargeAmount) AS lTotalSurchargeAmount, COUNT(CASE WHEN th.ChangeAmount IS NOT NULL AND th.ChangeAmount > 0 THEN 1 END) AS iTotalChangeCount, SUM(th.ChangeAmount) AS lTotalChangeAmount, SUM(th.RoundAmount) AS lTotalRoundAmount FROM TableTransactionHead th WHERE th.ZNumber = {prm_iZNumber};";
 
-                ClosureDataModel xTempClosureDataModel = new ClosureDataModel();
-                xTempClosureDataModel.iZNumber = prm_iZNumber;
-                xTempClosureDataModel.iReceiptNumber = Convert.ToInt32(xDataRow["iMaxReceiptNumber"]);
-                xTempClosureDataModel.xClosureDateTime = DateTime.Now;
-                xTempClosureDataModel.iTotalTransactionCount = Convert.ToInt32(xDataRow["iTotalTransactionCount"]);
-                xTempClosureDataModel.lTotalTransactionAmount = Convert.ToInt32(xDataRow["lTotalTransactionAmount"]);
-                xTempClosureDataModel.lTotalVatAmount = Convert.ToInt32(xDataRow["lTotalVatAmount"]);
-                xTempClosureDataModel.iTotalDiscountCount = Convert.ToInt32(xDataRow["iTotalDiscountCount"]);
-                xTempClosureDataModel.lTotalDiscountAmount = Convert.ToInt32(xDataRow["lTotalDiscountAmount"]);
-                xTempClosureDataModel.iTotalSurchargeCount = Convert.ToInt32(xDataRow["iTotalSurchargeCount"]);
-                xTempClosureDataModel.lTotalSurchargeAmount = Convert.ToInt32(xDataRow["lTotalSurchargeAmount"]);
-                xTempClosureDataModel.iTotalChangeCount = Convert.ToInt32(xDataRow["iTotalChangeCount"]);
-                xTempClosureDataModel.lTotalChangeAmount = Convert.ToInt32(xDataRow["lTotalChangeAmount"]);
-                xTempClosureDataModel.lTotalRoundAmount = Convert.ToInt32(xDataRow["lTotalRoundAmount"]);
-
-                query = "SELECT COALESCE(( SELECT TotalTransactionAmount FROM TableClosure ORDER BY ClosureDateTime DESC LIMIT 1 ), 0) AS lLastTotalTransactionAmount, COALESCE(( SELECT TotalVatAmount FROM TableClosure ORDER BY ClosureDateTime DESC LIMIT 1 ), 0) AS lLastTotalVatAmount;";
-
-                xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
-                    xTempClosureDataModel.lCumulativeTotalAmount = Convert.ToInt32(xDataRow["lLastTotalTransactionAmount"]) + xTempClosureDataModel.lTotalTransactionAmount;
-                    xTempClosureDataModel.lCumulativeVatAmount = Convert.ToInt32(xDataRow["lLastTotalVatAmount"]) + xTempClosureDataModel.lTotalVatAmount;
+                    DataRow xDataRow = xDataTable.Rows[0];
 
-                    xClosureDataModel = xTempClosureDataModel;
+                    ClosureDataModel xTempClosureDataModel = new ClosureDataModel();
+                    xTempClosureDataModel.iZNumber = prm_iZNumber;
+                    xTempClosureDataModel.iReceiptNumber = Convert.ToInt32(xDataRow["iMaxReceiptNumber"]);
+                    xTempClosureDataModel.xClosureDateTime = DateTime.Now;
+                    xTempClosureDataModel.iTotalTransactionCount = Convert.ToInt32(xDataRow["iTotalTransactionCount"]);
+                    xTempClosureDataModel.lTotalTransactionAmount = Convert.ToInt32(xDataRow["lTotalTransactionAmount"]);
+                    xTempClosureDataModel.lTotalVatAmount = Convert.ToInt32(xDataRow["lTotalVatAmount"]);
+                    xTempClosureDataModel.iTotalDiscountCount = Convert.ToInt32(xDataRow["iTotalDiscountCount"]);
+                    xTempClosureDataModel.lTotalDiscountAmount = Convert.ToInt32(xDataRow["lTotalDiscountAmount"]);
+                    xTempClosureDataModel.iTotalSurchargeCount = Convert.ToInt32(xDataRow["iTotalSurchargeCount"]);
+                    xTempClosureDataModel.lTotalSurchargeAmount = Convert.ToInt32(xDataRow["lTotalSurchargeAmount"]);
+                    xTempClosureDataModel.iTotalChangeCount = Convert.ToInt32(xDataRow["iTotalChangeCount"]);
+                    xTempClosureDataModel.lTotalChangeAmount = Convert.ToInt32(xDataRow["lTotalChangeAmount"]);
+                    xTempClosureDataModel.lTotalRoundAmount = Convert.ToInt32(xDataRow["lTotalRoundAmount"]);
+
+                    query = "SELECT COALESCE(( SELECT TotalTransactionAmount FROM TableClosure ORDER BY ClosureDateTime DESC LIMIT 1 ), 0) AS lLastTotalTransactionAmount, COALESCE(( SELECT TotalVatAmount FROM TableClosure ORDER BY ClosureDateTime DESC LIMIT 1 ), 0) AS lLastTotalVatAmount;";
+
+                    xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseSalesFileNameAndPath).xExecuteDataTable(query);
+
+                    if (xDataTable != null && xDataTable.Rows.Count > 0)
+                    {
+                        xTempClosureDataModel.lCumulativeTotalAmount = Convert.ToInt32(xDataRow["lLastTotalTransactionAmount"]) + xTempClosureDataModel.lTotalTransactionAmount;
+                        xTempClosureDataModel.lCumulativeVatAmount = Convert.ToInt32(xDataRow["lLastTotalVatAmount"]) + xTempClosureDataModel.lTotalVatAmount;
+
+                        xClosureDataModel = xTempClosureDataModel;
+                    }
                 }
             }
-            
+            catch (Exception xException)
+            {
+                // Log any exception that occurs during the process.
+                xException.strTraceError();
+            }
+
             return xClosureDataModel;
         }
     }

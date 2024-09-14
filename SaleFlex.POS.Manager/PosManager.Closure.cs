@@ -23,7 +23,16 @@ namespace SaleFlex.POS.Manager
 
             if (m_xPosManagerData.xTransactionDataModel == null ||
                 m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel == null ||
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber <= 1)
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber <= 1 ||
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber < 1)
+            {
+                m_enumErrorCode = EnumErrorCode.CLOSURE_NOT_POSSIBLE;
+                return false;
+            }
+
+            xClosureDataModel = Dao.xGetInstance().xCalculateClosureData(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber);
+
+            if (xClosureDataModel == null)
             {
                 m_enumErrorCode = EnumErrorCode.CLOSURE_NOT_POSSIBLE;
                 return false;
