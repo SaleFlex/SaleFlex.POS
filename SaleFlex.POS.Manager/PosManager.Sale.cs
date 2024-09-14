@@ -223,7 +223,7 @@ namespace SaleFlex.POS.Manager
             return true;
         }
 
-        public bool bSaleDepartment(int prm_iDepartmentNo, long prm_decPrice, long prm_decQuantity)
+        public bool bSaleDepartment(int prm_iDepartmentNo, long prm_lPrice, long prm_lQuantity)
         {
             if (m_xPosManagerData.xCashierDataModel == null)
             {
@@ -231,16 +231,16 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            long decPrice = 0;
-            long decQuantity = 1;
+            long lPrice = 0;
+            long lQuantity = 1;
             DepartmentDataModel xSaledDepartmentDataModel = null;
 
             foreach (DepartmentDataModel xDepartmentDataModel in m_xPosManagerData.xListDepartmentDataModel)
             {
                 if (xDepartmentDataModel.iNo == prm_iDepartmentNo)
                 {
-                    decPrice = prm_decPrice.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : prm_decPrice;
-                    decQuantity = prm_decQuantity;
+                    lPrice = prm_lPrice.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : prm_lPrice;
+                    lQuantity = prm_lQuantity != 1 ? prm_lQuantity : xDepartmentDataModel.lDefaultQuantity;
                     xSaledDepartmentDataModel = xDepartmentDataModel;
 
                     break;
@@ -259,7 +259,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            if (bInsertTransactionDetail(xSaledDepartmentDataModel, decPrice, decQuantity) == false)
+            if (bInsertTransactionDetail(xSaledDepartmentDataModel, lPrice, lQuantity) == false)
             {
                 m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
                 return false;

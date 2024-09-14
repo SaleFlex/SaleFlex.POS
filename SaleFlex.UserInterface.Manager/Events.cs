@@ -25,7 +25,7 @@ namespace SaleFlex.UserInterface.Manager
 
         private DocumentPrint m_xDocumentPrint = new DocumentPrint();
         private long m_decQuantityOfProduct = 1;
-        private long m_decPriceOfProduct = 0;
+        private long m_lPriceOfProduct = 0;
         private static int m_iDelayTime = 12000;
 
         public Events()
@@ -631,10 +631,10 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else
                     {
-                        m_decPriceOfProduct = decPriceOfProduct;
+                        m_lPriceOfProduct = decPriceOfProduct;
                     }
                 }
-                m_xLastCustomForm.bSetStatusBarPriceLabel(m_decPriceOfProduct);
+                m_xLastCustomForm.bSetStatusBarPriceLabel(m_lPriceOfProduct);
             }
             catch (Exception xException)
             {
@@ -692,10 +692,10 @@ namespace SaleFlex.UserInterface.Manager
                     }
                     else
                     {
-                        m_decPriceOfProduct = decPriceOfProduct;
+                        m_lPriceOfProduct = decPriceOfProduct;
                     }
                 }
-                m_xLastCustomForm.bSetStatusBarPriceLabel(m_decPriceOfProduct);
+                m_xLastCustomForm.bSetStatusBarPriceLabel(m_lPriceOfProduct);
             }
             catch (Exception xException)
             {
@@ -820,8 +820,8 @@ namespace SaleFlex.UserInterface.Manager
         public void vClearBuffer(object prm_objSender, EventArgs prm_xEventArgs)
         {
             m_decQuantityOfProduct = 1;
-            m_decPriceOfProduct = 0;
-            m_xLastCustomForm.bSetStatusBarPriceLabel(m_decPriceOfProduct);
+            m_lPriceOfProduct = 0;
+            m_xLastCustomForm.bSetStatusBarPriceLabel(m_lPriceOfProduct);
             m_xLastCustomForm.bSetStatusBarQuantityLabel(m_decQuantityOfProduct);
 
         }

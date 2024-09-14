@@ -55,7 +55,6 @@ namespace SaleFlex.UserInterface.Manager
             {
                 if (prop_xPosManagerData.xTransactionDataModel != null && prop_xPosManagerData.lReceiptTotalPayment > 0)
                 {
-                    CustomMessageBox.Show(LabelTranslations.strGet("PaymentIsStarted"));
                     return true;
                 }
             }

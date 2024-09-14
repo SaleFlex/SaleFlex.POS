@@ -54,7 +54,7 @@ namespace SaleFlex.UserInterface.Manager
             {
                 if (bIsPaymentStart() == true)
                 {
-                    CustomMessageBox.Show(LabelTranslations.strGet("NotPossible"));
+                    CustomMessageBox.Show(LabelTranslations.strGet("PaymentIsStarted"));
                     return;
                 }
 
@@ -64,15 +64,16 @@ namespace SaleFlex.UserInterface.Manager
 
                 string strNumPadOutput = m_xLastCustomForm.strGetNumPadOutput();
 
-                if (m_decPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 10).ToUpper() == "DEPARTMENT")
+                if (m_lPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 10).ToUpper() == "DEPARTMENT")
                 {
                     try
                     {
-                        long decPriceOfProduct = Convert.ToInt64(strNumPadOutput);
-                        m_decPriceOfProduct = decPriceOfProduct; // If convertable set the value
+                        long lPriceOfProduct = Convert.ToInt64(strNumPadOutput);
+                        m_lPriceOfProduct = lPriceOfProduct; // If the price entered in the numpad is convertible, assign its converted value to the class variable.
                     }
                     catch
                     {
+                        // If the price entered in the numpad is not convertible, leave the value of the class variable as is (zero).
                     }
                 }
 
@@ -83,9 +84,9 @@ namespace SaleFlex.UserInterface.Manager
                     {
                         int iDepartmentNo = int.Parse(xCustomButton.strName.Substring(10, xCustomButton.strName.Length - 10));
 
-                        long decPrice = m_decPriceOfProduct;
+                        long decPrice = m_lPriceOfProduct;
                         long decQuantity = m_decQuantityOfProduct;
-                        m_decPriceOfProduct = 0;
+                        m_lPriceOfProduct = 0;
                         m_decQuantityOfProduct = 1;
                         if (PosManager.xGetInstance().bSaleDepartment(iDepartmentNo, decPrice, decQuantity) == false)
                         {
@@ -134,12 +135,12 @@ namespace SaleFlex.UserInterface.Manager
 
                     if (xDepartmentDataModel != null)
                     {
-                        long decPrice = m_decPriceOfProduct.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : m_decPriceOfProduct;
+                        long decPrice = m_lPriceOfProduct.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : m_lPriceOfProduct;
                         if (PosManager.xGetInstance().bSaleDepartment(iDepartmentNo, decPrice, m_decQuantityOfProduct) == false)
                         {
                         }
 
-                        m_decPriceOfProduct = 0;
+                        m_lPriceOfProduct = 0;
                     }
                     else
                         CustomMessageBox.Show(LabelTranslations.strGet("DepartmentNotFound"));
@@ -177,7 +178,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 string strNumPadOutput = m_xLastCustomForm.strGetNumPadOutput();
 
-                if (m_decPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 3).ToUpper() == "PLU")
+                if (m_lPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 3).ToUpper() == "PLU")
                 {
                     try
                     {
@@ -196,9 +197,9 @@ namespace SaleFlex.UserInterface.Manager
                     {
                         string strPluCode = xCustomButton.strName.Substring(3, xCustomButton.strName.Length - 3);
 
-                        long decPrice = m_decPriceOfProduct;
+                        long decPrice = m_lPriceOfProduct;
                         long decQuantity = m_decQuantityOfProduct;
-                        m_decPriceOfProduct = 0;
+                        m_lPriceOfProduct = 0;
                         m_decQuantityOfProduct = 1;
 
                         if (PosManager.xGetInstance().bSalePluByCode(strPluCode, decPrice, decQuantity) == false)
@@ -242,7 +243,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 string strNumPadOutput = m_xLastCustomForm.strGetNumPadOutput();
 
-                if (m_decPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 3).ToUpper() == "PLU")
+                if (m_lPriceOfProduct == 0 && strNumPadOutput != string.Empty && strNumPadOutput.Length > 0 && xControl is CustomButton && ((CustomButton)xControl).strName.Substring(0, 3).ToUpper() == "PLU")
                 {
                     try
                     {
@@ -288,10 +289,10 @@ namespace SaleFlex.UserInterface.Manager
 
                 if (strPluBarcode != string.Empty)
                 {
-                    long decPrice = m_decPriceOfProduct;
+                    long decPrice = m_lPriceOfProduct;
                     long decQuantity = isMultiply == false ? m_decQuantityOfProduct*1000 : m_decQuantityOfProduct; //1000 den küçükse istenilen bir sayı değildir, o yüzden çarpıyoruz.
                     
-                    m_decPriceOfProduct = 0;
+                    m_lPriceOfProduct = 0;
                     m_decQuantityOfProduct = 1;
 
                     if (PosManager.xGetInstance().bSalePlu(strPluBarcode, decPrice, decQuantity) == false)
@@ -344,7 +345,7 @@ namespace SaleFlex.UserInterface.Manager
 
                 }
 
-                m_decPriceOfProduct = 0;
+                m_lPriceOfProduct = 0;
                 m_decQuantityOfProduct = 1;
 
                 vTotalValuesChanges();
@@ -394,7 +395,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     }
 
-                    m_decPriceOfProduct = 0;
+                    m_lPriceOfProduct = 0;
                     m_decQuantityOfProduct = 1;
 
                     vTotalValuesChanges();
@@ -594,7 +595,7 @@ namespace SaleFlex.UserInterface.Manager
                     {
                         if (PosManager.xGetInstance().bCancelReceipt() == true)
                         {
-                            m_decPriceOfProduct = 0;
+                            m_lPriceOfProduct = 0;
                             m_decQuantityOfProduct = 1;
 
                             vReceiptClosed(true);
@@ -937,7 +938,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     PosManager.xGetInstance().bCancelReceipt();
 
-                    m_decPriceOfProduct = 0;
+                    m_lPriceOfProduct = 0;
                     m_decQuantityOfProduct = 1;
                     vTotalValuesChanges();
                     string strNumPadOutput = m_xLastCustomForm.strGetNumPadOutput();
@@ -1406,7 +1407,7 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     if (PosManager.xGetInstance().bSuspendReceipt() == true)
                     {
-                        m_decPriceOfProduct = 0;
+                        m_lPriceOfProduct = 0;
                         m_decQuantityOfProduct = 1;
 
                         vReceiptClosed(true);
