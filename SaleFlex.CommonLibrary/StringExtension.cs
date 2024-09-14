@@ -160,5 +160,19 @@ namespace SaleFlex.CommonLibrary
             int iSpaces = (prm_iRowLength - iLength) / 2;
             return prm_strString.PadLeft(iLength + iSpaces).PadRight(prm_iRowLength);
         }
+
+        public static long lConvertQuantityOfProduct(this string prm_strQuantityOfProduct)
+        {
+            long lQuantityOfProduct = Convert.ToInt64(decimal.Parse(prm_strQuantityOfProduct));
+
+            return lQuantityOfProduct;
+        }
+
+        public static decimal decConvertQuantityOfProduct(this string prm_strQuantityOfProduct)
+        {
+            decimal decQuantityOfProduct = Convert.ToDecimal(decimal.Parse(prm_strQuantityOfProduct));
+
+            return decQuantityOfProduct;
+        }
     }
 }

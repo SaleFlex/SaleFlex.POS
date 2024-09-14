@@ -274,7 +274,7 @@ namespace SaleFlex.POS.Manager
             return true;
         }
 
-        public bool bSalePluByCode(string prm_strPluCode, long prm_decPrice, long prm_lQuantity)
+        public bool bSalePluByCode(string prm_strPluCode, long prm_lPrice, long prm_lQuantity)
         {
             Trace.vInsert(enumTraceLevel.Unnecessary, "bSalePlu Called.");
 
@@ -284,8 +284,8 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            long decPrice = 0;
-            long decQuantity = 1;
+            long lPrice = 0;
+            long lQuantity = 1;
 
             PluDataModel xSalesPluDataModel = Dao.xGetInstance().xGetPluByCode(prm_strPluCode);
 
@@ -309,8 +309,8 @@ namespace SaleFlex.POS.Manager
                 }
             }
 
-            decPrice = prm_decPrice.bOverflowAmountCheck() == true ? (xSalesPluDataModel.xListPluBarcodeDataModel == null ? xSalesPluDataModel.iSalePrice : xSalesPluDataModel.xListPluBarcodeDataModel[0].decSalePrice) : prm_decPrice;
-            decQuantity = iStock;
+            lPrice = prm_lPrice.bOverflowAmountCheck() == true ? (xSalesPluDataModel.xListPluBarcodeDataModel == null ? xSalesPluDataModel.iSalePrice : xSalesPluDataModel.xListPluBarcodeDataModel[0].decSalePrice) : prm_lPrice;
+            lQuantity = iStock;
 
             if (bStartReceipt() == false)
             {
@@ -318,7 +318,7 @@ namespace SaleFlex.POS.Manager
                 return false;
             }
 
-            if (bInsertTransactionDetail(xSalesPluDataModel, decPrice, decQuantity) == false)
+            if (bInsertTransactionDetail(xSalesPluDataModel, lPrice, lQuantity) == false)
             {
                 m_enumErrorCode = EnumErrorCode.PLU_NOT_FOUND;
                 return false;

@@ -68,8 +68,7 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     try
                     {
-                        long lPriceOfProduct = Convert.ToInt64(strNumPadOutput);
-                        m_lPriceOfProduct = lPriceOfProduct; // If the price entered in the numpad is convertible, assign its converted value to the class variable.
+                        m_lPriceOfProduct = strNumPadOutput.lConvertQuantityOfProduct(); // If the price entered in the numpad is convertible, assign its converted value to the class variable.
                     }
                     catch
                     {
@@ -182,11 +181,11 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     try
                     {
-                        long decQuantityOfProduct = Convert.ToInt64(decimal.Parse(strNumPadOutput) * 1000);// Miktar virgüllü ise diye 1000 ile çarpıyoruz
-                        m_decQuantityOfProduct = decQuantityOfProduct; // If convertable set the value
+                        m_decQuantityOfProduct = strNumPadOutput.lConvertQuantityOfProduct(); // If the price entered in the numpad is convertible, assign its converted value to the class variable.
                     }
                     catch
                     {
+                        // If the price entered in the numpad is not convertible, leave the value of the class variable as is (zero).
                     }
                 }
 
