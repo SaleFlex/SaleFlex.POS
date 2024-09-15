@@ -119,7 +119,7 @@ namespace SaleFlex.CommonLibrary
                 prop_lPosId = 0;
                 prop_lMerchantId = 0;
                 prop_iStoreNo = 0;
-                prop_strIpPort = string.Empty;
+                prop_strIpPort = @"https://saleflex.net/";
                 prop_strAppToken = string.Empty;
                 prop_bIsOfflinePos = true;
                 JsonReadWrite<JsonParameter>.xGetInstance().bWrite(this);
