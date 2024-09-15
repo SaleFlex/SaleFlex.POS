@@ -590,7 +590,7 @@ namespace SaleFlex.POS.Manager
                 m_xPosManagerData.lReceiptTotalPrice = 0;
                 m_xPosManagerData.lReceiptTotalVat = 0;
 
-                m_enumDocumentResult = EnumDocumentResult.SUCCESSED;
+                m_enumDocumentResult = EnumDocumentResult.SUCCEEDED;
                 m_enumDocumentState = EnumDocumentState.CLOSED;
 
                 return true;
