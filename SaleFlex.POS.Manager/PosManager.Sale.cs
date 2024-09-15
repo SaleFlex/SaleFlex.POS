@@ -225,52 +225,65 @@ namespace SaleFlex.POS.Manager
 
         public bool bSaleDepartment(int prm_iDepartmentNo, long prm_lPrice, long prm_lQuantity)
         {
+            // Check if the cashier is logged in
             if (m_xPosManagerData.xCashierDataModel == null)
             {
-                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN;
-                return false;
+                m_enumErrorCode = EnumErrorCode.NEED_CASHIER_LOGIN; // Set error code indicating a cashier login is needed
+                return false; // Exit early since cashier is not logged in
             }
 
+            // Initialize local variables for price and quantity, defaulting to safe values
             long lPrice = 0;
             long lQuantity = 1;
             DepartmentDataModel xSaledDepartmentDataModel = null;
 
+            // Search for the department based on the provided department number
             foreach (DepartmentDataModel xDepartmentDataModel in m_xPosManagerData.xListDepartmentDataModel)
             {
-                if (xDepartmentDataModel.iNo == prm_iDepartmentNo)
+                if (xDepartmentDataModel.iNo == prm_iDepartmentNo) // Check if this is the matching department
                 {
+                    // Validate price, default to the department's default price if the price is invalid
                     lPrice = prm_lPrice.bOverflowAmountCheck() == true ? xDepartmentDataModel.lDefaultPrice : prm_lPrice;
+
+                    // Validate quantity, default to department's default quantity if the quantity is 1
                     lQuantity = prm_lQuantity != 1 ? prm_lQuantity : xDepartmentDataModel.lDefaultQuantity;
+
+                    // Store the found department and break the loop
                     xSaledDepartmentDataModel = xDepartmentDataModel;
 
                     break;
                 }
             }
 
+            // If no department was found, return false and set the error code
             if (xSaledDepartmentDataModel == null)
             {
-                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND; // Set error code indicating department was not found
                 return false;
             }
 
+            // Ensure the receipt has been started
             if (bStartReceipt() == false)
             {
-                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_START_RECEIPT; // Use appropriate error code if the receipt can't be started
                 return false;
             }
 
+            // Insert the transaction detail for the department sale
             if (bInsertTransactionDetail(xSaledDepartmentDataModel, lPrice, lQuantity) == false)
             {
-                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_INSERT_TRANSACTION; // Set error code indicating transaction insertion failed
                 return false;
             }
 
+            // Update the transaction head to reflect the new sale
             if (bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel) == false)
             {
-                m_enumErrorCode = EnumErrorCode.DEPARTMENT_NOT_FOUND;
+                m_enumErrorCode = EnumErrorCode.CAN_NOT_INSERT_TRANSACTION; // Set error code if the transaction head update fails
                 return false;
             }
 
+            // If all operations succeed, return true
             return true;
         }
 
