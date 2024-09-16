@@ -13,14 +13,21 @@ namespace SaleFlex.Data.AccessLayer
 {
     public partial class Dao
     {
+        /// <summary>
+        /// Retrieves the list of payment types from the database.
+        /// </summary>
+        /// <returns></returns>
         public List<PaymentTypeDataModel> xListGetPaymentTypes()
         {
             List<PaymentTypeDataModel> xListPaymentTypeDataModel = null;
 
             try
             {
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(string.Format("SELECT * FROM TablePaymentType ORDER BY TypeNo"));
+                // Execute the SQL query to get payment types, ordered by TypeNo.
+                string query = "SELECT * FROM TablePaymentType ORDER BY TypeNo";
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable(query);
 
+                // If there are rows in the DataTable, populate the list of payment types.
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
                     foreach (DataRow xDataRow in xDataTable.Rows)
@@ -44,16 +51,21 @@ namespace SaleFlex.Data.AccessLayer
             }
             catch (Exception xException)
             {
-                xException.strTraceError();
+                xException.strTraceError(); // Log the exception
             }
 
-            return xListPaymentTypeDataModel;
+            return xListPaymentTypeDataModel; // Return the populated list of payment types (or empty if no results)
         }
 
+        /// <summary>
+        /// Saves a new payment type to the database
+        /// </summary>
+        /// <param name="prm_xPaymentTypeDataModel"></param>
         public void vSavePaymentType(ServiceDataModel.PaymentTypeModel prm_xPaymentTypeDataModel)
         {
             try
             {
+                // Execute the SQL query with parameters
                 Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteVoidDataTable(
                     string.Format("INSERT INTO TablePaymentType (TypeNo, TypeName, TypeDescription) VALUES({0},'{1}','{2}');",
                     prm_xPaymentTypeDataModel.TypeNo,
@@ -62,15 +74,22 @@ namespace SaleFlex.Data.AccessLayer
             }
             catch (Exception xException)
             {
-                xException.strTraceError();
+                xException.strTraceError(); // Log the exception if something goes wrong
             }
         }
 
+        // Suspended transaction list, managing transactions that are temporarily paused.
         public List<int> xSuspendedListValues;
+
+        /// <summary>
+        /// Adds a transaction to the suspended list, returns true if successful.
+        /// </summary>
+        /// <param name="prm_iTransactionHeadId"></param>
+        /// <returns></returns>
         public bool bAddSuspendedList(int prm_iTransactionHeadId)
         {
-            bool bReturnValue = false;
-            int iSuspendListLimit = 1;
+            bool bReturnValue = false;  // Default return value is false
+            int iMaxSuspendListSize = 1;    // Maximum limit for the suspend list size
             try
             {
                 if (xSuspendedListValues == null || xSuspendedListValues.Count == 0)
@@ -81,7 +100,7 @@ namespace SaleFlex.Data.AccessLayer
                 {
                     bReturnValue = true;
                 }
-                if (!(xSuspendedListValues.Count >= iSuspendListLimit))
+                if (!(xSuspendedListValues.Count >= iMaxSuspendListSize))
                 {
                     if (!xSuspendedListValues.Contains(prm_iTransactionHeadId))
                     {
@@ -92,16 +111,22 @@ namespace SaleFlex.Data.AccessLayer
             }
             catch (Exception xException)
             {
-                xException.strTraceError();
-                throw;
+                xException.strTraceError(); // Log the exception if something goes wrong
+                throw;  // Re-throw the exception after logging
             }
 
             return bReturnValue;
         }
 
+        /// <summary>
+        /// Removes a transaction from the suspended list based on the transaction ID.
+        /// </summary>
+        /// <param name="prm_iTransactionHeadId"></param>
         public void vRemoveFromSuspendedList(int prm_iTransactionHeadId)
         {
-            xSuspendedListValues.Remove(prm_iTransactionHeadId);
+            // Remove the transaction ID from the suspended list, if present.
+            if (xSuspendedListValues.Contains(prm_iTransactionHeadId))
+                xSuspendedListValues.Remove(prm_iTransactionHeadId);
         }
     }
 }
