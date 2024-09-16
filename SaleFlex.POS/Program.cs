@@ -53,7 +53,7 @@ namespace SaleFlex.POS
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(vCurrentDomainUnhandledException);
 
             // Start the main form of the application.
-            Application.Run(new Main());
+            Application.Run(new SaleFlexPosMain());
         }
 
         /// <summary>

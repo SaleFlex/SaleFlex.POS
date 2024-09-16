@@ -11,14 +11,14 @@ namespace SaleFlex.POS
     /// Main class that initializes the SaleFlex.POS application context.
     /// It inherits from ApplicationContext, which is responsible for managing the application's lifecycle.
     /// </summary>
-    class Main : ApplicationContext
+    class SaleFlexPosMain : ApplicationContext
     {
         /// <summary>
         /// Constructor that initializes the Main class.
         /// This sets the application version and description, and logs the version and description information
         /// using the Trace class. It also sets the main form for the application.
         /// </summary>
-        public Main()
+        public SaleFlexPosMain()
         {
             // Retrieve and set the application version and description from the assembly attributes.
             string strVersion = CommonProperty.prop_strApplicationVersion = strAssemblyVersion;
