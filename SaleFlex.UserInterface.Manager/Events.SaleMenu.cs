@@ -289,7 +289,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (strPluBarcode != string.Empty)
                 {
                     long decPrice = m_lPriceOfProduct;
-                    long decQuantity = isMultiply == false ? m_decQuantityOfProduct*1000 : m_decQuantityOfProduct; //1000 den küçükse istenilen bir sayı değildir, o yüzden çarpıyoruz.
+                    long decQuantity = isMultiply == false ? m_decQuantityOfProduct : m_decQuantityOfProduct * 1000; //1000 den küçükse istenilen bir sayı değildir, o yüzden çarpıyoruz.
                     
                     m_lPriceOfProduct = 0;
                     m_decQuantityOfProduct = 1;
