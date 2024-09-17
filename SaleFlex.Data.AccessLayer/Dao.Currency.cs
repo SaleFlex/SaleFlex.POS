@@ -24,7 +24,7 @@ namespace SaleFlex.Data.AccessLayer
             {
                 List<CurrencyDataModel> xListCurrencyDataModel = null;
 
-                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCountry ORDER BY Id");
+                DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabasePosFileNameAndPath).xExecuteDataTable("SELECT * FROM TableCurrency ORDER BY Id");
 
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
