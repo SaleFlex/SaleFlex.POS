@@ -9,13 +9,14 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Windows.Forms;
 using SaleFlex.Data;
+using SaleFlex.CommonLibrary;
 
 
 namespace SaleFlex.GATE.Manager
 {
     public class GateManager
     {
-        private const string URL = "http://213.144.115.150:10000/SaleFlex/SaleFlexGate.PosService.svc/";
+        private string URL = $"{JsonParameter.xGetInstance().prop_strHostUrl}/SaleFlex/SaleFlexGate.PosService.svc/";
         private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
         const string method = "POST";
 

@@ -68,7 +68,7 @@ namespace SaleFlex.CommonLibrary
         public long prop_lPosId{ get; set; }
         public long prop_lMerchantId { get; set; }
         public int prop_iStoreNo { get; set; }
-        public string prop_strIpPort { get; set; }
+        public string prop_strHostUrl { get; set; }
         public string prop_strAppToken { get; set; }
         public bool prop_bIsOfflinePos { get; set; }
 
@@ -119,7 +119,7 @@ namespace SaleFlex.CommonLibrary
                 prop_lPosId = 0;
                 prop_lMerchantId = 0;
                 prop_iStoreNo = 0;
-                prop_strIpPort = @"https://saleflex.net/";
+                prop_strHostUrl = @"https://saleflex.net";
                 prop_strAppToken = string.Empty;
                 prop_bIsOfflinePos = true;
                 JsonReadWrite<JsonParameter>.xGetInstance().bWrite(this);

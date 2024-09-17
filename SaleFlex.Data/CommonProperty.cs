@@ -519,11 +519,11 @@ namespace SaleFlex.Data
         {
             get
             {
-                return JsonParameter.xGetInstance().prop_strIpPort;
+                return JsonParameter.xGetInstance().prop_strHostUrl;
             }
             set
             {
-                JsonParameter.xGetInstance().prop_strIpPort = value;
+                JsonParameter.xGetInstance().prop_strHostUrl = value;
                 JsonParameter.xGetInstance().bUpdateJsonParameter();
             }
         }
