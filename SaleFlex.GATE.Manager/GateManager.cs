@@ -787,7 +787,7 @@ namespace SaleFlex.GATE.Manager
             }
             catch (Exception xException)
             {
-                Trace.vInsert(enumTraceLevel.Unnecessary, $"{xException.Message} - {JsonConvert.SerializeObject(transactionList, jsonSettings)}");
+                xException.strTraceError(JsonConvert.SerializeObject(transactionList, jsonSettings));
                 return null;
             }
         }
