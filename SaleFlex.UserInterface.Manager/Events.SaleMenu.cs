@@ -246,8 +246,7 @@ namespace SaleFlex.UserInterface.Manager
                 {
                     try
                     {
-                        long decQuantityOfProduct = Convert.ToInt64(decimal.Parse(strNumPadOutput)*1000); // Miktar virgüllü ise diye 1000 ile çarpıyoruz
-                        m_decQuantityOfProduct = decQuantityOfProduct; // If convertable set the value
+                        m_decQuantityOfProduct = strNumPadOutput.lConvertQuantityOfProduct(); // If the price entered in the numpad is convertible, assign its converted value to the class variable.
                         isMultiply = true;
                     }
                     catch
@@ -289,7 +288,7 @@ namespace SaleFlex.UserInterface.Manager
                 if (strPluBarcode != string.Empty)
                 {
                     long decPrice = m_lPriceOfProduct;
-                    long decQuantity = isMultiply == false ? m_decQuantityOfProduct : m_decQuantityOfProduct * 1000; //1000 den küçükse istenilen bir sayı değildir, o yüzden çarpıyoruz.
+                    long decQuantity = m_decQuantityOfProduct;
                     
                     m_lPriceOfProduct = 0;
                     m_decQuantityOfProduct = 1;
