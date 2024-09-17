@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using SaleFlex.Data;
 using SaleFlex.CommonLibrary;
+using Trace = SaleFlex.CommonLibrary.Trace;
 
 
 namespace SaleFlex.GATE.Manager
