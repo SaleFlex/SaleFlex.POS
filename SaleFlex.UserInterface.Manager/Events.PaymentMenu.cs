@@ -100,9 +100,12 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
-                    PosManager.xGetInstance().bClearTransaction(true);
-                    vReceiptClosed();
-                    vTotalValuesChanges();
+                    if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
+                    {
+                        PosManager.xGetInstance().bCloseReceipt(true);
+                        vReceiptClosed();
+                        vTotalValuesChanges();
+                    }
                 }
             }
             catch (Exception xException)

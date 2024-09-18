@@ -207,6 +207,23 @@ namespace SaleFlex.POS.Manager
             return bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel);
         }
 
+        public bool bCloseReceipt(bool prm_bSucceed)
+        {
+            bClearTransaction(true);
+
+            m_enumDocumentState = EnumDocumentState.CLOSED;
+
+            if (prm_bSucceed == true)
+            {
+                m_enumDocumentResult = EnumDocumentResult.SUCCEEDED;
+            }
+            else 
+            {
+                m_enumDocumentResult = EnumDocumentResult.FAILED;
+            }
+            return true;
+        }
+
         public bool bClearTransaction(bool prm_bIncreaseReceiptNumber = false)
         {
             if (prm_bIncreaseReceiptNumber)
@@ -604,9 +621,6 @@ namespace SaleFlex.POS.Manager
                 {
                     Dao.xGetInstance().vRemoveFromSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
                 }
-
-                m_enumDocumentResult = EnumDocumentResult.SUCCEEDED;
-                m_enumDocumentState = EnumDocumentState.CLOSED;
 
                 return true;
             }
