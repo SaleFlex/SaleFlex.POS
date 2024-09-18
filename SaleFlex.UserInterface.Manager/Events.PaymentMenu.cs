@@ -100,6 +100,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
+                    PosManager.xGetInstance().bClearTransaction(true);
                     vReceiptClosed();
                     vTotalValuesChanges();
                 }
@@ -164,6 +165,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
+                    PosManager.xGetInstance().bClearTransaction(true);
                     vReceiptClosed();
                     vTotalValuesChanges();
                 }
@@ -277,6 +279,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
+                    PosManager.xGetInstance().bClearTransaction(true);
                     vReceiptClosed();
                     vTotalValuesChanges();
                 }
@@ -336,6 +339,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
+                    PosManager.xGetInstance().bClearTransaction(true);
                     vReceiptClosed();
                     vTotalValuesChanges();
                 }
@@ -399,6 +403,7 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
+                    PosManager.xGetInstance().bClearTransaction(true);
                     vReceiptClosed();
                     vTotalValuesChanges();
                 }

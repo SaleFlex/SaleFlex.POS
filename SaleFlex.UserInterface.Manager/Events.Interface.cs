@@ -23,15 +23,15 @@ namespace SaleFlex.UserInterface.Manager
             {
                 m_xLastCustomForm.bSetStatusBarZNoLabel(string.Format("{0}", prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber));
                 m_xLastCustomForm.bSetStatusBarReceiptNoLabel(string.Format("{0}", prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber));
-                m_xLastCustomForm.bSetStatusBarPriceLabel(Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPrice)/100);
+                m_xLastCustomForm.bSetStatusBarPriceLabel(Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPrice) / 100);
                 m_xLastCustomForm.bSetStatusBarQuantityLabel(prop_xPosManagerData.lReceiptTotalQuantity);
 
                 foreach (Control xControl in m_xLastCustomForm.Controls)
                 {
                     if (xControl is CustomAmountsTable)
                     {
-                        ((CustomAmountsTable)xControl).decReceiptTotalPrice =Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPrice)/100;
-                        ((CustomAmountsTable)xControl).decReceiptTotalPayment = Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPayment)/100;
+                        ((CustomAmountsTable)xControl).decReceiptTotalPrice = Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPrice) / 100;
+                        ((CustomAmountsTable)xControl).decReceiptTotalPayment = Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalPayment) / 100;
                         ((CustomAmountsTable)xControl).decDiscountTotalAmount = Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalDiscount) / 100;
                         ((CustomAmountsTable)xControl).decSurchargeTotalAmount = Convert.ToDecimal(prop_xPosManagerData.lReceiptTotalSurcharge) / 100;
                         ((CustomAmountsTable)xControl).vUpdateAndRefreshFormControls();
@@ -58,7 +58,8 @@ namespace SaleFlex.UserInterface.Manager
 
             Application.DoEvents();
         }
-        void vSuspendedTransactionAdded() {
+        void vSuspendedTransactionAdded()
+        {
             m_xLastCustomForm.bSetStatusBarZNoLabel(string.Format("{0}", prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber));
             m_xLastCustomForm.bSetStatusBarReceiptNoLabel(string.Format("{0}", prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber));
 
@@ -164,7 +165,7 @@ namespace SaleFlex.UserInterface.Manager
             header.AppToken = CommonProperty.prop_strAppToken;
             transactionRequest.HeaderModel = header;
             transactionRequest.TransactionHeadList = PosManager.xGetInstance().GetUnsendTransactionList();
-            
+
             ServiceDataModel.TransactionListResponseModel transactionListResponse = externalService.vSaveTransactionList(transactionRequest);
             PosManager.xGetInstance().UpdateTransactionForSendServer(transactionListResponse);
 

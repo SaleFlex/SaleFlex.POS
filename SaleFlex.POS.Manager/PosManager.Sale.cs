@@ -207,16 +207,23 @@ namespace SaleFlex.POS.Manager
             return bUpdateTransactionHead(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel);
         }
 
-        public bool bClearTransaction()
+        public bool bClearTransaction(bool prm_bIncreaseReceiptNumber = false)
         {
-            m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel = new TransactionHeadDataModel();
+            if (prm_bIncreaseReceiptNumber)
+            {
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iIncreaseReceiptNumberByOne();
+            }
+            else
+            {
+                m_xPosManagerData.xTransactionDataModel = new TransactionDataModel();
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel = new TransactionHeadDataModel();
+                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNumber();
+                m_xPosManagerData.lReceiptTotalPayment = 0;
+            }
             m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
-            m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iGetLastRecieptNumber();
             m_xPosManagerData.xTransactionDataModel.bTransactionStarted = false;
             m_xPosManagerData.lReceiptTotalPrice = 0;
             m_xPosManagerData.lReceiptTotalVat = 0;
-            m_xPosManagerData.lReceiptTotalPayment = 0;
             m_xPosManagerData.lTotalPrice = 0;
 
 
@@ -597,11 +604,6 @@ namespace SaleFlex.POS.Manager
                 {
                     Dao.xGetInstance().vRemoveFromSuspendedList(m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
                 }
-
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iReceiptNumber = Dao.xGetInstance().iIncreaseReceiptNumberByOne();
-                m_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iZNumber = Dao.xGetInstance().iGetLastZNumber();
-                m_xPosManagerData.lReceiptTotalPrice = 0;
-                m_xPosManagerData.lReceiptTotalVat = 0;
 
                 m_enumDocumentResult = EnumDocumentResult.SUCCEEDED;
                 m_enumDocumentState = EnumDocumentState.CLOSED;
