@@ -1,5 +1,6 @@
 ﻿using SaleFlex.CommonLibrary;
 using SaleFlex.Data;
+using SaleFlex.Data.Models;
 using SaleFlex.POS.Device.Manager;
 using SaleFlex.POS.Manager;
 using SaleFlex.UserInterface.BoxForm;
@@ -102,8 +103,12 @@ namespace SaleFlex.UserInterface.Manager
                     vTotalValuesChanges();
                     if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
                     {
+                        long lReceiptTotalPrice = prop_xPosManagerData.lReceiptTotalPrice;
+                        long lReceiptTotalPayment = prop_xPosManagerData.lReceiptTotalPayment;
+                        List<PaymentDataModel> xListPaymentDataModel = prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel;
+                        PosManagerData xPosManagerData = prop_xPosManagerData;
                         PosManager.xGetInstance().bCloseReceipt(true);
-                        vReceiptClosed();
+                        vReceiptClosed(lReceiptTotalPrice, lReceiptTotalPayment, xListPaymentDataModel);
                         vTotalValuesChanges();
                     }
                 }
@@ -168,9 +173,16 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
-                    PosManager.xGetInstance().bClearTransaction(true);
-                    vReceiptClosed();
-                    vTotalValuesChanges();
+                    if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
+                    {
+                        long lReceiptTotalPrice = prop_xPosManagerData.lReceiptTotalPrice;
+                        long lReceiptTotalPayment = prop_xPosManagerData.lReceiptTotalPayment;
+                        List<PaymentDataModel> xListPaymentDataModel = prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel;
+                        PosManagerData xPosManagerData = prop_xPosManagerData;
+                        PosManager.xGetInstance().bCloseReceipt(true);
+                        vReceiptClosed(lReceiptTotalPrice, lReceiptTotalPayment, xListPaymentDataModel);
+                        vTotalValuesChanges();
+                    }
                 }
             }
             catch (Exception xException)
@@ -282,9 +294,16 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
-                    PosManager.xGetInstance().bClearTransaction(true);
-                    vReceiptClosed();
-                    vTotalValuesChanges();
+                    if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
+                    {
+                        long lReceiptTotalPrice = prop_xPosManagerData.lReceiptTotalPrice;
+                        long lReceiptTotalPayment = prop_xPosManagerData.lReceiptTotalPayment;
+                        List<PaymentDataModel> xListPaymentDataModel = prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel;
+                        PosManagerData xPosManagerData = prop_xPosManagerData;
+                        PosManager.xGetInstance().bCloseReceipt(true);
+                        vReceiptClosed(lReceiptTotalPrice, lReceiptTotalPayment, xListPaymentDataModel);
+                        vTotalValuesChanges();
+                    }
                 }
             }
             catch (Exception xException)
@@ -342,9 +361,16 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
-                    PosManager.xGetInstance().bClearTransaction(true);
-                    vReceiptClosed();
-                    vTotalValuesChanges();
+                    if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
+                    {
+                        long lReceiptTotalPrice = prop_xPosManagerData.lReceiptTotalPrice;
+                        long lReceiptTotalPayment = prop_xPosManagerData.lReceiptTotalPayment;
+                        List<PaymentDataModel> xListPaymentDataModel = prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel;
+                        PosManagerData xPosManagerData = prop_xPosManagerData;
+                        PosManager.xGetInstance().bCloseReceipt(true);
+                        vReceiptClosed(lReceiptTotalPrice, lReceiptTotalPayment, xListPaymentDataModel);
+                        vTotalValuesChanges();
+                    }
                 }
             }
             catch (Exception xException)
@@ -406,9 +432,16 @@ namespace SaleFlex.UserInterface.Manager
 
                     vNewPaymentAdded();
                     vTotalValuesChanges();
-                    PosManager.xGetInstance().bClearTransaction(true);
-                    vReceiptClosed();
-                    vTotalValuesChanges();
+                    if (prop_xPosManagerData.lReceiptTotalPrice <= prop_xPosManagerData.lReceiptTotalPayment)
+                    {
+                        long lReceiptTotalPrice = prop_xPosManagerData.lReceiptTotalPrice;
+                        long lReceiptTotalPayment = prop_xPosManagerData.lReceiptTotalPayment;
+                        List<PaymentDataModel> xListPaymentDataModel = prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel;
+                        PosManagerData xPosManagerData = prop_xPosManagerData;
+                        PosManager.xGetInstance().bCloseReceipt(true);
+                        vReceiptClosed(lReceiptTotalPrice, lReceiptTotalPayment, xListPaymentDataModel);
+                        vTotalValuesChanges();
+                    }
                 }
             }
             catch (Exception xException)
@@ -483,7 +516,7 @@ namespace SaleFlex.UserInterface.Manager
                         m_lPriceOfProduct = 0;
                         m_decQuantityOfProduct = 1;
 
-                        vReceiptClosed(true);
+                        vReceiptClosed(prop_xPosManagerData.lReceiptTotalPrice, prop_xPosManagerData.lReceiptTotalPayment, prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel, true);
                         vTotalValuesChanges();
 
                         DeviceManager.xGetInstance().bCustomerDisplayMessage(LabelTranslations.strGet("DocumentSuspended"), "");

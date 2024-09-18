@@ -88,23 +88,17 @@ namespace SaleFlex.UserInterface.Manager
             Application.DoEvents();
         }
 
-        void vReceiptClosed(bool prm_bIsCancelled = false)
+        void vReceiptClosed(long prm_lReceiptTotalPrice, long prm_lReceiptTotalPayment, List<PaymentDataModel> prm_xListPaymentDataModel, bool prm_bIsCancelled = false)
         {
             try
             {
                 if (prm_bIsCancelled == false)
                 {
-                    if (prop_xPosManagerData.lReceiptTotalPrice - prop_xPosManagerData.lReceiptTotalPayment <= 0)
+                    if (prm_lReceiptTotalPrice - prm_lReceiptTotalPayment <= 0)
                     {
-                        //var sendIsCompleted = SendTransactionToServer(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
-                        //if (sendIsCompleted) UpdateTransactionIsSend(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
-                        //var unsendIsCompleted = SendUnsendTransactionsToServer();
-                        //if (unsendIsCompleted) UpdateTransactionIsSend(prop_xPosManagerData.xTransactionDataModel.xTransactionHeadDataModel.iId);
-
-                        InfoBoxPaymentDetail xMessageBoxPaymentDetail = new InfoBoxPaymentDetail(prop_xPosManagerData);
+                        InfoBoxPaymentDetail xMessageBoxPaymentDetail = new InfoBoxPaymentDetail(prm_lReceiptTotalPrice, prm_lReceiptTotalPayment, prm_xListPaymentDataModel);
                         xMessageBoxPaymentDetail.ShowDialog();
                         DeviceManager.xGetInstance().bOpenCashDrawer();
-
                     }
                     else
                     {

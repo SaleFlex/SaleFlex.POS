@@ -596,7 +596,7 @@ namespace SaleFlex.UserInterface.Manager
                             m_lPriceOfProduct = 0;
                             m_decQuantityOfProduct = 1;
 
-                            vReceiptClosed(true);
+                            vReceiptClosed(prop_xPosManagerData.lReceiptTotalPrice, prop_xPosManagerData.lReceiptTotalPayment, prop_xPosManagerData.xTransactionDataModel.xListPaymentDataModel, true);
                             vTotalValuesChanges();
 
                             DeviceManager.xGetInstance().bCustomerDisplayMessage(LabelTranslations.strGet("DocumentCancelled"), "");

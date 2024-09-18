@@ -18,20 +18,20 @@ namespace SaleFlex.UserInterface.BoxForm
     {
         int m_iSelectedIndex = 0;
 
-        public InfoBoxPaymentDetail(PosManagerData prm_xPosManagerData)
+        public InfoBoxPaymentDetail(long prm_lReceiptTotalPrice, long prm_lReceiptTotalPayment, List<PaymentDataModel> prm_xListPaymentDataModel)
         {
             InitializeComponent();
 
             try
             {
-                labelTotalAmount.Text = string.Format(" {0}: {1:#,0.00} {2}", LabelTranslations.strGet("NetSale"), Convert.ToDecimal(prm_xPosManagerData.lReceiptTotalPrice)/100, LabelTranslations.strGet("CurrencySymbol"));
-                if (prm_xPosManagerData.lReceiptTotalPrice <prm_xPosManagerData.lReceiptTotalPayment)
-                    labelBalanceAmount.Text = string.Format("{0}: {1:#,0.00} {2}", LabelTranslations.strGet("Change"), (Convert.ToDecimal(prm_xPosManagerData.lReceiptTotalPayment - prm_xPosManagerData.lReceiptTotalPrice)/100), LabelTranslations.strGet("CurrencySymbol"));
+                labelTotalAmount.Text = string.Format(" {0}: {1:#,0.00} {2}", LabelTranslations.strGet("NetSale"), Convert.ToDecimal(prm_lReceiptTotalPrice) /100, LabelTranslations.strGet("CurrencySymbol"));
+                if (prm_lReceiptTotalPrice < prm_lReceiptTotalPayment)
+                    labelBalanceAmount.Text = string.Format("{0}: {1:#,0.00} {2}", LabelTranslations.strGet("Change"), (Convert.ToDecimal(prm_lReceiptTotalPayment - prm_lReceiptTotalPrice) /100), LabelTranslations.strGet("CurrencySymbol"));
                 else
                     labelBalanceAmount.Text = string.Empty;
 
-                if (prm_xPosManagerData != null && prm_xPosManagerData.xTransactionDataModel != null && prm_xPosManagerData.xTransactionDataModel.xListPaymentDataModel != null)
-                    foreach (PaymentDataModel xPaymentDataModel in prm_xPosManagerData.xTransactionDataModel.xListPaymentDataModel)
+                if (prm_xListPaymentDataModel != null)
+                    foreach (PaymentDataModel xPaymentDataModel in prm_xListPaymentDataModel)
                     {
                         bAddPayment(xPaymentDataModel);
                     }
