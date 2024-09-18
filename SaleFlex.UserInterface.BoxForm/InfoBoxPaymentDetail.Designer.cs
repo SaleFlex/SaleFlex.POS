@@ -40,9 +40,9 @@
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.dataGridViewPayments = new System.Windows.Forms.DataGridView();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
             this.TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AMOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelTotalAmount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPayments)).BeginInit();
             this.SuspendLayout();
@@ -159,25 +159,6 @@
             this.dataGridViewPayments.Size = new System.Drawing.Size(385, 200);
             this.dataGridViewPayments.TabIndex = 8;
             // 
-            // TYPE
-            // 
-            this.TYPE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TYPE.DataPropertyName = "TYPE";
-            this.TYPE.HeaderText = "TİP";
-            this.TYPE.Name = "TYPE";
-            this.TYPE.ReadOnly = true;
-            // 
-            // AMOUNT
-            // 
-            this.AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AMOUNT.DataPropertyName = "AMOUNT";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.AMOUNT.DefaultCellStyle = dataGridViewCellStyle2;
-            this.AMOUNT.HeaderText = "TUTAR";
-            this.AMOUNT.Name = "AMOUNT";
-            this.AMOUNT.ReadOnly = true;
-            // 
             // labelTotalAmount
             // 
             this.labelTotalAmount.BackColor = System.Drawing.Color.Transparent;
@@ -189,6 +170,25 @@
             this.labelTotalAmount.TabIndex = 1;
             this.labelTotalAmount.Text = "NET SALE: 0,00 £";
             this.labelTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TYPE
+            // 
+            this.TYPE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TYPE.DataPropertyName = "TYPE";
+            this.TYPE.HeaderText = "TYPE";
+            this.TYPE.Name = "TYPE";
+            this.TYPE.ReadOnly = true;
+            // 
+            // AMOUNT
+            // 
+            this.AMOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AMOUNT.DataPropertyName = "AMOUNT";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.AMOUNT.DefaultCellStyle = dataGridViewCellStyle2;
+            this.AMOUNT.HeaderText = "AMOUNT";
+            this.AMOUNT.Name = "AMOUNT";
+            this.AMOUNT.ReadOnly = true;
             // 
             // InfoBoxPaymentDetail
             // 
