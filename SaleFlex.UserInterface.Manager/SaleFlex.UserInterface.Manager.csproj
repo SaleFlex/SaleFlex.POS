@@ -97,6 +97,7 @@
     <Compile Include="Events.cs" />
     <Compile Include="Events.Documents.cs" />
     <Compile Include="Events.Interface.cs" />
+    <Compile Include="Events.PaymentMenu.cs" />
     <Compile Include="Events.ReportMenu.cs" />
     <Compile Include="Events.Get.cs" />
     <Compile Include="Events.SaleMenu.cs" />
