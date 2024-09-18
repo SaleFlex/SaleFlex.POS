@@ -105,6 +105,7 @@ namespace SaleFlex.Data.Initialize
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (7, 7, '', 0, 0, 'PG Tips Tea Bags', 'PG Tea Bags', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', 'PG Tips Tea Bags (80 Bags)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (8, 8, '', 0, 0, 'Coca-Cola Original Taste', 'Coca-Cola', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', 'Coca-Cola Original Taste (1.5L Bottle)', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
                                     "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (9, 9, '', 0, 0, 'Beard Butter Original', 'Beard Butter', 'Beard Butter Original Formula', 'Beard Butter Original Formula', 'Beard Butter Original Formula', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
+                                    "INSERT INTO TablePlu (Code, OldCode, ShelfCode, PurchasePrice, SalePrice, Name, ShortName, Description, DescriptionOnScreen, DescriptionOnShelf, DescriptionOnScale, FkPluSubGroupId, FkVatId, KeyboardValue, Scalable, AllowDiscount, DiscountPercent, AllowNegativeStock, AllowReturn, Stock, MinStock, MaxStock, StockUnit, FkPluManufacturerId)  VALUES (10, 10, '', 0, 0, 'Cadbury Dairy Milk Chocolate', 'Milk Chocolate', 'Cadbury Dairy Milk Chocolate 180g', 'Cadbury Dairy Milk Chocolate 180g', 'Cadbury Dairy Milk Chocolate 180g', '', 1, 1, '', 0, 0, 0, 1, 0, 1000, 10, 1000, 'PC', 1)",
                                 };
 
                                 foreach (string strQuery in straQueries)
@@ -161,12 +162,13 @@ namespace SaleFlex.Data.Initialize
                             {
                                 string[] straQueries = new string[]
                                 {
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (3, '5000157070008', '5000157070008', 100, 110)",
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (4, '7622210449283', '7622210449283', 80, 88)",
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (5, '5000328721575', '5000328721575', 150, 165)",
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (6, '8711200334532', '8711200334532', 200, 220)",
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (7, '5449000000996', '5449000000996', 250, 275)",
-                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (8, '0746817004304', '0746817004304', 350, 385)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (4, '5000157070008', '5000157070008', 100, 110)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (5, '7622210449283', '7622210449283', 80, 88)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (6, '5000328721575', '5000328721575', 150, 165)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (7, '8711200334532', '8711200334532', 200, 220)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (8, '5449000000996', '5449000000996', 250, 275)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (9, '0746817004304', '0746817004304', 350, 385)",
+                                    "INSERT INTO TablePluBarcode (FkPluId, Barcode, OldBarcode, PurchasePrice, SalePrice)  VALUES (10, '7622210700394', '7622210700394', 180, 200)",
                                 };
 
                                 foreach (string strQuery in straQueries)
