@@ -138,6 +138,8 @@
     <Compile Include="TransactionHeadDataModel.cs" />
     <Compile Include="TransactionTypeDataModel.cs" />
     <Compile Include="VatDataModel.cs" />
+    <Compile Include="WarehouseDataModel.cs" />
+    <Compile Include="WarehouseTransactionDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
