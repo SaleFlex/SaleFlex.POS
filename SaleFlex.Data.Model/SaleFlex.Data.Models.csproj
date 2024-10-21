@@ -139,6 +139,7 @@
     <Compile Include="TransactionTypeDataModel.cs" />
     <Compile Include="VatDataModel.cs" />
     <Compile Include="WarehouseDataModel.cs" />
+    <Compile Include="WarehouseProductDataModel.cs" />
     <Compile Include="WarehouseTransactionDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
