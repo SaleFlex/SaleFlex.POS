@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SaleFlex.Data.Models
 {
     // Basic Warehouse Model: Defines each warehouse.
-    internal class WarehouseDataModel
+    public class WarehouseDataModel
     {
         public WarehouseDataModel()
         {

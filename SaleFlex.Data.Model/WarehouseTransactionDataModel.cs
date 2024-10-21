@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SaleFlex.Data.Models
 {
     // Warehouse Transactions: Used to record warehouse entries and exits.
-    internal class WarehouseTransactionDataModel
+    public class WarehouseTransactionDataModel
     {
         // Transaction Id
         public int iId { get; set; }

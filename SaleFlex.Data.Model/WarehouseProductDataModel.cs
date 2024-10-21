@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SaleFlex.Data.Models
 {
     // Products in the Warehouse: Contains details of each product in the warehouse.
-    internal class WarehouseProductDataModel
+    public class WarehouseProductDataModel
     {
         public WarehouseProductDataModel()
         {
