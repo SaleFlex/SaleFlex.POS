@@ -107,7 +107,6 @@
     <Compile Include="PosManager.ServiceMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseMessage.cs" />
-    <Compile Include="ServiceImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaleFlex.CommonLibrary\SaleFlex.CommonLibrary.csproj">
@@ -125,6 +124,10 @@
     <ProjectReference Include="..\SaleFlex.Data\SaleFlex.Data.csproj">
       <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
       <Name>SaleFlex.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.GATE.Manager\SaleFlex.GATE.Manager.csproj">
+      <Project>{A2031279-B371-4265-B889-9EAFCB3E281E}</Project>
+      <Name>SaleFlex.GATE.Manager</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaleFlex.Windows\SaleFlex.Windows.csproj">
       <Project>{dc1bd6eb-9cf3-4d23-8cc9-f7e8a7717785}</Project>

@@ -130,6 +130,10 @@
       <Project>{43b10ec8-411f-4830-89ce-75893ef7ea32}</Project>
       <Name>SaleFlex.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaleFlex.GATE.Manager\SaleFlex.GATE.Manager.csproj">
+      <Project>{A2031279-B371-4265-B889-9EAFCB3E281E}</Project>
+      <Name>SaleFlex.GATE.Manager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaleFlex.POS.Device.Manager\SaleFlex.POS.Device.Manager.csproj">
       <Project>{f70888d6-fe67-4f1e-b887-088a78509914}</Project>
       <Name>SaleFlex.POS.Device.Manager</Name>

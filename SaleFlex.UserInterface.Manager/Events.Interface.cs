@@ -12,6 +12,7 @@ using SaleFlex.Data.Models;
 using SaleFlex.Data.AccessLayer;
 using SaleFlex.POS.Manager;
 using SaleFlex.POS.Device.Manager;
+using SaleFlex.GATE.Manager;
 
 namespace SaleFlex.UserInterface.Manager
 {
@@ -130,7 +131,7 @@ namespace SaleFlex.UserInterface.Manager
 
         public bool SendTransactionToServer(long transactionHeadId)
         {
-            var externalService = new ExternalService();
+            var xGateManager = new GateManager();
             ServiceDataModel.TransactionListRequestModel transactionRequest = new ServiceDataModel.TransactionListRequestModel();
             transactionRequest.TransactionHeadList = new List<ServiceDataModel.TransactionHeadModel>();
             ServiceDataModel.HeaderModel header = new ServiceDataModel.HeaderModel
@@ -143,7 +144,7 @@ namespace SaleFlex.UserInterface.Manager
 
             transactionRequest.TransactionHeadList.Add(transactionHead);
 
-            ServiceDataModel.TransactionListResponseModel transactionListResponse = externalService.vSaveTransactionList(transactionRequest);
+            ServiceDataModel.TransactionListResponseModel transactionListResponse = xGateManager.vSaveTransactionList(transactionRequest);
             PosManager.xGetInstance().UpdateTransactionForSendServer(transactionListResponse);
 
             return true;
@@ -151,7 +152,7 @@ namespace SaleFlex.UserInterface.Manager
 
         public bool SendUnsendTransactionsToServer()
         {
-            var externalService = new ExternalService();
+            var xGateManager = new GateManager();
 
             ServiceDataModel.TransactionListRequestModel transactionRequest = new ServiceDataModel.TransactionListRequestModel();
             ServiceDataModel.HeaderModel header = new ServiceDataModel.HeaderModel();
@@ -160,7 +161,7 @@ namespace SaleFlex.UserInterface.Manager
             transactionRequest.HeaderModel = header;
             transactionRequest.TransactionHeadList = PosManager.xGetInstance().GetUnsendTransactionList();
 
-            ServiceDataModel.TransactionListResponseModel transactionListResponse = externalService.vSaveTransactionList(transactionRequest);
+            ServiceDataModel.TransactionListResponseModel transactionListResponse = xGateManager.vSaveTransactionList(transactionRequest);
             PosManager.xGetInstance().UpdateTransactionForSendServer(transactionListResponse);
 
             return true;

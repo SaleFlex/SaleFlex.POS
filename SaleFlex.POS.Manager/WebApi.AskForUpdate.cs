@@ -9,6 +9,7 @@ using SaleFlex.Data;
 using SaleFlex.Data.Models;
 using System.Windows.Forms;
 using Newtonsoft.Json.Converters;
+using SaleFlex.GATE.Manager;
 
 namespace SaleFlex.POS.Manager
 {
@@ -70,8 +71,8 @@ namespace SaleFlex.POS.Manager
                         var askForUpdateList = askForUpdateResponse.AskForUpdateList.FindAll(update => update.UpdateTypeId == 4);
                         if (askForUpdateList.Count > 0)
                         {
-                            ExternalService externalService = new ExternalService();
-                            var xThreadUpdate = new Thread(() => externalService.vGetPluList(askForUpdateList));
+                            GateManager xGateManager = new GateManager();
+                            var xThreadUpdate = new Thread(() => xGateManager.vGetPluList(askForUpdateList));
                             xThreadUpdate.Start();
                             //Application.Idle += new Thread(new ThreadStart(externalService.vGetPluList()));
 

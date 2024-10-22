@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SaleFlex.Data.Models;
 using System.Windows.Forms;
+using SaleFlex.GATE.Manager;
 
 namespace SaleFlex.UserInterface.Manager
 {
@@ -161,11 +162,11 @@ namespace SaleFlex.UserInterface.Manager
             }
 
             // Create an instance of the external service to set up POS
-            var externalService = new ExternalService();
+            var xGateManager = new GateManager();
             xInputBoxSetupParameter.Close();
 
             // Call the setup service and check the response
-            ServiceDataModel.ResponseModel response = externalService.vSetupPos(xInputBoxSetupParameter.lMerchantId, xInputBoxSetupParameter.iStoreNo, xInputBoxSetupParameter.lPosId);
+            ServiceDataModel.ResponseModel response = xGateManager.vSetupPos(xInputBoxSetupParameter.lMerchantId, xInputBoxSetupParameter.iStoreNo, xInputBoxSetupParameter.lPosId);
 
             // Handle the response from the service call
             if (response.Code != "0")

@@ -6,6 +6,7 @@ using SaleFlex.CommonLibrary;
 using SaleFlex.Data;
 using SaleFlex.Data.Models;
 using SaleFlex.Data.AccessLayer;
+using SaleFlex.GATE.Manager;
 
 namespace SaleFlex.POS.Manager
 {
@@ -286,7 +287,7 @@ namespace SaleFlex.POS.Manager
                     throw new Exception("StockListCanNotBeNull");
                 }
                 Dao.xGetInstance().SavePluStock(updatedStockList);
-                ExternalService externalService = new ExternalService();
+                GateManager xGateManager = new GateManager();
                 var pluStockList = new List<ServiceDataModel.PluStockModel>();
 
                 foreach (var updatedStock in updatedStockList)
@@ -315,7 +316,7 @@ namespace SaleFlex.POS.Manager
                         throw new ArgumentException("BarcodeCanNotBeNull!");
                     }
                 }
-                var pluListSaveResponse = externalService.vSavePluList(pluStockList);
+                var pluListSaveResponse = xGateManager.vSavePluList(pluStockList);
                 Dao.xGetInstance().UpdatePluForSendServer(pluListSaveResponse);
             }
             catch (Exception ex)
