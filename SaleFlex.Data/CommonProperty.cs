@@ -255,6 +255,15 @@ namespace SaleFlex.Data
             }
         }
 
+        public static string prop_strDatabaseWarehouseFileNameAndPath
+        {
+            get
+            {
+                string strFileNameAndPath = $"{JsonParameter.xGetInstance().prop_strDbsFolder}\\{JsonParameter.xGetInstance().prop_strDatabaseWarehouseFileName}";
+                return strFileNameAndPath;
+            }
+        }
+
         public static string prop_strDepartmentBackColor
         {
             get

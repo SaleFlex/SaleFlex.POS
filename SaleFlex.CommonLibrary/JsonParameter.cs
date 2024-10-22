@@ -47,6 +47,7 @@ namespace SaleFlex.CommonLibrary
         public string prop_strDatabaseSalesFileName { get; set; }
         public string prop_strDatabaseProductsFileName { get; set; }
         public string prop_strDatabaseCustomersFileName { get; set; }
+        public string prop_strDatabaseWarehouseFileName { get; set; }
         public string prop_strDepartmentBackColor { get; set; }
         public string prop_strFunctionBackColor { get; set; }
         public string prop_strMessageBoxBackColor { get; set; }
@@ -98,6 +99,7 @@ namespace SaleFlex.CommonLibrary
                 prop_strDatabaseSalesFileName = "SaleFlex.POS.SALES.DB3";
                 prop_strDatabaseProductsFileName = "SaleFlex.POS.PRODUCTS.DB3";
                 prop_strDatabaseCustomersFileName = "SaleFlex.POS.CUSTOMERS.DB3";
+                prop_strDatabaseWarehouseFileName = "SaleFlex.POS.WAREHOUSE.DB3";
                 prop_strDepartmentBackColor = string.Empty;
                 prop_strFunctionBackColor = string.Empty;
                 prop_strMessageBoxBackColor = "DARKSEAGREEN";

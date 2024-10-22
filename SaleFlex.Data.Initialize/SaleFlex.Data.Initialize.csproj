@@ -102,6 +102,7 @@
     <Compile Include="DbCreate.Pos.cs" />
     <Compile Include="DbCreate.Product.cs" />
     <Compile Include="DbCreate.Sales.cs" />
+    <Compile Include="DbCreate.Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
