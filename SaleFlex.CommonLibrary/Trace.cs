@@ -5,121 +5,197 @@ using System.Reflection;
 
 namespace SaleFlex.CommonLibrary
 {
+    /// <summary>
+    /// Trace class to handle logging messages with different levels of importance.
+    /// This class allows capturing detailed trace information, including the method and class names
+    /// from which the trace is being logged, and supports various trace levels.
+    /// </summary>
     public class Trace
     {
+        /// <summary>
+        /// Inserts a trace message with a specific trace level.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_strTrace">The trace message to be logged.</param>
         public static void vInsert(enumTraceLevel prm_enumTraceLevel, string prm_strTrace)
         {
             try
             {
+                // Retrieve the method that called this method and the one before it.
                 MethodBase xLocationMethodBase = new StackTrace().GetFrame(1).GetMethod();
                 MethodBase xCalledByMethodBase = new StackTrace().GetFrame(2).GetMethod();
 
+                // Get class and method names for logging purposes.
                 string strLocationClassName = xLocationMethodBase.ReflectedType.Name;
                 string strLocationMethodName = xLocationMethodBase.Name;
                 string strCalledByClassName = xCalledByMethodBase.ReflectedType.Name;
                 string strCalledByMethodName = xCalledByMethodBase.Name;
 
+                // Prepare and log the trace message.
                 vPrepareTrace(prm_enumTraceLevel, strLocationClassName, strLocationMethodName, strCalledByClassName, strCalledByMethodName, prm_strTrace);
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Inserts a formatted trace message with specific arguments and trace level.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_strTraceFormat">The trace message format string.</param>
+        /// <param name="prm_objaTraceArgumenst">Arguments for the format string.</param>
         public static void vInsert(enumTraceLevel prm_enumTraceLevel, string prm_strTraceFormat, params object[] prm_objaTraceArgumenst)
         {
             try
             {
+                // Retrieve the method that called this method and the one before it.
                 MethodBase xLocationMethodBase = new StackTrace().GetFrame(1).GetMethod();
                 MethodBase xCalledByMethodBase = new StackTrace().GetFrame(2).GetMethod();
 
+                // Get class and method names for logging purposes.
                 string strLocationClassName = xLocationMethodBase.ReflectedType.Name;
                 string strLocationMethodName = xLocationMethodBase.Name;
                 string strCalledByClassName = xCalledByMethodBase.ReflectedType.Name;
                 string strCalledByMethodName = xCalledByMethodBase.Name;
 
+                // Prepare and log the trace message with arguments.
                 vPrepareTrace(prm_enumTraceLevel, strLocationClassName, strLocationMethodName, strCalledByClassName, strCalledByMethodName, prm_strTraceFormat, prm_objaTraceArgumenst);
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Inserts a formatted trace message with a specific ID, trace level, and arguments.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_lID">Unique ID associated with the trace.</param>
+        /// <param name="prm_strTraceFormat">The trace message format string.</param>
+        /// <param name="prm_objaTraceArgumenst">Arguments for the format string.</param>
         public static void vInsert(enumTraceLevel prm_enumTraceLevel, long prm_lID, string prm_strTraceFormat, params object[] prm_objaTraceArgumenst)
         {
             try
             {
+                // Retrieve the method that called this method and the one before it.
                 MethodBase xLocationMethodBase = new StackTrace().GetFrame(1).GetMethod();
                 MethodBase xCalledByMethodBase = new StackTrace().GetFrame(2).GetMethod();
 
+                // Get class and method names for logging purposes.
                 string strLocationClassName = xLocationMethodBase.ReflectedType.Name;
                 string strLocationMethodName = xLocationMethodBase.Name;
                 string strCalledByClassName = xCalledByMethodBase.ReflectedType.Name;
                 string strCalledByMethodName = xCalledByMethodBase.Name;
 
+                // Format trace message with ID.
                 prm_strTraceFormat = string.Format("[ID:{0}] {1}", prm_lID, prm_strTraceFormat);
                 vPrepareTrace(prm_enumTraceLevel, strLocationClassName, strLocationMethodName, strCalledByClassName, strCalledByMethodName, prm_strTraceFormat, prm_objaTraceArgumenst);
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Inserts a trace message with a specific ID and trace level.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_lID">Unique ID associated with the trace.</param>
+        /// <param name="prm_strTrace">The trace message to be logged.</param>
         public static void vInsert(enumTraceLevel prm_enumTraceLevel, long prm_lID, string prm_strTrace)
         {
             try
             {
+                // Retrieve the method that called this method and the one before it.
                 MethodBase xLocationMethodBase = new StackTrace().GetFrame(1).GetMethod();
                 MethodBase xCalledByMethodBase = new StackTrace().GetFrame(2).GetMethod();
 
+                // Get class and method names for logging purposes.
                 string strLocationClassName = xLocationMethodBase.ReflectedType.Name;
                 string strLocationMethodName = xLocationMethodBase.Name;
                 string strCalledByClassName = xCalledByMethodBase.ReflectedType.Name;
                 string strCalledByMethodName = xCalledByMethodBase.Name;
 
+                // Format trace message with ID.
                 prm_strTrace = string.Format("[ID:{0}] {1}", prm_lID, prm_strTrace);
                 vPrepareTrace(prm_enumTraceLevel, strLocationClassName, strLocationMethodName, strCalledByClassName, strCalledByMethodName, prm_strTrace);
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Inserts a data log trace message with a specific trace level.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_strTrace">The trace message to be logged.</param>
         public static void vInsertDataLog(enumTraceLevel prm_enumTraceLevel, string prm_strTrace)
         {
             try
             {
+                // Retrieve the method that called this method and the one before it.
                 MethodBase xLocationMethodBase = new StackTrace().GetFrame(1).GetMethod();
                 MethodBase xCalledByMethodBase = new StackTrace().GetFrame(2).GetMethod();
 
+                // Get class and method names for logging purposes.
                 string strLocationClassName = xLocationMethodBase.ReflectedType.Name;
                 string strLocationMethodName = xLocationMethodBase.Name;
                 string strCalledByClassName = xCalledByMethodBase.ReflectedType.Name;
                 string strCalledByMethodName = xCalledByMethodBase.Name;
 
+                // Prepare and log the trace message for data logging.
                 vPrepareTraceDataLog(prm_enumTraceLevel, strLocationClassName, strLocationMethodName, strCalledByClassName, strCalledByMethodName, prm_strTrace);
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Prepares and logs the trace message to the trace file, with formatted arguments.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_strLocationClassName">Class name where the trace was inserted.</param>
+        /// <param name="prm_strLocationMethodName">Method name where the trace was inserted.</param>
+        /// <param name="prm_strCalledByClassName">Class name of the caller method.</param>
+        /// <param name="prm_strCalledByMethodName">Method name of the caller.</param>
+        /// <param name="prm_strTraceFormat">Message format to be logged.</param>
+        /// <param name="prm_objaTraceArgumenst">Arguments for the format string.</param>
         public static void vPrepareTrace(enumTraceLevel prm_enumTraceLevel, string prm_strLocationClassName, string prm_strLocationMethodName, string prm_strCalledByClassName, string prm_strCalledByMethodName, string prm_strTraceFormat, params object[] prm_objaTraceArgumenst)
         {
             try
             {
+                // Ensure that arguments are not null.
                 for (int iIndex = 0; iIndex < prm_objaTraceArgumenst.Length; iIndex++)
                 {
                     if (prm_objaTraceArgumenst[iIndex] == null)
                         prm_objaTraceArgumenst[iIndex] = (object)string.Format("<ERROR:Null object assigned>");
                 }
+                // Format the trace message and log it.
                 vPrepareTrace(prm_enumTraceLevel, prm_strLocationClassName, prm_strLocationMethodName, prm_strCalledByClassName, prm_strCalledByMethodName, string.Format(prm_strTraceFormat, prm_objaTraceArgumenst));
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Prepares and logs the trace message to the trace file.
+        /// </summary>
+        /// <param name="prm_enumTraceLevel">Trace importance level.</param>
+        /// <param name="prm_strLocationClassName">Class name where the trace was inserted.</param>
+        /// <param name="prm_strLocationMethodName">Method name where the trace was inserted.</param>
+        /// <param name="prm_strCalledByClassName">Class name of the caller method.</param>
+        /// <param name="prm_strCalledByMethodName">Method name of the caller.</param>
+        /// <param name="prm_strTrace">Message to be logged.</param>
         public static void vPrepareTrace(enumTraceLevel prm_enumTraceLevel, string prm_strLocationClassName, string prm_strLocationMethodName, string prm_strCalledByClassName, string prm_strCalledByMethodName, string prm_strTrace)
         {
             prm_strTrace = string.Format("{0}.{1}^{2}.{3}^{4}", prm_strLocationClassName, prm_strLocationMethodName, prm_strCalledByClassName, prm_strCalledByMethodName, prm_strTrace);
@@ -209,13 +285,11 @@ namespace SaleFlex.CommonLibrary
 
 
         /// <summary>
-        /// Insert trace message line into the trace file
+        /// Inserts the trace message line into the trace file.
+        /// The method ensures to create the necessary log file and handle message formatting.
         /// </summary>
-        /// <remarks>
-        /// vInsertTrace("Everything is OK", 5)
-        /// </remarks>
-        /// <param name="prm_strTrace">Message to write in trace</param>
-        /// <param name="prm_sTraceLevel">Trace importance level (0 more important-5 less important-6 turn off tracing)</param>
+        /// <param name="prm_iTraceLevel">Trace level as an integer.</param>
+        /// <param name="prm_strTrace">Trace message to write to the file.</param>
         private static void vInsertTrace(int prm_iTraceLevel, string prm_strTrace)
         {
             try
@@ -263,11 +337,13 @@ namespace SaleFlex.CommonLibrary
                 }
                 catch
                 {
+                    // Swallow exceptions to ensure tracing does not break the program.
                 }
 
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
@@ -318,11 +394,13 @@ namespace SaleFlex.CommonLibrary
                 }
                 catch
                 {
+                    // Swallow exceptions to ensure tracing does not break the program.
                 }
 
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
@@ -446,9 +524,15 @@ namespace SaleFlex.CommonLibrary
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
+        /// <summary>
+        /// Determines the folder path where trace logs should be saved.
+        /// </summary>
+        /// <param name="prm_xDateTime">DateTime object for the trace.</param>
+        /// <returns>Path to the trace log folder.</returns>
         public static string strTraceFolderName(DateTime prm_xDateTime)
         {
             try
@@ -496,6 +580,7 @@ namespace SaleFlex.CommonLibrary
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
             return true;
         }
@@ -522,6 +607,7 @@ namespace SaleFlex.CommonLibrary
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
         }
 
@@ -552,6 +638,7 @@ namespace SaleFlex.CommonLibrary
             }
             catch
             {
+                // Swallow exceptions to ensure tracing does not break the program.
             }
 
             return xReturnFileInfoList;
@@ -559,7 +646,7 @@ namespace SaleFlex.CommonLibrary
     }
 
     /// <summary>
-    /// Trace level enumeration
+    /// Enumeration representing different trace levels.
     /// </summary>
     public enum enumTraceLevel
     {
@@ -584,7 +671,7 @@ namespace SaleFlex.CommonLibrary
         /// </summary>
         Important,
         /// <summary>
-        /// Write trace and put it to windows event log. Numeric value is 5
+        /// Write trace and put it to Windows Event Log. Numeric value is 5.
         /// </summary>
         UsefulInformation
     }
