@@ -20,6 +20,7 @@ namespace SaleFlex.Data.Initialize
 
             var DbTableCreateMethods = new List<Func<bool>>
             {
+                bCreateTableWarehouseTransaction,
             };
 
             foreach (var DbTableCreateMethod in DbTableCreateMethods)
