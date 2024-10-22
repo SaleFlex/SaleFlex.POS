@@ -13,8 +13,15 @@ using System.Windows.Forms;
 
 namespace SaleFlex.Data.AccessLayer
 {
+    /// <summary>
+    /// Data Access Object (DAO) class that provides various methods to interact with the database for PLU (Price Look-Up) data.
+    /// </summary>
     public partial class Dao
     {
+        /// <summary>
+        /// Checks if the PLU database contains the required tables.
+        /// </summary>
+        /// <returns>True if the database contains the correct tables, otherwise false.</returns>
         public bool bCheckPluDb()
         {
             bool returnvalue = false;
@@ -40,6 +47,11 @@ namespace SaleFlex.Data.AccessLayer
             return returnvalue;
         }
 
+        /// <summary>
+        /// Retrieves a PLU record by its code.
+        /// </summary>
+        /// <param name="prm_strPluCode">PLU code to search for.</param>
+        /// <returns>A PluDataModel containing the PLU details, or null if not found.</returns>
         public PluDataModel xGetPluByCode(string prm_strPluCode)
         {
             PluDataModel xPluDataModel = null;
@@ -98,6 +110,11 @@ namespace SaleFlex.Data.AccessLayer
             return xPluDataModel;
         }
 
+        /// <summary>
+        /// Retrieves a PLU record by its ID.
+        /// </summary>
+        /// <param name="prm_iPluId">PLU ID to search for.</param>
+        /// <returns>A PluDataModel containing the PLU details, or null if not found.</returns>
         public PluDataModel xGetPluById(long prm_iPluId)
         {
             PluDataModel xPluDataModel = new PluDataModel();
@@ -156,22 +173,33 @@ namespace SaleFlex.Data.AccessLayer
             return xPluDataModel;
         }
 
+        /// <summary>
+        /// Retrieves the PLU code associated with the given barcode from the database.
+        /// </summary>
+        /// <param name="prm_strPluBarcode">The barcode used to find the corresponding PLU code.</param>
+        /// <returns>The PLU code if found; otherwise, returns an empty string.</returns>
         public string strGetPluCode(string prm_strPluBarcode)
         {
+            // Initialize the PLU code as an empty string
             string strPluCode = string.Empty;
 
             try
             {
+                // SQL query to select the PLU code using the provided barcode
                 var query = $"SELECT Code FROM TablePluBarcode LEFT JOIN TablePlu ON TablePlu.Id=TablePluBarcode.FkPluId WHERE Barcode=\'{prm_strPluBarcode}\' ORDER BY Barcode";
 
+                // Execute the query and get the resulting data table
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable(query);
 
+                // Check if the data table is not null and contains rows
                 if (xDataTable != null && xDataTable.Rows.Count > 0)
                 {
+                    // Iterate over each row in the data table
                     foreach (DataRow xDataRow in xDataTable.Rows)
                     {
                         if (xDataRow != null)
                         {
+                            // Get the PLU code from the "Code" column and break after retrieving the first one
                             strPluCode = xDataRow["Code"].ToString();
                             break;
                         }
@@ -180,32 +208,46 @@ namespace SaleFlex.Data.AccessLayer
             }
             catch (Exception xException)
             {
+                // Log the exception using the custom error trace method
                 xException.strTraceError();
             }
 
+            // Return the retrieved PLU code or an empty string if not found
             return strPluCode;
         }
 
+        /// <summary>
+        /// Retrieves the barcode associated with the given barcode ID from the database.
+        /// </summary>
+        /// <param name="barcodeId">The ID used to find the corresponding barcode.</param>
+        /// <returns>The barcode if found; otherwise, returns an empty string.</returns>
         public string GetBarcodeByBarcodeId(long barcodeId)
         {
+            // Initialize the barcode as an empty string
             string barcode = string.Empty;
 
             try
             {
-                var query = string.Format("SELECT Barcode FROM TablePluBarcode WHERE Id = {0}", barcodeId);
+                // SQL query to select the barcode using the provided barcode ID
+                var query = $"SELECT Barcode FROM TablePluBarcode WHERE Id = {barcodeId}";
 
+                // Execute the query and get the resulting data table
                 DataTable xDataTable = Dbo.xGetInstance(CommonProperty.prop_strDatabaseProductsFileNameAndPath).xExecuteDataTable(query);
 
+                // Check if the data table is not null and contains rows
                 if (xDataTable != null)
                 {
+                    // Get the barcode from the first row in the "Barcode" column
                     barcode = xDataTable.Rows[0]["Barcode"].ToString();
                 }
             }
             catch (Exception xException)
             {
+                // Log the exception using the custom error trace method
                 xException.strTraceError();
             }
 
+            // Return the retrieved barcode or an empty string if not found
             return barcode;
         }
 
