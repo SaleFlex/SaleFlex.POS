@@ -26,6 +26,7 @@
 - [ ] Backend Integration Module
 - [ ] Campaign Module
 - [ ] Reports Module
+- [ ] Warehouse Module
 - [ ] Form Designer App
 
 # Features
