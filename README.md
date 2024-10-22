@@ -80,6 +80,10 @@ This list represents the customizable screens available in the SaleFlex program.
     - [ ] **Function:** Employee screen. Displays employee details and information related to their rights and records.
 19. **RESERVATION:**  
     - [ ] **Function:** Reservation screen. Manages reservations in restaurant-enabled programs.
+20. **WAREHOUSE**: 
+    - [ ] **Function**: Allows the definition of warehouse locations and the management of warehouse operations within SaleFlex.POS. If SaleFlex.GATE is used, warehouse operations will be managed centrally. Additionally, it can be integrated with third-party systems if desired.
+
+Let me know if you need further assistance or any other changes!
 
 ## Supported Payment Types
 The value in parentheses shows the equivalent in the database.
