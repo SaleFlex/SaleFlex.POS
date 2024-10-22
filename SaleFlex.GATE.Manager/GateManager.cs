@@ -78,12 +78,12 @@ namespace SaleFlex.GATE.Manager
                     return setupPosResponseModel.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -123,12 +123,12 @@ namespace SaleFlex.GATE.Manager
                     return askForUpdateResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -169,13 +169,13 @@ namespace SaleFlex.GATE.Manager
                     return popUpMessageResponse.UpdateMessage;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
-                return "Servis Hatası!";
+                return "Service Error!";
                 //return new ResponseModel
                 //{
                 //    Code = 201,
-                //    Message = "Servis Hatası!"
+                //    Message = "Service Error!"
                 //};
             }
         }
@@ -216,12 +216,12 @@ namespace SaleFlex.GATE.Manager
                     return vatListResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -262,12 +262,12 @@ namespace SaleFlex.GATE.Manager
                     return groupListResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -308,12 +308,12 @@ namespace SaleFlex.GATE.Manager
                     return screenResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -354,12 +354,12 @@ namespace SaleFlex.GATE.Manager
                     return paymentTypeResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -414,12 +414,12 @@ namespace SaleFlex.GATE.Manager
                     //return pluListResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 //return new ServiceDataModel.ResponseModel
                 //{
                 //    Code = "201",
-                //    Message = "Servis Hatası!"
+                //    Message = "Service Error!"
                 //};
             }
         }
@@ -462,12 +462,12 @@ namespace SaleFlex.GATE.Manager
                     return posResponse.ResponseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -514,14 +514,14 @@ namespace SaleFlex.GATE.Manager
                     return responseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.PluListSaveResponseModel
                 {
                     ResponseModel = new ServiceDataModel.ResponseModel
                     {
                         Code = "201",
-                        Message = "Servis Hatası!"
+                        Message = "Service Error!"
                     }
                 };
             }
@@ -565,12 +565,12 @@ namespace SaleFlex.GATE.Manager
                     return responseModel;
                 }
             }
-            catch (Exception ex)
+            catch (Exception xException)
             {
                 return new ServiceDataModel.ResponseModel
                 {
                     Code = "201",
-                    Message = "Servis Hatası!"
+                    Message = "Service Error!"
                 };
             }
         }
@@ -584,9 +584,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveVat(vat);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
         private void vSaveStockUnitList(List<ServiceDataModel.StockUnitModel> stockUnitList)
@@ -598,9 +598,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveStockUnit(stock);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
         private void vSaveCashierList(List<ServiceDataModel.CashierModel> cashierList)
@@ -612,9 +612,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveCashier(cashier);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
         private void vSavePluManufacturerList(List<ServiceDataModel.PluManufacturerModel> pluManufacturerList)
@@ -626,9 +626,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSavePluManufacturer(pluManufacturer);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
         private void vSaveGroupList(List<ServiceDataModel.PluMainGroupModel> mainGroupList, List<ServiceDataModel.PluSubGroupModel> subGroupList)
@@ -640,9 +640,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSavePluGroup(pluMainGroup, subGroupList.FindAll(s => s.FkPluMainGroupId == pluMainGroup.Id));
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
@@ -659,9 +659,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveLabelValue(labelValue);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
@@ -674,9 +674,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSavePaymentType(paymentType);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
@@ -695,7 +695,7 @@ namespace SaleFlex.GATE.Manager
                 //}
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
                 return false;
             }
@@ -712,9 +712,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveCountry(country);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
@@ -735,9 +735,9 @@ namespace SaleFlex.GATE.Manager
                 //    Dao.xGetInstance().vSavePluManufacturer(pluManufacturer);
                 //}
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
@@ -750,9 +750,9 @@ namespace SaleFlex.GATE.Manager
                     Dao.xGetInstance().vSaveTransactionDocumentType(transactionDocumentType);
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException xException)
             {
-                throw ex;
+                throw xException;
             }
         }
 
