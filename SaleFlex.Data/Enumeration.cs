@@ -27,7 +27,8 @@ namespace SaleFlex.Data
         ORDER,              // Order management form.
         CHECK,              // Check payment form.
         EMPLOYEE,           // Employee management form.
-        RESERVATION         // Reservation form.
+        RESERVATION,        // Reservation form.
+        WAREHOUSE           // Warehouse form.
     }
 
     // Enum representing different types of payment methods.
