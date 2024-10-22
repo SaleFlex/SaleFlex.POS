@@ -23,290 +23,111 @@ namespace SaleFlex.UserInterface.Manager
         {
             try
             {
-                EventHandler xEventHandler;
-
-                // Event handler assignment is based on the function name passed as a parameter.
-                // The function name is matched to predefined function names, and the appropriate event
-                // handler is assigned.
+                // Create a Dictionary to store event handlers
+                var xdicEventHandler = new Dictionary<string, EventHandler>
+                {
+                    { CustomEventFunctionName.strNone, new EventHandler(vNoneFunction) },
+                    { CustomEventFunctionName.strExitApplication, new EventHandler(vExitApplication) },
+                    { CustomEventFunctionName.strLogin, new EventHandler(vLoginSystem) },
+                    { CustomEventFunctionName.strLoginExtended, new EventHandler(vLoginSystem) },
+                    { CustomEventFunctionName.strLogout, new EventHandler(vLogoutSystem) },
+                    { CustomEventFunctionName.strServiceCodeRequest, new EventHandler(vServiceCodeRequest) },
+                    { CustomEventFunctionName.strLoginService, new EventHandler(vNotDefinedFunction) },
+                    { CustomEventFunctionName.strCloseForm, new EventHandler(vCloseForm) },
+                    { CustomEventFunctionName.strSaveChanges, new EventHandler(vSaveChanges) },
+                    { CustomEventFunctionName.strSaleDepartment, new EventHandler(vSaleDepartment) },
+                    { CustomEventFunctionName.strSaleDepartmentByNo, new EventHandler(vSaleDepartmentByNo) },
+                    { CustomEventFunctionName.strSalePluCode, new EventHandler(vSalePluCode) },
+                    { CustomEventFunctionName.strSalePluBarcode, new EventHandler(vSalePluBarcode) },
+                    { CustomEventFunctionName.strGetPluFromMainGroup, new EventHandler(vGetPluFromMainGroup) },
+                    { CustomEventFunctionName.strRepeatLastSale, new EventHandler(vRepeatLastSale) },
+                    { CustomEventFunctionName.strRepeatSale, new EventHandler(vRepeatSale) },
+                    { CustomEventFunctionName.strCancelDepartment, new EventHandler(vCancelDepartment) },
+                    { CustomEventFunctionName.strCancelPlu, new EventHandler(vCancelPlu) },
+                    { CustomEventFunctionName.strCancelLastSale, new EventHandler(vCancelLastSale) },
+                    { CustomEventFunctionName.strCancelSale, new EventHandler(vCancelSale) },
+                    { CustomEventFunctionName.strOpenCashDrawer, new EventHandler(vOpenCashDrawer) },
+                    { CustomEventFunctionName.strFunctionMenu, new EventHandler(vFunctionMenu) },
+                    { CustomEventFunctionName.strSaleMenu, new EventHandler(vSaleMenu) },
+                    { CustomEventFunctionName.strServiceMenu, new EventHandler(vServiceMenu) },
+                    { CustomEventFunctionName.strSettingMenu, new EventHandler(vSettingMenu) },
+                    { CustomEventFunctionName.strReportMenu, new EventHandler(vReportMenu) },
+                    { CustomEventFunctionName.strCashier, new EventHandler(vCashier) },
+                    { CustomEventFunctionName.strChangeDocumentType, new EventHandler(vChangeDocumentType) },
+                    { CustomEventFunctionName.strCustomer, new EventHandler(vCustomer) },
+                    { CustomEventFunctionName.strRefund, new EventHandler(vRefund) },
+                    { CustomEventFunctionName.strDiscountByAmount, new EventHandler(vDiscountByAmount) },
+                    { CustomEventFunctionName.strSurchargeByAmount, new EventHandler(vSurchargeByAmount) },
+                    { CustomEventFunctionName.strDiscountByPercent, new EventHandler(vDiscountByPercent) },
+                    { CustomEventFunctionName.strSurchargeByPercent, new EventHandler(vSurchargeByPercent) },
+                    { CustomEventFunctionName.strInputPrice, new EventHandler(vInputPrice) },
+                    { CustomEventFunctionName.strInputQuantity, new EventHandler(vInputQuantity) },
+                    { CustomEventFunctionName.strInputAmount, new EventHandler(vInputAmount) },
+                    { CustomEventFunctionName.strPriceLookUp, new EventHandler(vPriceLookUp) },
+                    { CustomEventFunctionName.strSubTotal, new EventHandler(vSubTotal) },
+                    { CustomEventFunctionName.strTotal, new EventHandler(vTotal) },
+                    { CustomEventFunctionName.strSaleOption, new EventHandler(vSaleOption) },
+                    { CustomEventFunctionName.strPayment, new EventHandler(vPayment) },
+                    { CustomEventFunctionName.strCashPayment, new EventHandler(vCashPayment) },
+                    { CustomEventFunctionName.strCreditPayment, new EventHandler(vCreditPayment) },
+                    { CustomEventFunctionName.strCheckPayment, new EventHandler(vCheckPayment) },
+                    { CustomEventFunctionName.strExchangePayment, new EventHandler(vExchangePayment) },
+                    { CustomEventFunctionName.strPrepaidPayment, new EventHandler(vPrepaidPayment) },
+                    { CustomEventFunctionName.strChargeSalePayment, new EventHandler(vChargeSalePayment) },
+                    { CustomEventFunctionName.strOtherPayment, new EventHandler(vOtherPayment) },
+                    { CustomEventFunctionName.strPaymentDetail, new EventHandler(vPaymentDetail) },
+                    { CustomEventFunctionName.strClosure, new EventHandler(vClosure) },
+                    { CustomEventFunctionName.strCancelDocument, new EventHandler(vCancelDocument) },
+                    { CustomEventFunctionName.strStockEntryForm, new EventHandler(vStockEntryForm) },
+                    { CustomEventFunctionName.strSaleDetailReport, new EventHandler(vSaleDetailReport) },
+                    { CustomEventFunctionName.strPluSaleReport, new EventHandler(vPluSaleReport) },
+                    { CustomEventFunctionName.strPosSummaryReport, new EventHandler(vPosSummaryReport) },
+                    { CustomEventFunctionName.strSetDisplayBrightness, new EventHandler(vSetDisplayBrightness) },
+                    { CustomEventFunctionName.strSetPrinterIntensity, new EventHandler(vSetPrinterIntensity) },
+                    { CustomEventFunctionName.strSetCashier, new EventHandler(vSetCashier) },
+                    { CustomEventFunctionName.strSetSupervisor, new EventHandler(vSetSupervisor) },
+                    { CustomEventFunctionName.strSetReceiptHeader, new EventHandler(vSetReceiptHeader) },
+                    { CustomEventFunctionName.strSetReceiptFooter, new EventHandler(vSetReceiptFooter) },
+                    { CustomEventFunctionName.strSetIdleMessage, new EventHandler(vSetIdleMessage) },
+                    { CustomEventFunctionName.strSetBarcodeDefinition, new EventHandler(vSetBarcodeDefinition) },
+                    { CustomEventFunctionName.strSetVatDefinition, new EventHandler(vSetVatDefinition) },
+                    { CustomEventFunctionName.strSetDepartmentDefinition, new EventHandler(vSetDepartmentDefinition) },
+                    { CustomEventFunctionName.strSetCurrencyDefinition, new EventHandler(vSetCurrencyDefinition) },
+                    { CustomEventFunctionName.strSetPluDefinition, new EventHandler(vSetPluDefinition) },
+                    { CustomEventFunctionName.strSetPluMainGroupDefinition, new EventHandler(vSetPluMainGroupDefinition) },
+                    { CustomEventFunctionName.strSetDiscountRate, new EventHandler(vSetDiscountRate) },
+                    { CustomEventFunctionName.strSetSurchargeRate, new EventHandler(vSetSurchargeRate) },
+                    { CustomEventFunctionName.strServiceCompanyInfo, new EventHandler(vServiceCompanyInfo) },
+                    { CustomEventFunctionName.strServiceChangeDateTime, new EventHandler(vServiceChangeDateTime) },
+                    { CustomEventFunctionName.strServiceParameterDownload, new EventHandler(vServiceParameterDownload) },
+                    { CustomEventFunctionName.strServiceSetReceiptLimit, new EventHandler(vServiceSetReceiptLimit) },
+                    { CustomEventFunctionName.strServiceResetToFactoryMode, new EventHandler(vServiceResetToFactoryMode) },
+                    { CustomEventFunctionName.strServiceResetPassword, new EventHandler(vServiceResetPassword) },
+                    { CustomEventFunctionName.strServiceChangePassword, new EventHandler(vServiceChangePassword) },
+                    { CustomEventFunctionName.strServicePosActive, new EventHandler(vServicePosActive) },
+                    { CustomEventFunctionName.strServiceSoftwareDownload, new EventHandler(vServiceSoftwareDownload) },
+                    { CustomEventFunctionName.strInvoiceList, new EventHandler(vInvoiceList) },
+                    { CustomEventFunctionName.strWaybillList, new EventHandler(vWaybillList) },
+                    { CustomEventFunctionName.strReturnList, new EventHandler(vReturnList) },
+                    { CustomEventFunctionName.strStockLookUp, new EventHandler(vStockLookUp) },
+                    { CustomEventFunctionName.strSuspendPayment, new EventHandler(vSuspendPayment) },
+                    { CustomEventFunctionName.strBackPayment, new EventHandler(vBackPayment) },
+                    { CustomEventFunctionName.strSaleShortcut, new EventHandler(vShortcutMenu) }
+                };
 
                 //if( prm_strFunctionName==PredefinedFunctionNames.strFunctionNames[FunctionNames.Login])
                 //{
-                //     xEventHandler = new System.EventHandler(vLoginSystem);
+                //     return new System.EventHandler(vLoginSystem);
                 //}
 
-                // Switch statement to handle different function names and assign appropriate event handlers.
-                switch (prm_strFunctionName)
+                // Try to find the event handler and return it
+                if (xdicEventHandler.TryGetValue(prm_strFunctionName, out EventHandler xEventHandler))
                 {
-                    case CustomEventFunctionName.strNone:
-                        xEventHandler = new System.EventHandler(vNoneFunction);
-                        break;
-                    case CustomEventFunctionName.strExitApplication:
-                        xEventHandler = new System.EventHandler(vExitApplication);
-                        break;
-                    case CustomEventFunctionName.strLogin:
-                    case CustomEventFunctionName.strLoginExtended:
-                        xEventHandler = new System.EventHandler(vLoginSystem);
-                        break;
-                    case CustomEventFunctionName.strLogout:
-                        xEventHandler = new System.EventHandler(vLogoutSystem);
-                        break;
-                    case CustomEventFunctionName.strServiceCodeRequest:
-                        xEventHandler = new System.EventHandler(vServiceCodeRequest);
-                        break;
-                    case CustomEventFunctionName.strLoginService:
-                        xEventHandler = new System.EventHandler(vNotDefinedFunction);
-                        break;
-                    case CustomEventFunctionName.strCloseForm:
-                        xEventHandler = new System.EventHandler(vCloseForm);
-                        break;
-                    case CustomEventFunctionName.strSaveChanges:
-                        xEventHandler = new System.EventHandler(vSaveChanges);
-                        break;
-                    case CustomEventFunctionName.strSaleDepartment:
-                        xEventHandler = new System.EventHandler(vSaleDepartment);
-                        break;
-                    case CustomEventFunctionName.strSaleDepartmentByNo:
-                        xEventHandler = new System.EventHandler(vSaleDepartmentByNo);
-                        break;
-                    case CustomEventFunctionName.strSalePluCode:
-                        xEventHandler = new System.EventHandler(vSalePluCode);
-                        break;
-                    case CustomEventFunctionName.strSalePluBarcode:
-                        xEventHandler = new System.EventHandler(vSalePluBarcode);
-                        break;
-                    case CustomEventFunctionName.strGetPluFromMainGroup:
-                        xEventHandler = new System.EventHandler(vGetPluFromMainGroup);
-                        break;
-                    case CustomEventFunctionName.strRepeatLastSale:
-                        xEventHandler = new System.EventHandler(vRepeatLastSale);
-                        break;
-                    case CustomEventFunctionName.strRepeatSale:
-                        xEventHandler = new System.EventHandler(vRepeatSale);
-                        break;
-                    case CustomEventFunctionName.strCancelDepartment:
-                        xEventHandler = new System.EventHandler(vCancelDepartment);
-                        break;
-                    case CustomEventFunctionName.strCancelPlu:
-                        xEventHandler = new System.EventHandler(vCancelPlu);
-                        break;
-                    case CustomEventFunctionName.strCancelLastSale:
-                        xEventHandler = new System.EventHandler(vCancelLastSale);
-                        break;
-                    case CustomEventFunctionName.strCancelSale:
-                        xEventHandler = new System.EventHandler(vCancelSale);
-                        break;
-                    case CustomEventFunctionName.strOpenCashDrawer:
-                        xEventHandler = new System.EventHandler(vOpenCashDrawer);
-                        break;
-                    case CustomEventFunctionName.strFunctionMenu:
-                        xEventHandler = new System.EventHandler(vFunctionMenu);
-                        break;
-                    case CustomEventFunctionName.strSaleMenu:
-                        xEventHandler = new System.EventHandler(vSaleMenu);
-                        break;
-                    case CustomEventFunctionName.strServiceMenu:
-                        xEventHandler = new System.EventHandler(vServiceMenu);
-                        break;
-                    case CustomEventFunctionName.strSettingMenu:
-                        xEventHandler = new System.EventHandler(vSettingMenu);
-                        break;
-                    case CustomEventFunctionName.strReportMenu:
-                        xEventHandler = new System.EventHandler(vReportMenu);
-                        break;
-                    case CustomEventFunctionName.strCashier:
-                        xEventHandler = new System.EventHandler(vCashier);
-                        break;
-                    case CustomEventFunctionName.strChangeDocumentType:
-                        xEventHandler = new System.EventHandler(vChangeDocumentType);
-                        break;
-                    case CustomEventFunctionName.strCustomer:
-                        xEventHandler = new System.EventHandler(vCustomer);
-                        break;
-                    case CustomEventFunctionName.strRefund:
-                        xEventHandler = new System.EventHandler(vRefund);
-                        break;
-                    case CustomEventFunctionName.strDiscountByAmount:
-                        xEventHandler = new System.EventHandler(vDiscountByAmount);
-                        break;
-                    case CustomEventFunctionName.strSurchargeByAmount:
-                        xEventHandler = new System.EventHandler(vSurchargeByAmount);
-                        break;
-                    case CustomEventFunctionName.strDiscountByPercent:
-                        xEventHandler = new System.EventHandler(vDiscountByPercent);
-                        break;
-                    case CustomEventFunctionName.strSurchargeByPercent:
-                        xEventHandler = new System.EventHandler(vSurchargeByPercent);
-                        break;
-                    case CustomEventFunctionName.strInputPrice:
-                        xEventHandler = new System.EventHandler(vInputPrice);
-                        break;
-                    case CustomEventFunctionName.strInputQuantity:
-                        xEventHandler = new System.EventHandler(vInputQuantity);
-                        break;
-                    case CustomEventFunctionName.strInputAmount:
-                        xEventHandler = new System.EventHandler(vInputAmount);
-                        break;
-                    case CustomEventFunctionName.strPriceLookUp:
-                        xEventHandler = new System.EventHandler(vPriceLookUp);
-                        break;
-                    case CustomEventFunctionName.strSubTotal:
-                        xEventHandler = new System.EventHandler(vSubTotal);
-                        break;
-                    case CustomEventFunctionName.strTotal:
-                        xEventHandler = new System.EventHandler(vTotal);
-                        break;
-                    case CustomEventFunctionName.strSaleOption:
-                        xEventHandler = new System.EventHandler(vSaleOption);
-                        break;
-                    case CustomEventFunctionName.strPayment:
-                        xEventHandler = new System.EventHandler(vPayment);
-                        break;
-                    case CustomEventFunctionName.strCashPayment:
-                        xEventHandler = new System.EventHandler(vCashPayment);
-                        break;
-                    case CustomEventFunctionName.strCreditPayment:
-                        xEventHandler = new System.EventHandler(vCreditPayment);
-                        break;
-                    case CustomEventFunctionName.strCheckPayment:
-                        xEventHandler = new System.EventHandler(vCheckPayment);
-                        break;
-                    case CustomEventFunctionName.strExchangePayment:
-                        xEventHandler = new System.EventHandler(vExchangePayment);
-                        break;
-                    case CustomEventFunctionName.strPrepaidPayment:
-                        xEventHandler = new System.EventHandler(vPrepaidPayment);
-                        break;
-                    case CustomEventFunctionName.strChargeSalePayment:
-                        xEventHandler = new System.EventHandler(vChargeSalePayment);
-                        break;
-                    case CustomEventFunctionName.strOtherPayment:
-                        xEventHandler = new System.EventHandler(vOtherPayment);
-                        break;
-                    case CustomEventFunctionName.strPaymentDetail:
-                        xEventHandler = new System.EventHandler(vPaymentDetail);
-                        break;
-                    case CustomEventFunctionName.strClosure:
-                        xEventHandler = new System.EventHandler(vClosure);
-                        break;
-                    case CustomEventFunctionName.strCancelDocument:
-                        xEventHandler = new System.EventHandler(vCancelDocument);
-                        break;
-                    case CustomEventFunctionName.strStockEntryForm:
-                        xEventHandler = new System.EventHandler(vStockEntryForm);
-                        break;
-                    case CustomEventFunctionName.strSaleDetailReport:
-                        xEventHandler = new System.EventHandler(vSaleDetailReport);
-                        break;
-                    case CustomEventFunctionName.strPluSaleReport:
-                        xEventHandler = new System.EventHandler(vPluSaleReport);
-                        break;
-                    case CustomEventFunctionName.strPosSummaryReport:
-                        xEventHandler = new System.EventHandler(vPosSummaryReport);
-                        break;
-                    case CustomEventFunctionName.strSetDisplayBrightness:
-                        xEventHandler = new System.EventHandler(vSetDisplayBrightness);
-                        break;
-                    case CustomEventFunctionName.strSetPrinterIntensity:
-                        xEventHandler = new System.EventHandler(vSetPrinterIntensity);
-                        break;
-                    case CustomEventFunctionName.strSetCashier:
-                        xEventHandler = new System.EventHandler(vSetCashier);
-                        break;
-                    case CustomEventFunctionName.strSetSupervisor:
-                        xEventHandler = new System.EventHandler(vSetSupervisor);
-                        break;
-                    case CustomEventFunctionName.strSetReceiptHeader:
-                        xEventHandler = new System.EventHandler(vSetReceiptHeader);
-                        break;
-                    case CustomEventFunctionName.strSetReceiptFooter:
-                        xEventHandler = new System.EventHandler(vSetReceiptFooter);
-                        break;
-                    case CustomEventFunctionName.strSetIdleMessage:
-                        xEventHandler = new System.EventHandler(vSetIdleMessage);
-                        break;
-                    case CustomEventFunctionName.strSetBarcodeDefinition:
-                        xEventHandler = new System.EventHandler(vSetBarcodeDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetVatDefinition:
-                        xEventHandler = new System.EventHandler(vSetVatDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetDepartmentDefinition:
-                        xEventHandler = new System.EventHandler(vSetDepartmentDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetCurrencyDefinition:
-                        xEventHandler = new System.EventHandler(vSetCurrencyDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetPluDefinition:
-                        xEventHandler = new System.EventHandler(vSetPluDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetPluMainGroupDefinition:
-                        xEventHandler = new System.EventHandler(vSetPluMainGroupDefinition);
-                        break;
-                    case CustomEventFunctionName.strSetDiscountRate:
-                        xEventHandler = new System.EventHandler(vSetDiscountRate);
-                        break;
-                    case CustomEventFunctionName.strSetSurchargeRate:
-                        xEventHandler = new System.EventHandler(vSetSurchargeRate);
-                        break;
-                    case CustomEventFunctionName.strServiceCompanyInfo:
-                        xEventHandler = new System.EventHandler(vServiceCompanyInfo);
-                        break;
-                    case CustomEventFunctionName.strServiceChangeDateTime:
-                        xEventHandler = new System.EventHandler(vServiceChangeDateTime);
-                        break;
-                    case CustomEventFunctionName.strServiceParameterDownload:
-                        xEventHandler = new System.EventHandler(vServiceParameterDownload);
-                        break;
-                    case CustomEventFunctionName.strServiceSetReceiptLimit:
-                        xEventHandler = new System.EventHandler(vServiceSetReceiptLimit);
-                        break;
-                    case CustomEventFunctionName.strServiceResetToFactoryMode:
-                        xEventHandler = new System.EventHandler(vServiceResetToFactoryMode);
-                        break;
-                    case CustomEventFunctionName.strServiceResetPassword:
-                        xEventHandler = new System.EventHandler(vServiceResetPassword);
-                        break;
-                    case CustomEventFunctionName.strServiceChangePassword:
-                        xEventHandler = new System.EventHandler(vServiceChangePassword);
-                        break;
-                    case CustomEventFunctionName.strServicePosActive:
-                        xEventHandler = new System.EventHandler(vServicePosActive);
-                        break;
-                    case CustomEventFunctionName.strServiceSoftwareDownload:
-                        xEventHandler = new System.EventHandler(vServiceSoftwareDownload);
-                        break;
-                    case CustomEventFunctionName.strInvoiceList:
-                        xEventHandler = new System.EventHandler(vInvoiceList);
-                        break;
-                    case CustomEventFunctionName.strWaybillList:
-                        xEventHandler = new System.EventHandler(vWaybillList);
-                        break;
-                    case CustomEventFunctionName.strReturnList:
-                        xEventHandler = new System.EventHandler(vReturnList);
-                        break;
-                    case CustomEventFunctionName.strStockLookUp:
-                        xEventHandler = new System.EventHandler(vStockLookUp);
-                        break;
-                    case CustomEventFunctionName.strSuspendPayment:
-                        xEventHandler = new System.EventHandler(vSuspendPayment);
-                        break;
-                    case CustomEventFunctionName.strBackPayment:
-                        xEventHandler = new System.EventHandler(vBackPayment);
-                        break;
-                    case CustomEventFunctionName.strSaleShortcut:
-                        xEventHandler = new System.EventHandler(vShortcutMenu);
-                        break;
-                    //case CustomEventFunctionName.strReDrawForm:
-                    //    xEventHandler = new System.EventHandler(vReDrawButtons);
-                    //    break;
-                    default:
-                        // If no matching function name is found, use a default handler for undefined functions
-                        xEventHandler = new System.EventHandler(vNotDefinedFunction);
-                        break;
+                    return xEventHandler;
                 }
 
-                // Return the assigned event handler
-                return xEventHandler;
+                // Return the default handler if no matching event handler is found
+                return new EventHandler(vNotDefinedFunction);
             }
             catch
             {
