@@ -1,5 +1,7 @@
 > **Under development. The solution is not working properly yet.**
 
+[SaleFlex Ecosystem](https://github.com/SaleFlex) | [SaleFlex.PyPOS](https://github.com/SaleFlex/SaleFlex.PyPOS) | [SaleFlex.OFFICE](https://github.com/SaleFlex/SaleFlex.OFFICE) | [SaleFlex.GATE](https://github.com/SaleFlex/SaleFlex.GATE) | [SaleFlex.KITCHEN](https://github.com/SaleFlex/SaleFlex.KITCHEN) | **[SaleFlex.POS](https://github.com/SaleFlex/SaleFlex.POS)**
+
 # SaleFlex
 **SaleFlex** is designed to meet the challenges of modern retail businesses, providing flexibility, scalability, and centralized control in one powerful solution.
 
